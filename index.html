@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="refresh" content="300">
+<title>Business Dashboard - Live Sales</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+         margin: 0; padding: 16px; background: #0f1420; color: #e8ecf3; }
+  @media (prefers-color-scheme: light) { body { background: #f4f6fa; color: #16202e; } .card, table { background: #fff !important; } th, td { border-color: #dde3ec !important; } }
+  h1 { font-size: 22px; margin: 0 0 2px; }
+  h2 { font-size: 17px; margin: 26px 0 6px; }
+  h3 { font-size: 13px; margin: 14px 0 4px; color: #8fa3bf; text-transform: uppercase; letter-spacing: .04em; }
+  .updated { color: #8fa3bf; font-size: 13px; margin-bottom: 14px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+  .card { background: #171e2e; border: 1px solid #26314a; border-radius: 10px; padding: 12px; }
+  .card-label { font-size: 12px; color: #8fa3bf; text-transform: uppercase; letter-spacing: .05em; }
+  .card-gross { font-size: 19px; font-weight: 700; margin-top: 4px; }
+  .card-gross span, .card-net span { font-size: 11px; font-weight: 400; color: #8fa3bf; }
+  .card-net { font-size: 15px; color: #4ade80; font-weight: 600; }
+  table { width: 100%; border-collapse: collapse; background: #171e2e; border-radius: 10px; overflow: hidden; margin: 6px 0 4px; }
+  th, td { padding: 7px 10px; border-bottom: 1px solid #26314a; text-align: right; font-size: 14px; }
+  th:first-child, td:first-child { text-align: left; }
+  th { color: #8fa3bf; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+  tr.total td { font-weight: 700; border-top: 2px solid #4ade80; }
+  .ok { color: #4ade80; } .pending { color: #f0b35e; } .pending-note { color: #f0b35e; font-size: 14px; }
+  .aud { color: #8fa3bf; font-size: 14px; margin: 2px 0 6px; }
+  .chart { width: 100%; height: 74px; display: block; }
+  .chart rect { fill: #4ade80; }
+  .foot { color: #8fa3bf; font-size: 12px; margin-top: 28px; line-height: 1.5; }
+</style>
+</head>
+<body>
+<h1>Business Dashboard - Live Sales</h1>
+<div class="updated">Updated 26 Oct 2026, 12:01 New York. Revenue counts at sale time; the page refreshes itself.</div>
+<div class="cards"><div class="card"><div class="card-label">Today</div><div class="card-gross">$0.00 <span>gross</span></div><div class="card-net">$0.00 <span>net</span></div></div><div class="card"><div class="card-label">Yesterday</div><div class="card-gross">$33.99 <span>gross</span></div><div class="card-net">$27.19 <span>net</span></div></div><div class="card"><div class="card-label">Last 7 days</div><div class="card-gross">$204.95 <span>gross</span></div><div class="card-net">$163.95 <span>net</span></div></div><div class="card"><div class="card-label">Last 30 days</div><div class="card-gross">$422.87 <span>gross</span></div><div class="card-net">$344.57 <span>net</span></div></div><div class="card"><div class="card-label">Month to date</div><div class="card-gross">$422.87 <span>gross</span></div><div class="card-net">$344.57 <span>net</span></div></div><div class="card"><div class="card-label">Last month</div><div class="card-gross">$0.00 <span>gross</span></div><div class="card-net">$0.00 <span>net</span></div></div></div>
+<h2>All businesses</h2>
+<table><tr><th>Business</th><th>MTD gross</th><th>MTD net</th><th>Today net</th><th>Status</th></tr><tr><td>Fanvue - Lulu Chen</td><td>$422.87</td><td>$344.57</td><td>$0.00</td><td class="ok">Live</td></tr><tr><td>Amazon - General Needs LLC</td><td>-</td><td>-</td><td>-</td><td class="pending">Pending</td></tr><tr><td>eBay</td><td>-</td><td>-</td><td>-</td><td class="pending">Pending</td></tr><tr><td>Walmart</td><td>-</td><td>-</td><td>-</td><td class="pending">Pending</td></tr><tr><td>Facebook Marketplace (warehouse)</td><td>-</td><td>-</td><td>-</td><td class="pending">Pending</td></tr><tr><td>Hosting (Airbnb / Booking.com)</td><td>-</td><td>-</td><td>-</td><td class="pending">Pending</td></tr><tr class="total"><td>All businesses (connected sources)</td><td>$422.87</td><td>$344.57</td><td>$0.00</td><td></td></tr></table>
+<h2>Fanvue - Lulu Chen</h2><p class="aud">Subscribers: 27 &middot; Followers: 23</p><table><tr><th>Period</th><th>Gross</th><th>Net</th><th>Sales</th></tr><tr><td>Today</td><td>$0.00</td><td>$0.00</td><td>0</td></tr><tr><td>Yesterday</td><td>$33.99</td><td>$27.19</td><td>2</td></tr><tr><td>Last 7 days</td><td>$204.95</td><td>$163.95</td><td>18</td></tr><tr><td>Last 30 days</td><td>$422.87</td><td>$344.57</td><td>52</td></tr><tr><td>Month to date</td><td>$422.87</td><td>$344.57</td><td>52</td></tr><tr><td>Last month</td><td>$0.00</td><td>$0.00</td><td>0</td></tr></table><h3>Daily net, last 30 days</h3><svg class="chart" viewBox="0 0 300 74" preserveAspectRatio="none" aria-label="Daily net, last 30 days"><rect x="0.5" y="68.5" width="9.0" height="1.5" rx="1"><title>2026-09-27: net $0.00</title></rect><rect x="10.5" y="68.5" width="9.0" height="1.5" rx="1"><title>2026-09-28: net $0.00</title></rect><rect x="20.5" y="68.5" width="9.0" height="1.5" rx="1"><title>2026-09-29: net $0.00</title></rect><rect x="30.5" y="68.5" width="9.0" height="1.5" rx="1"><title>2026-09-30: net $0.00</title></rect><rect x="40.5" y="68.5" width="9.0" height="1.5" rx="1"><title>2026-10-01: net $0.00</title></rect><rect x="50.5" y="68.5" width="9.0" height="1.5" rx="1"><title>2026-10-02: net $0.00</title></rect><rect x="60.5" y="68.5" width="9.0" height="1.5" rx="1"><title>2026-10-03: net $0.00</title></rect><rect x="70.5" y="68.5" width="9.0" height="1.5" rx="1"><title>2026-10-04: net $0.00</title></rect><rect x="80.5" y="68.5" width="9.0" height="1.5" rx="1"><title>2026-10-05: net $0.00</title></rect><rect x="90.5" y="68.5" width="9.0" height="1.5" rx="1"><title>2026-10-06: net $0.00</title></rect><rect x="100.5" y="68.5" width="9.0" height="1.5" rx="1"><title>2026-10-07: net $0.00</title></rect><rect x="110.5" y="68.5" width="9.0" height="1.5" rx="1"><title>2026-10-08: net $0.00</title></rect><rect x="120.5" y="68.5" width="9.0" height="1.5" rx="1"><title>2026-10-09: net $0.00</title></rect><rect x="130.5" y="68.5" width="9.0" height="1.5" rx="1"><title>2026-10-10: net $0.00</title></rect><rect x="140.5" y="68.5" width="9.0" height="1.5" rx="1"><title>2026-10-11: net $0.00</title></rect><rect x="150.5" y="68.5" width="9.0" height="1.5" rx="1"><title>2026-10-12: net $0.00</title></rect><rect x="160.5" y="68.5" width="9.0" height="1.5" rx="1"><title>2026-10-13: net $0.00</title></rect><rect x="170.5" y="14.4" width="9.0" height="55.6" rx="1"><title>2026-10-14: net $55.20</title></rect><rect x="180.5" y="60.6" width="9.0" height="9.4" rx="1"><title>2026-10-15: net $9.35</title></rect><rect x="190.5" y="35.8" width="9.0" height="34.2" rx="1"><title>2026-10-16: net $33.99</title></rect><rect x="200.5" y="53.4" width="9.0" height="16.6" rx="1"><title>2026-10-17: net $16.50</title></rect><rect x="210.5" y="28.9" width="9.0" height="41.1" rx="1"><title>2026-10-18: net $40.78</title></rect><rect x="220.5" y="45.0" width="9.0" height="25.0" rx="1"><title>2026-10-19: net $24.80</title></rect><rect x="230.5" y="40.2" width="9.0" height="29.8" rx="1"><title>2026-10-20: net $29.60</title></rect><rect x="240.5" y="66.8" width="9.0" height="3.2" rx="1"><title>2026-10-21: net $3.19</title></rect><rect x="250.5" y="8.0" width="9.0" height="62.0" rx="1"><title>2026-10-22: net $61.57</title></rect><rect x="260.5" y="49.9" width="9.0" height="20.1" rx="1"><title>2026-10-23: net $20.00</title></rect><rect x="270.5" y="47.4" width="9.0" height="22.6" rx="1"><title>2026-10-24: net $22.40</title></rect><rect x="280.5" y="42.6" width="9.0" height="27.4" rx="1"><title>2026-10-25: net $27.19</title></rect><rect x="290.5" y="68.5" width="9.0" height="1.5" rx="1"><title>2026-10-26: net $0.00</title></rect></svg><table><tr><th>Date</th><th>Gross</th><th>Net</th><th>Sales</th></tr><tr><td>2026-10-26</td><td>$0.00</td><td>$0.00</td><td>0</td></tr><tr><td>2026-10-25</td><td>$33.99</td><td>$27.19</td><td>2</td></tr><tr><td>2026-10-24</td><td>$28.00</td><td>$22.40</td><td>2</td></tr><tr><td>2026-10-23</td><td>$25.00</td><td>$20.00</td><td>1</td></tr><tr><td>2026-10-22</td><td>$76.97</td><td>$61.57</td><td>7</td></tr><tr><td>2026-10-21</td><td>$3.99</td><td>$3.19</td><td>1</td></tr><tr><td>2026-10-20</td><td>$37.00</td><td>$29.60</td><td>5</td></tr><tr><td>2026-10-19</td><td>$31.00</td><td>$24.80</td><td>4</td></tr><tr><td>2026-10-18</td><td>$50.98</td><td>$40.78</td><td>8</td></tr><tr><td>2026-10-17</td><td>$20.00</td><td>$16.50</td><td>3</td></tr><tr><td>2026-10-16</td><td>$39.99</td><td>$33.99</td><td>8</td></tr><tr><td>2026-10-15</td><td>$11.00</td><td>$9.35</td><td>3</td></tr><tr><td>2026-10-14</td><td>$64.95</td><td>$55.20</td><td>8</td></tr><tr><td>2026-10-13</td><td>$0.00</td><td>$0.00</td><td>0</td></tr></table><h2>Amazon - General Needs LLC</h2><p class="pending-note">Collector in build. Net = price charged - 15% Amazon commission - shipping cost.</p><h2>eBay</h2><p class="pending-note">Collector in build.</p><h2>Walmart</h2><p class="pending-note">Collector in build.</p><h2>Facebook Marketplace (warehouse)</h2><p class="pending-note">Manual sales - not connected yet.</p><h2>Hosting (Airbnb / Booking.com)</h2><p class="pending-note">Payout tracking - not connected yet.</p>
+<p class="foot">Gross = what we charge, counted when the sale happens. Net = gross after platform cuts.
+Fanvue net is the actual per-sale net from Fanvue. Amazon net = price charged - 15% commission - shipping cost.
+Revenue is not bank income: payouts land later. Business expenses beyond platform cuts are tracked separately.</p>
+<script>
+const BAKED = "1793030504";
+setInterval(async () => {
+  try {
+    const r = await fetch("version.json", { cache: "no-store" });
+    const j = await r.json();
+    if (String(j.version) !== BAKED) location.reload();
+  } catch (e) {}
+}, 60000);
+</script>
+</body>
+</html>
