@@ -34,7 +34,7 @@
 </head>
 <body>
 <h1>Business Dashboard - Live Sales</h1>
-<div class="updated">Updated 26 Oct 2026, 19:37 New York. Revenue counts at sale time; the page refreshes itself.</div>
+<div class="updated">Updated 26 Oct 2026, 20:45 New York. Revenue counts at sale time; the page refreshes itself.</div>
 <div class="cards"><div class="card"><div class="card-label">Today</div><div class="card-gross">$1,407.82 <span>gross</span></div><div class="card-net">$1,088.36 <span>net</span></div></div><div class="card"><div class="card-label">Yesterday</div><div class="card-gross">$1,263.67 <span>gross</span></div><div class="card-net">$961.63 <span>net</span></div></div><div class="card"><div class="card-label">Last 7 days</div><div class="card-gross">$6,947.45 <span>gross</span></div><div class="card-net">$4,975.15 <span>net</span></div></div><div class="card"><div class="card-label">Last 30 days</div><div class="card-gross">$31,869.66 <span>gross</span></div><div class="card-net">$22,911.87 <span>net</span></div></div><div class="card"><div class="card-label">Month to date</div><div class="card-gross">$28,204.08 <span>gross</span></div><div class="card-net">$20,247.09 <span>net</span></div></div><div class="card"><div class="card-label">Last month</div><div class="card-gross">$25,139.47 <span>gross</span></div><div class="card-net">$18,760.87 <span>net</span></div></div></div>
 <h2>All businesses</h2>
 <table><tr><th>Business</th><th>MTD gross</th><th>MTD net</th><th>Today net</th><th>Status</th></tr><tr><td>Fanvue - Lulu Chen</td><td>$422.87</td><td>$344.57</td><td>$0.00</td><td class="ok">Live</td></tr><tr><td>Telegram - Lulu Chen</td><td>$673.27</td><td>$437.63</td><td>$45.46</td><td class="ok">Live</td></tr><tr><td>Amazon - General Needs LLC</td><td>$4,339.78</td><td>$3,318.31</td><td>$493.24</td><td class="ok">Live</td></tr><tr><td>Walmart</td><td>$9,231.21</td><td>$6,091.74</td><td>$182.09</td><td class="ok">Live</td></tr><tr><td>eBay</td><td>$3,965.91</td><td>$1,883.17</td><td>$31.82</td><td class="ok">Live</td></tr><tr><td>Airbnb</td><td>$2,308.39</td><td>$1,950.60</td><td>$0.00</td><td class="ok">Live</td></tr><tr><td>Booking.com</td><td>$7,262.65</td><td>$6,221.07</td><td>$335.75</td><td class="ok">Live</td></tr><tr><td>Agoda</td><td>-</td><td>-</td><td>-</td><td class="pending">Pending</td></tr><tr class="total"><td>All businesses (connected sources)</td><td>$28,204.08</td><td>$20,247.09</td><td>$1,088.36</td><td></td></tr></table>
@@ -43,7 +43,7 @@
 Fanvue net is the actual per-sale net from Fanvue. Amazon net = price charged - 15% commission - shipping cost.
 Revenue is not bank income: payouts land later. Business expenses beyond platform cuts are tracked separately.</p>
 <script>
-const BAKED = "1793057876";
+const BAKED = "1793061944";
 setInterval(async () => {
   try {
     const r = await fetch("version.json", { cache: "no-store" });
