@@ -3,7 +3,7 @@
     "schemaVersion": 1,
     "timezone": "America/New_York",
     "currency": "USD",
-    "lastChecked": "2026-11-03T11:07:00-05:00",
+    "lastChecked": "2026-11-03T12:07:00-05:00",
     "property": "20 Puritan Road, Somerville",
     "occupancyRule": "A room is occupied on a date when checkIn <= date < checkOut. If check-in or check-out is null, those nights are not marked occupied.",
     "amountRule": "null means pending. statedAmount is the figure given for the whole stay. Do not copy it into gross, fees, or net unless that split is known. Do not invent amounts, party sizes, or dates.",
@@ -314,7 +314,7 @@
     },
     {
       "id": "nil-airbnb-2026-11-10",
-      "guest": "Nil Ç.",
+      "guest": "Nil \u00c7.",
       "roomId": "room-1",
       "platform": "airbnb",
       "checkIn": "2026-11-10",
@@ -1530,6 +1530,14 @@
   ],
   "payouts": [
     {
+      "id": "booking-compensation-due-2026-11-16",
+      "platform": "booking",
+      "amount": 623.11,
+      "currency": "USD",
+      "state": "due",
+      "note": "Booking.com compensation / complaint charge for Room 1 listing (Incorrectly Modified Oct 2-4 2026). Payment due 2026-11-16. Invoice number and reservation id not stored. See host Gmail / extranet Finance > Invoices."
+    },
+    {
       "id": "agoda-stuck",
       "platform": "agoda",
       "amount": 142.84,
@@ -1560,8 +1568,8 @@
       "guest": "Antoine C.",
       "platform": "booking",
       "roomId": "room-2",
-      "at": "2026-11-02T23:50:00-05:00",
-      "summary": "Messaged overnight: arriving by car about 5:30 PM and shared a contact. Check-in instructions are next (no longer held for missing phone)."
+      "at": "2026-11-03T11:05:00-05:00",
+      "summary": "Check-in instructions + house rules + parking sent on WhatsApp ~11:05 AM ET. Arriving by car about 5:30 PM."
     }
   ],
   "accountHealth": [
@@ -1569,7 +1577,7 @@
       "id": "agoda-payout",
       "platform": "agoda",
       "level": "attention",
-      "summary": "Payout of USD 142.84 is stuck. The card on file is expired and there is no reissue option. No Nov–Dec bookings on Agoda."
+      "summary": "Payout of USD 142.84 is stuck. The card on file is expired and there is no reissue option. No Nov\u2013Dec bookings on Agoda."
     },
     {
       "id": "airbnb-clear",
@@ -1578,10 +1586,10 @@
       "summary": "Live pull this sweep: 14 confirmed upcoming, matches baseline. No account issues logged."
     },
     {
-      "id": "booking-clear",
+      "id": "booking-invoice-alert",
       "platform": "booking",
-      "level": "clear",
-      "summary": "Delta 9 AM ET: overnight Excel baseline was 58 confirmed checkout on/after today; plus new Nidia C. Dec 10-11 Room 1 from confirmation email (now 59). Live extranet still needs sign-in in chat for amount/export refresh."
+      "level": "attention",
+      "summary": "URGENT: Booking.com compensation invoice USD 623.11 for Room 1 (Incorrectly Modified Oct 2-4 2026), payment due Nov 16. Confirmed checkout>=today still 59 (21/22/16). Live extranet still needs sign-in in chat. +1 far-future Room 1 Oct 22 2027 guest/nights pending."
     }
   ],
   "decisions": [
@@ -1600,7 +1608,7 @@
     {
       "id": "lauren-airbnb-offer",
       "title": "Lauren's Airbnb special offer",
-      "detail": "Lauren has an Airbnb special offer (combined discount for repeated stays). Status: open / in progress — keep open until she books. APPROVE draft goes to Victor first; do not mark done yet. Discount amount pending.",
+      "detail": "Lauren has an Airbnb special offer (combined discount for repeated stays). Status: open / in progress \u2014 keep open until she books. APPROVE draft goes to Victor first; do not mark done yet. Discount amount pending.",
       "status": "pending"
     },
     {
@@ -1612,6 +1620,10 @@
   ],
   "changelog": [
     {
+      "at": "2026-11-03T12:07:00-05:00",
+      "note": "Delta check ~12:07 PM ET. New Booking.com compensation invoice for Room 1: USD 623.11 due Nov 16 (Incorrectly Modified Oct 2-4 2026 complaint). No new bookings, cancels, or guest-message emails. Counts unchanged: Booking.com 59 confirmed checkout>=today (21/22/16), Airbnb 14. Lauren special-offer issue #3 stays open until she books (draft-first). Booking.com still signed out."
+    },
+    {
       "at": "2026-11-02T22:58:43-05:00",
       "note": "Command center opened. Seeded in-house stays, upcoming Airbnb and Booking.com reservations, four Booking.com cancellations, the stuck Agoda payout, and four pending decisions. Unknown amounts left pending."
     },
@@ -1621,7 +1633,7 @@
     },
     {
       "at": "2026-11-03T08:05:00-05:00",
-      "note": "Full hourly sweep ~8:05 AM ET. Airbnb live pull 14 confirmed (matches baseline). Booking.com from overnight Excel exports 58 confirmed with checkout on/after today (20/22/16 by room, matches baseline including Thomas H. checkout today). Agoda still no Nov–Dec bookings; remittance stuck. No new booking/cancel emails overnight except already-known Aythami cancel Nov 2 and Cristian G. new Dec 31. Guest chats: Antoine C. messaged overnight (arrive by car ~5:30 PM, contact given — check-in no longer held for missing phone); Graham P. Airbnb still waiting on parking reply. Lauren Airbnb special-offer decision still open (APPROVE draft to Victor first; stay open until she books)."
+      "note": "Full hourly sweep ~8:05 AM ET. Airbnb live pull 14 confirmed (matches baseline). Booking.com from overnight Excel exports 58 confirmed with checkout on/after today (20/22/16 by room, matches baseline including Thomas H. checkout today). Agoda still no Nov\u2013Dec bookings; remittance stuck. No new booking/cancel emails overnight except already-known Aythami cancel Nov 2 and Cristian G. new Dec 31. Guest chats: Antoine C. messaged overnight (arrive by car ~5:30 PM, contact given \u2014 check-in no longer held for missing phone); Graham P. Airbnb still waiting on parking reply. Lauren Airbnb special-offer decision still open (APPROVE draft to Victor first; stay open until she books)."
     },
     {
       "at": "2026-11-03T09:00:00-05:00",
@@ -1629,7 +1641,7 @@
     },
     {
       "at": "2026-11-03T10:06:00-05:00",
-      "note": "Delta check ~10:06 AM ET. New Booking.com Room 1 check-in Fri Oct 22 2027 (confirmation email only; guest/nights/amount pending extranet). Nidia C. already on file. Airbnb still 14 confirmed. Booking confirmed checkout>=today still 59 until Oct 2027 stay has a check-out date. Booking.com signed out — need password in chat for details + calendar block. Lauren special-offer decision still open (draft-first). No new Airbnb/Agoda booking emails. No Stripe alerts."
+      "note": "Delta check ~10:06 AM ET. New Booking.com Room 1 check-in Fri Oct 22 2027 (confirmation email only; guest/nights/amount pending extranet). Nidia C. already on file. Airbnb still 14 confirmed. Booking confirmed checkout>=today still 59 until Oct 2027 stay has a check-out date. Booking.com signed out \u2014 need password in chat for details + calendar block. Lauren special-offer decision still open (draft-first). No new Airbnb/Agoda booking emails. No Stripe alerts."
     },
     {
       "at": "2026-11-03T11:07:00-05:00",
