@@ -3,7 +3,7 @@
     "schemaVersion": 1,
     "timezone": "America/New_York",
     "currency": "USD",
-    "lastChecked": "2026-11-03T16:07:00-05:00",
+    "lastChecked": "2026-11-03T17:02:00-05:00",
     "property": "20 Puritan Road, Somerville",
     "occupancyRule": "A room is occupied on a date when checkIn <= date < checkOut. If check-in or check-out is null, those nights are not marked occupied.",
     "amountRule": "null means pending. statedAmount is the figure given for the whole stay. Do not copy it into gross, fees, or net unless that split is known. Do not invent amounts, party sizes, or dates.",
@@ -1619,6 +1619,10 @@
     }
   ],
   "changelog": [
+    {
+      "at": "2026-11-03T17:02:00-05:00",
+      "note": "Delta check ~5:02 PM ET. No new Booking.com/Airbnb/Agoda booking, cancel, payout, or guest-message emails since 4:07 PM. Counts unchanged: Booking.com 59 confirmed checkout>=today (21/22/16), Airbnb 14. Lauren special-offer issue #3 stays open until she books (draft-first). Booking.com still signed out. Invoice USD 623.11 due Nov 16 already on file."
+    },
     {
       "at": "2026-11-03T16:07:00-05:00",
       "note": "Delta check ~4:07 PM ET. No new Booking.com/Airbnb/Agoda booking, cancel, payout, or guest-message emails since 3:03 PM (Agoda MFA PIN only). Counts unchanged: Booking.com 59 confirmed checkout>=today (21/22/16), Airbnb 14. Lauren special-offer issue #3 stays open until she books (draft-first). Booking.com still signed out. Invoice USD 623.11 due Nov 16 already on file."
