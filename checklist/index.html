@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Victor's Day — Checklist</title>
-<meta name="description" content="Victor's daily game plan: classes, Airbnb cleaning, 18 Burton, Lynn, and the move. Check it off, one block at a time.">
+<meta name="description" content="Victor's daily game plan: classes, Airbnb cleaning, 18 Puritan, Lynn, and the move. Check it off, one block at a time.">
 <style>
   :root{
     --bg:#0d1117; --card:#161c26; --card2:#1c2534; --line:#2a3648;
@@ -119,7 +119,7 @@
     <button id="resetDay">↺ Reset this day</button>
     <button id="clearDone">🧹 Uncheck all</button>
   </div>
-  <div class="foot">Your checkmarks save on this phone/browser automatically.<br>Classes first · Cleaning before 2 PM · 18 Burton · Lynn last · Study at night</div>
+  <div class="foot">Your checkmarks save on this phone/browser automatically.<br>Classes first · Cleaning before 2 PM · 18 Puritan · Lynn last · Study at night</div>
 </div>
 
 <div class="addbar">
@@ -148,7 +148,7 @@ const BLOCKS = [
   {id:"eve",     name:"🌙 Evening",      time:"5:30 – 9:00"},
   {id:"night",   name:"📚 Night study",  time:"After 9:00"}
 ];
-const BADGE = {top:["b-top","⭐ Top priority"], class:["b-class","🎓 Class"], clean:["b-clean","🧹 Cleaning"], money:["b-money","💳 Money"], burton:["b-burton","🏠 18 Burton"], lynn:["b-lynn","📦 Lynn"], move:["b-move","🚚 Move"], study:["b-study","📚 Study"]};
+const BADGE = {top:["b-top","⭐ Top priority"], class:["b-class","🎓 Class"], clean:["b-clean","🧹 Cleaning"], money:["b-money","💳 Money"], burton:["b-burton","🏠 18 Puritan"], lynn:["b-lynn","📦 Lynn"], move:["b-move","🚚 Move"], study:["b-study","📚 Study"]};
 
 /* study minutes: 45 to Nov 9, 90 Nov 10-17, light after exam */
 function studyMin(ds){ if(ds<="2026-11-09") return 45; if(ds<="2026-11-17") return 90; return 30; }
@@ -162,35 +162,35 @@ function template(dow, ds){
     T.early.push(plan, {id:"tolab", tx:"Get to UMass Boston — PHYSIC 171 lab at 8:00", note:"Wheatley-Peters W04-0074. Leave early, lab starts sharp."});
     T.morning.push({id:"physlab", tx:"PHYSIC 171 Lab — 8:00 to 10:30 AM", badge:"class", note:"Get your data + datasheet done in the room before you leave."});
     T.midday.push({id:"cleanwin", tx:"Cleaning window — finish any turnover by 2:00 PM", badge:"clean", note:"Somerville Airbnb. Check-in is 2 PM, firm."});
-    T.aft.push({id:"burton1", tx:"18 Burton — drop materials / help Dad", badge:"burton", note:"Dad's building it. Your job: materials there on time."},
+    T.aft.push({id:"burton1", tx:"18 Puritan — drop materials / help Dad", badge:"burton", note:"Dad's building it. Your job: materials there on time."},
                {id:"lynn1", tx:"Lynn block — warehouse + e-commerce, batched", badge:"lynn", note:"One trip, everything at once. Pickups at 732R Lynnway."});
     T.eve.push({id:"dinner", tx:"Eat + reset", note:"Real food. You've earned it."});
     T.night.push({id:"study", tx:"CHEM 116 Exam 3 study — "+sm+" min", badge:"study", note:"Exam 3 is Wed Nov 18. Small daily reps beat a midnight cram."});
   } else if(dow===1 || dow===3){ /* Mon / Wed: CHEM day */
     T.early.push(plan);
-    T.morning.push({id:"burton1", tx:"18 Burton — materials run for Dad", badge:"burton", note:"Right next to the Airbnb. Drop supplies, check what he needs next."});
+    T.morning.push({id:"burton1", tx:"18 Puritan — materials run for Dad", badge:"burton", note:"Right next to the Airbnb. Drop supplies, check what he needs next."});
     T.midday.push({id:"cleanwin", tx:"Cleaning window — finish any turnover by 2:00 PM", badge:"clean", note:"Somerville Airbnb. Check-in is 2 PM, firm."});
     if(dow===1) T.aft.push({id:"disc", tx:"CHEM 116 Discussion — 3:00 to 3:50 PM", badge:"class", note:"UHall Y03-3350."});
     T.aft.push({id:"lec", tx:"CHEM 116 Lecture — 4:00 to 5:15 PM", badge:"class", note:"UHall Y02-2300, Marmolejos."});
     T.eve.push({id:"dinner", tx:"Eat + reset", note:""});
     T.night.push({id:"study", tx:"CHEM 116 Exam 3 study — "+sm+" min", badge:"study", note: dow===1 ? "Tomorrow is the 8 AM physics lab — study, then early night." : "Exam 3 is Wed Nov 18."});
   } else if(dow===4){ /* Thursday: no classes */
-    T.early.push(plan, {id:"thuplan", tx:"No classes today — this is your big work day", note:"Burton, Lynn, reports. Stack it and knock it out."});
-    T.morning.push({id:"burton1", tx:"18 Burton — long block with Dad", badge:"burton", note:"Materials first, then help on site."});
+    T.early.push(plan, {id:"thuplan", tx:"No classes today — this is your big work day", note:"18 Puritan, Lynn, reports. Stack it and knock it out."});
+    T.morning.push({id:"burton1", tx:"18 Puritan — long block with Dad", badge:"burton", note:"Materials first, then help on site."});
     T.midday.push({id:"cleanwin", tx:"Cleaning window — finish any turnover by 2:00 PM", badge:"clean", note:"Somerville Airbnb. Check-in is 2 PM, firm."});
     T.aft.push({id:"lynn1", tx:"Lynn big block — warehouse, shipping, Marketplace pickups", badge:"lynn", note:"Batch everything. This is the day for it."});
     T.eve.push({id:"report", tx:"School desk work — lab reports / homework", badge:"study", note:"Use the quiet evening while it's fresh."});
     T.night.push({id:"study", tx:"CHEM 116 Exam 3 study — "+sm+" min", badge:"study", note:"Exam 3 is Wed Nov 18."});
   } else if(dow===5){ /* Friday: CHEM 118 lab */
     T.early.push(plan, {id:"prelab", tx:"Pre-lab prep before the 1 PM lab", badge:"study", note:"Read the lab once through. No surprises in the room."});
-    T.morning.push({id:"burton1", tx:"18 Burton — quick materials drop for Dad", badge:"burton", note:"Keep it short — lab day."});
+    T.morning.push({id:"burton1", tx:"18 Puritan — quick materials drop for Dad", badge:"burton", note:"Keep it short — lab day."});
     T.midday.push({id:"cleanwin", tx:"Cleaning window — turnover done BEFORE you leave for lab", badge:"clean", note:"Check-in is 2 PM but you're in lab at 1. Finish by 12:30."},
                  {id:"chemlab", tx:"CHEM 118 Lab — 1:00 to 5:00 PM", badge:"class", note:"UHall Y03-3130, Sadira Walker. Datasheet done in the room."});
     T.eve.push({id:"dinner", tx:"Eat + reset", note:"Lab Fridays are long. Recover."});
     T.night.push({id:"study", tx:"Light review — "+Math.min(sm,30)+" min max", badge:"study", note:"Friday rule: light only. Weekend carries the rest."});
   } else { /* Sat / Sun */
     T.early.push(plan);
-    T.morning.push({id:"burton1", tx:"18 Burton — work block with Dad", badge:"burton", note:"Weekend = biggest Burton progress. Materials run first."});
+    T.morning.push({id:"burton1", tx:"18 Puritan — work block with Dad", badge:"burton", note:"Weekend = biggest progress at 18 Puritan. Materials run first."});
     T.midday.push({id:"cleanwin", tx:"Cleaning window — finish any turnover by 2:00 PM", badge:"clean", note:"Weekend turnovers are the busy ones. 2 PM, firm."});
     T.aft.push({id:"lynn1", tx:"Lynn block — pickups + e-commerce catch-up", badge:"lynn", note:"Batched, then done."});
     T.eve.push({id:"study", tx:"Study / lab report block — "+sm+" min", badge:"study", note:"Exam 3 is Wed Nov 18."});
@@ -257,7 +257,7 @@ const DATED = {
     {block:"aft", id:"pack3", tx:"Move: Lynn almost empty — final sweep weekend", badge:"move", note:"Out by Monday Nov 30."}
   ],
   "2026-11-30":[
-    {block:"early", id:"moveout", tx:"⭐ LYNN MOVE-OUT — done by today", badge:"move", top:1, note:"Keys, final walk-through, last load to storage / 18 Burton."}
+    {block:"early", id:"moveout", tx:"⭐ LYNN MOVE-OUT — done by today", badge:"move", top:1, note:"Keys, final walk-through, last load to storage / 18 Puritan."}
   ],
   "2026-12-09":[
     {block:"aft", id:"exam4", tx:"⭐ CHEM 116 EXAM 4 — TODAY", badge:"class", top:1, note:"Lowest of the 4 exams gets dropped. Finish strong anyway."}
