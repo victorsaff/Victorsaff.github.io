@@ -1,0 +1,22 @@
+name: Label decision issues
+
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  issues: write
+
+jobs:
+  label:
+    if: startsWith(github.event.issue.title, 'DECISION:')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Apply the decision label
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          ISSUE: ${{ github.event.issue.number }}
+        run: |
+          gh label create decision --color 0E8A16 --description "Choice recorded from the Rental Command Center" || true
+          gh issue edit "$ISSUE" --add-label decision

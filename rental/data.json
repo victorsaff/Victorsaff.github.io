@@ -1,0 +1,455 @@
+{
+  "meta": {
+    "schemaVersion": 1,
+    "timezone": "America/New_York",
+    "currency": "USD",
+    "lastChecked": "2026-11-02T22:58:43-05:00",
+    "property": "20 Puritan Road, Somerville",
+    "occupancyRule": "A room is occupied on a date when checkIn <= date < checkOut. If check-in or check-out is null, those nights are not marked occupied.",
+    "amountRule": "null means pending. statedAmount is the figure given for the whole stay. Do not copy it into gross, fees, or net unless that split is known. Do not invent amounts, party sizes, or dates.",
+    "privacy": "This repo is public. Store a first name and last initial only. Never store door codes, Wi-Fi passwords, card numbers, phone numbers, emails, reservation numbers, or payout batch ids.",
+    "updater": "Hourly refresh: commit only rental/data.json. Set meta.lastChecked. Leave unknown money and dates as null.",
+    "repo": "victorsaff/Victorsaff.github.io",
+    "calendar": {
+      "start": "2026-11-02",
+      "end": "2026-12-31"
+    },
+    "november": {
+      "start": "2026-11-01",
+      "end": "2026-11-30"
+    }
+  },
+  "rooms": [
+    {
+      "id": "room-1",
+      "name": "Room 1",
+      "color": "#6ea8fe",
+      "listings": {
+        "airbnb": "Premium Private Guest Room",
+        "booking": "17027020",
+        "agoda": null
+      }
+    },
+    {
+      "id": "room-2",
+      "name": "Room 2",
+      "color": "#e879f9",
+      "listings": {
+        "airbnb": "Premium King Bed Room",
+        "booking": "17025440",
+        "agoda": "92137782"
+      }
+    },
+    {
+      "id": "room-3",
+      "name": "Room 3",
+      "color": "#2dd4bf",
+      "listings": {
+        "airbnb": "Private Guest Room",
+        "booking": "17042054",
+        "agoda": null
+      }
+    }
+  ],
+  "platforms": [
+    {
+      "id": "airbnb",
+      "label": "Airbnb",
+      "short": "Airbnb",
+      "color": "#ff5a5f"
+    },
+    {
+      "id": "booking",
+      "label": "Booking.com",
+      "short": "Booking",
+      "color": "#1a56db"
+    },
+    {
+      "id": "agoda",
+      "label": "Agoda",
+      "short": "Agoda",
+      "color": "#fb923c"
+    }
+  ],
+  "stays": [
+    {
+      "id": "sara-m",
+      "guest": "Sara M.",
+      "roomId": "room-1",
+      "platform": "booking",
+      "checkIn": "2026-10-28",
+      "checkOut": "2026-11-04",
+      "adults": 2,
+      "statedAmount": 646,
+      "gross": null,
+      "fees": null,
+      "net": null,
+      "status": "confirmed",
+      "notes": "Stated amount is for the whole stay. Gross, fees, and net were not supplied."
+    },
+    {
+      "id": "thomas-h",
+      "guest": "Thomas H.",
+      "roomId": "room-2",
+      "platform": "booking",
+      "checkIn": null,
+      "checkOut": "2026-11-03",
+      "adults": null,
+      "statedAmount": null,
+      "gross": null,
+      "fees": null,
+      "net": null,
+      "status": "confirmed",
+      "presentUntilCheckout": true,
+      "notes": "In house at the last check. Check-in was not supplied, so nights are not marked occupied."
+    },
+    {
+      "id": "flavinha-f",
+      "guest": "Flavinha F.",
+      "roomId": "room-3",
+      "platform": "booking",
+      "checkIn": "2026-11-01",
+      "checkOut": "2026-11-07",
+      "adults": 2,
+      "statedAmount": 586.5,
+      "gross": null,
+      "fees": null,
+      "net": null,
+      "status": "confirmed",
+      "notes": "Stated amount is for the whole stay. Gross, fees, and net were not supplied."
+    },
+    {
+      "id": "antoine-c",
+      "guest": "Antoine C.",
+      "roomId": "room-2",
+      "platform": "booking",
+      "checkIn": "2026-11-03",
+      "checkOut": "2026-11-04",
+      "adults": null,
+      "statedAmount": null,
+      "gross": null,
+      "fees": null,
+      "net": null,
+      "status": "confirmed",
+      "notes": ""
+    },
+    {
+      "id": "graham",
+      "guest": "Graham",
+      "roomId": "room-1",
+      "platform": "airbnb",
+      "checkIn": "2026-11-04",
+      "checkOut": "2026-11-05",
+      "adults": null,
+      "statedAmount": null,
+      "gross": null,
+      "fees": null,
+      "net": null,
+      "status": "confirmed",
+      "notes": ""
+    },
+    {
+      "id": "fatiq",
+      "guest": "Fatiq",
+      "roomId": "room-1",
+      "platform": "airbnb",
+      "checkIn": "2026-11-05",
+      "checkOut": "2026-11-06",
+      "adults": null,
+      "statedAmount": null,
+      "gross": null,
+      "fees": null,
+      "net": null,
+      "status": "confirmed",
+      "notes": ""
+    },
+    {
+      "id": "mahema-room-1",
+      "guest": "Mahema",
+      "roomId": "room-1",
+      "platform": "airbnb",
+      "checkIn": "2026-11-09",
+      "checkOut": "2026-11-10",
+      "adults": null,
+      "statedAmount": null,
+      "gross": null,
+      "fees": null,
+      "net": null,
+      "status": "confirmed",
+      "notes": ""
+    },
+    {
+      "id": "mahema-room-3",
+      "guest": "Mahema",
+      "roomId": "room-3",
+      "platform": "airbnb",
+      "checkIn": "2026-11-10",
+      "checkOut": "2026-11-11",
+      "adults": null,
+      "statedAmount": null,
+      "gross": null,
+      "fees": null,
+      "net": null,
+      "status": "confirmed",
+      "notes": ""
+    },
+    {
+      "id": "nil",
+      "guest": "Nil",
+      "roomId": "room-1",
+      "platform": "airbnb",
+      "checkIn": "2026-11-10",
+      "checkOut": "2026-11-12",
+      "adults": null,
+      "statedAmount": null,
+      "gross": null,
+      "fees": null,
+      "net": null,
+      "status": "confirmed",
+      "notes": ""
+    },
+    {
+      "id": "lewes",
+      "guest": "Lewes",
+      "roomId": "room-2",
+      "platform": "airbnb",
+      "checkIn": "2026-11-12",
+      "checkOut": "2026-11-13",
+      "adults": null,
+      "statedAmount": null,
+      "gross": null,
+      "fees": null,
+      "net": null,
+      "status": "confirmed",
+      "notes": ""
+    },
+    {
+      "id": "luke",
+      "guest": "Luke",
+      "roomId": "room-1",
+      "platform": "airbnb",
+      "checkIn": "2026-11-15",
+      "checkOut": "2026-11-16",
+      "adults": null,
+      "statedAmount": null,
+      "gross": null,
+      "fees": null,
+      "net": null,
+      "status": "confirmed",
+      "notes": ""
+    },
+    {
+      "id": "antoine-g",
+      "guest": "Antoine G.",
+      "roomId": "room-2",
+      "platform": "airbnb",
+      "checkIn": "2026-11-19",
+      "checkOut": "2026-11-20",
+      "adults": null,
+      "statedAmount": null,
+      "gross": null,
+      "fees": null,
+      "net": null,
+      "status": "confirmed",
+      "notes": ""
+    },
+    {
+      "id": "philip",
+      "guest": "Philip",
+      "roomId": "room-2",
+      "platform": "airbnb",
+      "checkIn": "2026-11-21",
+      "checkOut": "2026-11-22",
+      "adults": null,
+      "statedAmount": null,
+      "gross": null,
+      "fees": null,
+      "net": null,
+      "status": "confirmed",
+      "notes": ""
+    },
+    {
+      "id": "otto",
+      "guest": "Otto",
+      "roomId": "room-2",
+      "platform": "airbnb",
+      "checkIn": "2026-11-24",
+      "checkOut": "2026-11-25",
+      "adults": null,
+      "statedAmount": null,
+      "gross": null,
+      "fees": null,
+      "net": null,
+      "status": "confirmed",
+      "notes": ""
+    },
+    {
+      "id": "tat-c",
+      "guest": "Tat C.",
+      "roomId": "room-1",
+      "platform": "airbnb",
+      "checkIn": "2026-11-29",
+      "checkOut": "2026-12-01",
+      "adults": null,
+      "statedAmount": null,
+      "gross": null,
+      "fees": null,
+      "net": null,
+      "status": "confirmed",
+      "notes": ""
+    },
+    {
+      "id": "jingya-p",
+      "guest": "Jingya P.",
+      "roomId": "room-1",
+      "platform": "airbnb",
+      "checkIn": "2026-12-24",
+      "checkOut": "2026-12-28",
+      "adults": null,
+      "statedAmount": null,
+      "gross": null,
+      "fees": null,
+      "net": null,
+      "status": "confirmed",
+      "notes": ""
+    },
+    {
+      "id": "adya-s",
+      "guest": "Adya S.",
+      "roomId": "room-3",
+      "platform": "booking",
+      "checkIn": "2026-11-07",
+      "checkOut": null,
+      "adults": null,
+      "statedAmount": null,
+      "gross": null,
+      "fees": null,
+      "net": null,
+      "status": "confirmed",
+      "notes": "Arrives Nov 7. Checkout was not supplied, so nights are not marked occupied."
+    },
+    {
+      "id": "aythami-p",
+      "guest": "Aythami P.",
+      "roomId": "room-2",
+      "platform": "booking",
+      "checkIn": "2026-11-05",
+      "checkOut": "2026-11-06",
+      "adults": null,
+      "statedAmount": null,
+      "gross": null,
+      "fees": null,
+      "net": null,
+      "status": "cancelled",
+      "notes": "Cancelled."
+    },
+    {
+      "id": "christophe",
+      "guest": "Christophe",
+      "roomId": null,
+      "platform": "booking",
+      "checkIn": null,
+      "checkOut": null,
+      "adults": null,
+      "statedAmount": null,
+      "gross": null,
+      "fees": null,
+      "net": null,
+      "status": "cancelled",
+      "notes": "Cancelled. Room and dates were not supplied."
+    },
+    {
+      "id": "elena",
+      "guest": "Elena",
+      "roomId": null,
+      "platform": "booking",
+      "checkIn": null,
+      "checkOut": null,
+      "adults": null,
+      "statedAmount": null,
+      "gross": null,
+      "fees": null,
+      "net": null,
+      "status": "cancelled",
+      "notes": "Cancelled. Room and dates were not supplied."
+    },
+    {
+      "id": "daling",
+      "guest": "Daling",
+      "roomId": null,
+      "platform": "booking",
+      "checkIn": null,
+      "checkOut": null,
+      "adults": null,
+      "statedAmount": null,
+      "gross": null,
+      "fees": null,
+      "net": null,
+      "status": "cancelled",
+      "notes": "Cancelled. Room and dates were not supplied."
+    }
+  ],
+  "payouts": [
+    {
+      "id": "agoda-stuck",
+      "platform": "agoda",
+      "amount": 142.84,
+      "currency": "USD",
+      "state": "stuck",
+      "note": "Expired card on file. No reissue option. Not assigned to a room. Batch id is not stored."
+    }
+  ],
+  "chats": [],
+  "accountHealth": [
+    {
+      "id": "agoda-payout",
+      "platform": "agoda",
+      "level": "attention",
+      "summary": "Payout of USD 142.84 is stuck. The card on file is expired and there is no reissue option."
+    },
+    {
+      "id": "airbnb-clear",
+      "platform": "airbnb",
+      "level": "clear",
+      "summary": "No account issues logged this check."
+    },
+    {
+      "id": "booking-clear",
+      "platform": "booking",
+      "level": "clear",
+      "summary": "No account issues logged this check."
+    }
+  ],
+  "decisions": [
+    {
+      "id": "antoine-c-nudge",
+      "title": "Antoine C. nudge draft",
+      "detail": "A nudge draft is waiting for Antoine C. (Room 2, Booking.com, Nov 3 to Nov 4). The draft text is not stored here.",
+      "status": "pending"
+    },
+    {
+      "id": "thomas-h-checkin-post",
+      "title": "Post Thomas H. check-in in the Booking.com thread",
+      "detail": "Decide whether to post Thomas H.'s check-in in the Booking.com thread. Check-in details are not stored here.",
+      "status": "pending"
+    },
+    {
+      "id": "lauren-airbnb-offer",
+      "title": "Lauren's Airbnb special offer",
+      "detail": "Lauren has an Airbnb special offer: a combined discount for repeated stays. The discount amount is pending.",
+      "status": "pending"
+    },
+    {
+      "id": "agoda-payout",
+      "title": "Stuck Agoda payout",
+      "detail": "Agoda payout of USD 142.84 is stuck. The card on file is expired and there is no reissue option. No card number or payout batch id is stored here.",
+      "status": "pending"
+    }
+  ],
+  "changelog": [
+    {
+      "at": "2026-11-02T22:58:43-05:00",
+      "note": "Command center opened. Seeded in-house stays, upcoming Airbnb and Booking.com reservations, four Booking.com cancellations, the stuck Agoda payout, and four pending decisions. Unknown amounts left pending."
+    }
+  ]
+}
