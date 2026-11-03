@@ -223,20 +223,19 @@ const DATED = {
     {block:"aft", id:"ebaynew", tx:"Pack Nov 2 eBay sales: 07-15383-34639 · 22-15355-84065 · 13-15373-51358", badge:"lynn", note:"Check each ship-by in eBay during the shipping run."},
     {block:"aft", id:"wmamz", tx:"Walmart + Amazon queues: check for overnight orders", badge:"lynn", note:"Verified Nov 2 night: Amazon unshipped = 0, and all 6 of Walmart's Nov 2 orders already show Shipped. Anything new goes out in today's run."},
     {block:"eve", id:"prelab118", tx:"Do the CHEM 118 pH Pre-Lab TODAY — don't wait for Friday", badge:"study", top:1, note:"Quiz due Fri Nov 6, 1:00 PM at lab start. Doing it today = Friday is just lab."},
-    {block:"eve", id:"bankweek", tx:"Bank due dates this week: BofA 9344 due Thu Nov 5", badge:"money", note:"Plus BofA 1671 $35 min on Nov 11. Parafin decision is above — same block, knock both out."},
+    {block:"eve", id:"bankweek", tx:"Bank due dates ahead: BofA 1671 $35 min due Nov 11", badge:"money", note:"BofA 9344 (was due Nov 5) was marked PAID Nov 3 — off the list. Parafin decision is above — same block, knock both out. ⟲ sync"},
     {block:"eve", id:"parafin", tx:"Decide Parafin — $600 was due Nov 1", badge:"money", top:1, note:"Card authorization form still empty. Send the form or the fallback note to Alex. Your call, but today."},
     {block:"aft", id:"wmnew-sync", tx:"Ship Walmart POs 129130885912888 + 129130886246011 — Nov 2 orders still New/unshipped", badge:"lynn", top:1, note:"0.2 lb, USPS Ground Advantage. ⟲ sync"},
     {block:"aft", id:"ebaymore-sync", tx:"Pack eBay Nov 2 sales 13-15373-99882 ($57.99) + 24-15368-18465 ($94.99)", badge:"lynn", note:"Check ship-by in eBay during the shipping run. ⟲ sync"},
     {block:"eve", id:"storage", tx:"Shortlist one storage unit near Somerville/Lynn", badge:"move", note:"Lynn move-out is Nov 30 — 27 days. Small step, big relief later."}
   ],
   "2026-11-04":[
-    {block:"eve", id:"bofaeve", tx:"Tomorrow: PAY BofA Business 9344 (due Nov 5)", badge:"money", top:1, note:"Amount is portal-only. Set it up tonight or first thing tomorrow."},
     {block:"midday", id:"graham", tx:"Graham check-in today (Airbnb, $97.17) — room ready by 2 PM", badge:"clean", top:1, note:"New booking from the Nov 2 rentals check."},
+    {block:"aft", id:"ebaynov3-sync", tx:"Pack eBay Nov 3 sale: 12-15376-21367 (Sensodyne Advanced Whitening x2, $59.38)", badge:"lynn", note:"Check ship-by in eBay during the shipping run. ⟲ sync"},
     {block:"midday", id:"saraout", tx:"Sara Mckenzie checks out (Room 1) — turnover if rebooked", badge:"clean", note:"Her stay ran Oct 28 – Nov 4."},
     {block:"midday", id:"adelia-sync", tx:"Room 2 turnover: Antoine out → Adelia Abulkhanova in (Nov 4–5, $112.50) — ready by 2 PM", badge:"clean", top:1, note:"Booking.com res 5853504412. ⟲ sync"}
   ],
   "2026-11-05":[
-    {block:"early", id:"bofa9344", tx:"PAY BofA Business card ending 9344 — due TODAY", badge:"money", top:1, note:"Amount is portal-only — check it, pay it, screenshot it."},
     {block:"midday", id:"fatiq-sync", tx:"Room 1 turnover: Graham out → Fatiq in (Nov 5–6, $97.17) — ready by 2 PM", badge:"clean", top:1, note:"Airbnb HMSXB3AZEW out / HMM25H82C9 in. The old Jacob booking for this slot was CANCELLED. ⟲ sync"},
     {block:"aft", id:"cccheck", tx:"Glance at card list: BofA 1671 $35 min is due Nov 11", badge:"money", note:"Thursday = no classes. Money admin fits here."}
   ],
@@ -267,9 +266,11 @@ const DATED = {
   "2026-11-12":[
     {block:"midday", id:"lewes-sync", tx:"Room 2 check-in: Lewes in (Airbnb Nov 12–13, $99.29); Nil out Room 1 — ready by 2 PM", badge:"clean", top:1, note:"Airbnb HM9TKETBFZ. ⟲ sync"},
     {block:"eve", id:"chem118prep-sync", tx:"CHEM 118 pre-lab prep — for Friday lab", badge:"study", note:"Thursday-before-Friday-lab prep, per the standing rule. ⟲ sync"},
-    {block:"eve", id:"phreport", tx:"CHEM 118 pH Lab Report DUE 11:59 PM (75 pts)", badge:"class", top:1, note:"Thursday, no classes — desk block in the afternoon, submit before dinner if you can."}
+    {block:"eve", id:"phreport", tx:"CHEM 118 pH Lab Report DUE 11:59 PM (75 pts)", badge:"class", top:1, note:"Thursday, no classes — desk block in the afternoon, submit before dinner if you can."},
+    {block:"eve", id:"disc0173eve-sync", tx:"Tomorrow: Dad's Discover it 0173 — $163 min due (AutoPay on)", badge:"money", note:"Confirm AutoPay posts; don't double-pay. ⟲ sync"}
   ],
   "2026-11-13":[
+    {block:"early", id:"disc0173-sync", tx:"Dad's Discover it 0173 — $163 min due TODAY (AutoPay on)", badge:"money", top:1, note:"AutoPay enrolled — confirm it posts. ⟲ sync"},
     {block:"midday", id:"tracy-sync", tx:"Turnovers: Lewes out → Tracy Larocque in Room 2; Jenn Hockridge in Room 1 (Nov 13–14) — ready by 2 PM", badge:"clean", top:1, note:"Booking.com 6397689830 / 6925957012. ⟲ sync"}
   ],
   "2026-11-14":[
@@ -324,7 +325,6 @@ function datedFor(ds){
 
 /* ---------- due dates: surfaced EVERY day (school + bank + everything) ---------- */
 const DUE = [
-  {d:"2026-11-05", tx:"PAY BofA Business card ending 9344", tag:"Bank"},
   {d:"2026-11-08", tx:"PAY Dad's Chase card (Victor pays it)", tag:"Bank"},
   {d:"2026-11-13", tx:"Dad's Discover it 0173 — $163 min (AutoPay on)", tag:"Bank"},
   {d:"2026-11-21", tx:"PAY Robinhood Gold — $25 minimum", tag:"Bank"},
