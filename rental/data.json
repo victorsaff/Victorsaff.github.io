@@ -3,7 +3,7 @@
     "schemaVersion": 1,
     "timezone": "America/New_York",
     "currency": "USD",
-    "lastChecked": "2026-11-03T09:00:00-05:00",
+    "lastChecked": "2026-11-03T10:06:00-05:00",
     "property": "20 Puritan Road, Somerville",
     "occupancyRule": "A room is occupied on a date when checkIn <= date < checkOut. If check-in or check-out is null, those nights are not marked occupied.",
     "amountRule": "null means pending. statedAmount is the figure given for the whole stay. Do not copy it into gross, fees, or net unless that split is known. Do not invent amounts, party sizes, or dates.",
@@ -1511,6 +1511,21 @@
       "net": null,
       "status": "confirmed",
       "notes": "New Booking.com stay Dec 10-11 Room 1. Amount pending. Guest asked about late return after concert; prefers WhatsApp. No PII stored here."
+    },
+    {
+      "id": "pending-booking-room1-2027-10-22",
+      "guest": "Pending.",
+      "roomId": "room-1",
+      "platform": "booking",
+      "checkIn": "2027-10-22",
+      "checkOut": null,
+      "adults": null,
+      "statedAmount": null,
+      "gross": null,
+      "fees": null,
+      "net": null,
+      "status": "confirmed",
+      "notes": "New Booking.com email 9:28 AM ET Nov 3 for Room 1 check-in Fri Oct 22 2027. Guest name, check-out, and amount not in the confirmation email; need extranet. Do not invent."
     }
   ],
   "payouts": [
@@ -1611,6 +1626,10 @@
     {
       "at": "2026-11-03T09:00:00-05:00",
       "note": "Delta check ~9:00 AM ET. New Booking.com stay: Nidia C. Room 1 Dec 10-11 (2 adults, amount pending). Guest message waiting: late return after concert, prefers WhatsApp. Airbnb unchanged at 14 confirmed. Booking confirmed checkout>=today now 59 (was 58). No Airbnb/Agoda booking emails. Lauren special-offer decision still open (draft-first, stay open until she books). Graham P. parking still unanswered."
+    },
+    {
+      "at": "2026-11-03T10:06:00-05:00",
+      "note": "Delta check ~10:06 AM ET. New Booking.com Room 1 check-in Fri Oct 22 2027 (confirmation email only; guest/nights/amount pending extranet). Nidia C. already on file. Airbnb still 14 confirmed. Booking confirmed checkout>=today still 59 until Oct 2027 stay has a check-out date. Booking.com signed out \u2014 need password in chat for details + calendar block. Lauren special-offer decision still open (draft-first). No new Airbnb/Agoda booking emails. No Stripe alerts."
     }
   ]
 }
