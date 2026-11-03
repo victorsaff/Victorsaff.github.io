@@ -274,10 +274,19 @@ export function matchDecisions(decisions, issues) {
 }
 
 export function platformTotals(data) {
-  return data.platforms.map((platform) => ({
-    platform,
-    count: data.stays.filter((stay) => stay.platform === platform.id).length,
-  }));
+  return data.platforms.map((platform) => {
+    const stays = data.stays.filter((stay) => stay.platform === platform.id);
+    const confirmed = stays.filter((stay) => stay.status !== "cancelled");
+    return {
+      platform,
+      confirmed: confirmed.length,
+      cancelled: stays.length - confirmed.length,
+      byRoom: data.rooms.map((room) => ({
+        room,
+        count: confirmed.filter((stay) => stay.roomId === room.id).length,
+      })),
+    };
+  });
 }
 
 export function staysAfterCalendar(data) {
@@ -285,11 +294,10 @@ export function staysAfterCalendar(data) {
   const dayAfter = nextDay(end);
   return data.stays
     .filter((stay) => {
-      if (stay.status === "cancelled") return false;
       if (stay.checkIn && stay.checkIn > end) return true;
       return Boolean(stay.checkOut && stay.checkOut > dayAfter);
     })
-    .sort((a, b) => String(a.checkIn || "").localeCompare(String(b.checkIn || "")));
+    .sort((a, b) => String(a.checkIn || "").localeCompare(String(b.checkIn || "")) || String(a.id).localeCompare(String(b.id)));
 }
 
 export function derive(data, today) {
@@ -377,7 +385,8 @@ function stayCard(data, stay, tags) {
   const tagHtml = tags.map((tag) => `<span class="tag">${esc(tag)}</span>`).join("");
   const note = stay.notes ? `<p class="note">${esc(stay.notes)}</p>` : "";
   const color = safeColor(room.color);
-  return `<article class="stay" style="border-left-color:${color};background:color-mix(in srgb, ${color} 14%, var(--card))">
+  const cancelled = stay.status === "cancelled" ? " cancelled-card" : "";
+  return `<article class="stay${cancelled}" style="border-left-color:${color};background:color-mix(in srgb, ${color} 14%, var(--card))">
     <header><strong>${esc(stay.guest)}</strong>${badge(data, stay.platform)}${roomName(room)}</header>
     <p>${staySpan(stay)} · ${esc(party(stay))}</p>
     <p class="money">Stated ${pendingOr(stay.statedAmount)} · Gross ${pendingOr(stay.gross)} · Fees ${pendingOr(stay.fees)} · Net ${pendingOr(stay.net)}</p>
@@ -574,20 +583,27 @@ function changelogHtml(data) {
 }
 
 function laterHtml(data) {
-  const totals = platformTotals(data).map((item) => `${esc(item.platform.label)} ${item.count}`).join(" · ");
   const end = formatShort(data.meta.calendar.end);
+  const totals = platformTotals(data).map((item) => {
+    const rooms = item.byRoom.map((row) => `${esc(row.room.name)} ${row.count}`).join(" · ");
+    const cancelled = item.cancelled ? `<span class="pending">${item.cancelled} cancelled</span>` : "";
+    return `<li><strong>${esc(item.platform.label)} ${item.confirmed} confirmed</strong> · ${rooms}${cancelled ? ` · ${cancelled}` : ""}</li>`;
+  }).join("");
   const later = staysAfterCalendar(data);
   const cards = later.length
     ? later.map((stay) => {
-      const tag = stay.checkIn && stay.checkIn > data.meta.calendar.end ? "After the calendar" : "Continues past the calendar";
-      return stayCard(data, stay, [tag]);
+      const tags = [];
+      if (stay.status === "cancelled") tags.push("Cancelled");
+      tags.push(stay.checkIn && stay.checkIn > data.meta.calendar.end ? "After the calendar" : "Continues past the calendar");
+      return stayCard(data, stay, tags);
     }).join("")
     : `<p class="empty">No stays after ${esc(end)}.</p>`;
   return `<h3>Stays on the books</h3>
-    <p class="occ">${totals}</p>
-    <p class="note">Every stay is counted here, including cancellations and stays after ${esc(end)}.</p>
+    <ul class="stated">${totals}</ul>
+    <p class="note">Confirmed totals leave cancelled stays out. Cancelled counts are labeled separately. Stays after ${esc(end)} are included.</p>
     <h3 id="later">Later</h3>
-    <p class="note">These stays have a check-in or a night after ${esc(end)}, so the grid above does not show the whole stay.</p>
+    <p class="occ">${later.length} stays</p>
+    <p class="note">These stays have a check-in or a night after ${esc(end)}, so the grid above does not show the whole stay. Cancelled stays are included.</p>
     ${cards}`;
 }
 
