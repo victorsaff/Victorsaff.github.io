@@ -75,6 +75,14 @@
   .addbar button{background:var(--acc); color:#1a1205; border:none; font-weight:800; border-radius:12px; padding:0 16px; font-size:15px; cursor:pointer}
   .tools{display:flex; gap:8px; margin-top:16px}
   .tools button{flex:1; background:none; border:1px solid var(--line); color:var(--dim); border-radius:10px; padding:8px; font-size:12.5px; cursor:pointer}
+  .dues{display:none; margin-top:12px; background:#191410; border:1px solid #4d3a08; border-radius:14px; padding:11px 13px}
+  .dues.show{display:block}
+  .dues h3{margin:0 0 7px; font-size:12px; letter-spacing:1.1px; text-transform:uppercase; color:var(--acc)}
+  .dues .di{display:flex; justify-content:space-between; gap:10px; font-size:13.5px; padding:4px 0; border-top:1px solid #2a2118}
+  .dues .di:first-of-type{border-top:none}
+  .dues .dw2{color:var(--dim); white-space:nowrap; font-size:12.5px}
+  .dues .hot{color:var(--bad); font-weight:800}
+  .dues .tag{font-size:10px; font-weight:800; letter-spacing:.5px; padding:1px 6px; border-radius:99px; border:1px solid var(--line); color:var(--dim); margin-left:6px; text-transform:uppercase}
   .foot{color:#54687f; font-size:12px; text-align:center; margin-top:18px; line-height:1.5}
 </style>
 </head>
@@ -108,6 +116,7 @@
   </div>
 
   <div class="week" id="week"></div>
+  <div class="dues" id="dues"></div>
   <div id="blocks"></div>
 
   <div class="celebrate" id="celebrate">
@@ -119,7 +128,7 @@
     <button id="resetDay">↺ Reset this day</button>
     <button id="clearDone">🧹 Uncheck all</button>
   </div>
-  <div class="foot">Your checkmarks save on this phone/browser automatically.<br>Classes first · Cleaning before 2 PM · 18 Puritan · Lynn last · Study at night</div>
+  <div class="foot">Your checkmarks save on this phone/browser automatically.<br>Classes first · Cleaning before 2 PM · 18 Puritan · Lynn last (flexes late) · Late night to 2 AM is normal</div>
 </div>
 
 <div class="addbar">
@@ -144,9 +153,9 @@ const BLOCKS = [
   {id:"early",   name:"🌅 Early",        time:"7:00 – 8:00"},
   {id:"morning", name:"☀️ Morning",      time:"8:00 – 12:00"},
   {id:"midday",  name:"🧹 Midday",       time:"12:00 – 2:00"},
-  {id:"aft",     name:"🏗️ Afternoon",    time:"2:00 – 5:30"},
-  {id:"eve",     name:"🌙 Evening",      time:"5:30 – 9:00"},
-  {id:"night",   name:"📚 Night study",  time:"After 9:00"}
+  {id:"aft",     name:"🏗️ Afternoon",    time:"2:00 – 6:00"},
+  {id:"eve",     name:"🌙 Evening",      time:"6:00 – 9:30"},
+  {id:"night",   name:"🌙 Late night — work + study",  time:"9:30 PM – 2:00 AM"}
 ];
 const BADGE = {top:["b-top","⭐ Top priority"], class:["b-class","🎓 Class"], clean:["b-clean","🧹 Cleaning"], money:["b-money","💳 Money"], burton:["b-burton","🏠 18 Puritan"], lynn:["b-lynn","📦 Lynn"], move:["b-move","🚚 Move"], study:["b-study","📚 Study"]};
 
@@ -163,7 +172,7 @@ function template(dow, ds){
     T.morning.push({id:"physlab", tx:"PHYSIC 171 Lab — 8:00 to 10:30 AM", badge:"class", note:"Get your data + datasheet done in the room before you leave."});
     T.midday.push({id:"cleanwin", tx:"Cleaning window — finish any turnover by 2:00 PM", badge:"clean", note:"Somerville Airbnb. Check-in is 2 PM, firm."});
     T.aft.push({id:"burton1", tx:"18 Puritan — drop materials / help Dad", badge:"burton", note:"Dad's building it. Your job: materials there on time."},
-               {id:"shiprun", tx:"🚚 Shipping run — pack + labels: eBay, Walmart, Amazon queues", badge:"lynn", note:"Check all three unshipped queues, print labels (Walmart: 0.2 lb, USPS Ground Advantage), drop in one trip."},
+               {id:"shiprun", tx:"🚚 Shipping run — pack + labels: eBay, Walmart, Amazon queues", badge:"lynn", note:"Check all three unshipped queues, print labels (Walmart: 0.2 lb, USPS Ground Advantage), drop in one trip. Lynn run timing FLEXES — afternoon, late afternoon, or after 6 PM, whenever the Somerville work is done. Late is fine."},
                {id:"lynn1", tx:"Lynn block — warehouse + e-commerce, batched", badge:"lynn", note:"One trip, everything at once. Pickups at 732R Lynnway."});
     T.eve.push({id:"dinner", tx:"Eat + reset", note:"Real food. You've earned it."});
     T.night.push({id:"study", tx:"CHEM 116 Exam 3 study — "+sm+" min", badge:"study", note:"Exam 3 is Wed Nov 18. Small daily reps beat a midnight cram."});
@@ -173,6 +182,7 @@ function template(dow, ds){
     T.midday.push({id:"cleanwin", tx:"Cleaning window — finish any turnover by 2:00 PM", badge:"clean", note:"Somerville Airbnb. Check-in is 2 PM, firm."});
     if(dow===1) T.aft.push({id:"disc", tx:"CHEM 116 Discussion — 3:00 to 3:50 PM", badge:"class", note:"UHall Y03-3350."});
     T.aft.push({id:"lec", tx:"CHEM 116 Lecture — 4:00 to 5:15 PM", badge:"class", note:"UHall Y02-2300, Marmolejos."});
+    if(dow===1) T.eve.push({id:"physprelab", tx:"PHYSIC 171 PRE-LAB — for tomorrow's 8 AM lab", badge:"study", top:1, note:"Pre-labs are due at the START of lab (20 pts, NO late acceptance). Tonight, not 7 AM tomorrow."});
     T.eve.push({id:"dinner", tx:"Eat + reset", note:""},
                {id:"shipcheck", tx:"🚚 Shipping check — any eBay/Walmart/Amazon orders to ship?", badge:"lynn", note:"Class days: quick queue check, labels printed so tomorrow's Lynn block just packs + drops."});
     T.night.push({id:"study", tx:"CHEM 116 Exam 3 study — "+sm+" min", badge:"study", note: dow===1 ? "Tomorrow is the 8 AM physics lab — study, then early night." : "Exam 3 is Wed Nov 18."});
@@ -180,7 +190,7 @@ function template(dow, ds){
     T.early.push(plan, {id:"thuplan", tx:"No classes today — this is your big work day", note:"18 Puritan, Lynn, reports. Stack it and knock it out."});
     T.morning.push({id:"burton1", tx:"18 Puritan — long block with Dad", badge:"burton", note:"Materials first, then help on site."});
     T.midday.push({id:"cleanwin", tx:"Cleaning window — finish any turnover by 2:00 PM", badge:"clean", note:"Somerville Airbnb. Check-in is 2 PM, firm."});
-    T.aft.push({id:"shiprun", tx:"🚚 Shipping run — pack + labels: eBay, Walmart, Amazon queues", badge:"lynn", note:"Check all three unshipped queues, print labels (Walmart: 0.2 lb, USPS Ground Advantage), drop in one trip."},
+    T.aft.push({id:"shiprun", tx:"🚚 Shipping run — pack + labels: eBay, Walmart, Amazon queues", badge:"lynn", note:"Check all three unshipped queues, print labels (Walmart: 0.2 lb, USPS Ground Advantage), drop in one trip. Lynn run timing FLEXES — afternoon, late afternoon, or after 6 PM, whenever the Somerville work is done. Late is fine."},
                {id:"lynn1", tx:"Lynn big block — warehouse, shipping, Marketplace pickups", badge:"lynn", note:"Batch everything. This is the day for it."});
     T.eve.push({id:"report", tx:"School desk work — lab reports / homework", badge:"study", note:"Use the quiet evening while it's fresh."});
     T.night.push({id:"study", tx:"CHEM 116 Exam 3 study — "+sm+" min", badge:"study", note:"Exam 3 is Wed Nov 18."});
@@ -195,7 +205,7 @@ function template(dow, ds){
     T.early.push(plan);
     T.morning.push({id:"burton1", tx:"18 Puritan — work block with Dad", badge:"burton", note:"Weekend = biggest progress at 18 Puritan. Materials run first."});
     T.midday.push({id:"cleanwin", tx:"Cleaning window — finish any turnover by 2:00 PM", badge:"clean", note:"Weekend turnovers are the busy ones. 2 PM, firm."});
-    T.aft.push({id:"shiprun", tx:"🚚 Shipping run — pack + labels: eBay, Walmart, Amazon queues", badge:"lynn", note:"Check all three unshipped queues, print labels (Walmart: 0.2 lb, USPS Ground Advantage), drop in one trip."},
+    T.aft.push({id:"shiprun", tx:"🚚 Shipping run — pack + labels: eBay, Walmart, Amazon queues", badge:"lynn", note:"Check all three unshipped queues, print labels (Walmart: 0.2 lb, USPS Ground Advantage), drop in one trip. Lynn run timing FLEXES — afternoon, late afternoon, or after 6 PM, whenever the Somerville work is done. Late is fine."},
                {id:"lynn1", tx:"Lynn block — pickups + e-commerce catch-up", badge:"lynn", note:"Batched, then done."});
     T.eve.push({id:"study", tx:"Study / lab report block — "+sm+" min", badge:"study", note:"Exam 3 is Wed Nov 18."});
     T.night.push({id:"rest", tx:"Actually rest", note:"Recovery is part of the system, not a reward."});
@@ -285,6 +295,38 @@ function datedFor(ds){
   return out;
 }
 
+
+/* ---------- due dates: surfaced EVERY day (school + bank + everything) ---------- */
+const DUE = [
+  {d:"2026-11-05", tx:"PAY BofA Business card ending 9344", tag:"Bank"},
+  {d:"2026-11-06", tx:"CHEM 118 pH Pre-Lab Quiz — 1:00 PM", tag:"School"},
+  {d:"2026-11-11", tx:"PAY BofA card ending 1671 — $35 minimum", tag:"Bank"},
+  {d:"2026-11-12", tx:"CHEM 118 pH Lab Report — 11:59 PM (75 pts)", tag:"School"},
+  {d:"2026-11-18", tx:"CHEM 116 EXAM 3", tag:"School"},
+  {d:"2026-11-19", tx:"CHEM 118 Equilibrium final draft — 11:59 PM (50 pts)", tag:"School"},
+  {d:"2026-11-21", tx:"Amazon Nugenix FBA removal deadline (~)", tag:"Business"},
+  {d:"2026-11-28", tx:"AdsPower plan expires — renew decision", tag:"Business"},
+  {d:"2026-11-30", tx:"LYNN MOVE-OUT deadline", tag:"Move"},
+  {d:"2026-12-09", tx:"CHEM 116 EXAM 4", tag:"School"},
+  {d:"2026-12-21", tx:"CAS 014 EWRAP Portfolio — 11:59 PM", tag:"School"}
+];
+function renderDues(){
+  const base = parseD(cur);
+  const items = DUE.filter(x=>{ const dd=(parseD(x.d)-base)/86400000; return dd>=0 && dd<=7; })
+                   .map(x=>({d:x.d, tx:x.tx, tag:x.tag, dd:(parseD(x.d)-base)/86400000}));
+  /* weekly: PHYSIC 171 pre-lab due at Tuesday 8 AM lab start */
+  const toTue = (2 - base.getDay() + 7) % 7;
+  if(toTue<=7) items.push({d:fmt(addDays(base,toTue)), tx:"PHYSIC 171 pre-lab due at 8 AM lab start", tag:"School", dd:toTue});
+  items.sort((a,b)=>a.dd-b.dd);
+  if(!items.length){ $("dues").className="dues"; $("dues").innerHTML=""; return; }
+  let h = "<h3>📌 Due dates — next 7 days</h3>";
+  items.forEach(x=>{
+    const when = x.dd===0 ? "TODAY" : x.dd===1 ? "Tomorrow" : WD[parseD(x.d).getDay()].slice(0,3)+" "+MO[parseD(x.d).getMonth()]+" "+parseD(x.d).getDate();
+    h += '<div class="di"><span>'+x.tx+'<span class="tag">'+x.tag+'</span></span><span class="dw2'+(x.dd<=1?" hot":"")+'">'+when+"</span></div>";
+  });
+  $("dues").className="dues show"; $("dues").innerHTML=h;
+}
+
 /* ---------- state (per-day, saved in this browser) ---------- */
 const LS = "victor-day-v1-";
 function loadState(ds){
@@ -322,6 +364,7 @@ function render(){
     const p = tot? Math.round(dn/tot*100):0;
     wh += '<div class="d'+(ds===cur?" sel":"")+(ds===fmt(new Date())?" today":"")+'" data-d="'+ds+'"><div class="dw">'+WD[dd.getDay()].slice(0,3)+'</div><div class="dn">'+dd.getDate()+'</div><div class="dot"><i style="width:'+p+'%"></i></div></div>';
   }
+  renderDues();
   $("week").innerHTML = wh;
   document.querySelectorAll(".week .d").forEach(el=> el.onclick = ()=>{ cur = el.dataset.d; render(); window.scrollTo({top:0, behavior:"smooth"}); });
   /* blocks */
