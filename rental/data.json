@@ -3,7 +3,7 @@
     "schemaVersion": 1,
     "timezone": "America/New_York",
     "currency": "USD",
-    "lastChecked": "2026-11-03T00:56:18-05:00",
+    "lastChecked": "2026-11-03T08:05:00-05:00",
     "property": "20 Puritan Road, Somerville",
     "occupancyRule": "A room is occupied on a date when checkIn <= date < checkOut. If check-in or check-out is null, those nights are not marked occupied.",
     "amountRule": "null means pending. statedAmount is the figure given for the whole stay. Do not copy it into gross, fees, or net unless that split is known. Do not invent amounts, party sizes, or dates.",
@@ -11,7 +11,7 @@
     "updater": "Hourly refresh: commit only rental/data.json. Set meta.lastChecked. Leave unknown money and dates as null.",
     "repo": "victorsaff/Victorsaff.github.io",
     "calendar": {
-      "start": "2026-11-02",
+      "start": "2026-11-03",
       "end": "2026-12-31"
     },
     "november": {
@@ -353,9 +353,9 @@
       "statedAmount": 488.75,
       "gross": null,
       "fees": null,
-      "net": null,
+      "net": 263.92,
       "status": "cancelled",
-      "notes": "Stated amount is for the whole stay."
+      "notes": "Gross and commission from Booking.com export."
     },
     {
       "id": "rebecca-f-booking-2026-11-11",
@@ -1508,7 +1508,40 @@
       "note": "Expired card on file. No reissue option. Not assigned to a room. Batch id is not stored."
     }
   ],
-  "chats": [],
+  "chats": [
+    {
+      "id": "graham-parking",
+      "platform": "airbnb",
+      "thread": "Graham P.",
+      "waitingOn": "host",
+      "lastMessage": "2026-11-02T23:23:00-05:00",
+      "summary": "Guest asked for parking instructions; still unanswered."
+    },
+    {
+      "id": "antoine-arrival",
+      "platform": "booking",
+      "thread": "Antoine C.",
+      "waitingOn": "host",
+      "lastMessage": "2026-11-02T22:59:00-05:00",
+      "summary": "Guest sent arrival ~5:30 PM by car and asked for WhatsApp contact. Check-in instructions due 11 AM ET."
+    },
+    {
+      "id": "lauren-inquiry",
+      "platform": "airbnb",
+      "thread": "Lauren inquiry",
+      "waitingOn": "guest",
+      "lastMessage": "2026-11-02T10:45:00-05:00",
+      "summary": "Host replied Nov 2. Special-offer draft pending send after Victor reviews."
+    },
+    {
+      "id": "tat-parking",
+      "platform": "airbnb",
+      "thread": "Tat C.",
+      "waitingOn": "host",
+      "lastMessage": "2026-11-02T21:02:00-05:00",
+      "summary": "Parking/minivan question after welcome; still unanswered."
+    }
+  ],
   "accountHealth": [
     {
       "id": "agoda-payout",
@@ -1520,20 +1553,20 @@
       "id": "airbnb-clear",
       "platform": "airbnb",
       "level": "clear",
-      "summary": "No account issues logged this check."
+      "summary": "Signed in. 14 confirmed stays. Graham parking and Tat parking threads need host replies."
     },
     {
-      "id": "booking-clear",
+      "id": "booking-attention",
       "platform": "booking",
-      "level": "clear",
-      "summary": "No account issues logged this check."
+      "level": "attention",
+      "summary": "Overnight Excel baselines still match (58 confirmed with checkout on/after today). Live extranet sign-in for a fresh export was still needed at 8 AM ET."
     }
   ],
   "decisions": [
     {
       "id": "antoine-c-nudge",
       "title": "Antoine C. nudge draft",
-      "detail": "Antoine replied (driving, arriving about 5:30 PM, gave a phone number), so the nudge is not needed. Check-in instructions with parking are next.",
+      "detail": "Nudge not needed; guest already sent arrival time and WhatsApp preference.",
       "status": "done"
     },
     {
@@ -1545,7 +1578,7 @@
     {
       "id": "lauren-airbnb-offer",
       "title": "Lauren's Airbnb special offer",
-      "detail": "Lauren has an Airbnb special offer: a combined discount for repeated stays. The discount amount is pending.",
+      "detail": "Victor approved. Draft the combined special offer for repeated short stays and show it before sending. Keep open until Lauren books.",
       "status": "pending"
     },
     {
@@ -1556,6 +1589,10 @@
     }
   ],
   "changelog": [
+    {
+      "at": "2026-11-03T08:05:00-05:00",
+      "note": "08:05 ET full sweep: Airbnb live 14 confirmed (match). Booking.com from Excel 58 confirmed checkout>=today rooms 20/22/16 (match). Agoda no new stays; remittance still stuck. Antoine C. overnight arrival/WhatsApp message; Graham P. and Tat C. still waiting on parking replies. Lauren special-offer APPROVE open — draft to Victor first."
+    },
     {
       "at": "2026-11-02T22:58:43-05:00",
       "note": "Command center opened. Seeded in-house stays, upcoming Airbnb and Booking.com reservations, four Booking.com cancellations, the stuck Agoda payout, and four pending decisions. Unknown amounts left pending."
