@@ -163,6 +163,7 @@ function template(dow, ds){
     T.morning.push({id:"physlab", tx:"PHYSIC 171 Lab — 8:00 to 10:30 AM", badge:"class", note:"Get your data + datasheet done in the room before you leave."});
     T.midday.push({id:"cleanwin", tx:"Cleaning window — finish any turnover by 2:00 PM", badge:"clean", note:"Somerville Airbnb. Check-in is 2 PM, firm."});
     T.aft.push({id:"burton1", tx:"18 Puritan — drop materials / help Dad", badge:"burton", note:"Dad's building it. Your job: materials there on time."},
+               {id:"shiprun", tx:"🚚 Shipping run — pack + labels: eBay, Walmart, Amazon queues", badge:"lynn", note:"Check all three unshipped queues, print labels (Walmart: 0.2 lb, USPS Ground Advantage), drop in one trip."},
                {id:"lynn1", tx:"Lynn block — warehouse + e-commerce, batched", badge:"lynn", note:"One trip, everything at once. Pickups at 732R Lynnway."});
     T.eve.push({id:"dinner", tx:"Eat + reset", note:"Real food. You've earned it."});
     T.night.push({id:"study", tx:"CHEM 116 Exam 3 study — "+sm+" min", badge:"study", note:"Exam 3 is Wed Nov 18. Small daily reps beat a midnight cram."});
@@ -172,13 +173,15 @@ function template(dow, ds){
     T.midday.push({id:"cleanwin", tx:"Cleaning window — finish any turnover by 2:00 PM", badge:"clean", note:"Somerville Airbnb. Check-in is 2 PM, firm."});
     if(dow===1) T.aft.push({id:"disc", tx:"CHEM 116 Discussion — 3:00 to 3:50 PM", badge:"class", note:"UHall Y03-3350."});
     T.aft.push({id:"lec", tx:"CHEM 116 Lecture — 4:00 to 5:15 PM", badge:"class", note:"UHall Y02-2300, Marmolejos."});
-    T.eve.push({id:"dinner", tx:"Eat + reset", note:""});
+    T.eve.push({id:"dinner", tx:"Eat + reset", note:""},
+               {id:"shipcheck", tx:"🚚 Shipping check — any eBay/Walmart/Amazon orders to ship?", badge:"lynn", note:"Class days: quick queue check, labels printed so tomorrow's Lynn block just packs + drops."});
     T.night.push({id:"study", tx:"CHEM 116 Exam 3 study — "+sm+" min", badge:"study", note: dow===1 ? "Tomorrow is the 8 AM physics lab — study, then early night." : "Exam 3 is Wed Nov 18."});
   } else if(dow===4){ /* Thursday: no classes */
     T.early.push(plan, {id:"thuplan", tx:"No classes today — this is your big work day", note:"18 Puritan, Lynn, reports. Stack it and knock it out."});
     T.morning.push({id:"burton1", tx:"18 Puritan — long block with Dad", badge:"burton", note:"Materials first, then help on site."});
     T.midday.push({id:"cleanwin", tx:"Cleaning window — finish any turnover by 2:00 PM", badge:"clean", note:"Somerville Airbnb. Check-in is 2 PM, firm."});
-    T.aft.push({id:"lynn1", tx:"Lynn big block — warehouse, shipping, Marketplace pickups", badge:"lynn", note:"Batch everything. This is the day for it."});
+    T.aft.push({id:"shiprun", tx:"🚚 Shipping run — pack + labels: eBay, Walmart, Amazon queues", badge:"lynn", note:"Check all three unshipped queues, print labels (Walmart: 0.2 lb, USPS Ground Advantage), drop in one trip."},
+               {id:"lynn1", tx:"Lynn big block — warehouse, shipping, Marketplace pickups", badge:"lynn", note:"Batch everything. This is the day for it."});
     T.eve.push({id:"report", tx:"School desk work — lab reports / homework", badge:"study", note:"Use the quiet evening while it's fresh."});
     T.night.push({id:"study", tx:"CHEM 116 Exam 3 study — "+sm+" min", badge:"study", note:"Exam 3 is Wed Nov 18."});
   } else if(dow===5){ /* Friday: CHEM 118 lab */
@@ -192,7 +195,8 @@ function template(dow, ds){
     T.early.push(plan);
     T.morning.push({id:"burton1", tx:"18 Puritan — work block with Dad", badge:"burton", note:"Weekend = biggest progress at 18 Puritan. Materials run first."});
     T.midday.push({id:"cleanwin", tx:"Cleaning window — finish any turnover by 2:00 PM", badge:"clean", note:"Weekend turnovers are the busy ones. 2 PM, firm."});
-    T.aft.push({id:"lynn1", tx:"Lynn block — pickups + e-commerce catch-up", badge:"lynn", note:"Batched, then done."});
+    T.aft.push({id:"shiprun", tx:"🚚 Shipping run — pack + labels: eBay, Walmart, Amazon queues", badge:"lynn", note:"Check all three unshipped queues, print labels (Walmart: 0.2 lb, USPS Ground Advantage), drop in one trip."},
+               {id:"lynn1", tx:"Lynn block — pickups + e-commerce catch-up", badge:"lynn", note:"Batched, then done."});
     T.eve.push({id:"study", tx:"Study / lab report block — "+sm+" min", badge:"study", note:"Exam 3 is Wed Nov 18."});
     T.night.push({id:"rest", tx:"Actually rest", note:"Recovery is part of the system, not a reward."});
   }
@@ -204,11 +208,17 @@ const DATED = {
   "2026-11-03":[
     {block:"morning", id:"mtg", tx:"Meeting after lab", note:"You put this between lab and cleaning — keep it tight."},
     {block:"midday", id:"antoine", tx:"Room 2 turnover: Thomas out → Antoine Canonne in", badge:"clean", top:1, note:"Booking.com, Nov 3–4, $108. Clean done before 2 PM check-in."},
-    {block:"aft", id:"ebayship", tx:"Ship eBay order 10-15376-32237", badge:"lynn", note:"Ship-by today."},
+    {block:"aft", id:"ebayship", tx:"Ship eBay order 10-15376-32237 (Sonicare Advanced Clean x2, $53.09)", badge:"lynn", top:1, note:"Ship-by TODAY, FedEx 2Day."},
+    {block:"aft", id:"ebaylate", tx:"FIRST: check eBay 09-15376-12613 — ship-by was Nov 2", badge:"lynn", top:1, note:"Sonicare Pro Clean Plus 2-Pack, $94.99, FedEx 2Day. If it didn't go out yesterday, it ships before anything else. (Its twin order 03-15387-70691 was CANCELLED — do not ship that one.)"},
+    {block:"aft", id:"ebaynew", tx:"Pack Nov 2 eBay sales: 07-15383-34639 · 22-15355-84065 · 13-15373-51358", badge:"lynn", note:"Check each ship-by in eBay during the shipping run."},
+    {block:"aft", id:"wmamz", tx:"Walmart + Amazon queues: check for overnight orders", badge:"lynn", note:"Verified Nov 2 night: Amazon unshipped = 0, and all 6 of Walmart's Nov 2 orders already show Shipped. Anything new goes out in today's run."},
+    {block:"eve", id:"prelab118", tx:"Do the CHEM 118 pH Pre-Lab TODAY — don't wait for Friday", badge:"study", top:1, note:"Quiz due Fri Nov 6, 1:00 PM at lab start. Doing it today = Friday is just lab."},
+    {block:"eve", id:"bankweek", tx:"Bank due dates this week: BofA 9344 due Thu Nov 5", badge:"money", note:"Plus BofA 1671 $35 min on Nov 11. Parafin decision is above — same block, knock both out."},
     {block:"eve", id:"parafin", tx:"Decide Parafin — $600 was due Nov 1", badge:"money", top:1, note:"Card authorization form still empty. Send the form or the fallback note to Alex. Your call, but today."},
     {block:"eve", id:"storage", tx:"Shortlist one storage unit near Somerville/Lynn", badge:"move", note:"Lynn move-out is Nov 30 — 27 days. Small step, big relief later."}
   ],
   "2026-11-04":[
+    {block:"eve", id:"bofaeve", tx:"Tomorrow: PAY BofA Business 9344 (due Nov 5)", badge:"money", top:1, note:"Amount is portal-only. Set it up tonight or first thing tomorrow."},
     {block:"midday", id:"graham", tx:"Graham check-in today (Airbnb, $97.17) — room ready by 2 PM", badge:"clean", top:1, note:"New booking from the Nov 2 rentals check."},
     {block:"midday", id:"saraout", tx:"Sara Mckenzie checks out (Room 1) — turnover if rebooked", badge:"clean", note:"Her stay ran Oct 28 – Nov 4."}
   ],
