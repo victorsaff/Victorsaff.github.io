@@ -50,11 +50,20 @@
     position: sticky; top: 0; z-index: 5;
     background: color-mix(in srgb, var(--bg) 92%, transparent);
   }
-  .jumps a {
-    flex: 0 0 auto; text-decoration: none; color: var(--ink);
+  .jumps button {
+    flex: 0 0 auto; text-decoration: none; color: var(--ink); font: inherit; cursor: pointer;
     border: 1px solid var(--line); background: var(--card);
     border-radius: 999px; padding: 8px 12px; min-height: 40px; font-size: 14px; font-weight: 700;
   }
+  .jumps button.is-on { background: #243049; border-color: #6ea8fe; color: #fff; }
+  .tab-panel { display: none; }
+  .tab-panel.is-on { display: block; animation: rise .32s ease; }
+  @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  .kpi-card, .chart-card, .stay, .panel { transition: transform .18s ease, border-color .18s ease; }
+  .kpi-card:hover, .chart-card:hover, .stay:hover { transform: translateY(-2px); border-color: #3d5278; }
+  .kpi-card:active, .chart-card:active { transform: translateY(0) scale(.99); }
+  .chart-box { position: relative; height: 220px; }
+  .chart-tools { display: flex; gap: 8px; margin: 6px 0; }
   .panel { padding: 14px; margin: 12px 0; }
   #tomorrow { border-color: #f0b35e; }
   .tomorrow-date { font-size: 22px; font-weight: 750; margin: 0 0 8px; }
@@ -136,6 +145,7 @@
 <body>
 <main class="wrap" id="app"><p>Loading the rental board…</p></main>
 <noscript><p>This board needs JavaScript to read rental/data.json.</p></noscript>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
 <script type="module" src="board.js"></script>
 </body>
 </html>

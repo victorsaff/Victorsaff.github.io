@@ -845,14 +845,20 @@ function windowFor(today, key) {
   return null;
 }
 
+function kpiMoney(value) {
+  if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) return pendingOr(null);
+  return `<span class="count" data-count="${Number(value)}" data-money="1">${esc(money(0))}</span>`;
+}
+
 function kpiExtra(data, today, key) {
   const range = windowFor(today, key);
   if (!range || (key !== "mtd" && key !== "next30")) return "";
   const report = periodReport(data, range, key);
-  const occ = percent(report.confirmed, report.available);
+  const occ = report.available ? (report.confirmed / report.available) * 100 : null;
   const gross = data.revenueSummary?.periods?.[key]?.gross;
   const adr = gross === null || gross === undefined || !report.confirmed ? null : Number(gross) / report.confirmed;
-  return `<p class="kpi-extra">Occupancy ${esc(occ)} · ADR ${pendingOr(adr)}</p>`;
+  const occHtml = occ === null ? pendingOr(null) : `<span class="count" data-count="${occ.toFixed(1)}" data-suffix="%">0%</span>`;
+  return `<p class="kpi-extra">Occupancy ${occHtml} · ADR ${pendingOr(adr)}</p>`;
 }
 
 function revenueChart(data) {
@@ -903,15 +909,29 @@ function kpiHtml(data, today) {
     }).join("");
     return `<article class="kpi-card">
       <div class="card-label">${esc(label)}</div>
-      <div class="card-gross">${pendingOr(period.gross)} <span>gross</span></div>
-      <div class="card-net">${pendingOr(period.net)} <span>net</span></div>
+      <div class="card-gross">${kpiMoney(period.gross)} <span>gross</span></div>
+      <div class="card-net">${kpiMoney(period.net)} <span>net</span></div>
       ${kpiExtra(data, today, key)}
       ${lines}
     </article>`;
   }).join("");
   return `<div class="kpi-head"><p class="kpi-note">Night-stayed revenue. Empty money figures stay pending.</p><button type="button" class="btn skip" id="platform-toggle" style="flex:none">By platform</button></div>
     <div class="kpi-cards${state.showPlatforms ? " show-platforms" : ""}">${cards}</div>
-    <div class="charts">${revenueChart(data)}${occupancyChart(data, today)}</div>`;
+    <div class="charts">
+      <div class="chart-card">
+        <div class="card-label">Known nightly net</div>
+        <div class="chart-tools">
+          <button type="button" class="btn skip range-toggle${state.chartDays === 90 ? "" : " is-on"}" data-range="30" style="flex:none;min-height:36px">30 days</button>
+          <button type="button" class="btn skip range-toggle${state.chartDays === 90 ? " is-on" : ""}" data-range="90" style="flex:none;min-height:36px">90 days</button>
+        </div>
+        <div class="chart-box"><canvas id="chart-revenue"></canvas></div>
+      </div>
+      <div class="chart-card"><div class="card-label">Revenue share by platform</div><div class="chart-box short"><canvas id="chart-share"></canvas></div></div>
+      <div class="chart-card"><div class="card-label">Bookings by room</div><div class="chart-box short"><canvas id="chart-rooms"></canvas></div></div>
+      <div class="chart-card"><div class="card-label">Occupancy by room</div><div class="chart-box short"><canvas id="chart-occupancy"></canvas></div></div>
+      <div class="chart-card"><div class="card-label">ADR trend</div><div class="chart-box"><canvas id="chart-adr"></canvas></div></div>
+      <div class="chart-card"><div class="card-label">Booking lead time</div><div class="chart-box"><canvas id="chart-lead"></canvas></div></div>
+    </div>`;
 }
 
 function horizonGrid(data, view, selected) {
@@ -963,7 +983,7 @@ function marketHtml(data) {
     return `<div class="meter"><span>${esc(label)}</span><div class="track"><div class="fill" style="width:${width}%;background:#6ea8fe"></div></div><span>${value == null ? "—" : esc(money(value) || "—")}</span></div>`;
   }).join("");
   return `<p class="note">${market.asOf ? `As of ${esc(formatShort(market.asOf))}. ` : ""}Nearby prices stay blank until comps are filled in.</p>
-    <div class="chart-card">${bars}</div>
+    <div class="chart-card"><div class="chart-box"><canvas id="chart-market"></canvas></div></div>
     ${rows ? `<ul class="list">${rows}</ul>` : `<p class="empty">No comps logged.</p>`}`;
 }
 
@@ -985,25 +1005,16 @@ function renderBoard(data, view, selected, matches) {
       <p class="checked">Updated <time datetime="${esc(data.meta.lastChecked)}">${esc(checked)}</time></p>
       <div class="pills">${signPills(data)}</div>
     </header>
-    <nav class="jumps" aria-label="Sections">
-      <a href="#kpis">Revenue</a>
-      <a href="#decisions">Decisions</a>
-      <a href="#now">Today</a>
-      <a href="#tomorrow">Tomorrow</a>
-      <a href="#calendar">Calendar</a>
-      <a href="#reservations">Reservations</a>
-      <a href="#market">Market</a>
-      <a href="#revenue">Detail</a>
-      <a href="#chats">Chats</a>
-      <a href="#health">Health</a>
-      <a href="#log">Log</a>
+    <nav class="jumps" aria-label="Dashboard tabs">
+      ${["overview", "Overview", "revenue", "Revenue", "calendar", "Calendar & Prices", "reservations", "Reservations", "market", "Market", "decisions", "Decisions", "operations", "Operations"].reduce((html, item, index, list) => index % 2 ? html : html + `<button type="button" data-tab="${item}" class="${state.tab === item ? "is-on" : ""}">${list[index + 1]}</button>`, "")}
     </nav>
-    <section id="kpis">${kpiHtml(data, view.today)}</section>
-    <section id="decisions" class="panel">
+    <div class="tab-panel${state.tab === "overview" ? " is-on" : ""}" data-panel="overview"><section id="kpis">${kpiHtml(data, view.today)}</section></div>
+    <div class="tab-panel${state.tab === "decisions" ? " is-on" : ""}" data-panel="decisions"><section id="decisions" class="panel">
       <h2>Pending decisions</h2>
       <p class="note">Approve, Skip, and Send note open a public GitHub issue titled DECISION: APPROVE, DECISION: SKIP, or DECISION: COMMENT, with the decision label. This site is public. Don't add private details.</p>
       ${decisionsHtml(data, matches)}
-    </section>
+    </section></div>
+    <div class="tab-panel${state.tab === "operations" ? " is-on" : ""}" data-panel="operations">
     <section id="now" class="panel">
       <h2>Today</h2>
       <p class="range">${esc(formatPretty(view.today))}. Arrivals, departures, and who is in house tonight.</p>
@@ -1017,6 +1028,20 @@ function renderBoard(data, view, selected, matches) {
       ${rosterHtml(data, view.tomorrowRoster, view.tomorrow, view.today, { showThread: true })}
       ${tomorrowTurns.length ? `<h3>Turnovers</h3>${turnoverHtml(data, tomorrowTurns, view.today)}` : ""}
     </section>
+    <section id="chats" class="panel">
+      <h2>Guest chats</h2>
+      ${chatsHtml(data)}
+    </section>
+    <section id="health" class="panel">
+      <h2>Account health</h2>
+      ${healthHtml(data)}
+    </section>
+    <section id="log" class="panel">
+      <h2>Change log</h2>
+      ${changelogHtml(data)}
+    </section>
+    </div>
+    <div class="tab-panel${state.tab === "calendar" ? " is-on" : ""}" data-panel="calendar">
     <section id="calendar" class="panel">
       <h2>Calendar</h2>
       ${horizonGrid(data, view, selected)}
@@ -1024,7 +1049,8 @@ function renderBoard(data, view, selected, matches) {
       ${nightlyPricesHtml(data, selected)}
       ${priceFormHtml(data, selected)}
       ${openPriceHtml(state.priceIssues || [], selected)}
-    </section>
+    </section></div>
+    <div class="tab-panel${state.tab === "reservations" ? " is-on" : ""}" data-panel="reservations">
     <section id="reservations" class="panel">
       <h2>Reservations</h2>
       <div class="filters">
@@ -1038,29 +1064,19 @@ function renderBoard(data, view, selected, matches) {
       ${staysAfterCalendar(data).map((stay) => stayCard(data, stay, ["After the calendar"])).join("") || `<p class="empty">No stays after the calendar.</p>`}
       <h3>Cancellations</h3>
       ${cancellationsHtml(data)}
-    </section>
+    </section></div>
+    <div class="tab-panel${state.tab === "market" ? " is-on" : ""}" data-panel="market">
     <section id="market" class="panel">
       <h2>Nearby prices</h2>
       ${marketHtml(data)}
-    </section>
+    </section></div>
+    <div class="tab-panel${state.tab === "revenue" ? " is-on" : ""}" data-panel="revenue">
     <section id="revenue" class="panel">
       <h2>Revenue</h2>
       <p class="note">Gross, fees, net, and ADR stay pending until those figures are in the data file. Occupancy counts confirmed nights only. Stated amounts are shown beside the tables and are not treated as gross.</p>
       ${view.periods.map((period) => periodHtml(data, period)).join("")}
       ${payoutHtml(data)}
-    </section>
-    <section id="chats">
-      <h2>Guest chats</h2>
-      ${chatsHtml(data)}
-    </section>
-    <section id="health">
-      <h2>Account health</h2>
-      <div class="health-grid">${healthHtml(data)}</div>
-    </section>
-    <section id="log">
-      <h2>Change log</h2>
-      ${changelogHtml(data)}
-    </section>
+    </section></div>
     <p class="foot">Last checked <time datetime="${esc(data.meta.lastChecked)}">${esc(checked)}</time>. This page is on a public GitHub Pages site. Names are first name and last initial. No door codes, Wi-Fi passwords, card numbers, phone numbers, emails, reservation numbers, or payout batch ids are stored.
       <a href="../">Business dashboard</a></p>`;
 }
@@ -1073,9 +1089,223 @@ const state = {
   stayNotes: new Map(),
   priceIssues: [],
   showPlatforms: false,
+  tab: "overview",
+  chartDays: 30,
   gridScroll: 0,
   filters: { q: "", room: "", platform: "", date: "" },
 };
+
+function nightlyValue(data, iso, field, platformId) {
+  let sum = 0;
+  let any = false;
+  for (const stay of data.stays || []) {
+    if (stay.status === "cancelled" || !isOccupied(stay, iso)) continue;
+    if (platformId && stay.platform !== platformId) continue;
+    const nights = stay.checkIn && stay.checkOut ? Math.max(1, eachDate(stay.checkIn, fmtDate(addDays(parseDate(stay.checkOut), -1))).length) : 0;
+    const value = Number(stay[field]);
+    if (!nights || !Number.isFinite(value)) continue;
+    sum += value / nights;
+    any = true;
+  }
+  return any ? sum : null;
+}
+
+function seriesFor(data, today, days, field) {
+  const dates = eachDate(fmtDate(addDays(parseDate(today), 1 - days)), today);
+  return dates.map((iso) => ({ iso, value: nightlyValue(data, iso, field) }));
+}
+
+const liveCharts = [];
+
+function clearCharts() {
+  liveCharts.splice(0).forEach((chart) => chart.destroy());
+}
+
+function chartMessage(id, message) {
+  const canvas = document.getElementById(id);
+  if (!canvas) return;
+  canvas.style.display = message ? "none" : "";
+  let note = canvas.parentElement.querySelector(".chart-empty");
+  if (message) {
+    if (!note) {
+      note = document.createElement("p");
+      note.className = "chart-empty empty";
+      canvas.parentElement.appendChild(note);
+    }
+    note.textContent = message;
+  } else if (note) note.remove();
+}
+
+function baseChartOptions() {
+  return {
+    responsive: true,
+    maintainAspectRatio: false,
+    animation: { duration: 800, easing: "easeOutQuart" },
+    plugins: {
+      legend: { position: "bottom", labels: { boxWidth: 12, usePointStyle: true } },
+      tooltip: {
+        callbacks: {
+          label(context) {
+            const value = context.parsed.y ?? context.parsed;
+            const number = typeof value === "number" ? value : value?.r;
+            const label = context.dataset.label || context.label || "Value";
+            if (!Number.isFinite(number)) return `${label}: pending`;
+            const countChart = ["chart-rooms", "chart-occupancy", "chart-lead"].includes(context.chart.canvas.id);
+            return `${label}: ${countChart ? number : (money(number) || "pending")}`;
+          },
+        },
+      },
+    },
+  };
+}
+
+function mountCharts() {
+  clearCharts();
+  if (!window.Chart || !state.data) return;
+  const data = state.data;
+  const today = state.today;
+  Chart.defaults.color = "#8fa3bf";
+  Chart.defaults.borderColor = "#26314a";
+  Chart.defaults.font.family = "-apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif";
+  const revenue = document.getElementById("chart-revenue");
+  if (revenue) {
+    const points = seriesFor(data, today, state.chartDays || 30, "net");
+    if (!points.some((point) => point.value !== null)) chartMessage("chart-revenue", "Pending until nightly net figures are on file.");
+    else {
+      chartMessage("chart-revenue", "");
+      liveCharts.push(new Chart(revenue, {
+        type: "line",
+        data: {
+          labels: points.map((point) => formatShort(point.iso)),
+          datasets: [{
+            label: "Known net",
+            data: points.map((point) => point.value),
+            borderColor: "#4ade80",
+            backgroundColor: "rgba(74,222,128,.18)",
+            fill: true,
+            tension: 0.35,
+            spanGaps: false,
+            pointRadius: 0,
+            pointHoverRadius: 4,
+          }],
+        },
+        options: baseChartOptions(),
+      }));
+    }
+  }
+  const share = document.getElementById("chart-share");
+  if (share) {
+    const totals = (data.platforms || []).map((platform) => {
+      const dates = eachDate(fmtDate(addDays(parseDate(today), -29)), today);
+      const value = dates.reduce((sum, iso) => sum + (nightlyValue(data, iso, "net", platform.id) || 0), 0);
+      return { platform, value };
+    }).filter((row) => row.value > 0);
+    if (!totals.length) chartMessage("chart-share", "Pending until platform net can be totaled.");
+    else {
+      chartMessage("chart-share", "");
+      liveCharts.push(new Chart(share, {
+        type: "doughnut",
+        data: { labels: totals.map((row) => row.platform.label), datasets: [{ data: totals.map((row) => row.value), backgroundColor: totals.map((row) => row.platform.color) }] },
+        options: baseChartOptions(),
+      }));
+    }
+  }
+  const rooms = document.getElementById("chart-rooms");
+  if (rooms) {
+    const counts = (data.rooms || []).map((room) => data.stays.filter((stay) => stay.roomId === room.id && stay.status !== "cancelled").length);
+    if (!counts.some((count) => count > 0)) chartMessage("chart-rooms", "No confirmed bookings to chart.");
+    else {
+      chartMessage("chart-rooms", "");
+      liveCharts.push(new Chart(rooms, {
+        type: "pie",
+        data: { labels: data.rooms.map((room) => room.name), datasets: [{ data: counts, backgroundColor: data.rooms.map((room) => room.color), money: false }] },
+        options: baseChartOptions(),
+      }));
+    }
+  }
+  const occupancy = document.getElementById("chart-occupancy");
+  if (occupancy) {
+    const range = { start: fmtDate(addDays(parseDate(today), -29)), end: today };
+    const nights = (data.rooms || []).map((room) => data.stays.filter((stay) => stay.roomId === room.id && stay.status !== "cancelled").reduce((count, stay) => count + nightsOverlapping(stay, range.start, range.end).length, 0));
+    chartMessage("chart-occupancy", "");
+    liveCharts.push(new Chart(occupancy, {
+      type: "bar",
+      data: { labels: data.rooms.map((room) => room.name), datasets: [{ label: "Nights booked", data: nights, backgroundColor: data.rooms.map((room) => room.color), money: false }] },
+      options: { ...baseChartOptions(), scales: { y: { beginAtZero: true, ticks: { precision: 0 } } } },
+    }));
+  }
+  const adr = document.getElementById("chart-adr");
+  if (adr) {
+    const points = seriesFor(data, today, 30, "gross").map((point) => {
+      if (point.value === null) return { ...point, adr: null };
+      const occupied = (data.stays || []).filter((stay) => stay.status !== "cancelled" && isOccupied(stay, point.iso) && Number.isFinite(Number(stay.gross))).length;
+      return { ...point, adr: occupied ? point.value / occupied : null };
+    });
+    if (!points.some((point) => point.adr !== null)) chartMessage("chart-adr", "Pending until nightly gross is on file.");
+    else {
+      chartMessage("chart-adr", "");
+      liveCharts.push(new Chart(adr, {
+        type: "line",
+        data: { labels: points.map((point) => formatShort(point.iso)), datasets: [{ label: "Known ADR", data: points.map((point) => point.adr), borderColor: "#6ea8fe", tension: 0.3, spanGaps: false, pointRadius: 0 }] },
+        options: baseChartOptions(),
+      }));
+    }
+  }
+  const lead = document.getElementById("chart-lead");
+  if (lead) {
+    const buckets = [0, 0, 0, 0, 0, 0];
+    let counted = 0;
+    for (const stay of data.stays || []) {
+      if (stay.status === "cancelled" || !stay.bookedOn || !stay.checkIn) continue;
+      const days = Math.round((parseDate(stay.checkIn) - parseDate(stay.bookedOn)) / 86400000);
+      if (!Number.isFinite(days) || days < 0) continue;
+      counted += 1;
+      buckets[days <= 1 ? 0 : days <= 7 ? 1 : days <= 14 ? 2 : days <= 30 ? 3 : days <= 60 ? 4 : 5] += 1;
+    }
+    if (!counted) chartMessage("chart-lead", "Pending. Stays do not have a booking date yet.");
+    else {
+      chartMessage("chart-lead", "");
+      liveCharts.push(new Chart(lead, {
+        type: "bar",
+        data: { labels: ["0–1d", "2–7d", "8–14d", "15–30d", "31–60d", "61d+"], datasets: [{ label: "Bookings", data: buckets, backgroundColor: "#f0b35e", money: false }] },
+        options: { ...baseChartOptions(), scales: { y: { beginAtZero: true, ticks: { precision: 0 } } } },
+      }));
+    }
+  }
+  const market = document.getElementById("chart-market");
+  if (market) {
+    const comps = (data.market?.comps || []).filter((comp) => Number.isFinite(Number(comp.nightlyPrice)));
+    const ours = Number(data.market?.summary?.ourAvg);
+    if (!comps.length && !Number.isFinite(ours)) chartMessage("chart-market", "Pending until nearby prices are filled in.");
+    else {
+      chartMessage("chart-market", "");
+      const labels = [...comps.map((comp) => comp.name || "Comp")];
+      const values = [...comps.map((comp) => Number(comp.nightlyPrice))];
+      if (Number.isFinite(ours)) { labels.push("Our avg"); values.push(ours); }
+      liveCharts.push(new Chart(market, {
+        type: "bar",
+        data: { labels, datasets: [{ label: "Nightly price", data: values, backgroundColor: labels.map((label, index) => index === labels.length - 1 && Number.isFinite(ours) ? "#4ade80" : "#6ea8fe") }] },
+        options: { ...baseChartOptions(), scales: { y: { beginAtZero: true } } },
+      }));
+    }
+  }
+}
+
+function animateCounts(root) {
+  root.querySelectorAll(".count").forEach((el) => {
+    const target = Number(el.dataset.count);
+    if (!Number.isFinite(target)) return;
+    const started = performance.now();
+    const tick = (now) => {
+      const progress = Math.min(1, (now - started) / 700);
+      const eased = 1 - (1 - progress) ** 3;
+      const value = target * eased;
+      el.textContent = el.dataset.money === "1" ? (money(value) || "") : `${value.toFixed(1)}${el.dataset.suffix || ""}`;
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  });
+}
 
 function bindStayNotes(root) {
   root.querySelectorAll(".stay-note-send").forEach((button) => {
@@ -1132,6 +1362,23 @@ function paint(scrollDetail) {
     window.open(priceIssueUrl({ roomNumber, start, end, price, platforms }), "_blank", "noopener");
   });
   bindStayNotes(app);
+  animateCounts(app);
+  mountCharts();
+  app.querySelectorAll("[data-tab]").forEach((button) => {
+    button.addEventListener("click", () => {
+      state.tab = button.dataset.tab;
+      app.querySelectorAll("[data-tab]").forEach((tab) => tab.classList.toggle("is-on", tab.dataset.tab === state.tab));
+      app.querySelectorAll("[data-panel]").forEach((panel) => panel.classList.toggle("is-on", panel.dataset.panel === state.tab));
+      mountCharts();
+    });
+  });
+  app.querySelectorAll("[data-range]").forEach((button) => {
+    button.addEventListener("click", () => {
+      state.chartDays = Number(button.dataset.range);
+      app.querySelectorAll("[data-range]").forEach((item) => item.classList.toggle("is-on", item === button));
+      mountCharts();
+    });
+  });
   document.querySelector("#platform-toggle")?.addEventListener("click", () => {
     state.showPlatforms = !state.showPlatforms;
     document.querySelector(".kpi-cards")?.classList.toggle("show-platforms", state.showPlatforms);
