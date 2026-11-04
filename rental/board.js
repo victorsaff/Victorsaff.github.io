@@ -132,6 +132,8 @@ export function periodReport(data, range, label) {
     confirmed: 0,
     available: days.length,
   }));
+  const occupied = new Set();
+  const roomDates = new Map(data.rooms.map((room) => [room.id, new Set()]));
 
   for (const platform of data.platforms) {
     for (const room of data.rooms) {
@@ -139,9 +141,12 @@ export function periodReport(data, range, label) {
         return stay.platform === platform.id && stay.roomId === room.id && nightsOverlapping(stay, range.start, range.end).length > 0;
       });
       const nights = overlapping.reduce((count, stay) => count + nightsOverlapping(stay, range.start, range.end).length, 0);
-      confirmed += nights;
-      const stat = roomStats.find((item) => item.room.id === room.id);
-      stat.confirmed += nights;
+      for (const stay of overlapping) {
+        for (const iso of nightsOverlapping(stay, range.start, range.end)) {
+          occupied.add(`${room.id}|${iso}`);
+          roomDates.get(room.id)?.add(iso);
+        }
+      }
       const gross = sumField(overlapping, "gross");
       const fees = sumField(overlapping, "fees");
       const net = sumField(overlapping, "net");
@@ -161,6 +166,9 @@ export function periodReport(data, range, label) {
       }
     }
   }
+
+  confirmed = occupied.size;
+  for (const stat of roomStats) stat.confirmed = roomDates.get(stat.room.id)?.size || 0;
 
   return {
     label,
@@ -476,7 +484,8 @@ function staySpan(stay) {
 
 function percent(part, whole) {
   if (!whole) return "pending";
-  return `${(Math.round((part / whole) * 1000) / 10).toFixed(1)}%`;
+  const value = Math.min(100, Math.max(0, (part / whole) * 100));
+  return `${(Math.round(value * 10) / 10).toFixed(1)}%`;
 }
 
 function listingLines(room) {
@@ -693,15 +702,15 @@ function summaryRevenueHtml(data, today) {
     const start = period.start ? formatShort(String(period.start).slice(0, 10)) : "";
     const end = period.end ? formatShort(String(period.end).slice(0, 10)) : "";
     const since = key === "ytd" ? occupancySinceBookings(data, today) : null;
-    const occ = since?.pct != null ? since.pct : fractionPercent(period.occupancy);
+    const fromDaily = since ? null : occupancyWindow(data, period.start, period.end);
+    const counted = since || fromDaily;
+    const occ = counted?.pct != null ? counted.pct : fractionPercent(period.occupancy);
     const sinceLabel = since?.start ? ` since ${formatShort(since.start)}` : "";
     const nights = Number.isFinite(Number(period.nights)) ? Number(period.nights) : null;
     const available = Number.isFinite(Number(period.availableNights)) ? Number(period.availableNights) : null;
-    const sinceNights = since ? dailyRows(data).filter((row) => row.date >= since.start && row.date <= asOfDate(data, today)).reduce((sum, row) => sum + (Number(row.nights) || 0), 0) : null;
-    const sinceAvailable = since ? dailyRows(data).filter((row) => row.date >= since.start && row.date <= asOfDate(data, today)).length * ((data.rooms || []).length || 3) : null;
-    const nightLine = since
-      ? (sinceNights == null ? "" : `${sinceNights} / ${sinceAvailable} room-nights`)
-      : (nights == null ? "" : (available == null ? `${nights} night${nights === 1 ? "" : "s"}` : `${nights} / ${available} room-nights`));
+    const nightLine = counted
+      ? `${counted.occupied} / ${counted.available} room-nights`
+      : (nights == null ? "" : (available == null ? `${nights} night${nights === 1 ? "" : "s"}` : `${Math.min(nights, available)} / ${available} room-nights`));
     const occText = occ == null ? "" : `Occupancy ${occ.toFixed(1)}%${sinceLabel}`;
     const platformLines = (data.platforms || []).map((platform) => {
       const row = period.byPlatform?.[platform.id];
@@ -926,18 +935,46 @@ function bookingsStart(data) {
 function fractionPercent(value) {
   const number = Number(value);
   if (!Number.isFinite(number)) return null;
-  return number <= 1.5 ? number * 100 : number;
+  const pct = number <= 1.5 ? number * 100 : number;
+  return Math.max(0, Math.min(100, pct));
+}
+
+function roomIds(data) {
+  const ids = (data.rooms || []).map((room) => room.id).filter(Boolean);
+  return ids.length ? ids : ["room-1", "room-2", "room-3"];
+}
+
+function uniqueRoomsOnRow(row, ids) {
+  const bucket = row.byRoom || {};
+  const marked = ids.filter((id) => {
+    const value = Number(bucket[id]);
+    return Number.isFinite(value) && value !== 0;
+  }).length;
+  if (marked) return Math.min(marked, ids.length);
+  const nights = Number(row.nights);
+  if (!Number.isFinite(nights) || nights <= 0) return 0;
+  return Math.min(nights, ids.length);
+}
+
+function occupancyWindow(data, start, end) {
+  start = String(start || "").slice(0, 10);
+  end = String(end || "").slice(0, 10);
+  if (!start || !end || start > end) return null;
+  const ids = roomIds(data);
+  const rows = dailyRows(data).filter((row) => row.date >= start && row.date <= end);
+  const expected = eachDate(start, end).length;
+  if (!rows.length || rows.length !== expected) return null;
+  const occupied = rows.reduce((sum, row) => sum + uniqueRoomsOnRow(row, ids), 0);
+  const available = rows.length * ids.length;
+  return { start, end, occupied, available, pct: available ? Math.min(100, (occupied / available) * 100) : null };
 }
 
 function occupancySinceBookings(data, today) {
   const start = bookingsStart(data);
   const end = asOfDate(data, today);
   if (!start || !end) return null;
-  const rows = dailyRows(data).filter((row) => row.date >= start && row.date <= end);
-  if (!rows.length) return null;
-  const nights = rows.reduce((sum, row) => sum + (Number(row.nights) || 0), 0);
-  const available = rows.length * ((data.rooms || []).length || 3);
-  return { start, pct: available ? (nights / available) * 100 : null };
+  const span = occupancyWindow(data, start, end);
+  return span ? { ...span, start } : null;
 }
 
 function kpiExtra(data, today, key) {
@@ -956,8 +993,10 @@ function kpiExtra(data, today, key) {
     return `<p class="kpi-extra">Occupancy ${occHtml}${esc(sinceLabel)} · ADR ${pendingOr(adr)}</p>`;
   }
   if (key !== "mtd" && key !== "next30") return "";
+  const fromDaily = occupancyWindow(data, period.start, period.end);
   const storedOcc = fractionPercent(period.occupancy);
-  const occ = storedOcc !== null ? storedOcc : (report?.available ? (report.confirmed / report.available) * 100 : null);
+  const recounted = report?.available ? Math.min(100, (report.confirmed / report.available) * 100) : null;
+  const occ = fromDaily?.pct ?? storedOcc ?? recounted;
   const occHtml = occ === null ? pendingOr(null) : `<span class="count" data-count="${occ.toFixed(1)}" data-suffix="%">0%</span>`;
   return `<p class="kpi-extra">Occupancy ${occHtml} · ADR ${pendingOr(adr)}</p>`;
 }
@@ -1027,8 +1066,10 @@ function kpiHtml(data, today) {
     </article>`;
   }).join("");
   const mtd = periodReport(data, monthToDate(today), "mtd");
+  const fromDaily = occupancyWindow(data, summary.periods?.mtd?.start, summary.periods?.mtd?.end);
   const storedMtd = fractionPercent(summary.periods?.mtd?.occupancy);
-  const occ = storedMtd !== null ? storedMtd : (mtd.available ? (mtd.confirmed / mtd.available) * 100 : null);
+  const recounted = mtd.available ? Math.min(100, (mtd.confirmed / mtd.available) * 100) : null;
+  const occ = fromDaily?.pct ?? storedMtd ?? recounted;
   const goal = summary.mtdGoal;
   const goalNumber = Number(goal);
   const gross = summary.periods?.mtd?.gross;
@@ -1209,7 +1250,7 @@ function renderBoard(data, view, selected, matches) {
     <div class="tab-panel${state.tab === "revenue" ? " is-on" : ""}" data-panel="revenue">
     <section id="revenue" class="panel">
       <h2>Revenue</h2>
-      <p class="note">Figures below are the recomputed windows in the data file. YTD occupancy uses nights since bookings start. Stated amounts in the stay ledger are not treated as gross.</p>
+      <p class="note">Figures below are the recomputed windows in the data file. Occupancy counts each room and date once and stays at or below 100%. YTD occupancy starts when bookings do. Stated amounts in the stay ledger are not treated as gross.</p>
       ${summaryRevenueHtml(data, view.today)}
       <h3>Stay ledger</h3>
       ${view.periods.map((period) => periodHtml(data, period)).join("")}
@@ -1405,7 +1446,14 @@ function mountCharts() {
   const occupancy = document.getElementById("chart-occupancy");
   if (occupancy) {
     const range = { start: fmtDate(addDays(parseDate(today), -29)), end: today };
-    const nights = (data.rooms || []).map((room) => data.stays.filter((stay) => stay.roomId === room.id && stay.status !== "cancelled").reduce((count, stay) => count + nightsOverlapping(stay, range.start, range.end).length, 0));
+    const nights = (data.rooms || []).map((room) => {
+      const dates = new Set();
+      for (const stay of data.stays || []) {
+        if (stay.roomId !== room.id || stay.status === "cancelled") continue;
+        for (const iso of nightsOverlapping(stay, range.start, range.end)) dates.add(iso);
+      }
+      return dates.size;
+    });
     chartMessage("chart-occupancy", "");
     liveCharts.push(new Chart(occupancy, {
       type: "bar",
