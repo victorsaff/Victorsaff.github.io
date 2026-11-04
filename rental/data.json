@@ -72,39 +72,2080 @@
   }
  ],
  "revenueSummary": {
-  "asOf": "2026-11-03T22:30:00-05:00",
+  "asOf": "2026-11-03T22:45:00-05:00",
   "currency": "USD",
   "mtdGoal": null,
-  "daily": [],
-  "periods": {
-   "today": {
+  "daily": [
+   {
+    "date": "2026-08-06",
+    "gross": 136.0,
+    "net": 115.61,
+    "nights": 2,
+    "occupancy": 0.6667,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 115.61,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 50.58,
+     "room-2": 65.03,
+     "room-3": 0
+    }
+   },
+   {
+    "date": "2026-08-07",
+    "gross": 182.75,
+    "net": 155.34,
+    "nights": 2,
+    "occupancy": 0.6667,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 155.34,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 83.09,
+     "room-2": 72.25,
+     "room-3": 0
+    }
+   },
+   {
+    "date": "2026-08-08",
+    "gross": 267.75,
+    "net": 227.59,
+    "nights": 4,
+    "occupancy": 1.3333,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 227.59,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 72.25,
+     "room-2": 57.8,
+     "room-3": 97.54
+    }
+   },
+   {
+    "date": "2026-08-09",
+    "gross": 216.75,
+    "net": 184.24,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 184.24,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 72.25,
+     "room-2": 57.8,
+     "room-3": 54.19
+    }
+   },
+   {
+    "date": "2026-08-10",
+    "gross": 204.0,
+    "net": 173.4,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 173.4,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 57.8,
+     "room-2": 57.8,
+     "room-3": 57.8
+    }
+   },
+   {
+    "date": "2026-08-11",
+    "gross": 221.0,
+    "net": 187.85,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 187.85,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 57.8,
+     "room-2": 57.8,
+     "room-3": 72.25
+    }
+   },
+   {
+    "date": "2026-08-12",
+    "gross": 306.0,
+    "net": 260.1,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 260.1,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 72.25,
+     "room-2": 104.76,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-08-13",
+    "gross": 295.0,
+    "net": 250.55,
+    "nights": 4,
+    "occupancy": 1.3333,
+    "byPlatform": {
+     "airbnb": 33.8,
+     "booking": 216.75,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 57.8,
+     "room-2": 101.15,
+     "room-3": 91.6
+    }
+   },
+   {
+    "date": "2026-08-14",
+    "gross": 348.12,
+    "net": 295.71,
+    "nights": 4,
+    "occupancy": 1.3333,
+    "byPlatform": {
+     "airbnb": 33.8,
+     "booking": 261.91,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 77.67,
+     "room-2": 101.15,
+     "room-3": 116.89
+    }
+   },
+   {
+    "date": "2026-08-15",
+    "gross": 308.12,
+    "net": 261.91,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 261.91,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 77.67,
+     "room-2": 101.15,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-08-16",
+    "gross": 262.75,
+    "net": 222.94,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 67.6,
+     "booking": 155.34,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 67.6,
+     "room-2": 86.7,
+     "room-3": 68.64
+    }
+   },
+   {
+    "date": "2026-08-17",
+    "gross": 199.75,
+    "net": 169.79,
+    "nights": 2,
+    "occupancy": 0.6667,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 169.79,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 0,
+     "room-2": 86.7,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-08-18",
+    "gross": 263.5,
+    "net": 223.97,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 223.97,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 75.86,
+     "room-2": 72.25,
+     "room-3": 75.86
+    }
+   },
+   {
+    "date": "2026-08-19",
+    "gross": 361.9,
+    "net": 307.3,
+    "nights": 4,
+    "occupancy": 1.3333,
+    "byPlatform": {
+     "airbnb": 54.42,
+     "booking": 252.88,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 130.28,
+     "room-2": 93.93,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-08-20",
+    "gross": 287.5,
+    "net": 243.92,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 77.74,
+     "booking": 166.18,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 77.74,
+     "room-2": 83.09,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-08-21",
+    "gross": 312.38,
+    "net": 265.52,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 265.52,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 77.67,
+     "room-2": 104.76,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-08-22",
+    "gross": 305.29,
+    "net": 259.5,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 259.5,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 77.67,
+     "room-2": 98.74,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-08-23",
+    "gross": 315.12,
+    "net": 267.34,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 85.51,
+     "booking": 181.83,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 85.51,
+     "room-2": 98.74,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-08-24",
+    "gross": 311.67,
+    "net": 264.92,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 264.92,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 83.09,
+     "room-2": 98.74,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-08-25",
+    "gross": 325.75,
+    "net": 275.75,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 192.66,
+     "booking": 83.09,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 83.09,
+     "room-2": 101.4,
+     "room-3": 91.26
+    }
+   },
+   {
+    "date": "2026-08-26",
+    "gross": 336.5,
+    "net": 284.83,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 201.74,
+     "booking": 83.09,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 83.09,
+     "room-2": 101.4,
+     "room-3": 100.34
+    }
+   },
+   {
+    "date": "2026-08-27",
+    "gross": 315.5,
+    "net": 267.58,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 101.4,
+     "booking": 166.18,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 83.09,
+     "room-2": 101.4,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-08-28",
+    "gross": 334.05,
+    "net": 282.77,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 199.68,
+     "booking": 83.09,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 83.09,
+     "room-2": 95.32,
+     "room-3": 104.36
+    }
+   },
+   {
+    "date": "2026-08-29",
+    "gross": 301.75,
+    "net": 256.49,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 256.49,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 83.09,
+     "room-2": 90.31,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-08-30",
+    "gross": 290.35,
+    "net": 245.84,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 162.75,
+     "booking": 83.09,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 83.09,
+     "room-2": 71.49,
+     "room-3": 91.26
+    }
+   },
+   {
+    "date": "2026-08-31",
+    "gross": 350.4,
+    "net": 296.09,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 296.09,
+     "booking": 0,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 93.29,
+     "room-2": 101.4,
+     "room-3": 101.4
+    }
+   },
+   {
+    "date": "2026-09-01",
+    "gross": 217.75,
+    "net": 184.49,
+    "nights": 2,
+    "occupancy": 0.6667,
+    "byPlatform": {
+     "airbnb": 101.4,
+     "booking": 83.09,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 83.09,
+     "room-2": 0,
+     "room-3": 101.4
+    }
+   },
+   {
+    "date": "2026-09-02",
+    "gross": 315.5,
+    "net": 267.58,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 101.4,
+     "booking": 166.18,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 72.25,
+     "room-2": 101.4,
+     "room-3": 93.93
+    }
+   },
+   {
+    "date": "2026-09-03",
+    "gross": 318.75,
+    "net": 270.94,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 270.94,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 72.25,
+     "room-2": 104.76,
+     "room-3": 93.93
+    }
+   },
+   {
+    "date": "2026-09-04",
+    "gross": 299.2,
+    "net": 254.32,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 254.32,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 83.09,
+     "room-2": 104.76,
+     "room-3": 66.47
+    }
+   },
+   {
+    "date": "2026-09-05",
+    "gross": 299.2,
+    "net": 254.32,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 254.32,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 83.09,
+     "room-2": 104.76,
+     "room-3": 66.47
+    }
+   },
+   {
+    "date": "2026-09-06",
+    "gross": 299.2,
+    "net": 254.32,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 254.32,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 83.09,
+     "room-2": 104.76,
+     "room-3": 66.47
+    }
+   },
+   {
+    "date": "2026-09-07",
+    "gross": 331.5,
+    "net": 281.77,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 281.77,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 83.09,
+     "room-2": 104.76,
+     "room-3": 93.92
+    }
+   },
+   {
+    "date": "2026-09-08",
+    "gross": 338.75,
+    "net": 287.93,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 287.93,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 89.25,
+     "room-2": 104.76,
+     "room-3": 93.92
+    }
+   },
+   {
+    "date": "2026-09-09",
+    "gross": 330.5,
+    "net": 280.92,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 280.92,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 93.5,
+     "room-2": 93.5,
+     "room-3": 93.92
+    }
+   },
+   {
+    "date": "2026-09-10",
+    "gross": 225.0,
+    "net": 262.67,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 191.25,
+     "agoda": 71.42
+    },
+    "byRoom": {
+     "room-1": 93.5,
+     "room-2": 71.42,
+     "room-3": 97.75
+    }
+   },
+   {
+    "date": "2026-09-11",
+    "gross": 217.0,
+    "net": 255.87,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 184.45,
+     "agoda": 71.42
+    },
+    "byRoom": {
+     "room-1": 86.7,
+     "room-2": 71.42,
+     "room-3": 97.75
+    }
+   },
+   {
+    "date": "2026-09-12",
+    "gross": 337.25,
+    "net": 286.1,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 94.64,
+     "booking": 191.46,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 86.7,
+     "room-2": 104.76,
+     "room-3": 94.64
+    }
+   },
+   {
+    "date": "2026-09-13",
+    "gross": 227.25,
+    "net": 192.64,
+    "nights": 2,
+    "occupancy": 0.6667,
+    "byPlatform": {
+     "airbnb": 87.88,
+     "booking": 104.76,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 87.88,
+     "room-2": 104.76,
+     "room-3": 0
+    }
+   },
+   {
+    "date": "2026-09-14",
+    "gross": 347.25,
+    "net": 294.64,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 87.88,
+     "booking": 206.76,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 87.88,
+     "room-2": 104.76,
+     "room-3": 102.0
+    }
+   },
+   {
+    "date": "2026-09-15",
+    "gross": 333.5,
+    "net": 282.95,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 87.88,
+     "booking": 195.07,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 87.88,
+     "room-2": 104.76,
+     "room-3": 90.31
+    }
+   },
+   {
+    "date": "2026-09-16",
+    "gross": 440.0,
+    "net": 373.49,
+    "nights": 4,
+    "occupancy": 1.3333,
+    "byPlatform": {
+     "airbnb": 87.88,
+     "booking": 285.61,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 87.88,
+     "room-2": 191.68,
+     "room-3": 93.92
+    }
+   },
+   {
+    "date": "2026-09-17",
+    "gross": 323.0,
+    "net": 274.56,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 274.56,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 86.7,
+     "room-2": 93.93,
+     "room-3": 93.92
+    }
+   },
+   {
+    "date": "2026-09-18",
+    "gross": 318.75,
+    "net": 270.94,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 270.94,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 83.09,
+     "room-2": 93.93,
+     "room-3": 93.92
+    }
+   },
+   {
+    "date": "2026-09-19",
+    "gross": 353.25,
+    "net": 300.26,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 300.26,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 83.09,
+     "room-2": 123.25,
+     "room-3": 93.92
+    }
+   },
+   {
+    "date": "2026-09-20",
+    "gross": 371.25,
+    "net": 315.56,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 315.56,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 102.0,
+     "room-2": 123.25,
+     "room-3": 90.31
+    }
+   },
+   {
+    "date": "2026-09-21",
+    "gross": 264.6,
+    "net": 224.31,
+    "nights": 2,
+    "occupancy": 0.6667,
+    "byPlatform": {
+     "airbnb": 101.06,
+     "booking": 123.25,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 101.06,
+     "room-2": 123.25,
+     "room-3": 0
+    }
+   },
+   {
+    "date": "2026-09-22",
+    "gross": 353.8,
+    "net": 300.13,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 101.06,
+     "booking": 199.07,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 101.06,
+     "room-2": 101.15,
+     "room-3": 97.92
+    }
+   },
+   {
+    "date": "2026-09-23",
+    "gross": 371.0,
+    "net": 314.6,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 126.75,
+     "booking": 187.85,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 86.7,
+     "room-2": 101.15,
+     "room-3": 126.75
+    }
+   },
+   {
+    "date": "2026-09-24",
+    "gross": 420.75,
+    "net": 356.89,
+    "nights": 4,
+    "occupancy": 1.3333,
+    "byPlatform": {
+     "airbnb": 126.75,
+     "booking": 230.14,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 83.09,
+     "room-2": 101.15,
+     "room-3": 172.65
+    }
+   },
+   {
+    "date": "2026-09-25",
+    "gross": 385.0,
+    "net": 326.65,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 101.4,
+     "booking": 225.25,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 102.0,
+     "room-2": 123.25,
+     "room-3": 101.4
+    }
+   },
+   {
+    "date": "2026-09-26",
+    "gross": 363.5,
+    "net": 308.26,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 120.41,
+     "booking": 187.85,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 83.09,
+     "room-2": 104.76,
+     "room-3": 120.41
+    }
+   },
+   {
+    "date": "2026-09-27",
+    "gross": 333.0,
+    "net": 282.49,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 94.64,
+     "booking": 187.85,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 86.7,
+     "room-2": 101.15,
+     "room-3": 94.64
+    }
+   },
+   {
+    "date": "2026-09-28",
+    "gross": 333.5,
+    "net": 283.47,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 283.47,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 86.7,
+     "room-2": 101.15,
+     "room-3": 95.62
+    }
+   },
+   {
+    "date": "2026-09-29",
+    "gross": 408.0,
+    "net": 345.34,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 245.89,
+     "booking": 99.45,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 126.75,
+     "room-2": 119.14,
+     "room-3": 99.45
+    }
+   },
+   {
+    "date": "2026-09-30",
+    "gross": 376.5,
+    "net": 318.69,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 224.77,
+     "booking": 93.92,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 126.75,
+     "room-2": 93.92,
+     "room-3": 98.02
+    }
+   },
+   {
+    "date": "2026-10-01",
+    "gross": 332.75,
+    "net": 282.26,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 98.02,
+     "booking": 184.24,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 90.31,
+     "room-2": 93.92,
+     "room-3": 98.02
+    }
+   },
+   {
+    "date": "2026-10-02",
+    "gross": 216.75,
+    "net": 184.24,
+    "nights": 2,
+    "occupancy": 0.6667,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 184.24,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 90.31,
+     "room-2": 93.92,
+     "room-3": 0
+    }
+   },
+   {
+    "date": "2026-10-03",
+    "gross": 372.0,
+    "net": 315.48,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 120.41,
+     "booking": 195.07,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 90.31,
+     "room-2": 104.76,
+     "room-3": 120.41
+    }
+   },
+   {
+    "date": "2026-10-04",
+    "gross": 333.0,
+    "net": 283.04,
+    "nights": 4,
+    "occupancy": 1.3333,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 283.04,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 90.31,
+     "room-2": 104.76,
+     "room-3": 87.97
+    }
+   },
+   {
+    "date": "2026-10-05",
+    "gross": 363.25,
+    "net": 308.76,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 308.76,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 106.25,
+     "room-2": 104.76,
+     "room-3": 97.75
+    }
+   },
+   {
+    "date": "2026-10-06",
+    "gross": 381.0,
+    "net": 323.14,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 119.14,
+     "booking": 204.0,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 106.25,
+     "room-2": 119.14,
+     "room-3": 97.75
+    }
+   },
+   {
+    "date": "2026-10-07",
+    "gross": 408.75,
+    "net": 346.73,
+    "nights": 4,
+    "occupancy": 1.3333,
+    "byPlatform": {
+     "airbnb": 119.14,
+     "booking": 227.59,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 106.25,
+     "room-2": 119.14,
+     "room-3": 121.34
+    }
+   },
+   {
+    "date": "2026-10-08",
+    "gross": 348.25,
+    "net": 295.32,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 116.61,
+     "booking": 178.71,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 212.23,
+     "room-2": 0,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-10-09",
+    "gross": 346.7,
+    "net": 294.01,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 116.61,
+     "booking": 177.4,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 116.61,
+     "room-2": 110.93,
+     "room-3": 66.47
+    }
+   },
+   {
+    "date": "2026-10-10",
+    "gross": 321.2,
+    "net": 273.02,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 273.02,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 95.62,
+     "room-2": 110.93,
+     "room-3": 66.47
+    }
+   },
+   {
+    "date": "2026-10-11",
+    "gross": 376.67,
+    "net": 319.42,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 126.75,
+     "booking": 192.67,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 126.75,
+     "room-2": 98.74,
+     "room-3": 93.92
+    }
+   },
+   {
+    "date": "2026-10-12",
+    "gross": 332.92,
+    "net": 282.98,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 282.98,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 90.31,
+     "room-2": 98.74,
+     "room-3": 93.92
+    }
+   },
+   {
+    "date": "2026-10-13",
+    "gross": 332.92,
+    "net": 282.99,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 282.99,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 90.31,
+     "room-2": 98.74,
+     "room-3": 93.93
+    }
+   },
+   {
+    "date": "2026-10-14",
+    "gross": 340.0,
+    "net": 289.01,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 289.01,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 90.31,
+     "room-2": 104.76,
+     "room-3": 93.93
+    }
+   },
+   {
+    "date": "2026-10-15",
+    "gross": 327.25,
+    "net": 278.17,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 278.17,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 90.31,
+     "room-2": 104.76,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-10-16",
+    "gross": 360.0,
+    "net": 306.01,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 306.01,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 90.31,
+     "room-2": 104.76,
+     "room-3": 110.93
+    }
+   },
+   {
+    "date": "2026-10-17",
+    "gross": 372.0,
+    "net": 315.48,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 120.41,
+     "booking": 195.07,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 90.31,
+     "room-2": 104.76,
+     "room-3": 120.41
+    }
+   },
+   {
+    "date": "2026-10-18",
+    "gross": 398.25,
+    "net": 337.76,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 126.75,
+     "booking": 211.01,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 106.25,
+     "room-2": 104.76,
+     "room-3": 126.75
+    }
+   },
+   {
+    "date": "2026-10-19",
+    "gross": 355.75,
+    "net": 301.78,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 101.4,
+     "booking": 200.38,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 95.62,
+     "room-2": 104.76,
+     "room-3": 101.4
+    }
+   },
+   {
+    "date": "2026-10-20",
+    "gross": 396.0,
+    "net": 335.2,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 235.75,
+     "booking": 99.45,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 116.61,
+     "room-2": 119.14,
+     "room-3": 99.45
+    }
+   },
+   {
+    "date": "2026-10-21",
+    "gross": 360.5,
+    "net": 306.42,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 306.42,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 95.62,
+     "room-2": 119.0,
+     "room-3": 91.8
+    }
+   },
+   {
+    "date": "2026-10-22",
+    "gross": 372.75,
+    "net": 316.09,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 126.75,
+     "booking": 189.34,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 106.25,
+     "room-2": 126.75,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-10-23",
+    "gross": 352.99,
+    "net": 299.49,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 93.15,
+     "booking": 206.34,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 93.15,
+     "room-2": 123.25,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-10-24",
+    "gross": 371.49,
+    "net": 314.4,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 231.31,
+     "booking": 83.09,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 93.15,
+     "room-2": 138.16,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-10-25",
+    "gross": 330.19,
+    "net": 279.5,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 196.41,
+     "booking": 83.09,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 93.15,
+     "room-2": 103.26,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-10-26",
+    "gross": 367.75,
+    "net": 312.59,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 312.59,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 106.25,
+     "room-2": 123.25,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-10-27",
+    "gross": 342.75,
+    "net": 290.74,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 101.4,
+     "booking": 189.34,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 106.25,
+     "room-2": 101.4,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-10-28",
+    "gross": 310.04,
+    "net": 262.93,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 101.4,
+     "booking": 161.53,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 78.44,
+     "room-2": 101.4,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-10-29",
+    "gross": 340.04,
+    "net": 288.28,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 126.75,
+     "booking": 161.53,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 78.44,
+     "room-2": 126.75,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-10-30",
+    "gross": 313.29,
+    "net": 266.29,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 266.29,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 78.44,
+     "room-2": 104.76,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-10-31",
+    "gross": 319.04,
+    "net": 271.17,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 271.17,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 78.44,
+     "room-2": 104.76,
+     "room-3": 87.97
+    }
+   },
+   {
+    "date": "2026-11-01",
+    "gross": 320.04,
+    "net": 271.38,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 109.85,
+     "booking": 161.53,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 78.44,
+     "room-2": 109.85,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-11-02",
+    "gross": 302.54,
+    "net": 257.15,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 257.15,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 78.44,
+     "room-2": 95.62,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-11-03",
     "gross": 298.04,
     "net": 253.33,
     "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 253.33,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 78.44,
+     "room-2": 91.8,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-11-04",
+    "gross": 325.25,
+    "net": 275.88,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 97.17,
+     "booking": 178.71,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 97.17,
+     "room-2": 95.62,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-11-05",
+    "gross": 337.77,
+    "net": 285.9,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 202.81,
+     "booking": 83.09,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 97.17,
+     "room-2": 105.64,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-11-06",
+    "gross": 301.75,
+    "net": 256.49,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 256.49,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 79.47,
+     "room-2": 93.93,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-11-07",
+    "gross": 327.0,
+    "net": 277.94,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 277.94,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 79.47,
+     "room-2": 110.5,
+     "room-3": 87.97
+    }
+   },
+   {
+    "date": "2026-11-08",
+    "gross": 301.75,
+    "net": 256.49,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 256.49,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 79.47,
+     "room-2": 93.93,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-11-09",
+    "gross": 222.75,
+    "net": 188.71,
+    "nights": 2,
+    "occupancy": 0.6667,
+    "byPlatform": {
+     "airbnb": 105.62,
+     "booking": 83.09,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 105.62,
+     "room-2": 0,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-11-10",
+    "gross": 250.0,
+    "net": 211.25,
+    "nights": 2,
+    "occupancy": 0.6667,
+    "byPlatform": {
+     "airbnb": 211.25,
+     "booking": 0,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 105.62,
+     "room-2": 0,
+     "room-3": 105.62
+    }
+   },
+   {
+    "date": "2026-11-11",
+    "gross": 228.5,
+    "net": 193.6,
+    "nights": 2,
+    "occupancy": 0.6667,
+    "byPlatform": {
+     "airbnb": 105.62,
+     "booking": 87.97,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 105.62,
+     "room-2": 0,
+     "room-3": 87.97
+    }
+   },
+   {
+    "date": "2026-11-12",
+    "gross": 221.0,
+    "net": 187.26,
+    "nights": 2,
+    "occupancy": 0.6667,
+    "byPlatform": {
+     "airbnb": 99.29,
+     "booking": 87.97,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 0,
+     "room-2": 99.29,
+     "room-3": 87.97
+    }
+   },
+   {
+    "date": "2026-11-13",
+    "gross": 313.75,
+    "net": 266.68,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 266.68,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 83.09,
+     "room-2": 95.62,
+     "room-3": 87.97
+    }
+   },
+   {
+    "date": "2026-11-14",
+    "gross": 216.0,
+    "net": 183.6,
+    "nights": 2,
+    "occupancy": 0.6667,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 183.6,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 84.15,
+     "room-2": 99.45,
+     "room-3": 0
+    }
+   },
+   {
+    "date": "2026-11-15",
+    "gross": 125.0,
+    "net": 105.62,
+    "nights": 1,
+    "occupancy": 0.3333,
+    "byPlatform": {
+     "airbnb": 105.62,
+     "booking": 0,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 105.62,
+     "room-2": 0,
+     "room-3": 0
+    }
+   },
+   {
+    "date": "2026-11-16",
+    "gross": 0,
+    "net": 0,
+    "nights": 0,
+    "occupancy": 0.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 0,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 0,
+     "room-2": 0,
+     "room-3": 0
+    }
+   },
+   {
+    "date": "2026-11-17",
+    "gross": 225.0,
+    "net": 191.25,
+    "nights": 2,
+    "occupancy": 0.6667,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 191.25,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 0,
+     "room-2": 95.62,
+     "room-3": 95.62
+    }
+   },
+   {
+    "date": "2026-11-18",
+    "gross": 324.0,
+    "net": 275.4,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 275.4,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 84.15,
+     "room-2": 95.62,
+     "room-3": 95.62
+    }
+   },
+   {
+    "date": "2026-11-19",
+    "gross": 321.75,
+    "net": 272.86,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 105.62,
+     "booking": 167.24,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 84.15,
+     "room-2": 105.62,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-11-20",
+    "gross": 309.25,
+    "net": 262.86,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 262.86,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 84.15,
+     "room-2": 95.62,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-11-21",
+    "gross": 326.75,
+    "net": 277.09,
+    "nights": 3,
+    "occupancy": 1.0,
+    "byPlatform": {
+     "airbnb": 109.85,
+     "booking": 167.24,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 84.15,
+     "room-2": 109.85,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-11-22",
+    "gross": 196.75,
+    "net": 167.24,
+    "nights": 2,
+    "occupancy": 0.6667,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 167.24,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 84.15,
+     "room-2": 0,
+     "room-3": 83.09
+    }
+   },
+   {
+    "date": "2026-11-23",
+    "gross": 99.0,
+    "net": 84.15,
+    "nights": 1,
+    "occupancy": 0.3333,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 84.15,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 84.15,
+     "room-2": 0,
+     "room-3": 0
+    }
+   },
+   {
+    "date": "2026-11-24",
+    "gross": 125.0,
+    "net": 105.62,
+    "nights": 1,
+    "occupancy": 0.3333,
+    "byPlatform": {
+     "airbnb": 105.62,
+     "booking": 0,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 0,
+     "room-2": 105.62,
+     "room-3": 0
+    }
+   },
+   {
+    "date": "2026-11-25",
+    "gross": 99.0,
+    "net": 84.15,
+    "nights": 1,
+    "occupancy": 0.3333,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 84.15,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 84.15,
+     "room-2": 0,
+     "room-3": 0
+    }
+   },
+   {
+    "date": "2026-11-26",
+    "gross": 99.0,
+    "net": 84.15,
+    "nights": 1,
+    "occupancy": 0.3333,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 84.15,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 84.15,
+     "room-2": 0,
+     "room-3": 0
+    }
+   },
+   {
+    "date": "2026-11-27",
+    "gross": 99.0,
+    "net": 84.15,
+    "nights": 1,
+    "occupancy": 0.3333,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 84.15,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 84.15,
+     "room-2": 0,
+     "room-3": 0
+    }
+   },
+   {
+    "date": "2026-11-28",
+    "gross": 0,
+    "net": 0,
+    "nights": 0,
+    "occupancy": 0.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 0,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 0,
+     "room-2": 0,
+     "room-3": 0
+    }
+   },
+   {
+    "date": "2026-11-29",
+    "gross": 0,
+    "net": 0,
+    "nights": 0,
+    "occupancy": 0.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 0,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 0,
+     "room-2": 0,
+     "room-3": 0
+    }
+   },
+   {
+    "date": "2026-11-30",
+    "gross": 0,
+    "net": 0,
+    "nights": 0,
+    "occupancy": 0.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 0,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 0,
+     "room-2": 0,
+     "room-3": 0
+    }
+   },
+   {
+    "date": "2026-12-01",
+    "gross": 0,
+    "net": 0,
+    "nights": 0,
+    "occupancy": 0.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 0,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 0,
+     "room-2": 0,
+     "room-3": 0
+    }
+   },
+   {
+    "date": "2026-12-02",
+    "gross": 0,
+    "net": 0,
+    "nights": 0,
+    "occupancy": 0.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 0,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 0,
+     "room-2": 0,
+     "room-3": 0
+    }
+   },
+   {
+    "date": "2026-12-03",
+    "gross": 0,
+    "net": 0,
+    "nights": 0,
+    "occupancy": 0.0,
+    "byPlatform": {
+     "airbnb": 0,
+     "booking": 0,
+     "agoda": 0
+    },
+    "byRoom": {
+     "room-1": 0,
+     "room-2": 0,
+     "room-3": 0
+    }
+   }
+  ],
+  "periods": {
+   "today": {
+    "gross": 108.0,
+    "net": 91.8,
+    "nights": 1,
+    "grossNights": 1,
     "grossBookingOnly": false,
-    "grossNights": 3,
     "byPlatform": {
      "airbnb": {
-      "gross": 0.0,
-      "net": 0.0,
+      "gross": 0,
+      "net": 0,
       "nights": 0
      },
      "booking": {
-      "gross": 298.04,
-      "net": 253.33,
-      "nights": 3
+      "gross": 108.0,
+      "net": 91.8,
+      "nights": 1
      },
      "agoda": {
-      "gross": 0.0,
-      "net": 0.0,
+      "gross": 0,
+      "net": 0,
       "nights": 0
      }
     },
     "byRoom": {
      "room-1": {
-      "gross": 92.29,
-      "net": 78.44,
-      "nights": 1
+      "gross": 0,
+      "net": 0,
+      "nights": 0
      },
      "room-2": {
       "gross": 108.0,
@@ -112,41 +2153,44 @@
       "nights": 1
      },
      "room-3": {
-      "gross": 97.75,
-      "net": 83.09,
-      "nights": 1
+      "gross": 0,
+      "net": 0,
+      "nights": 0
      }
     },
-    "adr": 99.35
+    "adr": 108.0,
+    "netAdr": 91.8,
+    "basis": "check-in",
+    "checkIns": 1
    },
    "yesterday": {
-    "gross": 302.54,
-    "net": 257.15,
-    "nights": 3,
+    "gross": 112.5,
+    "net": 95.62,
+    "nights": 1,
+    "grossNights": 1,
     "grossBookingOnly": false,
-    "grossNights": 3,
     "byPlatform": {
      "airbnb": {
-      "gross": 0.0,
-      "net": 0.0,
+      "gross": 0,
+      "net": 0,
       "nights": 0
      },
      "booking": {
-      "gross": 302.54,
-      "net": 257.15,
-      "nights": 3
+      "gross": 112.5,
+      "net": 95.62,
+      "nights": 1
      },
      "agoda": {
-      "gross": 0.0,
-      "net": 0.0,
+      "gross": 0,
+      "net": 0,
       "nights": 0
      }
     },
     "byRoom": {
      "room-1": {
-      "gross": 92.29,
-      "net": 78.44,
-      "nights": 1
+      "gross": 0,
+      "net": 0,
+      "nights": 0
      },
      "room-2": {
       "gross": 112.5,
@@ -154,33 +2198,36 @@
       "nights": 1
      },
      "room-3": {
-      "gross": 97.75,
-      "net": 83.09,
-      "nights": 1
+      "gross": 0,
+      "net": 0,
+      "nights": 0
      }
     },
-    "adr": 100.85
+    "adr": 112.5,
+    "netAdr": 95.62,
+    "basis": "check-in",
+    "checkIns": 1
    },
    "last7": {
-    "gross": 1159.75,
-    "net": 985.79,
-    "nights": 12,
+    "gross": 2203.0,
+    "net": 1870.54,
+    "nights": 21,
+    "grossNights": 21,
     "grossBookingOnly": false,
-    "grossNights": 12,
     "byPlatform": {
      "airbnb": {
-      "gross": 0.0,
-      "net": 0.0,
-      "nights": 0
+      "gross": 400.0,
+      "net": 338.0,
+      "nights": 3
      },
      "booking": {
-      "gross": 1159.75,
-      "net": 985.79,
-      "nights": 12
+      "gross": 1803.0,
+      "net": 1532.54,
+      "nights": 18
      },
      "agoda": {
-      "gross": 0.0,
-      "net": 0.0,
+      "gross": 0,
+      "net": 0,
       "nights": 0
      }
     },
@@ -191,29 +2238,34 @@
       "nights": 7
      },
      "room-2": {
-      "gross": 220.5,
-      "net": 187.42,
-      "nights": 2
+      "gross": 867.0,
+      "net": 734.94,
+      "nights": 7
      },
      "room-3": {
-      "gross": 293.25,
-      "net": 249.26,
-      "nights": 3
+      "gross": 690.0,
+      "net": 586.5,
+      "nights": 7
      }
     },
-    "adr": 96.65
+    "adr": 104.9,
+    "netAdr": 89.07,
+    "availableNights": 21,
+    "occupancy": 1,
+    "start": "2026-10-28",
+    "end": "2026-11-03"
    },
    "mtd": {
-    "gross": 790.61,
-    "net": 672.01,
-    "nights": 8,
+    "gross": 920.61,
+    "net": 781.86,
+    "nights": 9,
+    "grossNights": 9,
     "grossBookingOnly": false,
-    "grossNights": 8,
     "byPlatform": {
      "airbnb": {
-      "gross": 0.0,
-      "net": 0.0,
-      "nights": 0
+      "gross": 130.0,
+      "net": 109.85,
+      "nights": 1
      },
      "booking": {
       "gross": 790.61,
@@ -221,8 +2273,8 @@
       "nights": 8
      },
      "agoda": {
-      "gross": 0.0,
-      "net": 0.0,
+      "gross": 0,
+      "net": 0,
       "nights": 0
      }
     },
@@ -233,9 +2285,9 @@
       "nights": 3
      },
      "room-2": {
-      "gross": 220.5,
-      "net": 187.42,
-      "nights": 2
+      "gross": 350.5,
+      "net": 297.27,
+      "nights": 3
      },
      "room-3": {
       "gross": 293.25,
@@ -243,199 +2295,261 @@
       "nights": 3
      }
     },
-    "adr": 98.83
+    "adr": 102.29,
+    "netAdr": 86.87,
+    "availableNights": 9,
+    "occupancy": 1,
+    "start": "2026-11-01",
+    "end": "2026-11-03"
    },
    "last30": {
-    "gross": 1159.75,
-    "net": 985.79,
-    "nights": 12,
+    "gross": 10795.32,
+    "net": 9162.58,
+    "nights": 95,
+    "grossNights": 95,
     "grossBookingOnly": false,
-    "grossNights": 12,
     "byPlatform": {
      "airbnb": {
-      "gross": 0.0,
-      "net": 0.0,
-      "nights": 0
+      "gross": 2685.92,
+      "net": 2269.59,
+      "nights": 20
      },
      "booking": {
-      "gross": 1159.75,
-      "net": 985.79,
-      "nights": 12
+      "gross": 8109.4,
+      "net": 6892.99,
+      "nights": 75
      },
      "agoda": {
-      "gross": 0.0,
-      "net": 0.0,
+      "gross": 0,
+      "net": 0,
       "nights": 0
      }
     },
     "byRoom": {
      "room-1": {
-      "gross": 646.0,
-      "net": 549.1,
-      "nights": 7
+      "gross": 3609.47,
+      "net": 3063.55,
+      "nights": 32
      },
      "room-2": {
-      "gross": 220.5,
-      "net": 187.42,
-      "nights": 2
+      "gross": 3871.2,
+      "net": 3283.62,
+      "nights": 30
      },
      "room-3": {
-      "gross": 293.25,
-      "net": 249.26,
-      "nights": 3
+      "gross": 3314.65,
+      "net": 2815.41,
+      "nights": 33
      }
     },
-    "adr": 96.65
+    "adr": 113.63,
+    "netAdr": 96.45,
+    "availableNights": 93,
+    "occupancy": 1,
+    "start": "2026-10-04",
+    "end": "2026-11-03"
    },
    "lastMonth": {
-    "gross": 369.14,
-    "net": 313.77,
-    "nights": 4,
+    "gross": 10796.21,
+    "net": 9162.69,
+    "nights": 94,
+    "grossNights": 94,
     "grossBookingOnly": false,
-    "grossNights": 4,
     "byPlatform": {
      "airbnb": {
-      "gross": 0.0,
-      "net": 0.0,
-      "nights": 0
+      "gross": 2814.42,
+      "net": 2378.17,
+      "nights": 21
      },
      "booking": {
-      "gross": 369.14,
-      "net": 313.77,
-      "nights": 4
+      "gross": 7981.79,
+      "net": 6784.52,
+      "nights": 73
      },
      "agoda": {
-      "gross": 0.0,
-      "net": 0.0,
+      "gross": 0,
+      "net": 0,
       "nights": 0
      }
     },
     "byRoom": {
      "room-1": {
-      "gross": 369.14,
-      "net": 313.77,
-      "nights": 4
+      "gross": 3651.36,
+      "net": 3099.16,
+      "nights": 32
      },
      "room-2": {
-      "gross": 0.0,
-      "net": 0.0,
-      "nights": 0
+      "gross": 3864.95,
+      "net": 3278.96,
+      "nights": 30
      },
      "room-3": {
-      "gross": 0.0,
-      "net": 0.0,
-      "nights": 0
+      "gross": 3279.9,
+      "net": 2784.57,
+      "nights": 32
      }
     },
-    "adr": 92.29
+    "adr": 114.85,
+    "netAdr": 97.48,
+    "availableNights": 93,
+    "occupancy": 1,
+    "start": "2026-10-01",
+    "end": "2026-10-31"
    },
    "ytd": {
-    "gross": 1159.75,
-    "net": 985.79,
-    "nights": 12,
+    "gross": 29043.87,
+    "net": 24795.3,
+    "nights": 273,
+    "grossNights": 271,
     "grossBookingOnly": false,
-    "grossNights": 12,
     "byPlatform": {
      "airbnb": {
-      "gross": 0.0,
-      "net": 0.0,
-      "nights": 0
+      "gross": 6966.77,
+      "net": 5886.9,
+      "nights": 58
      },
      "booking": {
-      "gross": 1159.75,
-      "net": 985.79,
-      "nights": 12
+      "gross": 22077.1,
+      "net": 18765.56,
+      "nights": 213
      },
      "agoda": {
-      "gross": 0.0,
-      "net": 0.0,
-      "nights": 0
+      "gross": 0,
+      "net": 142.84,
+      "nights": 2
      }
     },
     "byRoom": {
      "room-1": {
-      "gross": 646.0,
-      "net": 549.1,
-      "nights": 7
+      "gross": 9462.17,
+      "net": 8031.34,
+      "nights": 92
      },
      "room-2": {
-      "gross": 220.5,
-      "net": 187.42,
-      "nights": 2
+      "gross": 10395.0,
+      "net": 8966.99,
+      "nights": 90
      },
      "room-3": {
-      "gross": 293.25,
-      "net": 249.26,
-      "nights": 3
+      "gross": 9186.7,
+      "net": 7796.97,
+      "nights": 91
      }
     },
-    "adr": 96.65
+    "adr": 107.17,
+    "netAdr": 90.83,
+    "availableNights": 921,
+    "occupancy": 0.2964,
+    "start": "2026-01-01",
+    "end": "2026-11-03"
    },
    "next30": {
-    "gross": 4215.54,
-    "net": 4831.67,
-    "nights": 53,
-    "grossBookingOnly": true,
-    "grossNights": 41,
+    "gross": 5395.02,
+    "net": 4578.34,
+    "nights": 50,
+    "grossNights": 50,
+    "grossBookingOnly": false,
     "byPlatform": {
      "airbnb": {
-      "gross": null,
+      "gross": 1477.52,
       "net": 1248.47,
       "nights": 12
      },
      "booking": {
-      "gross": 4215.54,
-      "net": 3583.2,
-      "nights": 41
+      "gross": 3917.5,
+      "net": 3329.86,
+      "nights": 38
      },
      "agoda": {
-      "gross": 0.0,
-      "net": 0.0,
+      "gross": 0,
+      "net": 0,
       "nights": 0
      }
     },
     "byRoom": {
      "room-1": {
-      "gross": 1460.54,
-      "net": 1858.28,
-      "nights": 21
+      "gross": 2098.25,
+      "net": 1779.84,
+      "nights": 20
      },
      "room-2": {
-      "gross": 1138.5,
-      "net": 1493.74,
-      "nights": 15
+      "gross": 1653.02,
+      "net": 1401.94,
+      "nights": 14
      },
      "room-3": {
-      "gross": 1616.5,
-      "net": 1479.64,
-      "nights": 17
+      "gross": 1643.75,
+      "net": 1396.56,
+      "nights": 16
      }
     },
-    "adr": 102.82
+    "adr": 107.9,
+    "netAdr": 91.57,
+    "availableNights": 90,
+    "occupancy": 0.5556,
+    "start": "2026-11-04",
+    "end": "2026-12-03"
    }
   },
-  "basis": "Night-stayed: each stay amount spread evenly per night. Gross = guest room price (Booking.com export; Airbnb gross not available, so period Gross covers Booking.com only). Net = Booking.com after commission + Airbnb host payout. Agoda: no stays in these windows. ADR = known gross / nights with known gross.",
+  "basis": "Night-stayed: each stay amount spread evenly over its nights (Today/Yesterday: by check-in day, full stay amount). Gross = Booking.com Total payment; Airbnb Gross earnings (guest price before host fee); Agoda gross unknown. Net = Booking.com Total payment minus Commission; Airbnb host payout (Amount); Agoda payout. Only OK/confirmed stays; cancelled and no-show excluded (none had a fee charged). Occupancy = nights / (3 rooms x days). ADR = gross / nights with known gross.",
   "missing": {
-   "airbnb": "14 confirmed stays lack guest-paid gross (host payout known); 0 lack net",
-   "booking": "1 confirmed stays lack amounts",
-   "agoda": "0 stays in window"
+   "airbnb": "0 stays lack amounts; 2 resolution/AirCover payouts ($31) not counted as stay revenue",
+   "booking": "1 confirmed stays lack commission (net)",
+   "agoda": "gross unknown for 1 stay (net only)",
+   "overlaps": "3 room-nights in Oct (Oct 4, Oct 7 Room 3; Oct 8 Room 1) have two paid stays on one room, likely room moves; revenue kept, occupancy capped at 100%",
+   "notes": "1 recent bookings taken from dashboard stays (made after exports)"
   },
   "sources": {
-   "booking": "Booking.com reservation export downloaded Nov 3 2026 ~12:50 AM ET",
-   "airbnb": "Airbnb host payout amounts from reservation emails"
+   "booking": "Booking.com reservation exports (check-out Jan 1-Nov 3 2026, downloaded Nov 3 ~10:30 PM ET; plus upcoming exports from Nov 3 ~12:50 AM ET)",
+   "airbnb": "Airbnb earnings CSV export (paid YTD + upcoming), downloaded Nov 3 2026",
+   "agoda": "One stay Sep 10-12, payout received (confirmed by Victor)"
   },
   "checkInBasis": {
    "today": {
     "gross": 108.0,
     "net": 91.8,
     "checkIns": 1,
-    "grossComplete": true
+    "grossComplete": true,
+    "byPlatform": {
+     "airbnb": {
+      "gross": 0,
+      "net": 0,
+      "checkIns": 0
+     },
+     "booking": {
+      "gross": 108.0,
+      "net": 91.8,
+      "checkIns": 1
+     },
+     "agoda": {
+      "gross": 0,
+      "net": 0,
+      "checkIns": 0
+     }
+    }
    },
    "yesterday": {
     "gross": 112.5,
     "net": 95.62,
     "checkIns": 1,
-    "grossComplete": true
+    "grossComplete": true,
+    "byPlatform": {
+     "airbnb": {
+      "gross": 0,
+      "net": 0,
+      "checkIns": 0
+     },
+     "booking": {
+      "gross": 112.5,
+      "net": 95.62,
+      "checkIns": 1
+     },
+     "agoda": {
+      "gross": 0,
+      "net": 0,
+      "checkIns": 0
+     }
+    }
    },
    "note": "Today and Yesterday count stays checking in that day (full stay amount)."
   }
@@ -747,7 +2861,7 @@
    "net": 95.62,
    "status": "confirmed",
    "notes": "Gross and commission from Booking.com export.",
-   "arrivalTime": "after 3\u20134 PM",
+   "arrivalTime": "after 3–4 PM",
    "driving": "no",
    "contactChannel": "WhatsApp",
    "phoneOnFile": "yes"
@@ -936,7 +3050,7 @@
   },
   {
    "id": "nil-airbnb-2026-11-10",
-   "guest": "Nil \u00c7.",
+   "guest": "Nil Ç.",
    "roomId": "room-1",
    "platform": "airbnb",
    "checkIn": "2026-11-10",
@@ -2474,13 +4588,13 @@
    "id": "agoda-payout",
    "platform": "agoda",
    "level": "clear",
-   "summary": "Payout of USD 142.84 received (Victor confirmed ~9:02 PM Nov 3). No Nov\u2013Dec bookings on Agoda. Portal signed in; Finance/Remittances may still hit MFA. Joseph Nov 5 already blocked on Agoda."
+   "summary": "Payout of USD 142.84 received (Victor confirmed ~9:02 PM Nov 3). No Nov–Dec bookings on Agoda. Portal signed in; Finance/Remittances may still hit MFA. Joseph Nov 5 already blocked on Agoda."
   },
   {
    "id": "airbnb-clear",
    "platform": "airbnb",
    "level": "clear",
-   "summary": "Airbnb upcoming 14 confirmed (Tat C. guest-canceled Nov 29\u2013Dec 1 ~9:30 PM). Graham parking resolved. Joseph smell/welcome sent ~6:50 PM; waiting on arrival/parking. Booking.com 59 checkout>=today (21/22/16); +1 far-future Room 1 Oct 22 2027 pending. Joseph Nov 5 blocked on Booking.com + Agoda. Agoda payout received."
+   "summary": "Airbnb upcoming 14 confirmed (Tat C. guest-canceled Nov 29–Dec 1 ~9:30 PM). Graham parking resolved. Joseph smell/welcome sent ~6:50 PM; waiting on arrival/parking. Booking.com 59 checkout>=today (21/22/16); +1 far-future Room 1 Oct 22 2027 pending. Joseph Nov 5 blocked on Booking.com + Agoda. Agoda payout received."
   },
   {
    "id": "booking-invoice-alert",
@@ -2498,14 +4612,14 @@
   },
   {
    "id": "nidia-c-late-arrival-reply",
-   "title": "Reply to Nidia C. (Booking.com, Dec 10\u201311, Room 1)",
-   "detail": "Late arrival after a concert; prefers WhatsApp. Draft shown to Victor 8:45 PM Nov 3 \u2014 waiting for his yes. Closed ~9:02 PM Nov 3 per Victor; decision issues closed.",
+   "title": "Reply to Nidia C. (Booking.com, Dec 10–11, Room 1)",
+   "detail": "Late arrival after a concert; prefers WhatsApp. Draft shown to Victor 8:45 PM Nov 3 — waiting for his yes. Closed ~9:02 PM Nov 3 per Victor; decision issues closed.",
    "status": "done"
   },
   {
    "id": "tat-c-parking-reply",
    "title": "Reply to Tat C. (Airbnb) about minivan parking",
-   "detail": "Draft shown to Victor 8:45 PM Nov 3 \u2014 waiting for his yes. Closed ~9:02 PM Nov 3 per Victor; decision issues closed.",
+   "detail": "Draft shown to Victor 8:45 PM Nov 3 — waiting for his yes. Closed ~9:02 PM Nov 3 per Victor; decision issues closed.",
    "status": "done"
   },
   {
@@ -2522,7 +4636,7 @@
   },
   {
    "id": "joseph-h-welcome-reply",
-   "title": "Joseph H. welcome + scent answer (Room 2, Nov 5\u20136)",
+   "title": "Joseph H. welcome + scent answer (Room 2, Nov 5–6)",
    "detail": "Sent 6:50 PM Nov 3. Nov 5 night blocked on Booking.com and Agoda.",
    "status": "done"
   },
@@ -2536,7 +4650,7 @@
  "changelog": [
   {
    "at": "2026-11-03T22:00:00-05:00",
-   "note": "Delta check ~10:00 PM ET. No new Booking.com/Airbnb/Agoda booking, cancel, payout, or guest-message emails since 9:05 PM (Venmo/Capital One noise only; Agoda MFA earlier). Applied 2h-sweep live cancel: Tat C. Airbnb Room 1 Nov 29\u2013Dec 1 \u2192 cancelled (Airbnb 15\u219214). Booking.com counts unchanged 59 checkout>=today (21/22/16) +1 far-future Room 1 Oct 22 2027 pending. DECISION COMMENT #10: moved lauren-airbnb-offer to Resolved (no reply needed); closed #10 and #3. Joseph still waiting on guest arrival/parking. Booking.com may need Pulse/SMS re-verify (2h sweep auth wall). Invoice USD 623.11 due Nov 16 on file."
+   "note": "Delta check ~10:00 PM ET. No new Booking.com/Airbnb/Agoda booking, cancel, payout, or guest-message emails since 9:05 PM (Venmo/Capital One noise only; Agoda MFA earlier). Applied 2h-sweep live cancel: Tat C. Airbnb Room 1 Nov 29–Dec 1 → cancelled (Airbnb 15→14). Booking.com counts unchanged 59 checkout>=today (21/22/16) +1 far-future Room 1 Oct 22 2027 pending. DECISION COMMENT #10: moved lauren-airbnb-offer to Resolved (no reply needed); closed #10 and #3. Joseph still waiting on guest arrival/parking. Booking.com may need Pulse/SMS re-verify (2h sweep auth wall). Invoice USD 623.11 due Nov 16 on file."
   },
   {
    "at": "2026-11-03T21:05:00-05:00",
@@ -2588,7 +4702,7 @@
   },
   {
    "at": "2026-11-03T08:05:00-05:00",
-   "note": "Full hourly sweep ~8:05 AM ET. Airbnb live pull 14 confirmed (matches baseline). Booking.com from overnight Excel exports 58 confirmed with checkout on/after today (20/22/16 by room, matches baseline including Thomas H. checkout today). Agoda still no Nov\u2013Dec bookings; remittance stuck. No new booking/cancel emails overnight except already-known Aythami cancel Nov 2 and Cristian G. new Dec 31. Guest chats: Antoine C. messaged overnight (arrive by car ~5:30 PM, contact given \u2014 check-in no longer held for missing phone); Graham P. Airbnb still waiting on parking reply. Lauren Airbnb special-offer decision still open (APPROVE draft to Victor first; stay open until she books)."
+   "note": "Full hourly sweep ~8:05 AM ET. Airbnb live pull 14 confirmed (matches baseline). Booking.com from overnight Excel exports 58 confirmed with checkout on/after today (20/22/16 by room, matches baseline including Thomas H. checkout today). Agoda still no Nov–Dec bookings; remittance stuck. No new booking/cancel emails overnight except already-known Aythami cancel Nov 2 and Cristian G. new Dec 31. Guest chats: Antoine C. messaged overnight (arrive by car ~5:30 PM, contact given — check-in no longer held for missing phone); Graham P. Airbnb still waiting on parking reply. Lauren Airbnb special-offer decision still open (APPROVE draft to Victor first; stay open until she books)."
   },
   {
    "at": "2026-11-03T09:00:00-05:00",
@@ -2596,7 +4710,7 @@
   },
   {
    "at": "2026-11-03T10:06:00-05:00",
-   "note": "Delta check ~10:06 AM ET. New Booking.com Room 1 check-in Fri Oct 22 2027 (confirmation email only; guest/nights/amount pending extranet). Nidia C. already on file. Airbnb still 14 confirmed. Booking confirmed checkout>=today still 59 until Oct 2027 stay has a check-out date. Booking.com signed out \u2014 need password in chat for details + calendar block. Lauren special-offer decision still open (draft-first). No new Airbnb/Agoda booking emails. No Stripe alerts."
+   "note": "Delta check ~10:06 AM ET. New Booking.com Room 1 check-in Fri Oct 22 2027 (confirmation email only; guest/nights/amount pending extranet). Nidia C. already on file. Airbnb still 14 confirmed. Booking confirmed checkout>=today still 59 until Oct 2027 stay has a check-out date. Booking.com signed out — need password in chat for details + calendar block. Lauren special-offer decision still open (draft-first). No new Airbnb/Agoda booking emails. No Stripe alerts."
   },
   {
    "at": "2026-11-03T11:07:00-05:00",

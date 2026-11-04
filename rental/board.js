@@ -685,6 +685,49 @@ function turnoverHtml(data, events, today) {
   return upcomingHtml + earlierHtml;
 }
 
+function summaryRevenueHtml(data, today) {
+  const periods = data.revenueSummary?.periods;
+  if (!periods) return "";
+  return REVENUE_PERIODS.map(([key, label]) => {
+    const period = periods[key] || {};
+    const start = period.start ? formatShort(String(period.start).slice(0, 10)) : "";
+    const end = period.end ? formatShort(String(period.end).slice(0, 10)) : "";
+    const since = key === "ytd" ? occupancySinceBookings(data, today) : null;
+    const occ = since?.pct != null ? since.pct : fractionPercent(period.occupancy);
+    const sinceLabel = since?.start ? ` since ${formatShort(since.start)}` : "";
+    const nights = Number.isFinite(Number(period.nights)) ? Number(period.nights) : null;
+    const available = Number.isFinite(Number(period.availableNights)) ? Number(period.availableNights) : null;
+    const sinceNights = since ? dailyRows(data).filter((row) => row.date >= since.start && row.date <= asOfDate(data, today)).reduce((sum, row) => sum + (Number(row.nights) || 0), 0) : null;
+    const sinceAvailable = since ? dailyRows(data).filter((row) => row.date >= since.start && row.date <= asOfDate(data, today)).length * ((data.rooms || []).length || 3) : null;
+    const nightLine = since
+      ? (sinceNights == null ? "" : `${sinceNights} / ${sinceAvailable} room-nights`)
+      : (nights == null ? "" : (available == null ? `${nights} night${nights === 1 ? "" : "s"}` : `${nights} / ${available} room-nights`));
+    const occText = occ == null ? "" : `Occupancy ${occ.toFixed(1)}%${sinceLabel}`;
+    const platformLines = (data.platforms || []).map((platform) => {
+      const row = period.byPlatform?.[platform.id];
+      if (!row) return "";
+      return `<div class="kpi-plat">${esc(platform.short || platform.label)} ${pendingOr(row.gross)} <span>gross</span> · ${pendingOr(row.net)} <span>net</span>${Number.isFinite(Number(row.nights)) ? ` · ${row.nights} nights` : ""}</div>`;
+    }).join("");
+    const roomLines = (data.rooms || []).map((room) => {
+      const row = period.byRoom?.[room.id];
+      if (!row) return "";
+      return `<div class="kpi-plat">${roomName(room)} ${pendingOr(row.net)} <span>net</span>${Number.isFinite(Number(row.nights)) ? ` · ${row.nights} nights` : ""}</div>`;
+    }).join("");
+    const checkIn = (key === "today" || key === "yesterday") && data.revenueSummary?.checkInBasis?.[key];
+    return `<article class="card period">
+      <h3>${esc(label)}</h3>
+      ${start && end ? `<p class="range">${esc(start)} – ${esc(end)}</p>` : ""}
+      ${period.grossBookingOnly ? `<p class="note">Booking.com only; Airbnb gross pending</p>` : ""}
+      <p class="card-gross">${pendingOr(period.gross)} <span>gross</span></p>
+      <p class="card-net">${pendingOr(period.net)} <span>net</span></p>
+      ${occText || nightLine ? `<p class="occ">${esc([occText, nightLine].filter(Boolean).join(" · "))}</p>` : ""}
+      <p class="note">ADR ${pendingOr(period.adr)} · net ADR ${pendingOr(period.netAdr)}${checkIn ? " · by check-in" : ""}</p>
+      ${platformLines}
+      ${roomLines}
+    </article>`;
+  }).join("");
+}
+
 function periodHtml(data, period) {
   const excluded = period.excluded.length
     ? `<p class="note">Not counted, dates incomplete: ${period.excluded.map((stay) => esc(stay.guest)).join(", ")}.</p>`
@@ -867,16 +910,54 @@ function kpiMoney(value) {
   return `<span class="count" data-count="${Number(value)}" data-money="1">${esc(money(0))}</span>`;
 }
 
+function asOfDate(data, today) {
+  return String(data.revenueSummary?.asOf || today || "").slice(0, 10);
+}
+
+function dailyRows(data) {
+  return (data.revenueSummary?.daily || []).filter((row) => row && row.date);
+}
+
+function bookingsStart(data) {
+  const dates = dailyRows(data).map((row) => row.date).sort();
+  return dates[0] || null;
+}
+
+function fractionPercent(value) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) return null;
+  return number <= 1.5 ? number * 100 : number;
+}
+
+function occupancySinceBookings(data, today) {
+  const start = bookingsStart(data);
+  const end = asOfDate(data, today);
+  if (!start || !end) return null;
+  const rows = dailyRows(data).filter((row) => row.date >= start && row.date <= end);
+  if (!rows.length) return null;
+  const nights = rows.reduce((sum, row) => sum + (Number(row.nights) || 0), 0);
+  const available = rows.length * ((data.rooms || []).length || 3);
+  return { start, pct: available ? (nights / available) * 100 : null };
+}
+
 function kpiExtra(data, today, key) {
+  const period = data.revenueSummary?.periods?.[key] || {};
+  const storedAdr = period.adr;
+  const gross = period.gross;
   const range = windowFor(today, key);
-  if (!range || (key !== "mtd" && key !== "next30")) return "";
-  const report = periodReport(data, range, key);
-  const occ = report.available ? (report.confirmed / report.available) * 100 : null;
-  const stored = data.revenueSummary?.periods?.[key]?.adr;
-  const gross = data.revenueSummary?.periods?.[key]?.gross;
-  const adr = stored !== null && stored !== undefined && Number.isFinite(Number(stored))
-    ? Number(stored)
-    : (gross === null || gross === undefined || !report.confirmed ? null : Number(gross) / report.confirmed);
+  const report = range ? periodReport(data, range, key) : null;
+  const adr = storedAdr !== null && storedAdr !== undefined && Number.isFinite(Number(storedAdr))
+    ? Number(storedAdr)
+    : (gross === null || gross === undefined || !report?.confirmed ? null : Number(gross) / report.confirmed);
+  if (key === "ytd") {
+    const since = occupancySinceBookings(data, today);
+    const occHtml = since?.pct == null ? pendingOr(null) : `<span class="count" data-count="${since.pct.toFixed(1)}" data-suffix="%">0%</span>`;
+    const sinceLabel = since?.start ? ` since ${formatShort(since.start)}` : "";
+    return `<p class="kpi-extra">Occupancy ${occHtml}${esc(sinceLabel)} · ADR ${pendingOr(adr)}</p>`;
+  }
+  if (key !== "mtd" && key !== "next30") return "";
+  const storedOcc = fractionPercent(period.occupancy);
+  const occ = storedOcc !== null ? storedOcc : (report?.available ? (report.confirmed / report.available) * 100 : null);
   const occHtml = occ === null ? pendingOr(null) : `<span class="count" data-count="${occ.toFixed(1)}" data-suffix="%">0%</span>`;
   return `<p class="kpi-extra">Occupancy ${occHtml} · ADR ${pendingOr(adr)}</p>`;
 }
@@ -946,7 +1027,8 @@ function kpiHtml(data, today) {
     </article>`;
   }).join("");
   const mtd = periodReport(data, monthToDate(today), "mtd");
-  const occ = mtd.available ? (mtd.confirmed / mtd.available) * 100 : null;
+  const storedMtd = fractionPercent(summary.periods?.mtd?.occupancy);
+  const occ = storedMtd !== null ? storedMtd : (mtd.available ? (mtd.confirmed / mtd.available) * 100 : null);
   const goal = summary.mtdGoal;
   const goalNumber = Number(goal);
   const gross = summary.periods?.mtd?.gross;
@@ -962,16 +1044,16 @@ function kpiHtml(data, today) {
     ${gauges}
     <div class="charts">
       <div class="chart-card">
-        <div class="card-label">Known nightly net</div>
+        <div class="card-label">Daily net</div>
         <div class="chart-tools">
-          <button type="button" class="btn skip range-toggle${state.chartDays === 90 ? "" : " is-on"}" data-range="30" style="flex:none;min-height:36px">30 days</button>
-          <button type="button" class="btn skip range-toggle${state.chartDays === 90 ? " is-on" : ""}" data-range="90" style="flex:none;min-height:36px">90 days</button>
+          <button type="button" class="btn skip range-toggle${state.chartDays === 90 ? " is-on" : ""}" data-range="90" style="flex:none;min-height:36px">Last 90</button>
+          <button type="button" class="btn skip range-toggle${state.chartDays === 120 ? " is-on" : ""}" data-range="120" style="flex:none;min-height:36px">90 + next 30</button>
         </div>
         <div class="chart-box"><canvas id="chart-revenue"></canvas></div>
       </div>
-      <div class="chart-card"><div class="card-label">Revenue by platform</div><div class="chart-box short"><canvas id="chart-share"></canvas></div></div>
-      <div class="chart-card"><div class="card-label">Next 30 net by room</div><div class="chart-box short"><canvas id="chart-rooms"></canvas></div></div>
-      <div class="chart-card"><div class="card-label">Next 30 days</div><div class="chart-box"><canvas id="chart-next30"></canvas></div></div>
+      <div class="chart-card"><div class="card-label">Net by platform</div><div class="chart-box short"><canvas id="chart-share"></canvas></div></div>
+      <div class="chart-card"><div class="card-label">Net by room</div><div class="chart-box short"><canvas id="chart-rooms"></canvas></div></div>
+      <div class="chart-card"><div class="card-label">Next 30 net by platform</div><div class="chart-box"><canvas id="chart-next30"></canvas></div></div>
       <div class="chart-card"><div class="card-label">Occupancy by room</div><div class="chart-box short"><canvas id="chart-occupancy"></canvas></div></div>
       <div class="chart-card"><div class="card-label">ADR trend</div><div class="chart-box"><canvas id="chart-adr"></canvas></div></div>
       <div class="chart-card"><div class="card-label">Booking lead time</div><div class="chart-box"><canvas id="chart-lead"></canvas></div></div>
@@ -1127,7 +1209,9 @@ function renderBoard(data, view, selected, matches) {
     <div class="tab-panel${state.tab === "revenue" ? " is-on" : ""}" data-panel="revenue">
     <section id="revenue" class="panel">
       <h2>Revenue</h2>
-      <p class="note">Gross, fees, net, and ADR stay pending until those figures are in the data file. Occupancy counts confirmed nights only. Stated amounts are shown beside the tables and are not treated as gross.</p>
+      <p class="note">Figures below are the recomputed windows in the data file. YTD occupancy uses nights since bookings start. Stated amounts in the stay ledger are not treated as gross.</p>
+      ${summaryRevenueHtml(data, view.today)}
+      <h3>Stay ledger</h3>
       ${view.periods.map((period) => periodHtml(data, period)).join("")}
       ${payoutHtml(data)}
     </section></div>
@@ -1144,7 +1228,7 @@ const state = {
   priceIssues: [],
   showPlatforms: false,
   tab: "overview",
-  chartDays: 30,
+  chartDays: 120,
   gridScroll: 0,
   filters: { q: "", room: "", platform: "", date: "" },
 };
@@ -1167,6 +1251,29 @@ function nightlyValue(data, iso, field, platformId) {
 function seriesFor(data, today, days, field) {
   const dates = eachDate(fmtDate(addDays(parseDate(today), 1 - days)), today);
   return dates.map((iso) => ({ iso, value: nightlyValue(data, iso, field) }));
+}
+
+function dailyWindow(data, today, mode) {
+  const asOf = asOfDate(data, today);
+  if (!asOf) return [];
+  const start = fmtDate(addDays(parseDate(asOf), -89));
+  const end = mode === 90 ? asOf : fmtDate(addDays(parseDate(asOf), 30));
+  return dailyRows(data).filter((row) => row.date >= start && row.date <= end);
+}
+
+function sumDailyMap(rows, key, ids) {
+  const totals = Object.fromEntries(ids.map((id) => [id, 0]));
+  let any = false;
+  for (const row of rows) {
+    const bucket = row[key] || {};
+    for (const id of ids) {
+      const value = Number(bucket[id]);
+      if (!Number.isFinite(value)) continue;
+      totals[id] += value;
+      any = true;
+    }
+  }
+  return any ? totals : null;
 }
 
 const liveCharts = [];
@@ -1223,24 +1330,24 @@ function mountCharts() {
   Chart.defaults.borderColor = "rgba(0, 229, 255, .2)";
   Chart.defaults.font.family = "Rajdhani, Segoe UI, sans-serif";
   Chart.defaults.animation = reduce ? false : { duration: 800, easing: "easeOutQuart" };
+  const windowRows = dailyWindow(data, today, state.chartDays === 90 ? 90 : 120);
   const revenue = document.getElementById("chart-revenue");
   if (revenue) {
-    const points = seriesFor(data, today, state.chartDays || 30, "net");
-    if (!points.some((point) => point.value !== null)) chartMessage("chart-revenue", "Pending until nightly net figures are on file.");
+    const points = windowRows.filter((row) => Number.isFinite(Number(row.net)));
+    if (!points.length) chartMessage("chart-revenue", "Pending until daily revenue is filled in.");
     else {
       chartMessage("chart-revenue", "");
       liveCharts.push(new Chart(revenue, {
         type: "line",
         data: {
-          labels: points.map((point) => formatShort(point.iso)),
+          labels: points.map((row) => formatShort(row.date)),
           datasets: [{
-            label: "Known net",
-            data: points.map((point) => point.value),
+            label: "Net",
+            data: points.map((row) => Number(row.net)),
             borderColor: "#4ade80",
-            backgroundColor: "rgba(74,222,128,.18)",
+            backgroundColor: "rgba(62,224,255,.18)",
             fill: true,
             tension: 0.35,
-            spanGaps: false,
             pointRadius: 0,
             pointHoverRadius: 4,
           }],
@@ -1251,23 +1358,23 @@ function mountCharts() {
   }
   const share = document.getElementById("chart-share");
   if (share) {
-    const byPlatform = data.revenueSummary?.periods?.next30?.byPlatform || {};
-    const totals = (data.platforms || []).map((platform) => ({ platform, value: Number(byPlatform[platform.id]?.net) })).filter((row) => Number.isFinite(row.value) && row.value > 0);
-    if (!totals.length) chartMessage("chart-share", "Pending until platform net is in revenueSummary.");
+    const totals = sumDailyMap(windowRows, "byPlatform", (data.platforms || []).map((platform) => platform.id));
+    const rows = (data.platforms || []).map((platform) => ({ platform, value: totals ? totals[platform.id] : null })).filter((row) => Number.isFinite(row.value) && row.value > 0);
+    if (!rows.length) chartMessage("chart-share", "Pending until daily platform net is filled in.");
     else {
       chartMessage("chart-share", "");
       liveCharts.push(new Chart(share, {
         type: "doughnut",
-        data: { labels: totals.map((row) => row.platform.label), datasets: [{ data: totals.map((row) => row.value), backgroundColor: totals.map((row) => row.platform.color) }] },
+        data: { labels: rows.map((row) => row.platform.label), datasets: [{ data: rows.map((row) => row.value), backgroundColor: rows.map((row) => row.platform.color) }] },
         options: baseChartOptions(),
       }));
     }
   }
   const rooms = document.getElementById("chart-rooms");
   if (rooms) {
-    const byRoom = data.revenueSummary?.periods?.next30?.byRoom || {};
-    const rows = (data.rooms || []).map((room) => ({ room, value: Number(byRoom[room.id]?.net) })).filter((row) => Number.isFinite(row.value) && row.value > 0);
-    if (!rows.length) chartMessage("chart-rooms", "Pending until room net is in revenueSummary.");
+    const totals = sumDailyMap(windowRows, "byRoom", (data.rooms || []).map((room) => room.id));
+    const rows = (data.rooms || []).map((room) => ({ room, value: totals ? totals[room.id] : null })).filter((row) => Number.isFinite(row.value) && row.value > 0);
+    if (!rows.length) chartMessage("chart-rooms", "Pending until daily room net is filled in.");
     else {
       chartMessage("chart-rooms", "");
       liveCharts.push(new Chart(rooms, {
@@ -1279,25 +1386,18 @@ function mountCharts() {
   }
   const next30 = document.getElementById("chart-next30");
   if (next30) {
-    const byPlatform = data.revenueSummary?.periods?.next30?.byPlatform || {};
-    const labels = (data.platforms || []).map((platform) => platform.short || platform.label);
-    const gross = (data.platforms || []).map((platform) => {
-      const value = byPlatform[platform.id]?.gross;
-      return value === null || value === undefined || value === "" ? null : Number(value);
-    });
-    const net = (data.platforms || []).map((platform) => {
-      const value = byPlatform[platform.id]?.net;
-      return value === null || value === undefined || value === "" ? null : Number(value);
-    });
-    if (!gross.some((value) => Number.isFinite(value)) && !net.some((value) => Number.isFinite(value))) chartMessage("chart-next30", "Pending until next-30 revenue is filled in.");
+    const asOf = asOfDate(data, today);
+    const future = dailyRows(data).filter((row) => asOf && row.date > asOf && row.date <= fmtDate(addDays(parseDate(asOf), 30)));
+    const totals = sumDailyMap(future, "byPlatform", (data.platforms || []).map((platform) => platform.id));
+    if (!totals) chartMessage("chart-next30", "Pending until next-30 daily net is filled in.");
     else {
       chartMessage("chart-next30", "");
       liveCharts.push(new Chart(next30, {
         type: "bar",
-        data: { labels, datasets: [
-          { label: "Gross", data: gross, backgroundColor: "#3ee0ff" },
-          { label: "Net", data: net, backgroundColor: "#ffb020" },
-        ] },
+        data: {
+          labels: (data.platforms || []).map((platform) => platform.short || platform.label),
+          datasets: [{ label: "Net", data: (data.platforms || []).map((platform) => totals[platform.id]), backgroundColor: (data.platforms || []).map((platform) => platform.color) }],
+        },
         options: { ...baseChartOptions(), scales: { y: { beginAtZero: true } } },
       }));
     }
