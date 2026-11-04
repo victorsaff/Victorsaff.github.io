@@ -74,6 +74,7 @@
   "revenueSummary": {
     "asOf": "2026-11-03",
     "currency": "USD",
+    "mtdGoal": null,
     "daily": [],
     "periods": {
       "today": { "gross": null, "net": null, "byPlatform": { "airbnb": { "gross": null, "net": null }, "booking": { "gross": null, "net": null }, "agoda": { "gross": null, "net": null } } },

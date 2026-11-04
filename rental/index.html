@@ -3,19 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
 <meta http-equiv="refresh" content="300">
 <title>Rental Command Center</title>
 <style>
   :root {
     color-scheme: dark;
-    --bg: #0f1420;
-    --ink: #e8ecf3;
-    --muted: #8fa3bf;
-    --card: #171e2e;
-    --line: #26314a;
-    --good: #4ade80;
-    --pending: #f0b35e;
-    --danger: #fb7185;
+    --bg: #05070f;
+    --ink: #e7fbff;
+    --muted: #8fd0e0;
+    --card: rgba(8, 20, 40, .72);
+    --line: rgba(0, 229, 255, .38);
+    --good: #3ee0ff;
+    --pending: #ffb020;
+    --danger: #ff5d73;
     --airbnb: #ff5a5f;
     --booking: #1a56db;
     --agoda: #fb923c;
@@ -23,18 +26,39 @@
   * { box-sizing: border-box; }
   body {
     margin: 0;
-    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: var(--bg);
+    font-family: Rajdhani, "Segoe UI", sans-serif;
+    font-weight: 600;
+    background:
+      linear-gradient(rgba(0, 229, 255, .05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 229, 255, .05) 1px, transparent 1px),
+      radial-gradient(900px 420px at 0% -10%, rgba(0, 180, 255, .22), transparent 55%),
+      #05070f;
+    background-size: 28px 28px, 28px 28px, auto, auto;
     color: var(--ink);
     line-height: 1.45;
   }
-  .wrap { max-width: 1100px; margin: 0 auto; padding: 12px 12px 64px; }
-  h1 { font-size: 26px; line-height: 1.15; margin: 0 0 6px; }
-  h2 { font-size: 18px; margin: 0 0 8px; }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(to bottom, transparent 0 3px, rgba(0, 0, 0, .16) 3px 4px);
+    z-index: 0;
+  }
+  .wrap { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 12px 12px 64px; }
+  h1, h2, .jumps button, .card-label { font-family: Orbitron, Rajdhani, sans-serif; letter-spacing: .04em; }
+  h1 { font-size: 22px; line-height: 1.2; margin: 0 0 6px; text-shadow: 0 0 16px rgba(0, 229, 255, .45); }
+  h2 { font-size: 16px; margin: 0 0 8px; }
   h3 { font-size: 15px; margin: 12px 0 6px; }
   a { color: #93c5fd; }
   p { margin: 6px 0; }
-  .hero, .panel, .card, .month { background: var(--card); border: 1px solid var(--line); border-radius: 14px; }
+  .hero, .panel, .card, .month, .kpi-card, .chart-card, .stay {
+    background: rgba(8, 20, 40, .72);
+    border: 1px solid rgba(0, 229, 255, .38);
+    border-radius: 16px;
+    box-shadow: 0 0 18px rgba(0, 180, 255, .12), inset 0 0 24px rgba(0, 180, 255, .05);
+    backdrop-filter: blur(10px);
+  }
   .hero { padding: 14px; }
   .stripes { display: flex; height: 6px; border-radius: 99px; overflow: hidden; margin-bottom: 12px; }
   .stripes span { flex: 1; }
@@ -55,7 +79,7 @@
     border: 1px solid var(--line); background: var(--card);
     border-radius: 999px; padding: 8px 12px; min-height: 40px; font-size: 14px; font-weight: 700;
   }
-  .jumps button.is-on { background: #243049; border-color: #6ea8fe; color: #fff; }
+  .jumps button.is-on { background: rgba(0, 229, 255, .16); border-color: #7af6ff; color: #e7fbff; box-shadow: 0 0 12px rgba(0, 229, 255, .45); }
   .tab-panel { display: none; }
   .tab-panel.is-on { display: block; animation: rise .32s ease; }
   @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
@@ -69,7 +93,16 @@
   .tomorrow-date { font-size: 22px; font-weight: 750; margin: 0 0 8px; }
   .kpi-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 12px; }
   .kpi-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 10px; }
-  .kpi-card { background: #121826; border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+  .kpi-card { padding: 12px; }
+  .gauges { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .gauge { margin: 0; text-align: center; }
+  .gauge svg { width: min(140px, 42vw); height: auto; }
+  .gauge-track { fill: none; stroke: rgba(0, 229, 255, .15); stroke-width: 8; }
+  .gauge-value { fill: none; stroke: #3ee0ff; stroke-width: 8; stroke-linecap: round; transform: rotate(-90deg); transform-origin: 60px 60px; filter: drop-shadow(0 0 6px rgba(0, 229, 255, .7)); }
+  .gauge.amber .gauge-value { stroke: #ffb020; filter: drop-shadow(0 0 6px rgba(255, 176, 32, .7)); }
+  .gauge-num { fill: #e7fbff; font-size: 18px; font-family: Orbitron, sans-serif; }
+  .gauge-sub { fill: #8fd0e0; font-size: 8px; font-family: Orbitron, sans-serif; letter-spacing: .08em; }
+  .gauge figcaption { color: var(--muted); font-size: 12px; }
   .card-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
   .card-gross { font-size: 19px; font-weight: 700; margin-top: 4px; }
   .card-gross span, .card-net span, .kpi-plat span { font-size: 11px; font-weight: 400; color: var(--muted); }
@@ -133,6 +166,10 @@
   .callout { border: 1px solid var(--pending); border-radius: 12px; padding: 10px 12px; }
   .empty { color: var(--muted); }
   .foot { color: var(--muted); font-size: 13px; margin-top: 28px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .gauge-value { filter: none; }
+  }
   .day:focus-visible, .gcell:focus-visible, .btn:focus-visible, .jumps a:focus-visible { outline: 3px solid #93c5fd; outline-offset: 2px; }
   @media (min-width: 720px) {
     .wrap { padding: 20px 20px 72px; }

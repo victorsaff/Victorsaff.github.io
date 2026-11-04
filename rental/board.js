@@ -845,6 +845,23 @@ function windowFor(today, key) {
   return null;
 }
 
+function ringGauge(label, percent, caption, amber) {
+  const radius = 46;
+  const circ = 2 * Math.PI * radius;
+  const known = Number.isFinite(percent);
+  const clamped = known ? Math.max(0, Math.min(100, percent)) : 0;
+  const offset = circ * (1 - clamped / 100);
+  return `<figure class="gauge${amber ? " amber" : ""}">
+    <svg viewBox="0 0 120 120" role="img" aria-label="${esc(label)} ${known ? `${clamped.toFixed(0)} percent` : "pending"}">
+      <circle class="gauge-track" cx="60" cy="60" r="46"></circle>
+      <circle class="gauge-value" cx="60" cy="60" r="46" data-circ="${circ}" data-offset="${offset}" style="stroke-dasharray:${circ};stroke-dashoffset:${circ}"></circle>
+      <text class="gauge-num" x="60" y="58" text-anchor="middle">${known ? "0%" : "—"}</text>
+      <text class="gauge-sub" x="60" y="74" text-anchor="middle">${esc(label)}</text>
+    </svg>
+    <figcaption>${esc(caption)}</figcaption>
+  </figure>`;
+}
+
 function kpiMoney(value) {
   if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) return pendingOr(null);
   return `<span class="count" data-count="${Number(value)}" data-money="1">${esc(money(0))}</span>`;
@@ -915,8 +932,21 @@ function kpiHtml(data, today) {
       ${lines}
     </article>`;
   }).join("");
+  const mtd = periodReport(data, monthToDate(today), "mtd");
+  const occ = mtd.available ? (mtd.confirmed / mtd.available) * 100 : null;
+  const goal = summary.mtdGoal;
+  const goalNumber = Number(goal);
+  const gross = summary.periods?.mtd?.gross;
+  const grossNumber = Number(gross);
+  const goalKnown = goal !== null && goal !== undefined && goal !== "" && Number.isFinite(goalNumber) && goalNumber > 0;
+  const goalPct = goalKnown && gross !== null && gross !== undefined && Number.isFinite(grossNumber) ? (grossNumber / goalNumber) * 100 : null;
+  const gauges = `<div class="gauges">
+      ${ringGauge("Occupancy", occ, "Month to date", false)}
+      ${ringGauge("MTD vs goal", goalPct, goalKnown ? `Goal ${money(goalNumber)}` : "Goal not set", true)}
+    </div>`;
   return `<div class="kpi-head"><p class="kpi-note">Night-stayed revenue. Empty money figures stay pending.</p><button type="button" class="btn skip" id="platform-toggle" style="flex:none">By platform</button></div>
     <div class="kpi-cards${state.showPlatforms ? " show-platforms" : ""}">${cards}</div>
+    ${gauges}
     <div class="charts">
       <div class="chart-card">
         <div class="card-label">Known nightly net</div>
@@ -1164,9 +1194,11 @@ function mountCharts() {
   if (!window.Chart || !state.data) return;
   const data = state.data;
   const today = state.today;
-  Chart.defaults.color = "#8fa3bf";
-  Chart.defaults.borderColor = "#26314a";
-  Chart.defaults.font.family = "-apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif";
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  Chart.defaults.color = "#8fd0e0";
+  Chart.defaults.borderColor = "rgba(0, 229, 255, .2)";
+  Chart.defaults.font.family = "Rajdhani, Segoe UI, sans-serif";
+  Chart.defaults.animation = reduce ? false : { duration: 800, easing: "easeOutQuart" };
   const revenue = document.getElementById("chart-revenue");
   if (revenue) {
     const points = seriesFor(data, today, state.chartDays || 30, "net");
@@ -1292,18 +1324,34 @@ function mountCharts() {
 }
 
 function animateCounts(root) {
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   root.querySelectorAll(".count").forEach((el) => {
     const target = Number(el.dataset.count);
     if (!Number.isFinite(target)) return;
+    const paint = (value) => {
+      el.textContent = el.dataset.money === "1" ? (money(value) || "") : `${value.toFixed(1)}${el.dataset.suffix || ""}`;
+    };
+    if (reduce) { paint(target); return; }
     const started = performance.now();
     const tick = (now) => {
       const progress = Math.min(1, (now - started) / 700);
       const eased = 1 - (1 - progress) ** 3;
-      const value = target * eased;
-      el.textContent = el.dataset.money === "1" ? (money(value) || "") : `${value.toFixed(1)}${el.dataset.suffix || ""}`;
+      paint(target * eased);
       if (progress < 1) requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
+  });
+  root.querySelectorAll(".gauge").forEach((figure) => {
+    const ring = figure.querySelector(".gauge-value");
+    const num = figure.querySelector(".gauge-num");
+    if (!ring) return;
+    const offset = Number(ring.dataset.offset);
+    const circ = Number(ring.dataset.circ);
+    if (!Number.isFinite(offset) || !Number.isFinite(circ) || circ === 0) return;
+    const pct = Math.round((1 - offset / circ) * 100);
+    if (num && num.textContent !== "—") num.textContent = `${pct}%`;
+    if (reduce) { ring.style.strokeDashoffset = String(offset); return; }
+    requestAnimationFrame(() => { ring.style.transition = "stroke-dashoffset .9s ease"; ring.style.strokeDashoffset = String(offset); });
   });
 }
 
