@@ -925,18 +925,23 @@ function kpiHtml(data, today) {
   const summary = data.revenueSummary || {};
   const periods = summary.periods || {};
   const cards = REVENUE_PERIODS.map(([key, label]) => {
-    const period = periods[key] || {};
+    const checkIn = (key === "today" || key === "yesterday") ? summary.checkInBasis?.[key] : null;
+    const period = checkIn || periods[key] || {};
     const byPlatform = period.byPlatform || {};
-    const lines = (data.platforms || []).map((platform) => {
+    const lines = checkIn && !period.byPlatform ? "" : (data.platforms || []).map((platform) => {
       const row = byPlatform[platform.id] || {};
       return `<div class="kpi-plat">${esc(platform.short || platform.label)} ${pendingOr(row.gross)} <span>gross</span> · ${pendingOr(row.net)} <span>net</span></div>`;
     }).join("");
+    const checkIns = Number(period.checkIns);
+    const checkInLine = checkIn
+      ? `<p class="kpi-extra">${Number.isFinite(checkIns) ? `${checkIns} check-in${checkIns === 1 ? "" : "s"}` : pendingOr(null)}</p><p class="note">by check-in</p>`
+      : kpiExtra(data, today, key);
     return `<article class="kpi-card">
       <div class="card-label">${esc(label)}</div>
       <div class="card-gross">${kpiMoney(period.gross)} <span>gross</span></div>
       ${period.grossBookingOnly ? `<p class="note">Booking.com only; Airbnb gross pending</p>` : ""}
       <div class="card-net">${kpiMoney(period.net)} <span>net</span></div>
-      ${kpiExtra(data, today, key)}
+      ${checkInLine}
       ${lines}
     </article>`;
   }).join("");
