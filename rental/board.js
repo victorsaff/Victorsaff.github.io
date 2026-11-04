@@ -659,6 +659,29 @@ function tagsFor(stay, iso, today) {
   return tags;
 }
 
+function guestThreadsHtml(data, iso) {
+  const entries = (Array.isArray(data.guestThreads) ? data.guestThreads : []).filter((entry) => entry && entry.date === iso);
+  if (!entries.length) return "";
+  const blocks = entries.map((entry) => {
+    const groups = (entry.groups || []).map((group) => {
+      const shots = (group.images || []).map((path, index) => {
+        const href = threadHref(path);
+        if (!href) return "";
+        const label = `Enlarge ${group.label || "thread"} image ${index + 1} for ${entry.guest || "this guest"}`;
+        return `<button type="button" class="thread-thumb" data-full="${esc(href)}" aria-label="${esc(label)}"><img src="${esc(href)}" alt=""></button>`;
+      }).join("");
+      if (!shots) return "";
+      return `<div class="thread-group"><p class="note">${esc(group.label || "Thread")}</p><div class="thread-shots">${shots}</div></div>`;
+    }).join("");
+    if (!groups) return "";
+    return `<article class="card thread-card"><h3>${esc(entry.guest || "Guest")}</h3>${groups}</article>`;
+  }).join("");
+  if (!blocks) return "";
+  return `<h3>Guest threads</h3>
+    <p class="note">Tap a thumbnail to enlarge. Tomorrow's threads come from guestThreads in the data file, so the next day only needs new entries.</p>
+    ${blocks}`;
+}
+
 function rosterHtml(data, roster, iso, today, options = {}) {
   return roster.map((lane) => {
     const seen = new Set();
@@ -1357,6 +1380,7 @@ function renderBoard(data, view, selected, matches) {
       <h2>Tomorrow</h2>
       <p class="tomorrow-date">${esc(formatPretty(view.tomorrow))}</p>
       ${rosterHtml(data, view.tomorrowRoster, view.tomorrow, view.today, { showThread: true })}
+      ${guestThreadsHtml(data, view.tomorrow)}
       ${tomorrowTurns.length ? `<h3>Turnovers</h3>${turnoverHtml(data, tomorrowTurns, view.today)}` : ""}
     </section>
     <section id="chats" class="panel">
@@ -1710,6 +1734,29 @@ function animateCounts(root) {
   });
 }
 
+function bindThreadZoom(root) {
+  let dialog = document.getElementById("thread-zoom");
+  if (!dialog) {
+    dialog = document.createElement("dialog");
+    dialog.id = "thread-zoom";
+    dialog.className = "thread-zoom";
+    dialog.innerHTML = `<button type="button" class="btn skip thread-close">Close</button><img alt="">`;
+    document.body.appendChild(dialog);
+    dialog.querySelector(".thread-close").addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+  }
+  const image = dialog.querySelector("img");
+  root.querySelectorAll(".thread-thumb").forEach((button) => {
+    button.addEventListener("click", () => {
+      image.src = button.dataset.full || "";
+      image.alt = button.getAttribute("aria-label") || "Guest thread";
+      if (typeof dialog.showModal === "function") dialog.showModal();
+    });
+  });
+}
+
 function bindStayNotes(root) {
   root.querySelectorAll(".stay-note-send").forEach((button) => {
     button.addEventListener("click", () => {
@@ -1765,6 +1812,7 @@ function paint(scrollDetail) {
     window.open(priceIssueUrl({ roomNumber, start, end, price, platforms }), "_blank", "noopener");
   });
   bindStayNotes(app);
+  bindThreadZoom(app);
   animateCounts(app);
   mountCharts();
   app.querySelectorAll("[data-tab]").forEach((button) => {

@@ -4721,6 +4721,38 @@
    "note": "Decisions refreshed: Graham P. and Joseph H. replies resolved; Nidia C. and Tat C. drafts awaiting Victor; Thomas H. item retired. Decisions moved to top."
   }
  ],
+ "guestThreads": [
+  {
+   "date": "2026-11-04",
+   "guest": "Graham P.",
+   "stayId": "graham-p-airbnb-2026-11-04",
+   "groups": [
+    {
+     "label": "Airbnb",
+     "images": ["rental/threads/2026-11-04/graham-airbnb.png"]
+    }
+   ]
+  },
+  {
+   "date": "2026-11-04",
+   "guest": "Adelia A.",
+   "stayId": "adelia-a-booking-2026-11-04",
+   "groups": [
+    {
+     "label": "Booking.com",
+     "images": [
+      "rental/threads/2026-11-04/adelia-booking-1.png",
+      "rental/threads/2026-11-04/adelia-booking-2.png",
+      "rental/threads/2026-11-04/adelia-booking-3.png"
+     ]
+    },
+    {
+     "label": "WhatsApp",
+     "images": ["rental/threads/2026-11-04/adelia-whatsapp.png"]
+    }
+   ]
+  }
+ ],
  "scheduledTasks": [
   {
    "name": "Morning host brief",
@@ -4776,6 +4808,14 @@
    "status": "active",
    "lastRun": "2026-11-03T21:44:00-05:00",
    "lastResult": "succeeded",
+   "nextRun": null
+  },
+  {
+   "name": "Day-before guest threads to GitHub",
+   "schedule": "daily ~8:00 PM",
+   "status": "active",
+   "lastRun": null,
+   "lastResult": null,
    "nextRun": null
   }
  ]
