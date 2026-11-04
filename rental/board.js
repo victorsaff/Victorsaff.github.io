@@ -659,27 +659,55 @@ function tagsFor(stay, iso, today) {
   return tags;
 }
 
+function threadShots(entry, group, large) {
+  return (group.images || []).map((path, index) => {
+    const href = threadHref(path);
+    if (!href) return "";
+    const label = `Enlarge ${group.label || "thread"} image ${index + 1} for ${entry.guest || "this guest"}`;
+    const cls = large ? "thread-large" : "thread-thumb";
+    return `<button type="button" class="${cls}" data-full="${esc(href)}" aria-label="${esc(label)}"><img src="${esc(href)}" alt=""></button>`;
+  }).join("");
+}
+
+function guestThreadCard(entry, large) {
+  const groups = (entry.groups || []).map((group) => {
+    const shots = threadShots(entry, group, large);
+    if (!shots) return "";
+    const wrap = large ? shots : `<div class="thread-shots">${shots}</div>`;
+    return `<div class="thread-group"><p class="note">${esc(group.label || "Thread")}</p>${wrap}</div>`;
+  }).join("");
+  if (!groups) return "";
+  return `<article class="card thread-card"><h3>${esc(entry.guest || "Guest")}</h3>${groups}</article>`;
+}
+
 function guestThreadsHtml(data, iso) {
   const entries = (Array.isArray(data.guestThreads) ? data.guestThreads : []).filter((entry) => entry && entry.date === iso);
-  if (!entries.length) return "";
-  const blocks = entries.map((entry) => {
-    const groups = (entry.groups || []).map((group) => {
-      const shots = (group.images || []).map((path, index) => {
-        const href = threadHref(path);
-        if (!href) return "";
-        const label = `Enlarge ${group.label || "thread"} image ${index + 1} for ${entry.guest || "this guest"}`;
-        return `<button type="button" class="thread-thumb" data-full="${esc(href)}" aria-label="${esc(label)}"><img src="${esc(href)}" alt=""></button>`;
-      }).join("");
-      if (!shots) return "";
-      return `<div class="thread-group"><p class="note">${esc(group.label || "Thread")}</p><div class="thread-shots">${shots}</div></div>`;
-    }).join("");
-    if (!groups) return "";
-    return `<article class="card thread-card"><h3>${esc(entry.guest || "Guest")}</h3>${groups}</article>`;
-  }).join("");
+  const blocks = entries.map((entry) => guestThreadCard(entry, false)).join("");
   if (!blocks) return "";
-  return `<h3>Guest threads</h3>
-    <p class="note">Tap a thumbnail to enlarge. Tomorrow's threads come from guestThreads in the data file, so the next day only needs new entries.</p>
-    ${blocks}`;
+  return `<h3>Guest threads</h3>${blocks}`;
+}
+
+function guestThreadsTabHtml(data) {
+  const entries = (Array.isArray(data.guestThreads) ? data.guestThreads : []).filter((entry) => entry);
+  if (!entries.length) return `<p class="empty">No guest threads in the data file yet.</p>`;
+  const byDate = new Map();
+  for (const entry of entries) {
+    const date = entry.date || "";
+    if (!byDate.has(date)) byDate.set(date, []);
+    byDate.get(date).push(entry);
+  }
+  const dates = [...byDate.keys()].sort((a, b) => b.localeCompare(a));
+  return dates.map((date) => {
+    const heading = date ? formatPretty(date) : "Date pending";
+    const cards = byDate.get(date).map((entry) => guestThreadCard(entry, true)).join("");
+    return `<section class="thread-day"><h3>${esc(heading)}</h3>${cards}</section>`;
+  }).join("");
+}
+
+function viewThreadsButton(data) {
+  const entries = Array.isArray(data.guestThreads) ? data.guestThreads : [];
+  if (!entries.length) return "";
+  return `<button type="button" class="btn view-threads" data-tab="threads">View guest threads</button>`;
 }
 
 function rosterHtml(data, roster, iso, today, options = {}) {
@@ -1360,9 +1388,15 @@ function renderBoard(data, view, selected, matches) {
       <div class="pills">${signPills(data)}</div>
     </header>
     <nav class="jumps" aria-label="Dashboard tabs">
-      ${["overview", "Overview", "revenue", "Revenue", "calendar", "Calendar & Prices", "reservations", "Reservations", "market", "Market", "decisions", "Decisions", "operations", "Operations", "tasks", "Scheduled Tasks"].reduce((html, item, index, list) => index % 2 ? html : html + `<button type="button" data-tab="${item}" class="${state.tab === item ? "is-on" : ""}">${list[index + 1]}</button>`, "")}
+      ${[["overview", "Overview"], ["threads", "Guest Threads"], ["revenue", "Revenue"], ["calendar", "Calendar & Prices"], ["reservations", "Reservations"], ["market", "Market"], ["decisions", "Decisions"], ["operations", "Operations"], ["tasks", "Scheduled Tasks"]].map(([id, label]) => `<button type="button" data-tab="${id}" class="${[state.tab === id ? "is-on" : "", id === "threads" ? "tab-threads" : ""].filter(Boolean).join(" ")}">${esc(label)}</button>`).join("")}
     </nav>
     <div class="tab-panel${state.tab === "overview" ? " is-on" : ""}" data-panel="overview"><section id="kpis">${kpiHtml(data, view.today)}</section></div>
+    <div class="tab-panel${state.tab === "threads" ? " is-on" : ""}" data-panel="threads">
+    <section id="guest-threads" class="panel">
+      <h2>Guest threads</h2>
+      <p class="note">Newest day first. Tap a screenshot to enlarge it. Add another day by appending to guestThreads in the data file.</p>
+      ${guestThreadsTabHtml(data)}
+    </section></div>
     <div class="tab-panel${state.tab === "decisions" ? " is-on" : ""}" data-panel="decisions"><section id="decisions" class="panel">
       <h2>Pending decisions</h2>
       <p class="note">Approve, Skip, and Send note open a public GitHub issue titled DECISION: APPROVE, DECISION: SKIP, or DECISION: COMMENT, with the decision label. This site is public. Don't add private details.</p>
@@ -1379,6 +1413,7 @@ function renderBoard(data, view, selected, matches) {
     <section id="tomorrow" class="panel">
       <h2>Tomorrow</h2>
       <p class="tomorrow-date">${esc(formatPretty(view.tomorrow))}</p>
+      ${viewThreadsButton(data)}
       ${rosterHtml(data, view.tomorrowRoster, view.tomorrow, view.today, { showThread: true })}
       ${guestThreadsHtml(data, view.tomorrow)}
       ${tomorrowTurns.length ? `<h3>Turnovers</h3>${turnoverHtml(data, tomorrowTurns, view.today)}` : ""}
@@ -1748,7 +1783,7 @@ function bindThreadZoom(root) {
     });
   }
   const image = dialog.querySelector("img");
-  root.querySelectorAll(".thread-thumb").forEach((button) => {
+  root.querySelectorAll(".thread-thumb, .thread-large").forEach((button) => {
     button.addEventListener("click", () => {
       image.src = button.dataset.full || "";
       image.alt = button.getAttribute("aria-label") || "Guest thread";
@@ -1820,6 +1855,7 @@ function paint(scrollDetail) {
       state.tab = button.dataset.tab;
       app.querySelectorAll("[data-tab]").forEach((tab) => tab.classList.toggle("is-on", tab.dataset.tab === state.tab));
       app.querySelectorAll("[data-panel]").forEach((panel) => panel.classList.toggle("is-on", panel.dataset.panel === state.tab));
+      if (button.classList.contains("view-threads") || state.tab === "threads") window.scrollTo(0, 0);
       mountCharts();
     });
   });
