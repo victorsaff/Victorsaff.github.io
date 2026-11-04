@@ -71,6 +71,20 @@
       "color": "#fb923c"
     }
   ],
+  "revenueSummary": {
+    "asOf": "2026-11-03",
+    "currency": "USD",
+    "periods": {
+      "today": { "gross": null, "net": null, "byPlatform": { "airbnb": { "gross": null, "net": null }, "booking": { "gross": null, "net": null }, "agoda": { "gross": null, "net": null } } },
+      "yesterday": { "gross": null, "net": null, "byPlatform": { "airbnb": { "gross": null, "net": null }, "booking": { "gross": null, "net": null }, "agoda": { "gross": null, "net": null } } },
+      "last7": { "gross": null, "net": null, "byPlatform": { "airbnb": { "gross": null, "net": null }, "booking": { "gross": null, "net": null }, "agoda": { "gross": null, "net": null } } },
+      "mtd": { "gross": null, "net": null, "byPlatform": { "airbnb": { "gross": null, "net": null }, "booking": { "gross": null, "net": null }, "agoda": { "gross": null, "net": null } } },
+      "last30": { "gross": null, "net": null, "byPlatform": { "airbnb": { "gross": null, "net": null }, "booking": { "gross": null, "net": null }, "agoda": { "gross": null, "net": null } } },
+      "lastMonth": { "gross": null, "net": null, "byPlatform": { "airbnb": { "gross": null, "net": null }, "booking": { "gross": null, "net": null }, "agoda": { "gross": null, "net": null } } },
+      "ytd": { "gross": null, "net": null, "byPlatform": { "airbnb": { "gross": null, "net": null }, "booking": { "gross": null, "net": null }, "agoda": { "gross": null, "net": null } } },
+      "next30": { "gross": null, "net": null, "byPlatform": { "airbnb": { "gross": null, "net": null }, "booking": { "gross": null, "net": null }, "agoda": { "gross": null, "net": null } } }
+    }
+  },
   "stays": [
     {
       "id": "sara-m-booking-2026-10-28",

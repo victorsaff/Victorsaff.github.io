@@ -399,17 +399,36 @@ function listingLines(room) {
   return lines.map((line) => `<p>${esc(line)}</p>`).join("");
 }
 
-function stayCard(data, stay, tags) {
+function threadHref(path) {
+  if (typeof path !== "string") return null;
+  const clean = path.trim();
+  if (!clean || clean.includes("..") || clean.includes("\\") || clean.includes("?") || clean.includes("#")) return null;
+  if (/^[a-z][a-z0-9+.-]*:/i.test(clean) || clean.startsWith("//")) return null;
+  if (!/^[\w./-]+$/.test(clean)) return null;
+  if (clean.startsWith("/")) return clean;
+  if (clean.startsWith("rental/")) return `/${clean}`;
+  return clean;
+}
+
+function threadLink(stay) {
+  const href = threadHref(stay.threadPhoto);
+  if (!href) return "";
+  return `<p class="thread-row"><a class="btn skip" href="${esc(href)}" target="_blank" rel="noopener noreferrer">View thread</a></p>`;
+}
+
+function stayCard(data, stay, tags, options = {}) {
   const room = roomOf(data, stay.roomId);
   const tagHtml = tags.map((tag) => `<span class="tag">${esc(tag)}</span>`).join("");
   const note = stay.notes ? `<p class="note">${esc(stay.notes)}</p>` : "";
   const color = safeColor(room.color);
   const cancelled = stay.status === "cancelled" ? " cancelled-card" : "";
+  const thread = options.showThread && tags.includes("Arrives") ? threadLink(stay) : "";
   return `<article class="stay${cancelled}" style="border-left-color:${color};background:color-mix(in srgb, ${color} 14%, var(--card))">
     <header><strong>${esc(stay.guest)}</strong>${badge(data, stay.platform)}${roomName(room)}</header>
     <p>${staySpan(stay)} · ${esc(party(stay))}</p>
     <p class="money">Stated ${pendingOr(stay.statedAmount)} · Gross ${pendingOr(stay.gross)} · Fees ${pendingOr(stay.fees)} · Net ${pendingOr(stay.net)}</p>
     ${tags.includes("Arrives") ? `<p><strong>Check-in time:</strong> ${esc(stay.arrivalTime || "unknown")} · <strong>Driving / parking:</strong> ${esc(stay.driving || "unknown")} · <strong>Contact:</strong> ${esc(stay.contactChannel || "unknown")} · <strong>Phone on file:</strong> ${esc(stay.phoneOnFile || "unknown")}</p>` : ""}
+    ${thread}
     <p class="tags">${tagHtml}</p>
     ${note}
   </article>`;
@@ -426,7 +445,7 @@ function tagsFor(stay, iso, today) {
   return tags;
 }
 
-function rosterHtml(data, roster, iso, today) {
+function rosterHtml(data, roster, iso, today, options = {}) {
   return roster.map((lane) => {
     const seen = new Set();
     const guests = [];
@@ -437,7 +456,7 @@ function rosterHtml(data, roster, iso, today) {
     }
     const sameDay = lane.arriving.length > 0 && lane.departing.length > 0;
     const guestHtml = guests.length
-      ? guests.map((stay) => stayCard(data, stay, tagsFor(stay, iso, today))).join("")
+      ? guests.map((stay) => stayCard(data, stay, tagsFor(stay, iso, today), options)).join("")
       : `<p class="empty">Open</p>`;
     const cancelled = lane.cancelled.map((stay) => `<p class="cancelled">${esc(stay.guest)} cancelled · ${staySpan(stay)}</p>`).join("");
     const flag = sameDay ? `<p class="same">Same-day turnover</p>` : "";
@@ -650,6 +669,38 @@ function gapsHtml(data) {
   }).join("")}</ul></div>`;
 }
 
+const REVENUE_PERIODS = [
+  ["today", "Today"],
+  ["yesterday", "Yesterday"],
+  ["last7", "Last 7 days"],
+  ["mtd", "MTD"],
+  ["last30", "Last 30 days"],
+  ["lastMonth", "Last month"],
+  ["ytd", "YTD"],
+  ["next30", "Next 30 days (booked)"],
+];
+
+function kpiHtml(data) {
+  const summary = data.revenueSummary || {};
+  const periods = summary.periods || {};
+  const cards = REVENUE_PERIODS.map(([key, label]) => {
+    const period = periods[key] || {};
+    const byPlatform = period.byPlatform || {};
+    const lines = (data.platforms || []).map((platform) => {
+      const row = byPlatform[platform.id] || {};
+      return `<div class="kpi-plat">${esc(platform.short || platform.label)} ${pendingOr(row.gross)} <span>gross</span> · ${pendingOr(row.net)} <span>net</span></div>`;
+    }).join("");
+    return `<article class="kpi-card">
+      <div class="card-label">${esc(label)}</div>
+      <div class="card-gross">${pendingOr(period.gross)} <span>gross</span></div>
+      <div class="card-net">${pendingOr(period.net)} <span>net</span></div>
+      ${lines}
+    </article>`;
+  }).join("");
+  const asOf = summary.asOf ? `<p class="kpi-note">Night-stayed revenue as of ${esc(formatShort(summary.asOf))}. Empty figures stay pending.</p>` : `<p class="kpi-note">Night-stayed revenue. Empty figures stay pending.</p>`;
+  return `<div class="kpi-cards">${cards}</div>${asOf}`;
+}
+
 function renderBoard(data, view, selected, matches) {
   const checked = formatChecked(data.meta.lastChecked);
   const rooms = data.rooms.map((room) => {
@@ -664,6 +715,7 @@ function renderBoard(data, view, selected, matches) {
       <div class="stripes" aria-hidden="true"><span style="background:#6ea8fe"></span><span style="background:#e879f9"></span><span style="background:#2dd4bf"></span></div>
       <p class="eyebrow">20 Puritan Road · Somerville</p>
       <h1>Rental Command Center</h1>
+      ${kpiHtml(data)}
       <p class="checked">Last checked <time datetime="${esc(data.meta.lastChecked)}">${esc(checked)}</time></p>
       <p class="sub">Today is ${esc(formatPretty(view.today))}, America/New_York. A room is occupied when check-in is on or before the date and check-out is after it.</p>
       <div class="platforms">${platforms}</div>
@@ -695,7 +747,7 @@ function renderBoard(data, view, selected, matches) {
     <section id="tomorrow" class="panel">
       <h2>Tomorrow</h2>
       <p class="tomorrow-date">${esc(formatPretty(view.tomorrow))}</p>
-      ${rosterHtml(data, view.tomorrowRoster, view.tomorrow, view.today)}
+      ${rosterHtml(data, view.tomorrowRoster, view.tomorrow, view.today, { showThread: true })}
     </section>
     <section id="calendar">
       <h2>Calendar</h2>
