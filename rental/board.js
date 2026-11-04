@@ -239,6 +239,16 @@ export function monthCells(year, month, rangeStart, rangeEnd) {
   return cells;
 }
 
+const PUBLIC_WARNING = "This repository is public. Do not add door codes, Wi-Fi passwords, card numbers, phone numbers, emails, reservation numbers, or payout batch ids.";
+
+function decisionIssueUrl(title, body) {
+  const url = new URL(`https://github.com/${REPO}/issues/new`);
+  url.searchParams.set("title", title);
+  url.searchParams.set("labels", "decision");
+  url.searchParams.set("body", body);
+  return url.toString();
+}
+
 export function decisionUrl(decision, choice) {
   const title = `DECISION: ${choice} ${decision.id}`;
   const body = [
@@ -249,19 +259,28 @@ export function decisionUrl(decision, choice) {
     decision.detail,
     "",
     "Sent from the Rental Command Center.",
-    "This repository is public. Do not add door codes, Wi-Fi passwords, card numbers, phone numbers, emails, reservation numbers, or payout batch ids.",
+    PUBLIC_WARNING,
   ].join("\n");
-  const url = new URL(`https://github.com/${REPO}/issues/new`);
-  url.searchParams.set("title", title);
-  url.searchParams.set("labels", "decision");
-  url.searchParams.set("body", body);
-  return url.toString();
+  return decisionIssueUrl(title, body);
+}
+
+export function decisionCommentUrl(decision, message) {
+  const title = `DECISION: COMMENT ${decision.id}`;
+  const body = [
+    String(message || "").trim(),
+    "",
+    `Decision id: ${decision.id}`,
+    "",
+    "Sent from the Rental Command Center.",
+    PUBLIC_WARNING,
+  ].join("\n");
+  return decisionIssueUrl(title, body);
 }
 
 export function matchDecisions(decisions, issues) {
   const map = new Map(decisions.map((decision) => [decision.id, []]));
   for (const issue of issues || []) {
-    const match = /^DECISION: (APPROVE|SKIP) ([A-Za-z0-9._-]+)\s*$/.exec(String(issue.title || "").trim());
+    const match = /^DECISION: (APPROVE|SKIP|COMMENT) ([A-Za-z0-9._-]+)\s*$/.exec(String(issue.title || "").trim());
     if (!match || !map.has(match[2])) continue;
     map.get(match[2]).push({
       choice: match[1],
@@ -578,9 +597,14 @@ function openDecisionsHtml(decisions, matches) {
       <h3>${esc(decision.title)}</h3>
       <p>${esc(decision.detail)}</p>
       ${recorded}
+      <label style="display:block;margin-top:10px;font-size:13px;font-weight:700">Message about this decision
+        <textarea class="decision-note" rows="3" style="display:block;width:100%;box-sizing:border-box;margin-top:6px;font:inherit;padding:8px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink)"></textarea>
+      </label>
+      <p class="note">This site is public. Don't add door codes, Wi-Fi passwords, card numbers, phone numbers, emails, reservation numbers, or payout batch ids.</p>
       <div class="actions">
         <a class="btn approve" href="${esc(decisionUrl(decision, "APPROVE"))}" target="_blank" rel="noopener noreferrer">Approve</a>
         <a class="btn skip" href="${esc(decisionUrl(decision, "SKIP"))}" target="_blank" rel="noopener noreferrer">Skip</a>
+        <button type="button" class="btn note-send" data-decision-id="${esc(decision.id)}" style="background:#93c5fd;color:#0f172a">Send note</button>
       </div>
     </article>`;
   }).join("");
@@ -646,7 +670,7 @@ function renderBoard(data, view, selected, matches) {
     </header>
     <section id="decisions" class="panel">
       <h2>Pending decisions</h2>
-      <p class="note">Approve and Skip open a public GitHub issue titled DECISION: APPROVE or DECISION: SKIP, with the decision label. Don't add private details.</p>
+      <p class="note">Approve, Skip, and Send note open a public GitHub issue titled DECISION: APPROVE, DECISION: SKIP, or DECISION: COMMENT, with the decision label. This site is public. Don't add private details.</p>
       ${decisionsHtml(data, matches)}
     </section>
     <nav class="jumps" aria-label="Sections">
@@ -726,6 +750,14 @@ function paint(scrollDetail) {
     button.addEventListener("click", () => {
       state.selected = button.dataset.date;
       paint(true);
+    });
+  });
+  app.querySelectorAll(".note-send").forEach((button) => {
+    button.addEventListener("click", () => {
+      const decision = state.data.decisions.find((item) => item.id === button.dataset.decisionId);
+      if (!decision) return;
+      const message = button.closest(".decision")?.querySelector(".decision-note")?.value || "";
+      window.open(decisionCommentUrl(decision, message), "_blank", "noopener");
     });
   });
   if (scrollDetail) document.getElementById("day-detail")?.scrollIntoView({ block: "nearest" });
