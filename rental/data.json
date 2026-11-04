@@ -72,155 +72,357 @@
     }
   ],
   "revenueSummary": {
-    "asOf": "2026-11-03T22:00:00-05:00",
+    "asOf": "2026-11-03T22:30:00-05:00",
     "currency": "USD",
     "mtdGoal": null,
     "daily": [],
     "periods": {
       "today": {
-        "gross": null,
-        "net": null,
+        "gross": 298.04,
+        "net": 253.33,
+        "nights": 3,
+        "grossBookingOnly": false,
+        "grossNights": 3,
         "byPlatform": {
           "airbnb": {
-            "gross": null,
-            "net": null
+            "gross": 0.0,
+            "net": 0.0,
+            "nights": 0
           },
           "booking": {
-            "gross": null,
-            "net": null
+            "gross": 298.04,
+            "net": 253.33,
+            "nights": 3
           },
           "agoda": {
-            "gross": null,
-            "net": null
+            "gross": 0.0,
+            "net": 0.0,
+            "nights": 0
           }
-        }
+        },
+        "byRoom": {
+          "room-1": {
+            "gross": 92.29,
+            "net": 78.44,
+            "nights": 1
+          },
+          "room-2": {
+            "gross": 108.0,
+            "net": 91.8,
+            "nights": 1
+          },
+          "room-3": {
+            "gross": 97.75,
+            "net": 83.09,
+            "nights": 1
+          }
+        },
+        "adr": 99.35
       },
       "yesterday": {
-        "gross": null,
-        "net": null,
+        "gross": 302.54,
+        "net": 257.15,
+        "nights": 3,
+        "grossBookingOnly": false,
+        "grossNights": 3,
         "byPlatform": {
           "airbnb": {
-            "gross": null,
-            "net": null
+            "gross": 0.0,
+            "net": 0.0,
+            "nights": 0
           },
           "booking": {
-            "gross": null,
-            "net": null
+            "gross": 302.54,
+            "net": 257.15,
+            "nights": 3
           },
           "agoda": {
-            "gross": null,
-            "net": null
+            "gross": 0.0,
+            "net": 0.0,
+            "nights": 0
           }
-        }
+        },
+        "byRoom": {
+          "room-1": {
+            "gross": 92.29,
+            "net": 78.44,
+            "nights": 1
+          },
+          "room-2": {
+            "gross": 112.5,
+            "net": 95.62,
+            "nights": 1
+          },
+          "room-3": {
+            "gross": 97.75,
+            "net": 83.09,
+            "nights": 1
+          }
+        },
+        "adr": 100.85
       },
       "last7": {
-        "gross": null,
-        "net": null,
+        "gross": 1159.75,
+        "net": 985.79,
+        "nights": 12,
+        "grossBookingOnly": false,
+        "grossNights": 12,
         "byPlatform": {
           "airbnb": {
-            "gross": null,
-            "net": null
+            "gross": 0.0,
+            "net": 0.0,
+            "nights": 0
           },
           "booking": {
-            "gross": null,
-            "net": null
+            "gross": 1159.75,
+            "net": 985.79,
+            "nights": 12
           },
           "agoda": {
-            "gross": null,
-            "net": null
+            "gross": 0.0,
+            "net": 0.0,
+            "nights": 0
           }
-        }
+        },
+        "byRoom": {
+          "room-1": {
+            "gross": 646.0,
+            "net": 549.1,
+            "nights": 7
+          },
+          "room-2": {
+            "gross": 220.5,
+            "net": 187.42,
+            "nights": 2
+          },
+          "room-3": {
+            "gross": 293.25,
+            "net": 249.26,
+            "nights": 3
+          }
+        },
+        "adr": 96.65
       },
       "mtd": {
-        "gross": null,
-        "net": null,
+        "gross": 790.61,
+        "net": 672.01,
+        "nights": 8,
+        "grossBookingOnly": false,
+        "grossNights": 8,
         "byPlatform": {
           "airbnb": {
-            "gross": null,
-            "net": null
+            "gross": 0.0,
+            "net": 0.0,
+            "nights": 0
           },
           "booking": {
-            "gross": null,
-            "net": null
+            "gross": 790.61,
+            "net": 672.01,
+            "nights": 8
           },
           "agoda": {
-            "gross": null,
-            "net": null
+            "gross": 0.0,
+            "net": 0.0,
+            "nights": 0
           }
-        }
+        },
+        "byRoom": {
+          "room-1": {
+            "gross": 276.86,
+            "net": 235.33,
+            "nights": 3
+          },
+          "room-2": {
+            "gross": 220.5,
+            "net": 187.42,
+            "nights": 2
+          },
+          "room-3": {
+            "gross": 293.25,
+            "net": 249.26,
+            "nights": 3
+          }
+        },
+        "adr": 98.83
       },
       "last30": {
-        "gross": null,
-        "net": null,
+        "gross": 1159.75,
+        "net": 985.79,
+        "nights": 12,
+        "grossBookingOnly": false,
+        "grossNights": 12,
         "byPlatform": {
           "airbnb": {
-            "gross": null,
-            "net": null
+            "gross": 0.0,
+            "net": 0.0,
+            "nights": 0
           },
           "booking": {
-            "gross": null,
-            "net": null
+            "gross": 1159.75,
+            "net": 985.79,
+            "nights": 12
           },
           "agoda": {
-            "gross": null,
-            "net": null
+            "gross": 0.0,
+            "net": 0.0,
+            "nights": 0
           }
-        }
+        },
+        "byRoom": {
+          "room-1": {
+            "gross": 646.0,
+            "net": 549.1,
+            "nights": 7
+          },
+          "room-2": {
+            "gross": 220.5,
+            "net": 187.42,
+            "nights": 2
+          },
+          "room-3": {
+            "gross": 293.25,
+            "net": 249.26,
+            "nights": 3
+          }
+        },
+        "adr": 96.65
       },
       "lastMonth": {
-        "gross": null,
-        "net": null,
+        "gross": 369.14,
+        "net": 313.77,
+        "nights": 4,
+        "grossBookingOnly": false,
+        "grossNights": 4,
         "byPlatform": {
           "airbnb": {
-            "gross": null,
-            "net": null
+            "gross": 0.0,
+            "net": 0.0,
+            "nights": 0
           },
           "booking": {
-            "gross": null,
-            "net": null
+            "gross": 369.14,
+            "net": 313.77,
+            "nights": 4
           },
           "agoda": {
-            "gross": null,
-            "net": null
+            "gross": 0.0,
+            "net": 0.0,
+            "nights": 0
           }
-        }
+        },
+        "byRoom": {
+          "room-1": {
+            "gross": 369.14,
+            "net": 313.77,
+            "nights": 4
+          },
+          "room-2": {
+            "gross": 0.0,
+            "net": 0.0,
+            "nights": 0
+          },
+          "room-3": {
+            "gross": 0.0,
+            "net": 0.0,
+            "nights": 0
+          }
+        },
+        "adr": 92.29
       },
       "ytd": {
-        "gross": null,
-        "net": null,
+        "gross": 1159.75,
+        "net": 985.79,
+        "nights": 12,
+        "grossBookingOnly": false,
+        "grossNights": 12,
         "byPlatform": {
           "airbnb": {
-            "gross": null,
-            "net": null
+            "gross": 0.0,
+            "net": 0.0,
+            "nights": 0
           },
           "booking": {
-            "gross": null,
-            "net": null
+            "gross": 1159.75,
+            "net": 985.79,
+            "nights": 12
           },
           "agoda": {
-            "gross": null,
-            "net": null
+            "gross": 0.0,
+            "net": 0.0,
+            "nights": 0
           }
-        }
+        },
+        "byRoom": {
+          "room-1": {
+            "gross": 646.0,
+            "net": 549.1,
+            "nights": 7
+          },
+          "room-2": {
+            "gross": 220.5,
+            "net": 187.42,
+            "nights": 2
+          },
+          "room-3": {
+            "gross": 293.25,
+            "net": 249.26,
+            "nights": 3
+          }
+        },
+        "adr": 96.65
       },
       "next30": {
-        "gross": null,
-        "net": null,
+        "gross": 4215.54,
+        "net": 4831.67,
+        "nights": 53,
+        "grossBookingOnly": true,
+        "grossNights": 41,
         "byPlatform": {
           "airbnb": {
             "gross": null,
-            "net": null
+            "net": 1248.47,
+            "nights": 12
           },
           "booking": {
-            "gross": null,
-            "net": null
+            "gross": 4215.54,
+            "net": 3583.2,
+            "nights": 41
           },
           "agoda": {
-            "gross": null,
-            "net": null
+            "gross": 0.0,
+            "net": 0.0,
+            "nights": 0
           }
-        }
+        },
+        "byRoom": {
+          "room-1": {
+            "gross": 1460.54,
+            "net": 1858.28,
+            "nights": 21
+          },
+          "room-2": {
+            "gross": 1138.5,
+            "net": 1493.74,
+            "nights": 15
+          },
+          "room-3": {
+            "gross": 1616.5,
+            "net": 1479.64,
+            "nights": 17
+          }
+        },
+        "adr": 102.82
       }
+    },
+    "basis": "Night-stayed: each stay amount spread evenly per night. Gross = guest room price (Booking.com export; Airbnb gross not available, so period Gross covers Booking.com only). Net = Booking.com after commission + Airbnb host payout. Agoda: no stays in these windows. ADR = known gross / nights with known gross.",
+    "missing": {
+      "airbnb": "14 confirmed stays lack guest-paid gross (host payout known); 0 lack net",
+      "booking": "1 confirmed stays lack amounts",
+      "agoda": "0 stays in window"
+    },
+    "sources": {
+      "booking": "Booking.com reservation export downloaded Nov 3 2026 ~12:50 AM ET",
+      "airbnb": "Airbnb host payout amounts from reservation emails"
     }
   },
   "prices": {
@@ -232,10 +434,10 @@
     }
   },
   "signIn": {
-    "asOf": "2026-11-03",
-    "airbnb": null,
-    "booking": null,
-    "agoda": null
+    "asOf": "2026-11-03T21:50:00-05:00",
+    "airbnb": "signed in",
+    "agoda": "signed in",
+    "booking": "needs re-verify"
   },
   "market": {
     "asOf": "2026-11-03T21:50:00-05:00",
@@ -530,7 +732,7 @@
       "net": 95.62,
       "status": "confirmed",
       "notes": "Gross and commission from Booking.com export.",
-      "arrivalTime": "after 3\u20134 PM",
+      "arrivalTime": "after 3–4 PM",
       "driving": "no",
       "contactChannel": "WhatsApp",
       "phoneOnFile": "yes"
@@ -719,7 +921,7 @@
     },
     {
       "id": "nil-airbnb-2026-11-10",
-      "guest": "Nil \u00c7.",
+      "guest": "Nil Ç.",
       "roomId": "room-1",
       "platform": "airbnb",
       "checkIn": "2026-11-10",
@@ -2257,13 +2459,13 @@
       "id": "agoda-payout",
       "platform": "agoda",
       "level": "clear",
-      "summary": "Payout of USD 142.84 received (Victor confirmed ~9:02 PM Nov 3). No Nov\u2013Dec bookings on Agoda. Portal signed in; Finance/Remittances may still hit MFA. Joseph Nov 5 already blocked on Agoda."
+      "summary": "Payout of USD 142.84 received (Victor confirmed ~9:02 PM Nov 3). No Nov–Dec bookings on Agoda. Portal signed in; Finance/Remittances may still hit MFA. Joseph Nov 5 already blocked on Agoda."
     },
     {
       "id": "airbnb-clear",
       "platform": "airbnb",
       "level": "clear",
-      "summary": "Airbnb upcoming 14 confirmed (Tat C. guest-canceled Nov 29\u2013Dec 1 ~9:30 PM). Graham parking resolved. Joseph smell/welcome sent ~6:50 PM; waiting on arrival/parking. Booking.com 59 checkout>=today (21/22/16); +1 far-future Room 1 Oct 22 2027 pending. Joseph Nov 5 blocked on Booking.com + Agoda. Agoda payout received."
+      "summary": "Airbnb upcoming 14 confirmed (Tat C. guest-canceled Nov 29–Dec 1 ~9:30 PM). Graham parking resolved. Joseph smell/welcome sent ~6:50 PM; waiting on arrival/parking. Booking.com 59 checkout>=today (21/22/16); +1 far-future Room 1 Oct 22 2027 pending. Joseph Nov 5 blocked on Booking.com + Agoda. Agoda payout received."
     },
     {
       "id": "booking-invoice-alert",
@@ -2281,14 +2483,14 @@
     },
     {
       "id": "nidia-c-late-arrival-reply",
-      "title": "Reply to Nidia C. (Booking.com, Dec 10\u201311, Room 1)",
-      "detail": "Late arrival after a concert; prefers WhatsApp. Draft shown to Victor 8:45 PM Nov 3 \u2014 waiting for his yes. Closed ~9:02 PM Nov 3 per Victor; decision issues closed.",
+      "title": "Reply to Nidia C. (Booking.com, Dec 10–11, Room 1)",
+      "detail": "Late arrival after a concert; prefers WhatsApp. Draft shown to Victor 8:45 PM Nov 3 — waiting for his yes. Closed ~9:02 PM Nov 3 per Victor; decision issues closed.",
       "status": "done"
     },
     {
       "id": "tat-c-parking-reply",
       "title": "Reply to Tat C. (Airbnb) about minivan parking",
-      "detail": "Draft shown to Victor 8:45 PM Nov 3 \u2014 waiting for his yes. Closed ~9:02 PM Nov 3 per Victor; decision issues closed.",
+      "detail": "Draft shown to Victor 8:45 PM Nov 3 — waiting for his yes. Closed ~9:02 PM Nov 3 per Victor; decision issues closed.",
       "status": "done"
     },
     {
@@ -2305,7 +2507,7 @@
     },
     {
       "id": "joseph-h-welcome-reply",
-      "title": "Joseph H. welcome + scent answer (Room 2, Nov 5\u20136)",
+      "title": "Joseph H. welcome + scent answer (Room 2, Nov 5–6)",
       "detail": "Sent 6:50 PM Nov 3. Nov 5 night blocked on Booking.com and Agoda.",
       "status": "done"
     },
@@ -2319,7 +2521,7 @@
   "changelog": [
     {
       "at": "2026-11-03T22:00:00-05:00",
-      "note": "Delta check ~10:00 PM ET. No new Booking.com/Airbnb/Agoda booking, cancel, payout, or guest-message emails since 9:05 PM (Venmo/Capital One noise only; Agoda MFA earlier). Applied 2h-sweep live cancel: Tat C. Airbnb Room 1 Nov 29\u2013Dec 1 \u2192 cancelled (Airbnb 15\u219214). Booking.com counts unchanged 59 checkout>=today (21/22/16) +1 far-future Room 1 Oct 22 2027 pending. DECISION COMMENT #10: moved lauren-airbnb-offer to Resolved (no reply needed); closed #10 and #3. Joseph still waiting on guest arrival/parking. Booking.com may need Pulse/SMS re-verify (2h sweep auth wall). Invoice USD 623.11 due Nov 16 on file."
+      "note": "Delta check ~10:00 PM ET. No new Booking.com/Airbnb/Agoda booking, cancel, payout, or guest-message emails since 9:05 PM (Venmo/Capital One noise only; Agoda MFA earlier). Applied 2h-sweep live cancel: Tat C. Airbnb Room 1 Nov 29–Dec 1 → cancelled (Airbnb 15→14). Booking.com counts unchanged 59 checkout>=today (21/22/16) +1 far-future Room 1 Oct 22 2027 pending. DECISION COMMENT #10: moved lauren-airbnb-offer to Resolved (no reply needed); closed #10 and #3. Joseph still waiting on guest arrival/parking. Booking.com may need Pulse/SMS re-verify (2h sweep auth wall). Invoice USD 623.11 due Nov 16 on file."
     },
     {
       "at": "2026-11-03T21:05:00-05:00",
@@ -2371,7 +2573,7 @@
     },
     {
       "at": "2026-11-03T08:05:00-05:00",
-      "note": "Full hourly sweep ~8:05 AM ET. Airbnb live pull 14 confirmed (matches baseline). Booking.com from overnight Excel exports 58 confirmed with checkout on/after today (20/22/16 by room, matches baseline including Thomas H. checkout today). Agoda still no Nov\u2013Dec bookings; remittance stuck. No new booking/cancel emails overnight except already-known Aythami cancel Nov 2 and Cristian G. new Dec 31. Guest chats: Antoine C. messaged overnight (arrive by car ~5:30 PM, contact given \u2014 check-in no longer held for missing phone); Graham P. Airbnb still waiting on parking reply. Lauren Airbnb special-offer decision still open (APPROVE draft to Victor first; stay open until she books)."
+      "note": "Full hourly sweep ~8:05 AM ET. Airbnb live pull 14 confirmed (matches baseline). Booking.com from overnight Excel exports 58 confirmed with checkout on/after today (20/22/16 by room, matches baseline including Thomas H. checkout today). Agoda still no Nov–Dec bookings; remittance stuck. No new booking/cancel emails overnight except already-known Aythami cancel Nov 2 and Cristian G. new Dec 31. Guest chats: Antoine C. messaged overnight (arrive by car ~5:30 PM, contact given — check-in no longer held for missing phone); Graham P. Airbnb still waiting on parking reply. Lauren Airbnb special-offer decision still open (APPROVE draft to Victor first; stay open until she books)."
     },
     {
       "at": "2026-11-03T09:00:00-05:00",
@@ -2379,7 +2581,7 @@
     },
     {
       "at": "2026-11-03T10:06:00-05:00",
-      "note": "Delta check ~10:06 AM ET. New Booking.com Room 1 check-in Fri Oct 22 2027 (confirmation email only; guest/nights/amount pending extranet). Nidia C. already on file. Airbnb still 14 confirmed. Booking confirmed checkout>=today still 59 until Oct 2027 stay has a check-out date. Booking.com signed out \u2014 need password in chat for details + calendar block. Lauren special-offer decision still open (draft-first). No new Airbnb/Agoda booking emails. No Stripe alerts."
+      "note": "Delta check ~10:06 AM ET. New Booking.com Room 1 check-in Fri Oct 22 2027 (confirmation email only; guest/nights/amount pending extranet). Nidia C. already on file. Airbnb still 14 confirmed. Booking confirmed checkout>=today still 59 until Oct 2027 stay has a check-out date. Booking.com signed out — need password in chat for details + calendar block. Lauren special-offer decision still open (draft-first). No new Airbnb/Agoda booking emails. No Stripe alerts."
     },
     {
       "at": "2026-11-03T11:07:00-05:00",

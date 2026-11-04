@@ -872,8 +872,11 @@ function kpiExtra(data, today, key) {
   if (!range || (key !== "mtd" && key !== "next30")) return "";
   const report = periodReport(data, range, key);
   const occ = report.available ? (report.confirmed / report.available) * 100 : null;
+  const stored = data.revenueSummary?.periods?.[key]?.adr;
   const gross = data.revenueSummary?.periods?.[key]?.gross;
-  const adr = gross === null || gross === undefined || !report.confirmed ? null : Number(gross) / report.confirmed;
+  const adr = stored !== null && stored !== undefined && Number.isFinite(Number(stored))
+    ? Number(stored)
+    : (gross === null || gross === undefined || !report.confirmed ? null : Number(gross) / report.confirmed);
   const occHtml = occ === null ? pendingOr(null) : `<span class="count" data-count="${occ.toFixed(1)}" data-suffix="%">0%</span>`;
   return `<p class="kpi-extra">Occupancy ${occHtml} · ADR ${pendingOr(adr)}</p>`;
 }
@@ -907,9 +910,13 @@ function occupancyChart(data, today) {
 function signPills(data) {
   const signIn = data.signIn || {};
   return (data.platforms || []).map((platform) => {
-    const value = signIn[platform.id];
-    const cls = value === true ? "ok" : value === false ? "bad" : "";
-    const text = value === true ? "Signed in" : value === false ? "Signed out" : "Sign-in pending";
+    const raw = signIn[platform.id];
+    const value = String(raw ?? "").trim().toLowerCase();
+    const signedIn = raw === true || value === "signed in";
+    const signedOut = raw === false || value === "signed out";
+    const reverify = value.includes("re-verify") || value.includes("reverify");
+    const cls = signedIn ? "ok" : signedOut ? "bad" : "";
+    const text = signedIn ? "Signed in" : signedOut ? "Signed out" : reverify ? "Needs re-verify" : raw ? String(raw) : "Sign-in pending";
     return `<span class="pill ${cls}"><i></i>${esc(platform.short || platform.label)} ${esc(text)}</span>`;
   }).join("");
 }
@@ -927,6 +934,7 @@ function kpiHtml(data, today) {
     return `<article class="kpi-card">
       <div class="card-label">${esc(label)}</div>
       <div class="card-gross">${kpiMoney(period.gross)} <span>gross</span></div>
+      ${period.grossBookingOnly ? `<p class="note">Booking.com only; Airbnb gross pending</p>` : ""}
       <div class="card-net">${kpiMoney(period.net)} <span>net</span></div>
       ${kpiExtra(data, today, key)}
       ${lines}
@@ -956,8 +964,9 @@ function kpiHtml(data, today) {
         </div>
         <div class="chart-box"><canvas id="chart-revenue"></canvas></div>
       </div>
-      <div class="chart-card"><div class="card-label">Revenue share by platform</div><div class="chart-box short"><canvas id="chart-share"></canvas></div></div>
-      <div class="chart-card"><div class="card-label">Bookings by room</div><div class="chart-box short"><canvas id="chart-rooms"></canvas></div></div>
+      <div class="chart-card"><div class="card-label">Revenue by platform</div><div class="chart-box short"><canvas id="chart-share"></canvas></div></div>
+      <div class="chart-card"><div class="card-label">Next 30 net by room</div><div class="chart-box short"><canvas id="chart-rooms"></canvas></div></div>
+      <div class="chart-card"><div class="card-label">Next 30 days</div><div class="chart-box"><canvas id="chart-next30"></canvas></div></div>
       <div class="chart-card"><div class="card-label">Occupancy by room</div><div class="chart-box short"><canvas id="chart-occupancy"></canvas></div></div>
       <div class="chart-card"><div class="card-label">ADR trend</div><div class="chart-box"><canvas id="chart-adr"></canvas></div></div>
       <div class="chart-card"><div class="card-label">Booking lead time</div><div class="chart-box"><canvas id="chart-lead"></canvas></div></div>
@@ -1190,7 +1199,7 @@ function baseChartOptions() {
             const number = typeof value === "number" ? value : value?.r;
             const label = context.dataset.label || context.label || "Value";
             if (!Number.isFinite(number)) return `${label}: pending`;
-            const countChart = ["chart-rooms", "chart-occupancy", "chart-lead"].includes(context.chart.canvas.id);
+            const countChart = ["chart-occupancy", "chart-lead"].includes(context.chart.canvas.id);
             return `${label}: ${countChart ? number : (money(number) || "pending")}`;
           },
         },
@@ -1237,12 +1246,9 @@ function mountCharts() {
   }
   const share = document.getElementById("chart-share");
   if (share) {
-    const totals = (data.platforms || []).map((platform) => {
-      const dates = eachDate(fmtDate(addDays(parseDate(today), -29)), today);
-      const value = dates.reduce((sum, iso) => sum + (nightlyValue(data, iso, "net", platform.id) || 0), 0);
-      return { platform, value };
-    }).filter((row) => row.value > 0);
-    if (!totals.length) chartMessage("chart-share", "Pending until platform net can be totaled.");
+    const byPlatform = data.revenueSummary?.periods?.next30?.byPlatform || {};
+    const totals = (data.platforms || []).map((platform) => ({ platform, value: Number(byPlatform[platform.id]?.net) })).filter((row) => Number.isFinite(row.value) && row.value > 0);
+    if (!totals.length) chartMessage("chart-share", "Pending until platform net is in revenueSummary.");
     else {
       chartMessage("chart-share", "");
       liveCharts.push(new Chart(share, {
@@ -1254,14 +1260,40 @@ function mountCharts() {
   }
   const rooms = document.getElementById("chart-rooms");
   if (rooms) {
-    const counts = (data.rooms || []).map((room) => data.stays.filter((stay) => stay.roomId === room.id && stay.status !== "cancelled").length);
-    if (!counts.some((count) => count > 0)) chartMessage("chart-rooms", "No confirmed bookings to chart.");
+    const byRoom = data.revenueSummary?.periods?.next30?.byRoom || {};
+    const rows = (data.rooms || []).map((room) => ({ room, value: Number(byRoom[room.id]?.net) })).filter((row) => Number.isFinite(row.value) && row.value > 0);
+    if (!rows.length) chartMessage("chart-rooms", "Pending until room net is in revenueSummary.");
     else {
       chartMessage("chart-rooms", "");
       liveCharts.push(new Chart(rooms, {
         type: "pie",
-        data: { labels: data.rooms.map((room) => room.name), datasets: [{ data: counts, backgroundColor: data.rooms.map((room) => room.color), money: false }] },
+        data: { labels: rows.map((row) => row.room.name), datasets: [{ data: rows.map((row) => row.value), backgroundColor: rows.map((row) => row.room.color) }] },
         options: baseChartOptions(),
+      }));
+    }
+  }
+  const next30 = document.getElementById("chart-next30");
+  if (next30) {
+    const byPlatform = data.revenueSummary?.periods?.next30?.byPlatform || {};
+    const labels = (data.platforms || []).map((platform) => platform.short || platform.label);
+    const gross = (data.platforms || []).map((platform) => {
+      const value = byPlatform[platform.id]?.gross;
+      return value === null || value === undefined || value === "" ? null : Number(value);
+    });
+    const net = (data.platforms || []).map((platform) => {
+      const value = byPlatform[platform.id]?.net;
+      return value === null || value === undefined || value === "" ? null : Number(value);
+    });
+    if (!gross.some((value) => Number.isFinite(value)) && !net.some((value) => Number.isFinite(value))) chartMessage("chart-next30", "Pending until next-30 revenue is filled in.");
+    else {
+      chartMessage("chart-next30", "");
+      liveCharts.push(new Chart(next30, {
+        type: "bar",
+        data: { labels, datasets: [
+          { label: "Gross", data: gross, backgroundColor: "#3ee0ff" },
+          { label: "Net", data: net, backgroundColor: "#ffb020" },
+        ] },
+        options: { ...baseChartOptions(), scales: { y: { beginAtZero: true } } },
       }));
     }
   }
