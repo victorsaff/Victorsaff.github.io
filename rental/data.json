@@ -4720,5 +4720,63 @@
    "at": "2026-11-03T20:48:00-05:00",
    "note": "Decisions refreshed: Graham P. and Joseph H. replies resolved; Nidia C. and Tat C. drafts awaiting Victor; Thomas H. item retired. Decisions moved to top."
   }
+ ],
+ "scheduledTasks": [
+  {
+   "name": "Morning host brief",
+   "schedule": "daily 7:00 AM",
+   "status": "active",
+   "lastRun": "2026-11-03T07:00:00-05:00",
+   "lastResult": "succeeded",
+   "nextRun": null
+  },
+  {
+   "name": "7 AM checkout instructions",
+   "schedule": "daily 7:00 AM",
+   "status": "active",
+   "lastRun": "2026-11-03T07:09:00-05:00",
+   "lastResult": "succeeded",
+   "nextRun": null
+  },
+  {
+   "name": "Hourly Command Center check",
+   "schedule": "hourly 8 AM–10 PM",
+   "status": "active",
+   "lastRun": "2026-11-03T22:00:00-05:00",
+   "lastResult": "succeeded",
+   "nextRun": null
+  },
+  {
+   "name": "Arrival-day check-in instructions",
+   "schedule": "daily ~10:30 AM",
+   "status": "active",
+   "lastRun": "2026-11-03T10:20:00-05:00",
+   "lastResult": "succeeded",
+   "nextRun": null
+  },
+  {
+   "name": "Checkout 5-star review + thank-you",
+   "schedule": "daily 2:00 PM",
+   "status": "active",
+   "lastRun": "2026-11-03T14:09:00-05:00",
+   "lastResult": "succeeded",
+   "nextRun": null
+  },
+  {
+   "name": "Evening host brief",
+   "schedule": "daily 7:00 PM",
+   "status": "active",
+   "lastRun": "2026-11-03T19:10:00-05:00",
+   "lastResult": "succeeded",
+   "nextRun": null
+  },
+  {
+   "name": "2-hour sweep, all platforms",
+   "schedule": "every 2 hours",
+   "status": "active",
+   "lastRun": "2026-11-03T21:44:00-05:00",
+   "lastResult": "succeeded",
+   "nextRun": null
+  }
  ]
 }

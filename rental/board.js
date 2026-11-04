@@ -1,5 +1,7 @@
 const REPO = "victorsaff/Victorsaff.github.io";
 
+const EASTERN = "America/New_York";
+
 export function newYorkToday(now = new Date()) {
   const parts = new Intl.DateTimeFormat("en-US", {
     timeZone: "America/New_York",
@@ -63,7 +65,7 @@ export function formatChecked(iso) {
   const date = new Date(iso);
   if (Number.isNaN(date.getTime())) return "pending";
   return new Intl.DateTimeFormat("en-US", {
-    timeZone: "America/New_York",
+    timeZone: EASTERN,
     month: "short",
     day: "numeric",
     year: "numeric",
@@ -71,6 +73,107 @@ export function formatChecked(iso) {
     minute: "2-digit",
     timeZoneName: "short",
   }).format(date);
+}
+
+function clockMinutes(hour, minute, meridiem) {
+  let value = Number(hour) % 12;
+  if (meridiem === "pm") value += 12;
+  return value * 60 + Number(minute || 0);
+}
+
+export function parseSchedule(schedule) {
+  const text = String(schedule || "").trim().toLowerCase().replace(/[–—]/g, "-");
+  let match = text.match(/^daily\s+~?\s*(\d{1,2})(?::(\d{2}))?\s*(am|pm)$/);
+  if (match) return { kind: "daily", minutes: clockMinutes(match[1], match[2], match[3]) };
+  match = text.match(/^hourly\s+(\d{1,2})(?::(\d{2}))?\s*(am|pm)\s*-\s*(\d{1,2})(?::(\d{2}))?\s*(am|pm)$/);
+  if (match) {
+    return {
+      kind: "hourly",
+      start: clockMinutes(match[1], match[2], match[3]),
+      end: clockMinutes(match[4], match[5], match[6]),
+    };
+  }
+  match = text.match(/^every\s+(\d+)\s+hours?$/);
+  if (match) return { kind: "interval", hours: Number(match[1]) };
+  return null;
+}
+
+function easternOffsetMinutes(date) {
+  const name = new Intl.DateTimeFormat("en-US", { timeZone: EASTERN, timeZoneName: "shortOffset" })
+    .formatToParts(date)
+    .find((part) => part.type === "timeZoneName")?.value || "GMT-5";
+  const match = name.match(/GMT([+-])(\d{1,2})(?::(\d{2}))?/);
+  if (!match) return -300;
+  const sign = match[1] === "-" ? -1 : 1;
+  return sign * (Number(match[2]) * 60 + Number(match[3] || 0));
+}
+
+function easternWallTime(year, month, day, hour, minute) {
+  let utc = Date.UTC(year, month - 1, day, hour, minute, 0);
+  for (let pass = 0; pass < 2; pass += 1) {
+    utc = Date.UTC(year, month - 1, day, hour, minute, 0) - easternOffsetMinutes(new Date(utc)) * 60000;
+  }
+  return new Date(utc);
+}
+
+function slotsOnDate(spec, iso) {
+  const [year, month, day] = iso.split("-").map(Number);
+  if (spec.kind === "daily") {
+    return [easternWallTime(year, month, day, Math.floor(spec.minutes / 60), spec.minutes % 60)];
+  }
+  if (spec.kind === "hourly") {
+    const slots = [];
+    for (let minute = spec.start; minute <= spec.end; minute += 60) {
+      slots.push(easternWallTime(year, month, day, Math.floor(minute / 60), minute % 60));
+    }
+    return slots;
+  }
+  return [];
+}
+
+function nextInterval(hours, lastRun, now) {
+  const step = hours * 3600000;
+  const anchor = lastRun ? new Date(lastRun) : easternWallTime(...newYorkToday(now).split("-").map(Number), 0, 0);
+  if (Number.isNaN(anchor.getTime())) return null;
+  if (anchor > now) return anchor;
+  const jumps = Math.floor((now.getTime() - anchor.getTime()) / step) + 1;
+  return new Date(anchor.getTime() + jumps * step);
+}
+
+export function taskNextRun(task, now = new Date()) {
+  if (!task) return null;
+  if (task.nextRun) {
+    const explicit = new Date(task.nextRun);
+    if (!Number.isNaN(explicit.getTime())) return explicit;
+  }
+  const spec = parseSchedule(task.schedule);
+  if (!spec) return null;
+  if (spec.kind === "interval") return nextInterval(spec.hours, task.lastRun, now);
+  const today = newYorkToday(now);
+  const tomorrow = nextDay(today);
+  const slots = [...slotsOnDate(spec, today), ...slotsOnDate(spec, tomorrow)].filter((slot) => slot > now);
+  return slots[0] || null;
+}
+
+export function upcomingRunsToday(task, now = new Date()) {
+  if (!task || String(task.status || "").toLowerCase() === "paused") return [];
+  const today = newYorkToday(now);
+  if (task.nextRun) {
+    const explicit = new Date(task.nextRun);
+    return !Number.isNaN(explicit.getTime()) && explicit > now && newYorkToday(explicit) === today ? [explicit] : [];
+  }
+  const spec = parseSchedule(task.schedule);
+  if (!spec) return [];
+  if (spec.kind === "interval") {
+    const runs = [];
+    let cursor = nextInterval(spec.hours, task.lastRun, new Date(now.getTime() - 1));
+    while (cursor && newYorkToday(cursor) === today && runs.length < 48) {
+      if (cursor > now) runs.push(cursor);
+      cursor = new Date(cursor.getTime() + spec.hours * 3600000);
+    }
+    return runs;
+  }
+  return slotsOnDate(spec, today).filter((slot) => slot > now);
 }
 
 export function money(value) {
@@ -1168,6 +1271,57 @@ function safeHttp(url) {
   return typeof url === "string" && /^https?:\/\//i.test(url) ? url : "";
 }
 
+function taskChip(kind, label) {
+  return `<span class="chip ${kind}">${esc(label)}</span>`;
+}
+
+function statusChip(status) {
+  const value = String(status || "").toLowerCase();
+  if (value === "active") return taskChip("ok", "Active");
+  if (value === "paused") return taskChip("warn", "Paused");
+  return taskChip("warn", status || "Unknown");
+}
+
+function resultChip(result) {
+  if (result === "succeeded") return taskChip("ok", "Succeeded");
+  if (result === "failed") return taskChip("bad", "Failed");
+  return taskChip("warn", "No result");
+}
+
+function scheduledTasksHtml(data, now) {
+  const tasks = Array.isArray(data.scheduledTasks) ? data.scheduledTasks : [];
+  if (!tasks.length) return `<p class="empty">No scheduled tasks in the data file.</p>`;
+  const views = tasks.map((task, index) => ({
+    task,
+    index,
+    next: taskNextRun(task, now),
+    upcoming: upcomingRunsToday(task, now),
+  })).sort((a, b) => {
+    const rank = (view) => (String(view.task.status || "").toLowerCase() === "active" ? 0 : 1);
+    const byStatus = rank(a) - rank(b);
+    if (byStatus) return byStatus;
+    const at = a.next ? a.next.getTime() : Number.POSITIVE_INFINITY;
+    const bt = b.next ? b.next.getTime() : Number.POSITIVE_INFINITY;
+    return at - bt || a.index - b.index;
+  });
+  const timeline = views.flatMap((view) => view.upcoming.map((when) => ({ when, name: view.task.name })))
+    .sort((a, b) => a.when - b.when);
+  const timelineHtml = timeline.length
+    ? `<ol class="timeline">${timeline.map((item) => `<li><time datetime="${item.when.toISOString()}">${esc(formatChecked(item.when))}</time>${esc(item.name || "Task")}</li>`).join("")}</ol>`
+    : `<p class="empty">No runs left today.</p>`;
+  const cards = views.map(({ task, next }) => `<article class="card task-card">
+      <h3>${esc(task.name || "Untitled task")}</h3>
+      <p class="note">${esc(task.schedule || "Schedule pending")}</p>
+      <div class="chips">${statusChip(task.status)}${resultChip(task.lastResult)}</div>
+      <p>Last run ${task.lastRun ? esc(formatChecked(task.lastRun)) : pendingOr(null)}</p>
+      <p>Next run ${next ? `<strong>${esc(formatChecked(next))}</strong>` : pendingOr(null)}</p>
+    </article>`).join("");
+  return `<h3>Today</h3>
+    <p class="note">Upcoming runs left today, America/New_York. Next run is calculated from the schedule when the file leaves it empty.</p>
+    ${timelineHtml}
+    <div class="task-list">${cards}</div>`;
+}
+
 function renderBoard(data, view, selected, matches) {
   const checked = formatChecked(data.meta.lastChecked);
   const filters = state.filters;
@@ -1183,7 +1337,7 @@ function renderBoard(data, view, selected, matches) {
       <div class="pills">${signPills(data)}</div>
     </header>
     <nav class="jumps" aria-label="Dashboard tabs">
-      ${["overview", "Overview", "revenue", "Revenue", "calendar", "Calendar & Prices", "reservations", "Reservations", "market", "Market", "decisions", "Decisions", "operations", "Operations"].reduce((html, item, index, list) => index % 2 ? html : html + `<button type="button" data-tab="${item}" class="${state.tab === item ? "is-on" : ""}">${list[index + 1]}</button>`, "")}
+      ${["overview", "Overview", "revenue", "Revenue", "calendar", "Calendar & Prices", "reservations", "Reservations", "market", "Market", "decisions", "Decisions", "operations", "Operations", "tasks", "Scheduled Tasks"].reduce((html, item, index, list) => index % 2 ? html : html + `<button type="button" data-tab="${item}" class="${state.tab === item ? "is-on" : ""}">${list[index + 1]}</button>`, "")}
     </nav>
     <div class="tab-panel${state.tab === "overview" ? " is-on" : ""}" data-panel="overview"><section id="kpis">${kpiHtml(data, view.today)}</section></div>
     <div class="tab-panel${state.tab === "decisions" ? " is-on" : ""}" data-panel="decisions"><section id="decisions" class="panel">
@@ -1218,6 +1372,11 @@ function renderBoard(data, view, selected, matches) {
       ${changelogHtml(data)}
     </section>
     </div>
+    <div class="tab-panel${state.tab === "tasks" ? " is-on" : ""}" data-panel="tasks">
+    <section id="tasks" class="panel">
+      <h2>Scheduled tasks</h2>
+      ${scheduledTasksHtml(data, new Date())}
+    </section></div>
     <div class="tab-panel${state.tab === "calendar" ? " is-on" : ""}" data-panel="calendar">
     <section id="calendar" class="panel">
       <h2>Calendar</h2>
