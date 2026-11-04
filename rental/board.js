@@ -277,6 +277,39 @@ export function decisionCommentUrl(decision, message) {
   return decisionIssueUrl(title, body);
 }
 
+export function stayNoteUrl(stay, room, message) {
+  const title = `NOTE: ${stay.id}`;
+  const roomLabel = room?.name || "Room pending";
+  const checkIn = stay.checkIn || "check-in pending";
+  const body = [
+    String(message || "").trim(),
+    "",
+    `Stay: ${stay.guest}, ${roomLabel}, ${checkIn}`,
+    "",
+    "Sent from the Rental Command Center.",
+    PUBLIC_WARNING,
+  ].join("\n");
+  const url = new URL(`https://github.com/${REPO}/issues/new`);
+  url.searchParams.set("title", title);
+  url.searchParams.set("labels", "note");
+  url.searchParams.set("body", body);
+  return url.toString();
+}
+
+export function matchStayNotes(stays, issues) {
+  const map = new Map((stays || []).map((stay) => [stay.id, []]));
+  for (const issue of issues || []) {
+    const match = /^NOTE: ([A-Za-z0-9._-]+)\s*$/.exec(String(issue.title || "").trim());
+    if (!match || !map.has(match[1])) continue;
+    map.get(match[1]).push({
+      title: issue.title,
+      url: issue.html_url || "",
+      number: issue.number,
+    });
+  }
+  return map;
+}
+
 export function matchDecisions(decisions, issues) {
   const map = new Map(decisions.map((decision) => [decision.id, []]));
   for (const issue of issues || []) {
@@ -416,6 +449,19 @@ function threadLink(stay) {
   return `<p class="thread-row"><a class="btn skip" href="${esc(href)}" target="_blank" rel="noopener noreferrer">View thread</a></p>`;
 }
 
+function stayNoteBox(stay) {
+  const found = state.stayNotes?.get(stay.id) || [];
+  const recorded = found.length
+    ? `<ul class="choice">${found.map((issue) => `<li>NOTE recorded${issue.url ? ` · <a href="${esc(issue.url)}">issue ${esc(issue.number || "")}</a>` : ""}</li>`).join("")}</ul>`
+    : "";
+  return `${recorded}
+    <label style="display:block;margin-top:10px;font-size:13px;font-weight:700">Message about this stay
+      <textarea class="stay-note" rows="2" style="display:block;width:100%;box-sizing:border-box;margin-top:6px;font:inherit;padding:8px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink)"></textarea>
+    </label>
+    <p class="note">This site is public. Don't add door codes, Wi-Fi passwords, card numbers, phone numbers, emails, reservation numbers, or payout batch ids.</p>
+    <button type="button" class="btn stay-note-send" data-stay-id="${esc(stay.id)}" style="background:#93c5fd;color:#0f172a;flex:none;display:inline-block;margin-top:8px">Send note</button>`;
+}
+
 function stayCard(data, stay, tags, options = {}) {
   const room = roomOf(data, stay.roomId);
   const tagHtml = tags.map((tag) => `<span class="tag">${esc(tag)}</span>`).join("");
@@ -431,6 +477,7 @@ function stayCard(data, stay, tags, options = {}) {
     ${thread}
     <p class="tags">${tagHtml}</p>
     ${note}
+    ${stayNoteBox(stay)}
   </article>`;
 }
 
@@ -517,6 +564,7 @@ function cancellationsHtml(data) {
       <header><strong>${esc(stay.guest)}</strong>${badge(data, stay.platform)}${room ? roomName(room) : `<span class="pending">Room pending</span>`}</header>
       <p>${staySpan(stay)}</p>
       <p class="note">${esc(stay.notes || "Cancelled.")}</p>
+      ${stayNoteBox(stay)}
     </article>`;
   }).join("");
 }
@@ -791,12 +839,14 @@ const state = {
   today: "",
   selected: "",
   issues: [],
+  stayNotes: new Map(),
 };
 
 function paint(scrollDetail) {
   const app = document.querySelector("#app");
   const y = window.scrollY;
   const view = derive(state.data, state.today);
+  state.stayNotes = matchStayNotes(state.data.stays, state.issues);
   app.innerHTML = renderBoard(state.data, view, state.selected, matchDecisions(state.data.decisions, state.issues));
   app.querySelectorAll("[data-date]").forEach((button) => {
     button.addEventListener("click", () => {
@@ -812,6 +862,14 @@ function paint(scrollDetail) {
       window.open(decisionCommentUrl(decision, message), "_blank", "noopener");
     });
   });
+  app.querySelectorAll(".stay-note-send").forEach((button) => {
+    button.addEventListener("click", () => {
+      const stay = state.data.stays.find((item) => item.id === button.dataset.stayId);
+      if (!stay) return;
+      const message = button.closest(".stay")?.querySelector(".stay-note")?.value || "";
+      window.open(stayNoteUrl(stay, roomOf(state.data, stay.roomId), message), "_blank", "noopener");
+    });
+  });
   if (scrollDetail) document.getElementById("day-detail")?.scrollIntoView({ block: "nearest" });
   else window.scrollTo(0, y);
 }
@@ -822,14 +880,28 @@ async function loadData() {
   return response.json();
 }
 
-async function loadIssues() {
-  const query = "repo:victorsaff/Victorsaff.github.io is:issue is:open DECISION: in:title";
+async function searchIssues(term) {
+  const query = `repo:victorsaff/Victorsaff.github.io is:issue is:open ${term} in:title`;
   const response = await fetch(`https://api.github.com/search/issues?q=${encodeURIComponent(query)}`, {
     headers: { Accept: "application/vnd.github+json" },
   });
   if (!response.ok) return [];
   const payload = await response.json();
   return payload.items || [];
+}
+
+async function loadIssues() {
+  const lists = await Promise.all(["DECISION:", "NOTE:"].map((term) => searchIssues(term).catch(() => [])));
+  const seen = new Set();
+  const items = [];
+  for (const list of lists) {
+    for (const issue of list) {
+      if (seen.has(issue.id)) continue;
+      seen.add(issue.id);
+      items.push(issue);
+    }
+  }
+  return items;
 }
 
 async function boot() {

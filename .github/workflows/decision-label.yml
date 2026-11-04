@@ -9,14 +9,20 @@ permissions:
 
 jobs:
   label:
-    if: startsWith(github.event.issue.title, 'DECISION:')
+    if: startsWith(github.event.issue.title, 'DECISION:') || startsWith(github.event.issue.title, 'NOTE:')
     runs-on: ubuntu-latest
     steps:
-      - name: Apply the decision label
+      - name: Apply the decision or note label
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}
           ISSUE: ${{ github.event.issue.number }}
+          TITLE: ${{ github.event.issue.title }}
         run: |
-          gh label create decision --color 0E8A16 --description "Choice recorded from the Rental Command Center" || true
-          gh issue edit "$ISSUE" --add-label decision
+          if [[ "$TITLE" == NOTE:* ]]; then
+            gh label create note --color 1D76DB --description "Note recorded from a rental stay card" || true
+            gh issue edit "$ISSUE" --add-label note
+          else
+            gh label create decision --color 0E8A16 --description "Choice recorded from the Rental Command Center" || true
+            gh issue edit "$ISSUE" --add-label decision
+          fi
