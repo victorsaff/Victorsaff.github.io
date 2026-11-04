@@ -3,7 +3,7 @@
     "schemaVersion": 1,
     "timezone": "America/New_York",
     "currency": "USD",
-    "lastChecked": "2026-11-03T18:05:00-05:00",
+    "lastChecked": "2026-11-03T19:12:00-05:00",
     "property": "20 Puritan Road, Somerville",
     "occupancyRule": "A room is occupied on a date when checkIn <= date < checkOut. If check-in or check-out is null, those nights are not marked occupied.",
     "amountRule": "null means pending. statedAmount is the figure given for the whole stay. Do not copy it into gross, fees, or net unless that split is known. Do not invent amounts, party sizes, or dates.",
@@ -1534,13 +1534,13 @@
       "platform": "airbnb",
       "checkIn": "2026-11-05",
       "checkOut": "2026-11-06",
-      "adults": null,
-      "statedAmount": null,
+      "adults": 2,
+      "statedAmount": 105.64,
       "gross": null,
       "fees": null,
-      "net": null,
+      "net": 105.64,
       "status": "confirmed",
-      "notes": "Booked Nov 3 ~5:13 PM ET; smell question unanswered; welcome not sent yet"
+      "notes": "Booked Nov 3 ~5:13 PM ET; smell + welcome/address reply sent ~6:50 PM ET; waiting on guest for arrival/parking; 2 guests; host payout $105.64"
     }
   ],
   "payouts": [
@@ -1567,8 +1567,8 @@
       "guest": "Joseph H.",
       "platform": "airbnb",
       "roomId": "room-2",
-      "at": "2026-11-03T17:33:00-05:00",
-      "summary": "New stay Nov 5-6 Room 2. Asked about smells; message unread ~5:33 PM ET. Welcome not sent yet. Waiting on a host reply."
+      "at": "2026-11-03T18:50:00-05:00",
+      "summary": "Smell + welcome/address reply sent ~6:50 PM ET (Airbnb). Waiting on guest for arrival time / parking needs."
     },
     {
       "id": "nidia-c-late-arrival",
@@ -1583,8 +1583,8 @@
       "guest": "Graham P.",
       "platform": "airbnb",
       "roomId": "room-1",
-      "at": "2026-11-03T10:50:00-05:00",
-      "summary": "Asked for parking instructions (also ~2:30 PM arrival note). Still waiting on a reply before Nov 4 check-in."
+      "at": "2026-11-03T18:51:00-05:00",
+      "summary": "Parking + 2:30 PM arrival ack sent ~6:50 PM ET; guest replied \"Sounds great\" ~6:51 PM. Resolved for Nov 4 check-in."
     },
     {
       "id": "antoine-c-arrival",
@@ -1614,7 +1614,7 @@
       "id": "airbnb-clear",
       "platform": "airbnb",
       "level": "clear",
-      "summary": "Live delta: Airbnb upcoming 15 confirmed (+Joseph H. Room 2 Nov 5-6). Booking.com still 59 checkout>=today (21/22/16)."
+      "summary": "Airbnb upcoming 15 confirmed. Graham parking resolved (guest \"Sounds great\" ~6:51 PM). Joseph smell/welcome sent ~6:50 PM; waiting on arrival/parking. Booking.com still 59 checkout>=today (21/22/16)."
     },
     {
       "id": "booking-invoice-alert",
@@ -1650,6 +1650,10 @@
     }
   ],
   "changelog": [
+    {
+      "at": "2026-11-03T19:12:00-05:00",
+      "note": "Delta check ~7:12 PM ET. No new Booking.com/Airbnb/Agoda booking, cancel, payout, or guest-message emails since 6:05 PM (Agoda MFA PIN + Venmo/Capital One noise only). Live Airbnb verify: Graham P. parking resolved (guest \"Sounds great\" ~6:51 PM); Joseph H. smell+welcome sent ~6:50 PM (2 guests; waiting on arrival/parking). Counts unchanged: Booking.com 59 (21/22/16), Airbnb 15. Lauren #3 still open (draft-first until she books). Booking.com still signed out. Invoice USD 623.11 due Nov 16 on file."
+    },
     {
       "at": "2026-11-03T18:05:00-05:00",
       "note": "Delta check ~6:05 PM ET. New Airbnb: Joseph H. Room 2 (Premium King Bed Room) Nov 5-6 (booked ~5:13 PM; smell ask ~5:33 PM unanswered; welcome not sent). No Booking.com/Agoda booking/cancel/payout emails since 5:02 PM (Agoda MFA PIN only). Counts: Booking.com 59 confirmed checkout>=today (21/22/16), Airbnb 15. Lauren special-offer issue #3 stays open until she books (draft-first). Booking.com still signed out. Invoice USD 623.11 due Nov 16 already on file."
