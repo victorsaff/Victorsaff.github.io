@@ -296,6 +296,61 @@ export function stayNoteUrl(stay, room, message) {
   return url.toString();
 }
 
+export function priceRoomKey(room) {
+  const match = String(room?.id || "").match(/(\d+)/);
+  return match ? `room${match[1]}` : "";
+}
+
+export function nightPrices(data, room, iso) {
+  const row = data.prices?.rooms?.[priceRoomKey(room)]?.[iso] || {};
+  return {
+    airbnb: row.airbnb ?? null,
+    booking: row.booking ?? null,
+    agoda: row.agoda ?? null,
+  };
+}
+
+export function priceText(value) {
+  if (value === null || value === undefined || value === "") return "—";
+  const formatted = money(value);
+  return formatted === null ? "—" : formatted;
+}
+
+export function priceIssueUrl({ roomNumber, start, end, price, platforms }) {
+  const platformList = platforms.join(",");
+  const title = `PRICE: room${roomNumber} ${start}..${end} ${price} ${platformList}`;
+  const body = [
+    `Room: Room ${roomNumber}`,
+    `Start: ${start}`,
+    `End: ${end}`,
+    `Price: ${price}`,
+    `Platforms: ${platforms.join(", ")}`,
+    "",
+    "Sent from the Rental Command Center.",
+    PUBLIC_WARNING,
+  ].join("\n");
+  return decisionIssueUrl(title, body);
+}
+
+export function matchPriceIssues(issues) {
+  const found = [];
+  for (const issue of issues || []) {
+    const match = /^PRICE: room(\d+) (\d{4}-\d{2}-\d{2})\.\.(\d{4}-\d{2}-\d{2}) (\S+) (\S+)\s*$/.exec(String(issue.title || "").trim());
+    if (!match) continue;
+    found.push({
+      roomNumber: match[1],
+      start: match[2],
+      end: match[3],
+      price: match[4],
+      platforms: match[5],
+      title: issue.title,
+      url: issue.html_url || "",
+      number: issue.number,
+    });
+  }
+  return found;
+}
+
 export function matchStayNotes(stays, issues) {
   const map = new Map((stays || []).map((stay) => [stay.id, []]));
   for (const issue of issues || []) {
@@ -527,7 +582,12 @@ function calendarHtml(data, view, selected) {
       const turnover = lanes.some((lane) => lane.arriving.length && lane.departing.length);
       const conflict = lanes.some((lane) => lane.occupied.length > 1);
       const names = lanes.flatMap((lane) => [...lane.occupied, ...lane.presentIncomplete, ...lane.arriving].map((stay) => `${stay.guest} ${lane.room.name}`));
-      const labelText = `${formatPretty(cell.iso)}. ${names.length ? [...new Set(names)].join(", ") : "No occupied rooms"}${turnover ? ". Same-day turnover" : ""}`;
+      const priceBits = (data.rooms || []).map((room) => {
+        const prices = nightPrices(data, room, cell.iso);
+        return `${room.name} Airbnb ${priceText(prices.airbnb)}, Booking ${priceText(prices.booking)}, Agoda ${priceText(prices.agoda)}`;
+      });
+      const openRequest = (state.priceIssues || []).some((request) => request.start <= cell.iso && cell.iso <= request.end);
+      const labelText = `${formatPretty(cell.iso)}. ${names.length ? [...new Set(names)].join(", ") : "No occupied rooms"}${turnover ? ". Same-day turnover" : ""}. ${priceBits.join(". ")}`;
       const bars = [
         ...occupiedRooms.map((room) => `<i style="background:${safeColor(room.color)}"></i>`),
         ...hollowRooms.map((room) => `<i class="hollow" style="color:${safeColor(room.color)}"></i>`),
@@ -538,6 +598,7 @@ function calendarHtml(data, view, selected) {
         cell.iso === selected ? "is-selected" : "",
         turnover ? "is-turnover" : "",
         conflict ? "is-conflict" : "",
+        openRequest ? "has-price-request" : "",
       ].filter(Boolean).join(" ");
       return `<button type="button" class="${classes}" data-date="${cell.iso}" aria-pressed="${cell.iso === selected}" aria-label="${esc(labelText)}">
         <span class="num">${cell.day}</span>
@@ -548,6 +609,45 @@ function calendarHtml(data, view, selected) {
     return `<div class="month"><h3>${esc(label)}</h3><div class="weekdays"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div><div class="week">${cells}</div></div>`;
   }).join("");
   return months;
+}
+
+function nightlyPricesHtml(data, iso) {
+  const cards = (data.rooms || []).map((room) => {
+    const prices = nightPrices(data, room, iso);
+    return `<article class="price-room" style="border-top:4px solid ${safeColor(room.color)}">
+      <strong>${esc(room.name)}</strong>
+      <p>Airbnb ${esc(priceText(prices.airbnb))}</p>
+      <p>Booking.com ${esc(priceText(prices.booking))}</p>
+      <p>Agoda ${esc(priceText(prices.agoda))}</p>
+    </article>`;
+  }).join("");
+  return `<h3>Nightly prices</h3><p class="note">${esc(formatPretty(iso))}. A dash means no price is stored for that platform.</p><div class="price-board">${cards}</div>`;
+}
+
+function priceFormHtml(data, selected) {
+  const rooms = (data.rooms || []).map((room) => `<option value="${esc(room.id)}">${esc(room.name)}</option>`).join("");
+  const checks = (data.platforms || []).map((platform) => `<label><input type="checkbox" name="platform" value="${esc(platform.id)}" checked> ${esc(platform.short || platform.label)}</label>`).join("");
+  return `<form class="price-form" id="price-form">
+    <h3>Change price</h3>
+    <label>Room<select name="room">${rooms}</select></label>
+    <label>Start<input type="date" name="start" value="${esc(selected)}" required></label>
+    <label>End<input type="date" name="end" value="${esc(selected)}" required></label>
+    <label>New price<input type="number" name="price" min="0" step="0.01" inputmode="decimal" required></label>
+    <fieldset class="price-checks"><legend>Platforms</legend>${checks}</fieldset>
+    <p class="note">This site is public. Don't add door codes, Wi-Fi passwords, card numbers, phone numbers, emails, reservation numbers, or payout batch ids.</p>
+    <button type="submit" class="btn" style="background:#93c5fd;color:#0f172a;flex:none;display:inline-block">Change price</button>
+    <p class="price-error" hidden></p>
+  </form>`;
+}
+
+function openPriceHtml(requests, iso) {
+  if (!requests.length) return `<h3>Open price requests</h3><p class="empty">No open price requests.</p>`;
+  const items = requests.map((request) => {
+    const covers = request.start <= iso && iso <= request.end ? " · covers this date" : "";
+    const link = request.url ? ` · <a href="${esc(request.url)}">issue ${esc(request.number || "")}</a>` : "";
+    return `<li class="card">Room ${esc(request.roomNumber)} · ${esc(request.start)}–${esc(request.end)} · ${esc(request.price)} · ${esc(request.platforms)}${esc(covers)}${link}</li>`;
+  }).join("");
+  return `<h3>Open price requests</h3><ul class="list">${items}</ul>`;
 }
 
 function detailHtml(data, iso, today) {
@@ -803,6 +903,9 @@ function renderBoard(data, view, selected, matches) {
       <div class="legend">${data.rooms.map((room) => roomName(room)).join("")}</div>
       ${calendarHtml(data, view, selected)}
       ${detailHtml(data, selected, view.today)}
+      ${nightlyPricesHtml(data, selected)}
+      ${priceFormHtml(data, selected)}
+      ${openPriceHtml(state.priceIssues || [], selected)}
       ${laterHtml(data)}
       <h3>Cancellations</h3>
       ${cancellationsHtml(data)}
@@ -840,6 +943,7 @@ const state = {
   selected: "",
   issues: [],
   stayNotes: new Map(),
+  priceIssues: [],
 };
 
 function paint(scrollDetail) {
@@ -847,6 +951,7 @@ function paint(scrollDetail) {
   const y = window.scrollY;
   const view = derive(state.data, state.today);
   state.stayNotes = matchStayNotes(state.data.stays, state.issues);
+  state.priceIssues = matchPriceIssues(state.issues);
   app.innerHTML = renderBoard(state.data, view, state.selected, matchDecisions(state.data.decisions, state.issues));
   app.querySelectorAll("[data-date]").forEach((button) => {
     button.addEventListener("click", () => {
@@ -861,6 +966,25 @@ function paint(scrollDetail) {
       const message = button.closest(".decision")?.querySelector(".decision-note")?.value || "";
       window.open(decisionCommentUrl(decision, message), "_blank", "noopener");
     });
+  });
+  app.querySelector("#price-form")?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const error = form.querySelector(".price-error");
+    const room = roomOf(state.data, new FormData(form).get("room"));
+    const start = form.start.value;
+    const end = form.end.value;
+    const price = form.price.value.trim();
+    const platforms = [...form.querySelectorAll('input[name="platform"]:checked')].map((box) => box.value);
+    const roomNumber = priceRoomKey(room).replace("room", "");
+    const amount = Number(price);
+    if (!roomNumber || !start || !end || end < start || !Number.isFinite(amount) || amount < 0 || !platforms.length) {
+      error.hidden = false;
+      error.textContent = "Choose a room, a start date on or before the end date, a price, and at least one platform.";
+      return;
+    }
+    error.hidden = true;
+    window.open(priceIssueUrl({ roomNumber, start, end, price, platforms }), "_blank", "noopener");
   });
   app.querySelectorAll(".stay-note-send").forEach((button) => {
     button.addEventListener("click", () => {
@@ -891,7 +1015,7 @@ async function searchIssues(term) {
 }
 
 async function loadIssues() {
-  const lists = await Promise.all(["DECISION:", "NOTE:"].map((term) => searchIssues(term).catch(() => [])));
+  const lists = await Promise.all(["DECISION:", "NOTE:", "PRICE:"].map((term) => searchIssues(term).catch(() => [])));
   const seen = new Set();
   const items = [];
   for (const list of lists) {

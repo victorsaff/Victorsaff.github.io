@@ -85,6 +85,14 @@
       "next30": { "gross": null, "net": null, "byPlatform": { "airbnb": { "gross": null, "net": null }, "booking": { "gross": null, "net": null }, "agoda": { "gross": null, "net": null } } }
     }
   },
+  "prices": {
+    "asOf": "2026-11-03",
+    "rooms": {
+      "room1": {},
+      "room2": {},
+      "room3": {}
+    }
+  },
   "stays": [
     {
       "id": "sara-m-booking-2026-10-28",

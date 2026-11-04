@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   label:
-    if: startsWith(github.event.issue.title, 'DECISION:') || startsWith(github.event.issue.title, 'NOTE:')
+    if: startsWith(github.event.issue.title, 'DECISION:') || startsWith(github.event.issue.title, 'NOTE:') || startsWith(github.event.issue.title, 'PRICE:')
     runs-on: ubuntu-latest
     steps:
       - name: Apply the decision or note label
