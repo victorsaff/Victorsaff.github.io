@@ -1004,16 +1004,26 @@ function marketHtml(data) {
   const market = data.market || { comps: [], summary: {} };
   const comps = Array.isArray(market.comps) ? market.comps : [];
   const summary = market.summary || {};
-  const rows = comps.map((comp) => `<li class="card"><strong>${esc(comp.name || "Comp")}</strong> ${esc(comp.platform || "")}<p class="note">${esc(comp.type || "")} · ${comp.distanceMi == null ? "—" : esc(comp.distanceMi) + " mi"} · ${comp.nightlyPrice == null ? "—" : esc(money(comp.nightlyPrice) || "—")}${safeHttp(comp.url) ? ` · <a href="${esc(safeHttp(comp.url))}">listing</a>` : ""}</p></li>`).join("");
-  const values = [["Our avg", summary.ourAvg], ["Median", summary.median], ["25th", summary.p25], ["75th", summary.p75]];
-  const nums = values.map(([, value]) => Number(value)).filter((value) => Number.isFinite(value));
-  const max = Math.max(...nums, 1);
-  const bars = values.map(([label, value]) => {
-    const width = Number.isFinite(Number(value)) ? Math.round((Number(value) / max) * 100) : 0;
-    return `<div class="meter"><span>${esc(label)}</span><div class="track"><div class="fill" style="width:${width}%;background:#6ea8fe"></div></div><span>${value == null ? "—" : esc(money(value) || "—")}</span></div>`;
+  const rows = comps.map((comp) => {
+    const price = comp.nightlyPrice == null || !Number.isFinite(Number(comp.nightlyPrice)) ? "—" : money(comp.nightlyPrice) || "—";
+    const when = comp.date ? formatShort(String(comp.date).slice(0, 10)) : "date pending";
+    const rating = comp.rating == null ? "—" : esc(comp.rating);
+    const reviews = comp.reviews == null ? "—" : esc(comp.reviews);
+    const distance = comp.distanceMi == null ? "—" : `${esc(comp.distanceMi)} mi`;
+    return `<li class="card"><strong>${esc(comp.name || "Comp")}</strong> ${esc(comp.platform || "")}<p class="note">${esc(comp.type || "")} · ${distance} · ${rating} · ${reviews} reviews · ${esc(when)} · ${esc(price)}${safeHttp(comp.url) ? ` · <a href="${esc(safeHttp(comp.url))}">listing</a>` : ""}</p></li>`;
   }).join("");
-  return `<p class="note">${market.asOf ? `As of ${esc(formatShort(market.asOf))}. ` : ""}Nearby prices stay blank until comps are filled in.</p>
-    <div class="chart-card"><div class="chart-box"><canvas id="chart-market"></canvas></div></div>
+  const values = [["Our avg", summary.ourAvg], ["Median", summary.median], ["25th", summary.p25], ["75th", summary.p75]];
+  const finite = values.filter(([, value]) => value !== null && value !== undefined && value !== "" && Number.isFinite(Number(value))).map(([, value]) => Number(value));
+  const max = Math.max(...finite, 1);
+  const bars = values.map(([label, value]) => {
+    const known = value !== null && value !== undefined && value !== "" && Number.isFinite(Number(value));
+    const width = known ? Math.round((Number(value) / max) * 100) : 0;
+    return `<div class="meter"><span>${esc(label)}</span><div class="track"><div class="fill" style="width:${width}%;background:${label === "Our avg" ? "#ffb020" : "#3ee0ff"}"></div></div><span>${known ? esc(money(value) || "—") : "—"}</span></div>`;
+  }).join("");
+  const asOf = market.asOf ? formatShort(String(market.asOf).slice(0, 10)) : "";
+  return `<p class="note">${asOf ? `As of ${esc(asOf)}. ` : ""}${esc(market.source || "Public listing prices. Our average stays blank until it is filled in.")}</p>
+    ${bars}
+    <div class="chart-card"><div class="chart-box" style="height:${Math.max(220, comps.length * 28)}px"><canvas id="chart-market"></canvas></div></div>
     ${rows ? `<ul class="list">${rows}</ul>` : `<p class="empty">No comps logged.</p>`}`;
 }
 
@@ -1307,7 +1317,8 @@ function mountCharts() {
   const market = document.getElementById("chart-market");
   if (market) {
     const comps = (data.market?.comps || []).filter((comp) => Number.isFinite(Number(comp.nightlyPrice)));
-    const ours = Number(data.market?.summary?.ourAvg);
+    const rawOurs = data.market?.summary?.ourAvg;
+    const ours = rawOurs === null || rawOurs === undefined || rawOurs === "" ? null : Number(rawOurs);
     if (!comps.length && !Number.isFinite(ours)) chartMessage("chart-market", "Pending until nearby prices are filled in.");
     else {
       chartMessage("chart-market", "");
@@ -1317,7 +1328,7 @@ function mountCharts() {
       liveCharts.push(new Chart(market, {
         type: "bar",
         data: { labels, datasets: [{ label: "Nightly price", data: values, backgroundColor: labels.map((label, index) => index === labels.length - 1 && Number.isFinite(ours) ? "#4ade80" : "#6ea8fe") }] },
-        options: { ...baseChartOptions(), scales: { y: { beginAtZero: true } } },
+        options: { ...baseChartOptions(), indexAxis: "y", scales: { x: { beginAtZero: true } } },
       }));
     }
   }

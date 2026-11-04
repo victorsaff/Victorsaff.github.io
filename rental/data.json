@@ -77,14 +77,150 @@
     "mtdGoal": null,
     "daily": [],
     "periods": {
-      "today": { "gross": null, "net": null, "byPlatform": { "airbnb": { "gross": null, "net": null }, "booking": { "gross": null, "net": null }, "agoda": { "gross": null, "net": null } } },
-      "yesterday": { "gross": null, "net": null, "byPlatform": { "airbnb": { "gross": null, "net": null }, "booking": { "gross": null, "net": null }, "agoda": { "gross": null, "net": null } } },
-      "last7": { "gross": null, "net": null, "byPlatform": { "airbnb": { "gross": null, "net": null }, "booking": { "gross": null, "net": null }, "agoda": { "gross": null, "net": null } } },
-      "mtd": { "gross": null, "net": null, "byPlatform": { "airbnb": { "gross": null, "net": null }, "booking": { "gross": null, "net": null }, "agoda": { "gross": null, "net": null } } },
-      "last30": { "gross": null, "net": null, "byPlatform": { "airbnb": { "gross": null, "net": null }, "booking": { "gross": null, "net": null }, "agoda": { "gross": null, "net": null } } },
-      "lastMonth": { "gross": null, "net": null, "byPlatform": { "airbnb": { "gross": null, "net": null }, "booking": { "gross": null, "net": null }, "agoda": { "gross": null, "net": null } } },
-      "ytd": { "gross": null, "net": null, "byPlatform": { "airbnb": { "gross": null, "net": null }, "booking": { "gross": null, "net": null }, "agoda": { "gross": null, "net": null } } },
-      "next30": { "gross": null, "net": null, "byPlatform": { "airbnb": { "gross": null, "net": null }, "booking": { "gross": null, "net": null }, "agoda": { "gross": null, "net": null } } }
+      "today": {
+        "gross": null,
+        "net": null,
+        "byPlatform": {
+          "airbnb": {
+            "gross": null,
+            "net": null
+          },
+          "booking": {
+            "gross": null,
+            "net": null
+          },
+          "agoda": {
+            "gross": null,
+            "net": null
+          }
+        }
+      },
+      "yesterday": {
+        "gross": null,
+        "net": null,
+        "byPlatform": {
+          "airbnb": {
+            "gross": null,
+            "net": null
+          },
+          "booking": {
+            "gross": null,
+            "net": null
+          },
+          "agoda": {
+            "gross": null,
+            "net": null
+          }
+        }
+      },
+      "last7": {
+        "gross": null,
+        "net": null,
+        "byPlatform": {
+          "airbnb": {
+            "gross": null,
+            "net": null
+          },
+          "booking": {
+            "gross": null,
+            "net": null
+          },
+          "agoda": {
+            "gross": null,
+            "net": null
+          }
+        }
+      },
+      "mtd": {
+        "gross": null,
+        "net": null,
+        "byPlatform": {
+          "airbnb": {
+            "gross": null,
+            "net": null
+          },
+          "booking": {
+            "gross": null,
+            "net": null
+          },
+          "agoda": {
+            "gross": null,
+            "net": null
+          }
+        }
+      },
+      "last30": {
+        "gross": null,
+        "net": null,
+        "byPlatform": {
+          "airbnb": {
+            "gross": null,
+            "net": null
+          },
+          "booking": {
+            "gross": null,
+            "net": null
+          },
+          "agoda": {
+            "gross": null,
+            "net": null
+          }
+        }
+      },
+      "lastMonth": {
+        "gross": null,
+        "net": null,
+        "byPlatform": {
+          "airbnb": {
+            "gross": null,
+            "net": null
+          },
+          "booking": {
+            "gross": null,
+            "net": null
+          },
+          "agoda": {
+            "gross": null,
+            "net": null
+          }
+        }
+      },
+      "ytd": {
+        "gross": null,
+        "net": null,
+        "byPlatform": {
+          "airbnb": {
+            "gross": null,
+            "net": null
+          },
+          "booking": {
+            "gross": null,
+            "net": null
+          },
+          "agoda": {
+            "gross": null,
+            "net": null
+          }
+        }
+      },
+      "next30": {
+        "gross": null,
+        "net": null,
+        "byPlatform": {
+          "airbnb": {
+            "gross": null,
+            "net": null
+          },
+          "booking": {
+            "gross": null,
+            "net": null
+          },
+          "agoda": {
+            "gross": null,
+            "net": null
+          }
+        }
+      }
     }
   },
   "prices": {
@@ -102,12 +238,201 @@
     "agoda": null
   },
   "market": {
-    "asOf": "2026-11-03",
-    "comps": [],
+    "asOf": "2026-11-03T21:50:00-05:00",
+    "source": "Airbnb public search, private rooms; nightly = displayed total incl. fees pre-tax / nights",
+    "comps": [
+      {
+        "name": "Near Union Square with free parking",
+        "platform": "Airbnb",
+        "url": "https://www.airbnb.com/rooms/1180423135852483171",
+        "type": "Private room (Somerville)",
+        "distanceMi": null,
+        "rating": 4.97,
+        "reviews": 103,
+        "nightlyPrice": 226,
+        "date": "2026-11-06"
+      },
+      {
+        "name": "5-minute walk to the green line",
+        "platform": "Airbnb",
+        "url": "https://www.airbnb.com/rooms/28542114",
+        "type": "Private room (Somerville)",
+        "distanceMi": null,
+        "rating": 4.83,
+        "reviews": 185,
+        "nightlyPrice": 175,
+        "date": "2026-11-06"
+      },
+      {
+        "name": "Mid-century modern, 5 min to Green Line",
+        "platform": "Airbnb",
+        "url": "https://www.airbnb.com/rooms/1741535672316566123",
+        "type": "Private room (Somerville)",
+        "distanceMi": null,
+        "rating": 5.0,
+        "reviews": 8,
+        "nightlyPrice": 165,
+        "date": "2026-11-06"
+      },
+      {
+        "name": "Sun-filled, near Davis Square",
+        "platform": "Airbnb",
+        "url": "https://www.airbnb.com/rooms/1525608294485255306",
+        "type": "Private room (Somerville)",
+        "distanceMi": null,
+        "rating": 4.71,
+        "reviews": 17,
+        "nightlyPrice": 160,
+        "date": "2026-11-06"
+      },
+      {
+        "name": "Charming older home near Harvard and MIT",
+        "platform": "Airbnb",
+        "url": "https://www.airbnb.com/rooms/21410959",
+        "type": "Private room (Somerville)",
+        "distanceMi": null,
+        "rating": 4.79,
+        "reviews": 290,
+        "nightlyPrice": 84,
+        "date": "2026-11-06"
+      },
+      {
+        "name": "Quiet Inman Square studio in 1840s home",
+        "platform": "Airbnb",
+        "url": "https://www.airbnb.com/rooms/620351115192130942",
+        "type": "Private room (Cambridge)",
+        "distanceMi": null,
+        "rating": 4.85,
+        "reviews": 255,
+        "nightlyPrice": 172,
+        "date": "2026-11-06"
+      },
+      {
+        "name": "Free parking near Tufts and Green Line",
+        "platform": "Airbnb",
+        "url": "https://www.airbnb.com/rooms/53883554",
+        "type": "Private room (Medford)",
+        "distanceMi": null,
+        "rating": 4.87,
+        "reviews": 299,
+        "nightlyPrice": 117,
+        "date": "2026-11-06"
+      },
+      {
+        "name": "Private entrance near Union Square",
+        "platform": "Airbnb",
+        "url": "https://www.airbnb.com/rooms/876985400832585108",
+        "type": "Private room (Somerville)",
+        "distanceMi": null,
+        "rating": 4.93,
+        "reviews": 132,
+        "nightlyPrice": 157.5,
+        "date": "2026-11-13"
+      },
+      {
+        "name": "Near Green Line with free parking",
+        "platform": "Airbnb",
+        "url": "https://www.airbnb.com/rooms/13883630",
+        "type": "Private room (Somerville)",
+        "distanceMi": null,
+        "rating": 4.91,
+        "reviews": 192,
+        "nightlyPrice": 170,
+        "date": "2026-11-13"
+      },
+      {
+        "name": "1857 Queen Anne Victorian with private deck",
+        "platform": "Airbnb",
+        "url": "https://www.airbnb.com/rooms/281264",
+        "type": "Private room (Somerville)",
+        "distanceMi": null,
+        "rating": 4.82,
+        "reviews": 682,
+        "nightlyPrice": 200,
+        "date": "2026-11-13"
+      },
+      {
+        "name": "Modern home with heated bathroom floors",
+        "platform": "Airbnb",
+        "url": "https://www.airbnb.com/rooms/6128543",
+        "type": "Private room (Somerville)",
+        "distanceMi": null,
+        "rating": 4.98,
+        "reviews": 413,
+        "nightlyPrice": 125,
+        "date": "2026-11-13"
+      },
+      {
+        "name": "Daily croissants and coffee included",
+        "platform": "Airbnb",
+        "url": "https://www.airbnb.com/rooms/1090510972522509104",
+        "type": "Private room (Somerville)",
+        "distanceMi": null,
+        "rating": 4.69,
+        "reviews": 100,
+        "nightlyPrice": 115,
+        "date": "2026-11-13"
+      },
+      {
+        "name": "3 blocks from Union Square",
+        "platform": "Airbnb",
+        "url": "https://www.airbnb.com/rooms/21229815",
+        "type": "Private room (Somerville)",
+        "distanceMi": null,
+        "rating": 4.77,
+        "reviews": 352,
+        "nightlyPrice": 62,
+        "date": "2026-12-09"
+      },
+      {
+        "name": "Charming home 3 blocks from Union Square",
+        "platform": "Airbnb",
+        "url": "https://www.airbnb.com/rooms/28215021",
+        "type": "Private room (Somerville)",
+        "distanceMi": null,
+        "rating": 4.75,
+        "reviews": 178,
+        "nightlyPrice": 74,
+        "date": "2026-12-09"
+      },
+      {
+        "name": "King bed with free parking near Boston",
+        "platform": "Airbnb",
+        "url": "https://www.airbnb.com/rooms/1754688408516106665",
+        "type": "Private room (Somerville)",
+        "distanceMi": null,
+        "rating": 5.0,
+        "reviews": 10,
+        "nightlyPrice": 125,
+        "date": "2026-12-09"
+      },
+      {
+        "name": "Cathedral ceilings with free parking",
+        "platform": "Airbnb",
+        "url": "https://www.airbnb.com/rooms/6449061",
+        "type": "Private room (Somerville)",
+        "distanceMi": null,
+        "rating": 4.92,
+        "reviews": 1055,
+        "nightlyPrice": 178,
+        "date": "2026-12-09"
+      },
+      {
+        "name": "Quiet Inman Square room near Harvard",
+        "platform": "Airbnb",
+        "url": "https://www.airbnb.com/rooms/623961563501401503",
+        "type": "Private room (Cambridge)",
+        "distanceMi": null,
+        "rating": 4.76,
+        "reviews": 341,
+        "nightlyPrice": 110,
+        "date": "2026-12-09"
+      }
+    ],
     "summary": {
-      "median": null,
-      "p25": null,
-      "p75": null,
+      "median": 157.5,
+      "p25": 112.5,
+      "p75": 173.5,
       "ourAvg": null
     }
   },
@@ -205,7 +530,7 @@
       "net": 95.62,
       "status": "confirmed",
       "notes": "Gross and commission from Booking.com export.",
-      "arrivalTime": "after 3\u20134 PM",
+      "arrivalTime": "after 3–4 PM",
       "driving": "no",
       "contactChannel": "WhatsApp",
       "phoneOnFile": "yes"
@@ -394,7 +719,7 @@
     },
     {
       "id": "nil-airbnb-2026-11-10",
-      "guest": "Nil \u00c7.",
+      "guest": "Nil Ç.",
       "roomId": "room-1",
       "platform": "airbnb",
       "checkIn": "2026-11-10",
@@ -1932,7 +2257,7 @@
       "id": "agoda-payout",
       "platform": "agoda",
       "level": "clear",
-      "summary": "Payout of USD 142.84 received (Victor confirmed ~9:02 PM Nov 3). No Nov\u2013Dec bookings on Agoda. Portal signed in; Finance/Remittances may still hit MFA. Joseph Nov 5 already blocked on Agoda."
+      "summary": "Payout of USD 142.84 received (Victor confirmed ~9:02 PM Nov 3). No Nov–Dec bookings on Agoda. Portal signed in; Finance/Remittances may still hit MFA. Joseph Nov 5 already blocked on Agoda."
     },
     {
       "id": "airbnb-clear",
@@ -1956,14 +2281,14 @@
     },
     {
       "id": "nidia-c-late-arrival-reply",
-      "title": "Reply to Nidia C. (Booking.com, Dec 10\u201311, Room 1)",
-      "detail": "Late arrival after a concert; prefers WhatsApp. Draft shown to Victor 8:45 PM Nov 3 \u2014 waiting for his yes. Closed ~9:02 PM Nov 3 per Victor; decision issues closed.",
+      "title": "Reply to Nidia C. (Booking.com, Dec 10–11, Room 1)",
+      "detail": "Late arrival after a concert; prefers WhatsApp. Draft shown to Victor 8:45 PM Nov 3 — waiting for his yes. Closed ~9:02 PM Nov 3 per Victor; decision issues closed.",
       "status": "done"
     },
     {
       "id": "tat-c-parking-reply",
       "title": "Reply to Tat C. (Airbnb) about minivan parking",
-      "detail": "Draft shown to Victor 8:45 PM Nov 3 \u2014 waiting for his yes. Closed ~9:02 PM Nov 3 per Victor; decision issues closed.",
+      "detail": "Draft shown to Victor 8:45 PM Nov 3 — waiting for his yes. Closed ~9:02 PM Nov 3 per Victor; decision issues closed.",
       "status": "done"
     },
     {
@@ -1980,7 +2305,7 @@
     },
     {
       "id": "joseph-h-welcome-reply",
-      "title": "Joseph H. welcome + scent answer (Room 2, Nov 5\u20136)",
+      "title": "Joseph H. welcome + scent answer (Room 2, Nov 5–6)",
       "detail": "Sent 6:50 PM Nov 3. Nov 5 night blocked on Booking.com and Agoda.",
       "status": "done"
     },
@@ -2042,7 +2367,7 @@
     },
     {
       "at": "2026-11-03T08:05:00-05:00",
-      "note": "Full hourly sweep ~8:05 AM ET. Airbnb live pull 14 confirmed (matches baseline). Booking.com from overnight Excel exports 58 confirmed with checkout on/after today (20/22/16 by room, matches baseline including Thomas H. checkout today). Agoda still no Nov\u2013Dec bookings; remittance stuck. No new booking/cancel emails overnight except already-known Aythami cancel Nov 2 and Cristian G. new Dec 31. Guest chats: Antoine C. messaged overnight (arrive by car ~5:30 PM, contact given \u2014 check-in no longer held for missing phone); Graham P. Airbnb still waiting on parking reply. Lauren Airbnb special-offer decision still open (APPROVE draft to Victor first; stay open until she books)."
+      "note": "Full hourly sweep ~8:05 AM ET. Airbnb live pull 14 confirmed (matches baseline). Booking.com from overnight Excel exports 58 confirmed with checkout on/after today (20/22/16 by room, matches baseline including Thomas H. checkout today). Agoda still no Nov–Dec bookings; remittance stuck. No new booking/cancel emails overnight except already-known Aythami cancel Nov 2 and Cristian G. new Dec 31. Guest chats: Antoine C. messaged overnight (arrive by car ~5:30 PM, contact given — check-in no longer held for missing phone); Graham P. Airbnb still waiting on parking reply. Lauren Airbnb special-offer decision still open (APPROVE draft to Victor first; stay open until she books)."
     },
     {
       "at": "2026-11-03T09:00:00-05:00",
@@ -2050,7 +2375,7 @@
     },
     {
       "at": "2026-11-03T10:06:00-05:00",
-      "note": "Delta check ~10:06 AM ET. New Booking.com Room 1 check-in Fri Oct 22 2027 (confirmation email only; guest/nights/amount pending extranet). Nidia C. already on file. Airbnb still 14 confirmed. Booking confirmed checkout>=today still 59 until Oct 2027 stay has a check-out date. Booking.com signed out \u2014 need password in chat for details + calendar block. Lauren special-offer decision still open (draft-first). No new Airbnb/Agoda booking emails. No Stripe alerts."
+      "note": "Delta check ~10:06 AM ET. New Booking.com Room 1 check-in Fri Oct 22 2027 (confirmation email only; guest/nights/amount pending extranet). Nidia C. already on file. Airbnb still 14 confirmed. Booking confirmed checkout>=today still 59 until Oct 2027 stay has a check-out date. Booking.com signed out — need password in chat for details + calendar block. Lauren special-offer decision still open (draft-first). No new Airbnb/Agoda booking emails. No Stripe alerts."
     },
     {
       "at": "2026-11-03T11:07:00-05:00",
