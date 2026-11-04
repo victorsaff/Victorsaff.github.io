@@ -390,6 +390,7 @@ function stayCard(data, stay, tags) {
     <header><strong>${esc(stay.guest)}</strong>${badge(data, stay.platform)}${roomName(room)}</header>
     <p>${staySpan(stay)} · ${esc(party(stay))}</p>
     <p class="money">Stated ${pendingOr(stay.statedAmount)} · Gross ${pendingOr(stay.gross)} · Fees ${pendingOr(stay.fees)} · Net ${pendingOr(stay.net)}</p>
+    ${tags.includes("Arrives") ? `<p><strong>Check-in time:</strong> ${esc(stay.arrivalTime || "unknown")} · <strong>Driving / parking:</strong> ${esc(stay.driving || "unknown")} · <strong>Contact:</strong> ${esc(stay.contactChannel || "unknown")} · <strong>Phone on file:</strong> ${esc(stay.phoneOnFile || "unknown")}</p>` : ""}
     <p class="tags">${tagHtml}</p>
     ${note}
   </article>`;
@@ -559,7 +560,16 @@ function healthHtml(data) {
 }
 
 function decisionsHtml(data, matches) {
-  return data.decisions.map((decision) => {
+  const open = data.decisions.filter((d) => d.status !== "done");
+  const done = data.decisions.filter((d) => d.status === "done");
+  const resolved = done.length
+    ? `<h3>Resolved</h3><ul class="list">${done.map((d) => `<li class="card"><strong class="good">✓ ${esc(d.title)}</strong><p class="note">${esc(d.detail)}</p></li>`).join("")}</ul>`
+    : "";
+  return (open.length ? openDecisionsHtml(open, matches) : `<p class="empty">No open decisions.</p>`) + resolved;
+}
+
+function openDecisionsHtml(decisions, matches) {
+  return decisions.map((decision) => {
     const found = matches.get(decision.id) || [];
     const recorded = found.length
       ? `<ul class="choice">${found.map((issue) => `<li>${esc(issue.choice)} recorded${issue.url ? ` · <a href="${esc(issue.url)}">issue ${esc(issue.number || "")}</a>` : ""}</li>`).join("")}</ul>`
@@ -634,7 +644,13 @@ function renderBoard(data, view, selected, matches) {
       <p class="sub">Today is ${esc(formatPretty(view.today))}, America/New_York. A room is occupied when check-in is on or before the date and check-out is after it.</p>
       <div class="platforms">${platforms}</div>
     </header>
+    <section id="decisions" class="panel">
+      <h2>Pending decisions</h2>
+      <p class="note">Approve and Skip open a public GitHub issue titled DECISION: APPROVE or DECISION: SKIP, with the decision label. Don't add private details.</p>
+      ${decisionsHtml(data, matches)}
+    </section>
     <nav class="jumps" aria-label="Sections">
+      <a href="#decisions">Decisions</a>
       <a href="#now">Now</a>
       <a href="#tomorrow">Tomorrow</a>
       <a href="#calendar">Calendar</a>
@@ -643,7 +659,6 @@ function renderBoard(data, view, selected, matches) {
       <a href="#revenue">Revenue</a>
       <a href="#chats">Chats</a>
       <a href="#health">Health</a>
-      <a href="#decisions">Decisions</a>
       <a href="#log">Log</a>
     </nav>
     <div class="room-grid">${rooms}</div>
@@ -686,11 +701,6 @@ function renderBoard(data, view, selected, matches) {
     <section id="health">
       <h2>Account health</h2>
       <div class="health-grid">${healthHtml(data)}</div>
-    </section>
-    <section id="decisions">
-      <h2>Pending decisions</h2>
-      <p class="note">Approve and Skip open a public GitHub issue titled DECISION: APPROVE or DECISION: SKIP, with the decision label. Don't add private details.</p>
-      ${decisionsHtml(data, matches)}
     </section>
     <section id="log">
       <h2>Change log</h2>

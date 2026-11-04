@@ -145,7 +145,11 @@
       "fees": null,
       "net": 97.17,
       "status": "confirmed",
-      "notes": ""
+      "notes": "",
+      "arrivalTime": "~2:30 PM",
+      "driving": "yes",
+      "contactChannel": "Airbnb thread",
+      "phoneOnFile": "no"
     },
     {
       "id": "adelia-a-booking-2026-11-04",
@@ -160,7 +164,11 @@
       "fees": 16.88,
       "net": 95.62,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "after 3–4 PM",
+      "driving": "no",
+      "contactChannel": "WhatsApp",
+      "phoneOnFile": "yes"
     },
     {
       "id": "fatiq-n-airbnb-2026-11-05",
@@ -175,7 +183,11 @@
       "fees": null,
       "net": 97.17,
       "status": "confirmed",
-      "notes": ""
+      "notes": "",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "aythami-p-booking-2026-11-05",
@@ -205,7 +217,11 @@
       "fees": 42.08,
       "net": 238.42,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "samuel-b-booking-2026-11-06",
@@ -220,7 +236,11 @@
       "fees": 16.57,
       "net": 93.93,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "arthur-w-booking-2026-11-07",
@@ -235,7 +255,11 @@
       "fees": 19.5,
       "net": 110.5,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "adya-s-booking-2026-11-07",
@@ -250,7 +274,11 @@
       "fees": 15.53,
       "net": 87.97,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "catherine-s-booking-2026-11-08",
@@ -265,7 +293,11 @@
       "fees": 16.57,
       "net": 93.93,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "ana-g-booking-2026-11-08",
@@ -280,7 +312,11 @@
       "fees": 29.32,
       "net": 166.18,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "mahema-s-airbnb-2026-11-09",
@@ -295,7 +331,11 @@
       "fees": null,
       "net": 105.62,
       "status": "confirmed",
-      "notes": ""
+      "notes": "",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "christophe-r-booking-2026-11-09",
@@ -325,7 +365,11 @@
       "fees": null,
       "net": 211.25,
       "status": "confirmed",
-      "notes": ""
+      "notes": "",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "mahema-s-airbnb-2026-11-10",
@@ -340,7 +384,11 @@
       "fees": null,
       "net": 105.62,
       "status": "confirmed",
-      "notes": ""
+      "notes": "",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "elena-s-booking-2026-11-11",
@@ -370,7 +418,11 @@
       "fees": 46.58,
       "net": 263.92,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "lewes-k-airbnb-2026-11-12",
@@ -385,7 +437,11 @@
       "fees": null,
       "net": 99.29,
       "status": "confirmed",
-      "notes": ""
+      "notes": "",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "jenn-h-booking-2026-11-13",
@@ -400,7 +456,11 @@
       "fees": 14.66,
       "net": 83.09,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "tracy-l-booking-2026-11-13",
@@ -415,7 +475,11 @@
       "fees": 16.88,
       "net": 95.62,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "sergei-k-booking-2026-11-14",
@@ -430,7 +494,11 @@
       "fees": 14.85,
       "net": 84.15,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "elia-c-booking-2026-11-14",
@@ -445,7 +513,11 @@
       "fees": 17.55,
       "net": 99.45,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "luke-b-airbnb-2026-11-15",
@@ -460,7 +532,11 @@
       "fees": null,
       "net": 105.62,
       "status": "confirmed",
-      "notes": ""
+      "notes": "",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "daling-j-booking-2026-11-15",
@@ -490,7 +566,11 @@
       "fees": 33.75,
       "net": 191.25,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "hailey-b-booking-2026-11-17",
@@ -505,7 +585,11 @@
       "fees": 33.75,
       "net": 191.25,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "iana-k-booking-2026-11-18",
@@ -520,7 +604,11 @@
       "fees": 44.55,
       "net": 252.45,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "antoine-g-airbnb-2026-11-19",
@@ -535,7 +623,11 @@
       "fees": null,
       "net": 105.62,
       "status": "confirmed",
-      "notes": ""
+      "notes": "",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "ai-s-booking-2026-11-19",
@@ -550,7 +642,11 @@
       "fees": 58.65,
       "net": 332.35,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "renata-v-booking-2026-11-20",
@@ -565,7 +661,11 @@
       "fees": 16.88,
       "net": 95.62,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "emiliano-d-booking-2026-11-21",
@@ -580,7 +680,11 @@
       "fees": 44.55,
       "net": 252.45,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "philip-b-airbnb-2026-11-21",
@@ -595,7 +699,11 @@
       "fees": null,
       "net": 109.85,
       "status": "confirmed",
-      "notes": ""
+      "notes": "",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "otto-k-airbnb-2026-11-24",
@@ -610,7 +718,11 @@
       "fees": null,
       "net": 105.62,
       "status": "confirmed",
-      "notes": ""
+      "notes": "",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "lilliana-v-booking-2026-11-25",
@@ -625,7 +737,11 @@
       "fees": 44.55,
       "net": 252.45,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "tat-c-airbnb-2026-11-29",
@@ -640,7 +756,11 @@
       "fees": null,
       "net": 211.25,
       "status": "confirmed",
-      "notes": ""
+      "notes": "",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "carmen-p-booking-2026-12-03",
@@ -670,7 +790,11 @@
       "fees": 15.53,
       "net": 87.97,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "mari-r-booking-2026-12-22",
@@ -685,7 +809,11 @@
       "fees": 14.85,
       "net": 84.15,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "luz-r-booking-2026-12-23",
@@ -700,7 +828,11 @@
       "fees": 16.88,
       "net": 95.62,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "jingya-p-airbnb-2026-12-24",
@@ -715,7 +847,11 @@
       "fees": null,
       "net": 405.6,
       "status": "confirmed",
-      "notes": ""
+      "notes": "",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "cristian-g-booking-2026-12-31",
@@ -730,7 +866,11 @@
       "fees": 45.9,
       "net": 260.1,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "richard-v-booking-2027-03-19",
@@ -760,7 +900,11 @@
       "fees": 20.25,
       "net": 114.75,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "pablo-s-booking-2027-04-16",
@@ -775,7 +919,11 @@
       "fees": 43.35,
       "net": 245.65,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "ivan-q-booking-2027-04-16",
@@ -790,7 +938,11 @@
       "fees": 82.88,
       "net": 469.62,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "pablo-s-booking-2027-04-16-2",
@@ -805,7 +957,11 @@
       "fees": 21.6,
       "net": 122.4,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "cristian-l-booking-2027-04-17",
@@ -820,7 +976,11 @@
       "fees": 58.65,
       "net": 332.35,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "graziele-a-booking-2027-04-21",
@@ -835,7 +995,11 @@
       "fees": 21.68,
       "net": 122.82,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "sylvie-f-booking-2027-04-21",
@@ -850,7 +1014,11 @@
       "fees": 18.49,
       "net": 104.76,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "sylvie-f-booking-2027-04-22",
@@ -865,7 +1033,11 @@
       "fees": 18.49,
       "net": 104.76,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "sylvie-f-booking-2027-04-23",
@@ -880,7 +1052,11 @@
       "fees": 18.49,
       "net": 104.76,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "christina-l-airbnb-2027-04-24",
@@ -895,7 +1071,11 @@
       "fees": null,
       "net": 126.75,
       "status": "confirmed",
-      "notes": null
+      "notes": null,
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "sylvie-f-booking-2027-04-24",
@@ -910,7 +1090,11 @@
       "fees": 18.49,
       "net": 104.76,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "arseniy-p-booking-2027-04-24",
@@ -925,7 +1109,11 @@
       "fees": 86.4,
       "net": 489.6,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "tatiana-k-booking-2027-05-02",
@@ -955,7 +1143,11 @@
       "fees": 40.5,
       "net": 229.5,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "milena-d-booking-2027-05-08",
@@ -970,7 +1162,11 @@
       "fees": 20.25,
       "net": 114.75,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "bala-s-booking-2027-05-08",
@@ -985,7 +1181,11 @@
       "fees": 20.25,
       "net": 114.75,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "sirpa-j-booking-2027-05-12",
@@ -1000,7 +1200,11 @@
       "fees": 40.5,
       "net": 229.5,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "milena-d-booking-2027-05-14",
@@ -1015,7 +1219,11 @@
       "fees": 20.25,
       "net": 114.75,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "amanda-k-booking-2027-05-15",
@@ -1030,7 +1238,11 @@
       "fees": 14.66,
       "net": 83.09,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "chris-t-booking-2027-05-19",
@@ -1045,7 +1257,11 @@
       "fees": 60.75,
       "net": 344.25,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "aditya-g-booking-2027-05-20",
@@ -1060,7 +1276,11 @@
       "fees": 165.75,
       "net": 939.25,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "maya-b-airbnb-2027-05-22",
@@ -1075,7 +1295,11 @@
       "fees": null,
       "net": 518.41,
       "status": "confirmed",
-      "notes": null
+      "notes": null,
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "yiran-y-booking-2027-05-26",
@@ -1090,7 +1314,11 @@
       "fees": 65.25,
       "net": 369.75,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "ilga-b-booking-2027-05-26",
@@ -1120,7 +1348,11 @@
       "fees": 51.64,
       "net": 292.61,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "alberto-g-booking-2027-06-01",
@@ -1150,7 +1382,11 @@
       "fees": 25.5,
       "net": 144.5,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "kayla-h-booking-2027-06-19",
@@ -1180,7 +1416,11 @@
       "fees": 55.46,
       "net": 314.29,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "suhu-m-booking-2027-07-21",
@@ -1210,7 +1450,11 @@
       "fees": 43.5,
       "net": 246.5,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "karis-p-booking-2027-08-09",
@@ -1240,7 +1484,11 @@
       "fees": 43.5,
       "net": 246.5,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "dan-s-booking-2027-09-14",
@@ -1285,7 +1533,11 @@
       "fees": 39.0,
       "net": 221.0,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "jennifer-m-booking-2027-10-01",
@@ -1375,7 +1627,11 @@
       "fees": 19.5,
       "net": 110.5,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "vincent-h-booking-2027-10-18-2",
@@ -1435,7 +1691,11 @@
       "fees": 101.25,
       "net": 573.75,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "reshunda-p-booking-2027-10-29",
@@ -1450,7 +1710,11 @@
       "fees": 73.31,
       "net": 415.44,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "glendoria-a-booking-2027-10-30-2",
@@ -1465,7 +1729,11 @@
       "fees": 32.51,
       "net": 184.24,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "glendoria-a-booking-2027-10-30",
@@ -1480,7 +1748,11 @@
       "fees": 55.46,
       "net": 314.29,
       "status": "confirmed",
-      "notes": "Gross and commission from Booking.com export."
+      "notes": "Gross and commission from Booking.com export.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "rachael-s-booking-2027-11-12",
@@ -1510,7 +1782,11 @@
       "fees": null,
       "net": null,
       "status": "confirmed",
-      "notes": "New Booking.com stay Dec 10-11 Room 1. Amount pending. Guest asked about late return after concert; prefers WhatsApp. No PII stored here."
+      "notes": "New Booking.com stay Dec 10-11 Room 1. Amount pending. Guest asked about late return after concert; prefers WhatsApp. No PII stored here.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "WhatsApp",
+      "phoneOnFile": "yes"
     },
     {
       "id": "pending-booking-room1-2027-10-22",
@@ -1525,7 +1801,11 @@
       "fees": null,
       "net": null,
       "status": "confirmed",
-      "notes": "New Booking.com email 9:28 AM ET Nov 3 for Room 1 check-in Fri Oct 22 2027. Guest name, check-out, and amount not in the confirmation email; need extranet. Do not invent."
+      "notes": "New Booking.com email 9:28 AM ET Nov 3 for Room 1 check-in Fri Oct 22 2027. Guest name, check-out, and amount not in the confirmation email; need extranet. Do not invent.",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "unknown",
+      "phoneOnFile": "unknown"
     },
     {
       "id": "joseph-h-airbnb-2026-11-05",
@@ -1540,7 +1820,11 @@
       "fees": null,
       "net": 105.64,
       "status": "confirmed",
-      "notes": "Booked Nov 3 ~5:13 PM ET; smell + welcome/address reply sent ~6:50 PM ET; waiting on guest for arrival/parking; 2 guests; host payout $105.64"
+      "notes": "Booked Nov 3 ~5:13 PM ET; smell + welcome/address reply sent ~6:50 PM ET; waiting on guest for arrival/parking; 2 guests; host payout $105.64",
+      "arrivalTime": "unknown",
+      "driving": "unknown",
+      "contactChannel": "Airbnb thread",
+      "phoneOnFile": "no"
     }
   ],
   "payouts": [
@@ -1625,28 +1909,46 @@
   ],
   "decisions": [
     {
-      "id": "antoine-c-nudge",
-      "title": "Antoine C. nudge draft",
-      "detail": "Nudge not needed; guest already sent arrival time and WhatsApp preference.",
-      "status": "done"
+      "id": "nidia-c-late-arrival-reply",
+      "title": "Reply to Nidia C. (Booking.com, Dec 10–11, Room 1)",
+      "detail": "Late arrival after a concert; prefers WhatsApp. Draft shown to Victor 8:45 PM Nov 3 — waiting for his yes.",
+      "status": "pending"
     },
     {
-      "id": "thomas-h-checkin-post",
-      "title": "Post Thomas H. check-in in the Booking.com thread",
-      "detail": "Decide whether to post Thomas H.'s check-in in the Booking.com thread. Check-in details are not stored here.",
+      "id": "tat-c-parking-reply",
+      "title": "Reply to Tat C. (Airbnb) about minivan parking",
+      "detail": "Draft shown to Victor 8:45 PM Nov 3 — waiting for his yes.",
       "status": "pending"
     },
     {
       "id": "lauren-airbnb-offer",
       "title": "Lauren's Airbnb special offer",
-      "detail": "Lauren has an Airbnb special offer (combined discount for repeated stays). Status: open / in progress — keep open until she books. APPROVE draft goes to Victor first; do not mark done yet. Discount amount pending.",
+      "detail": "Waiting on Lauren; no reply since Victor's Nov 2 message. Keep open until she books.",
       "status": "pending"
     },
     {
       "id": "agoda-payout",
-      "title": "Stuck Agoda payout",
-      "detail": "Agoda payout of USD 142.84 is stuck. The card on file is expired and there is no reissue option. No card number or payout batch id is stored here.",
+      "title": "Stuck Agoda payout (USD 142.84)",
+      "detail": "Virtual card expired Oct 26, no reissue option. Two Agoda support cases open since Oct 24 with no reply.",
       "status": "pending"
+    },
+    {
+      "id": "graham-p-parking-reply",
+      "title": "Graham P. parking / 2:30 PM reply",
+      "detail": "Sent 6:50 PM Nov 3; he replied \"Sounds great\".",
+      "status": "done"
+    },
+    {
+      "id": "joseph-h-welcome-reply",
+      "title": "Joseph H. welcome + scent answer (Room 2, Nov 5–6)",
+      "detail": "Sent 6:50 PM Nov 3. Nov 5 night blocked on Booking.com and Agoda.",
+      "status": "done"
+    },
+    {
+      "id": "antoine-c-nudge",
+      "title": "Antoine C. nudge draft",
+      "detail": "Nudge not needed; guest already sent arrival time and WhatsApp preference.",
+      "status": "done"
     }
   ],
   "changelog": [
@@ -1709,6 +2011,10 @@
     {
       "at": "2026-11-03T11:07:00-05:00",
       "note": "Delta check ~11:07 AM ET. No new Booking.com/Airbnb/Agoda booking, cancel, payout, or guest-message emails since 10:06 AM. Counts unchanged: Booking.com 59 confirmed checkout>=today (21/22/16), Airbnb 14. Lauren special-offer issue #3 stays open until she books (draft-first). Booking.com still signed out."
+    },
+    {
+      "at": "2026-11-03T20:48:00-05:00",
+      "note": "Decisions refreshed: Graham P. and Joseph H. replies resolved; Nidia C. and Tat C. drafts awaiting Victor; Thomas H. item retired. Decisions moved to top."
     }
   ]
 }
