@@ -749,7 +749,7 @@ function decisionsHtml(data, matches) {
   const open = data.decisions.filter((d) => d.status !== "done");
   const done = data.decisions.filter((d) => d.status === "done");
   const resolved = done.length
-    ? `<h3>Resolved</h3><ul class="list">${done.map((d) => `<li class="card"><strong class="good">✓ ${esc(d.title)}</strong><p class="note">${esc(d.detail)}</p></li>`).join("")}</ul>`
+    ? `<details><summary>Resolved (${done.length})</summary><ul class="list">${done.map((d) => `<li class="card"><strong class="good">✓ ${esc(d.title)}</strong><p class="note">${esc(d.detail)}</p></li>`).join("")}</ul></details>`
     : "";
   return (open.length ? openDecisionsHtml(open, matches) : `<p class="empty">No open decisions.</p>`) + resolved;
 }
@@ -828,7 +828,70 @@ const REVENUE_PERIODS = [
   ["next30", "Next 30 days (booked)"],
 ];
 
-function kpiHtml(data) {
+function windowFor(today, key) {
+  if (key === "today") return { start: today, end: today };
+  if (key === "yesterday") { const y = fmtDate(addDays(parseDate(today), -1)); return { start: y, end: y }; }
+  if (key === "last7") return { start: fmtDate(addDays(parseDate(today), -6)), end: today };
+  if (key === "mtd") return monthToDate(today);
+  if (key === "last30") return { start: fmtDate(addDays(parseDate(today), -29)), end: today };
+  if (key === "lastMonth") {
+    const [y, m] = today.split("-").map(Number);
+    const start = fmtDate(new Date(y, m - 2, 1));
+    const end = fmtDate(new Date(y, m - 1, 0));
+    return { start, end };
+  }
+  if (key === "ytd") return { start: `${today.slice(0, 4)}-01-01`, end: today };
+  if (key === "next30") return { start: nextDay(today), end: fmtDate(addDays(parseDate(today), 30)) };
+  return null;
+}
+
+function kpiExtra(data, today, key) {
+  const range = windowFor(today, key);
+  if (!range || (key !== "mtd" && key !== "next30")) return "";
+  const report = periodReport(data, range, key);
+  const occ = percent(report.confirmed, report.available);
+  const gross = data.revenueSummary?.periods?.[key]?.gross;
+  const adr = gross === null || gross === undefined || !report.confirmed ? null : Number(gross) / report.confirmed;
+  return `<p class="kpi-extra">Occupancy ${esc(occ)} · ADR ${pendingOr(adr)}</p>`;
+}
+
+function revenueChart(data) {
+  const daily = Array.isArray(data.revenueSummary?.daily) ? data.revenueSummary.daily : [];
+  const points = daily.filter((row) => Number.isFinite(Number(row?.net)));
+  if (!points.length) {
+    return `<div class="chart-card"><div class="card-label">Daily net, last 30 days</div><p class="empty">Pending until daily revenue is filled in.</p></div>`;
+  }
+  const max = Math.max(...points.map((row) => Number(row.net)), 1);
+  const bars = points.slice(-30).map((row, index, list) => {
+    const height = Math.max(2, (Number(row.net) / max) * 70);
+    const width = 100 / list.length;
+    return `<rect class="bar" x="${index * width}" y="${80 - height}" width="${Math.max(width - 0.4, 0.2)}" height="${height}" rx="1"><title>${esc(row.date)}: net ${esc(money(row.net) || "")}</title></rect>`;
+  }).join("");
+  return `<div class="chart-card"><div class="card-label">Daily net, last 30 days</div><svg viewBox="0 0 100 84" preserveAspectRatio="none" role="img" aria-label="Daily net, last 30 days">${bars}</svg></div>`;
+}
+
+function occupancyChart(data, today) {
+  const range = { start: fmtDate(addDays(parseDate(today), -29)), end: today };
+  const bars = (data.rooms || []).map((room) => {
+    const nights = data.stays.filter((stay) => stay.roomId === room.id && stay.status !== "cancelled")
+      .reduce((count, stay) => count + nightsOverlapping(stay, range.start, range.end).length, 0);
+    const width = Math.round((nights / 30) * 100);
+    return `<div class="meter"><span>${roomName(room)}</span><div class="track"><div class="fill" style="width:${width}%;background:${safeColor(room.color)}"></div></div><span>${nights}/30</span></div>`;
+  }).join("");
+  return `<div class="chart-card"><div class="card-label">Occupancy by room, last 30 nights</div>${bars}</div>`;
+}
+
+function signPills(data) {
+  const signIn = data.signIn || {};
+  return (data.platforms || []).map((platform) => {
+    const value = signIn[platform.id];
+    const cls = value === true ? "ok" : value === false ? "bad" : "";
+    const text = value === true ? "Signed in" : value === false ? "Signed out" : "Sign-in pending";
+    return `<span class="pill ${cls}"><i></i>${esc(platform.short || platform.label)} ${esc(text)}</span>`;
+  }).join("");
+}
+
+function kpiHtml(data, today) {
   const summary = data.revenueSummary || {};
   const periods = summary.periods || {};
   const cards = REVENUE_PERIODS.map(([key, label]) => {
@@ -842,80 +905,145 @@ function kpiHtml(data) {
       <div class="card-label">${esc(label)}</div>
       <div class="card-gross">${pendingOr(period.gross)} <span>gross</span></div>
       <div class="card-net">${pendingOr(period.net)} <span>net</span></div>
+      ${kpiExtra(data, today, key)}
       ${lines}
     </article>`;
   }).join("");
-  const asOf = summary.asOf ? `<p class="kpi-note">Night-stayed revenue as of ${esc(formatShort(summary.asOf))}. Empty figures stay pending.</p>` : `<p class="kpi-note">Night-stayed revenue. Empty figures stay pending.</p>`;
-  return `<div class="kpi-cards">${cards}</div>${asOf}`;
+  return `<div class="kpi-head"><p class="kpi-note">Night-stayed revenue. Empty money figures stay pending.</p><button type="button" class="btn skip" id="platform-toggle" style="flex:none">By platform</button></div>
+    <div class="kpi-cards${state.showPlatforms ? " show-platforms" : ""}">${cards}</div>
+    <div class="charts">${revenueChart(data)}${occupancyChart(data, today)}</div>`;
+}
+
+function horizonGrid(data, view, selected) {
+  const days = eachDate(view.today, fmtDate(addDays(parseDate(view.today), 59)));
+  const head = [`<div class="ghead corner"></div>`, ...days.map((iso) => `<div class="ghead">${iso.slice(8)}</div>`)].join("");
+  const rows = (data.rooms || []).map((room) => {
+    const cells = days.map((iso) => {
+      const stay = data.stays.find((item) => item.roomId === room.id && isOccupied(item, iso));
+      const platform = stay ? platformOf(data, stay.platform) : null;
+      const prices = nightPrices(data, room, iso);
+      const openRequest = (state.priceIssues || []).some((request) => request.roomNumber === priceRoomKey(room).replace("room", "") && request.start <= iso && iso <= request.end);
+      const classes = ["gcell", iso === selected ? "is-selected" : "", openRequest ? "has-price-request" : ""].filter(Boolean).join(" ");
+      const label = `${room.name} ${formatShort(iso)}. Airbnb ${priceText(prices.airbnb)}, Booking ${priceText(prices.booking)}, Agoda ${priceText(prices.agoda)}`;
+      return `<button type="button" class="${classes}" data-date="${iso}" aria-label="${esc(label)}">
+        <span class="gbar" style="background:${platform ? safeColor(platform.color) : "transparent"}"></span>
+        <span class="gprices">${esc(priceText(prices.airbnb))}<br>${esc(priceText(prices.booking))}<br>${esc(priceText(prices.agoda))}</span>
+      </button>`;
+    }).join("");
+    return `<div class="groom">${roomName(room)}</div>${cells}`;
+  }).join("");
+  return `<div class="gscroll" id="gscroll"><div class="ggrid" style="grid-template-columns: 92px repeat(${days.length}, 54px)">${head}${rows}</div></div>
+    <p class="note">Next 60 days. The bar is the booked platform. Each cell lists Airbnb, Booking.com, then Agoda. A dash means no nightly price is stored.</p>`;
+}
+
+function reservationList(data) {
+  const filters = state.filters || { q: "", room: "", platform: "", date: "" };
+  const q = filters.q.trim().toLowerCase();
+  const rows = data.stays.filter((stay) => {
+    if (filters.room && stay.roomId !== filters.room) return false;
+    if (filters.platform && stay.platform !== filters.platform) return false;
+    if (filters.date && !(stay.checkIn && stay.checkOut && stay.checkIn <= filters.date && filters.date < stay.checkOut)) return false;
+    if (q && !`${stay.guest} ${stay.id}`.toLowerCase().includes(q)) return false;
+    return true;
+  });
+  const cards = rows.map((stay) => stayCard(data, stay, stay.status === "cancelled" ? ["Cancelled"] : [])).join("");
+  return cards || `<p class="empty">No reservations match.</p>`;
+}
+
+function marketHtml(data) {
+  const market = data.market || { comps: [], summary: {} };
+  const comps = Array.isArray(market.comps) ? market.comps : [];
+  const summary = market.summary || {};
+  const rows = comps.map((comp) => `<li class="card"><strong>${esc(comp.name || "Comp")}</strong> ${esc(comp.platform || "")}<p class="note">${esc(comp.type || "")} · ${comp.distanceMi == null ? "—" : esc(comp.distanceMi) + " mi"} · ${comp.nightlyPrice == null ? "—" : esc(money(comp.nightlyPrice) || "—")}${safeHttp(comp.url) ? ` · <a href="${esc(safeHttp(comp.url))}">listing</a>` : ""}</p></li>`).join("");
+  const values = [["Our avg", summary.ourAvg], ["Median", summary.median], ["25th", summary.p25], ["75th", summary.p75]];
+  const nums = values.map(([, value]) => Number(value)).filter((value) => Number.isFinite(value));
+  const max = Math.max(...nums, 1);
+  const bars = values.map(([label, value]) => {
+    const width = Number.isFinite(Number(value)) ? Math.round((Number(value) / max) * 100) : 0;
+    return `<div class="meter"><span>${esc(label)}</span><div class="track"><div class="fill" style="width:${width}%;background:#6ea8fe"></div></div><span>${value == null ? "—" : esc(money(value) || "—")}</span></div>`;
+  }).join("");
+  return `<p class="note">${market.asOf ? `As of ${esc(formatShort(market.asOf))}. ` : ""}Nearby prices stay blank until comps are filled in.</p>
+    <div class="chart-card">${bars}</div>
+    ${rows ? `<ul class="list">${rows}</ul>` : `<p class="empty">No comps logged.</p>`}`;
+}
+
+function safeHttp(url) {
+  return typeof url === "string" && /^https?:\/\//i.test(url) ? url : "";
 }
 
 function renderBoard(data, view, selected, matches) {
   const checked = formatChecked(data.meta.lastChecked);
-  const rooms = data.rooms.map((room) => {
-    const color = safeColor(room.color);
-    return `<article class="card room-card" style="border-top:4px solid ${color};background:color-mix(in srgb, ${color} 16%, var(--card))">
-    <h2>${roomName(room)}</h2>
-    ${listingLines(room)}
-  </article>`;
-  }).join("");
-  const platforms = data.platforms.map((platform) => badge(data, platform.id)).join("");
+  const filters = state.filters;
+  const roomOptions = [`<option value="">All rooms</option>`, ...(data.rooms || []).map((room) => `<option value="${esc(room.id)}"${filters.room === room.id ? " selected" : ""}>${esc(room.name)}</option>`)].join("");
+  const platformOptions = [`<option value="">All platforms</option>`, ...(data.platforms || []).map((platform) => `<option value="${esc(platform.id)}"${filters.platform === platform.id ? " selected" : ""}>${esc(platform.label)}</option>`)].join("");
+  const todayTurns = view.turnovers.filter((event) => event.date === view.today);
+  const tomorrowTurns = view.turnovers.filter((event) => event.date === view.tomorrow);
   return `<header class="hero">
       <div class="stripes" aria-hidden="true"><span style="background:#6ea8fe"></span><span style="background:#e879f9"></span><span style="background:#2dd4bf"></span></div>
       <p class="eyebrow">20 Puritan Road · Somerville</p>
       <h1>Rental Command Center</h1>
-      ${kpiHtml(data)}
-      <p class="checked">Last checked <time datetime="${esc(data.meta.lastChecked)}">${esc(checked)}</time></p>
-      <p class="sub">Today is ${esc(formatPretty(view.today))}, America/New_York. A room is occupied when check-in is on or before the date and check-out is after it.</p>
-      <div class="platforms">${platforms}</div>
+      <p class="checked">Updated <time datetime="${esc(data.meta.lastChecked)}">${esc(checked)}</time></p>
+      <div class="pills">${signPills(data)}</div>
     </header>
+    <nav class="jumps" aria-label="Sections">
+      <a href="#kpis">Revenue</a>
+      <a href="#decisions">Decisions</a>
+      <a href="#now">Today</a>
+      <a href="#tomorrow">Tomorrow</a>
+      <a href="#calendar">Calendar</a>
+      <a href="#reservations">Reservations</a>
+      <a href="#market">Market</a>
+      <a href="#revenue">Detail</a>
+      <a href="#chats">Chats</a>
+      <a href="#health">Health</a>
+      <a href="#log">Log</a>
+    </nav>
+    <section id="kpis">${kpiHtml(data, view.today)}</section>
     <section id="decisions" class="panel">
       <h2>Pending decisions</h2>
       <p class="note">Approve, Skip, and Send note open a public GitHub issue titled DECISION: APPROVE, DECISION: SKIP, or DECISION: COMMENT, with the decision label. This site is public. Don't add private details.</p>
       ${decisionsHtml(data, matches)}
     </section>
-    <nav class="jumps" aria-label="Sections">
-      <a href="#decisions">Decisions</a>
-      <a href="#now">Now</a>
-      <a href="#tomorrow">Tomorrow</a>
-      <a href="#calendar">Calendar</a>
-      <a href="#later">Later</a>
-      <a href="#turnovers">Turnovers</a>
-      <a href="#revenue">Revenue</a>
-      <a href="#chats">Chats</a>
-      <a href="#health">Health</a>
-      <a href="#log">Log</a>
-    </nav>
-    <div class="room-grid">${rooms}</div>
     <section id="now" class="panel">
-      <h2>In house now and today</h2>
-      <p class="range">${esc(formatPretty(view.today))}</p>
+      <h2>Today</h2>
+      <p class="range">${esc(formatPretty(view.today))}. Arrivals, departures, and who is in house tonight.</p>
       ${rosterHtml(data, view.todayRoster, view.today, view.today)}
+      ${todayTurns.length ? `<h3>Turnovers</h3>${turnoverHtml(data, todayTurns, view.today)}` : ""}
       ${gapsHtml(data)}
     </section>
     <section id="tomorrow" class="panel">
       <h2>Tomorrow</h2>
       <p class="tomorrow-date">${esc(formatPretty(view.tomorrow))}</p>
       ${rosterHtml(data, view.tomorrowRoster, view.tomorrow, view.today, { showThread: true })}
+      ${tomorrowTurns.length ? `<h3>Turnovers</h3>${turnoverHtml(data, tomorrowTurns, view.today)}` : ""}
     </section>
-    <section id="calendar">
+    <section id="calendar" class="panel">
       <h2>Calendar</h2>
-      <p class="note">Tap a day from ${esc(formatShort(data.meta.calendar.start))} through ${esc(formatShort(data.meta.calendar.end))}. Bars are occupied rooms. ↔ is a same-day turnover.</p>
-      <div class="legend">${data.rooms.map((room) => roomName(room)).join("")}</div>
-      ${calendarHtml(data, view, selected)}
+      ${horizonGrid(data, view, selected)}
       ${detailHtml(data, selected, view.today)}
       ${nightlyPricesHtml(data, selected)}
       ${priceFormHtml(data, selected)}
       ${openPriceHtml(state.priceIssues || [], selected)}
-      ${laterHtml(data)}
+    </section>
+    <section id="reservations" class="panel">
+      <h2>Reservations</h2>
+      <div class="filters">
+        <input id="res-search" type="search" placeholder="Search guest" value="${esc(filters.q)}" aria-label="Search guest">
+        <select id="res-room" aria-label="Room">${roomOptions}</select>
+        <select id="res-platform" aria-label="Platform">${platformOptions}</select>
+        <input id="res-date" type="date" value="${esc(filters.date)}" aria-label="Occupied on">
+      </div>
+      <div id="res-list">${reservationList(data)}</div>
+      <h3>Later</h3>
+      ${staysAfterCalendar(data).map((stay) => stayCard(data, stay, ["After the calendar"])).join("") || `<p class="empty">No stays after the calendar.</p>`}
       <h3>Cancellations</h3>
       ${cancellationsHtml(data)}
     </section>
-    <section id="turnovers">
-      <h2>Turnovers</h2>
-      <p class="note">A turnover is a checkout. Same-day means the next guest arrives that day.</p>
-      ${turnoverHtml(data, view.turnovers, view.today)}
+    <section id="market" class="panel">
+      <h2>Nearby prices</h2>
+      ${marketHtml(data)}
     </section>
-    <section id="revenue">
+    <section id="revenue" class="panel">
       <h2>Revenue</h2>
       <p class="note">Gross, fees, net, and ADR stay pending until those figures are in the data file. Occupancy counts confirmed nights only. Stated amounts are shown beside the tables and are not treated as gross.</p>
       ${view.periods.map((period) => periodHtml(data, period)).join("")}
@@ -944,15 +1072,32 @@ const state = {
   issues: [],
   stayNotes: new Map(),
   priceIssues: [],
+  showPlatforms: false,
+  gridScroll: 0,
+  filters: { q: "", room: "", platform: "", date: "" },
 };
+
+function bindStayNotes(root) {
+  root.querySelectorAll(".stay-note-send").forEach((button) => {
+    button.addEventListener("click", () => {
+      const stay = state.data.stays.find((item) => item.id === button.dataset.stayId);
+      if (!stay) return;
+      const message = button.closest(".stay")?.querySelector(".stay-note")?.value || "";
+      window.open(stayNoteUrl(stay, roomOf(state.data, stay.roomId), message), "_blank", "noopener");
+    });
+  });
+}
 
 function paint(scrollDetail) {
   const app = document.querySelector("#app");
   const y = window.scrollY;
+  state.gridScroll = document.querySelector("#gscroll")?.scrollLeft || state.gridScroll;
   const view = derive(state.data, state.today);
   state.stayNotes = matchStayNotes(state.data.stays, state.issues);
   state.priceIssues = matchPriceIssues(state.issues);
   app.innerHTML = renderBoard(state.data, view, state.selected, matchDecisions(state.data.decisions, state.issues));
+  const scroller = document.querySelector("#gscroll");
+  if (scroller) scroller.scrollLeft = state.gridScroll || 0;
   app.querySelectorAll("[data-date]").forEach((button) => {
     button.addEventListener("click", () => {
       state.selected = button.dataset.date;
@@ -986,13 +1131,32 @@ function paint(scrollDetail) {
     error.hidden = true;
     window.open(priceIssueUrl({ roomNumber, start, end, price, platforms }), "_blank", "noopener");
   });
-  app.querySelectorAll(".stay-note-send").forEach((button) => {
-    button.addEventListener("click", () => {
-      const stay = state.data.stays.find((item) => item.id === button.dataset.stayId);
-      if (!stay) return;
-      const message = button.closest(".stay")?.querySelector(".stay-note")?.value || "";
-      window.open(stayNoteUrl(stay, roomOf(state.data, stay.roomId), message), "_blank", "noopener");
-    });
+  bindStayNotes(app);
+  document.querySelector("#platform-toggle")?.addEventListener("click", () => {
+    state.showPlatforms = !state.showPlatforms;
+    document.querySelector(".kpi-cards")?.classList.toggle("show-platforms", state.showPlatforms);
+  });
+  const refreshReservations = () => {
+    const list = document.querySelector("#res-list");
+    if (!list) return;
+    list.innerHTML = reservationList(state.data);
+    bindStayNotes(list);
+  };
+  document.querySelector("#res-search")?.addEventListener("input", (event) => {
+    state.filters.q = event.target.value;
+    refreshReservations();
+  });
+  document.querySelector("#res-room")?.addEventListener("change", (event) => {
+    state.filters.room = event.target.value;
+    refreshReservations();
+  });
+  document.querySelector("#res-platform")?.addEventListener("change", (event) => {
+    state.filters.platform = event.target.value;
+    refreshReservations();
+  });
+  document.querySelector("#res-date")?.addEventListener("change", (event) => {
+    state.filters.date = event.target.value;
+    refreshReservations();
   });
   if (scrollDetail) document.getElementById("day-detail")?.scrollIntoView({ block: "nearest" });
   else window.scrollTo(0, y);

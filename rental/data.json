@@ -74,6 +74,7 @@
   "revenueSummary": {
     "asOf": "2026-11-03",
     "currency": "USD",
+    "daily": [],
     "periods": {
       "today": { "gross": null, "net": null, "byPlatform": { "airbnb": { "gross": null, "net": null }, "booking": { "gross": null, "net": null }, "agoda": { "gross": null, "net": null } } },
       "yesterday": { "gross": null, "net": null, "byPlatform": { "airbnb": { "gross": null, "net": null }, "booking": { "gross": null, "net": null }, "agoda": { "gross": null, "net": null } } },
@@ -91,6 +92,22 @@
       "room1": {},
       "room2": {},
       "room3": {}
+    }
+  },
+  "signIn": {
+    "asOf": "2026-11-03",
+    "airbnb": null,
+    "booking": null,
+    "agoda": null
+  },
+  "market": {
+    "asOf": "2026-11-03",
+    "comps": [],
+    "summary": {
+      "median": null,
+      "p25": null,
+      "p75": null,
+      "ourAvg": null
     }
   },
   "stays": [
