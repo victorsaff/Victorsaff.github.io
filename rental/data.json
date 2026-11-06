@@ -2572,6 +2572,35 @@
   "booking": {"state": "verified", "at": "2026-11-06T14:12:00-05:00"},
   "agoda": {"state": "portal reached", "at": "2026-11-06T10:43:00-05:00"}
  },
+ "bookingCoverage": {
+  "checkedAt": "2026-11-06T15:01:00-05:00",
+  "checkInFrom": "2026-11-06",
+  "checkInTo": "2026-11-07",
+  "rooms": 3,
+  "okReservations": 4,
+  "currency": "USD",
+  "fullYearDownload": "stalled",
+  "screenCount": 293,
+  "screenCountMeaning": "unfiltered statuses, not a confirmed count",
+  "days": [
+   {
+    "date": "2026-11-06",
+    "okReservations": 2,
+    "payment": 391.0,
+    "commission": 58.65,
+    "afterCommission": 332.35,
+    "guests": "Ami P. Room 1 $280.50. Samuel B. Room 2 $110.50."
+   },
+   {
+    "date": "2026-11-07",
+    "okReservations": 2,
+    "payment": 233.5,
+    "commission": 35.03,
+    "afterCommission": 198.47,
+    "guests": "Arthur W. Room 2 $130.00. Adya S. Room 3 $103.50."
+   }
+  ]
+ },
  "market": {
   "asOf": "2026-11-03T21:50:00-05:00",
   "source": "Airbnb public search, private rooms; nightly = displayed total incl. fees pre-tax / nights",
@@ -2917,7 +2946,7 @@
    "fees": 42.08,
    "net": 238.42,
    "status": "confirmed",
-   "notes": "Gross and commission from the Nov 3 Booking.com export. Check-in instructions were posted once (shown as 10:41 and 10:48; that clock's time zone was not confirmed). Do not send that set again. The customer-service reply is pending owner review as of 2:10 PM ET Nov 6.",
+   "notes": "Full-stay payment $280.50 and commission $42.08 rechecked 3:01 PM ET Nov 6 on Booking.com. Payment minus commission is not a payout. Check-in instructions were posted once (shown as 10:41 and 10:48; that clock's time zone was not confirmed). Do not send that set again. The customer-service reply is pending owner review as of 2:10 PM ET Nov 6.",
    "arrivalTime": "11:00 PM-12:00 AM",
    "driving": "yes",
    "contactChannel": "unknown",
@@ -2936,7 +2965,7 @@
    "fees": 16.57,
    "net": 93.93,
    "status": "confirmed",
-   "notes": "Gross and commission from the Nov 3 Booking.com export. Arrival-day check-in instructions and house rules were not sent as of 2:10 PM ET Nov 6. Awaiting instructions.",
+   "notes": "Full-stay payment $110.50 and commission $16.57 rechecked 3:01 PM ET Nov 6 on Booking.com. Payment minus commission is not a payout. Arrival-day check-in instructions and house rules were not sent as of 2:10 PM ET Nov 6. Awaiting instructions.",
    "arrivalTime": "7:00-8:00 PM",
    "driving": "unknown",
    "contactChannel": "unknown",
@@ -2955,7 +2984,7 @@
    "fees": 19.5,
    "net": 110.5,
    "status": "confirmed",
-   "notes": "Gross and commission from Booking.com export.",
+   "notes": "Full-stay payment $130.00 and commission $19.50 rechecked 3:01 PM ET Nov 6 on Booking.com. Payment minus commission is not a payout.",
    "arrivalTime": "unknown",
    "driving": "unknown",
    "contactChannel": "unknown",
@@ -2974,7 +3003,7 @@
    "fees": 15.53,
    "net": 87.97,
    "status": "confirmed",
-   "notes": "Gross and commission from Booking.com export.",
+   "notes": "Full-stay payment $103.50 and commission $15.53 rechecked 3:01 PM ET Nov 6 on Booking.com. Payment minus commission is not a payout.",
    "arrivalTime": "unknown",
    "driving": "unknown",
    "contactChannel": "unknown",
@@ -4673,7 +4702,7 @@
   {
    "id": "booking-totals-not-verified",
    "title": "Booking.com totals are not verified for today",
-   "detail": "Money windows and reservation totals on the public page are the Nov 3 figures. They are not today's totals. Awaiting a current export before those totals are published as Nov 6. Last ops check 2:29 PM ET Nov 6.",
+   "detail": "Booking.com only, checked 3:01 PM ET Nov 6: 4 OK reservations, check-in Nov 6 or Nov 7. Nov 6 full-stay payment $391.00, commission $58.65, payment minus commission $332.35. Nov 7 payment $233.50, commission $35.03, payment minus commission $198.47. Not an all-platform total and not a payout figure. Yesterday is not verified. A screen figure of 293 counts every status and is not a confirmed count. Older windows stay dated Nov 3.",
    "status": "open"
   },
   {
@@ -4720,6 +4749,10 @@
   }
  ],
  "changelog": [
+  {
+   "at": "2026-11-06T15:01:00-05:00",
+   "note": "Booking.com download checked 3:01 PM ET Nov 6. Four OK reservations, check-in Nov 6 or Nov 7 only. Nov 6 payment $391.00 and commission $58.65. Nov 7 payment $233.50 and commission $35.03. Payment minus commission is not a payout. The Jan 2026 through Dec 2027 download did not finish. A screen figure of 293 is every status, not a confirmed count. All-platform today and yesterday stay pending."
+  },
   {
    "at": "2026-11-06T14:29:00-05:00",
    "note": "Ops checked through 2:29 PM ET Nov 6. Booking.com sign-in verified 2:12 PM for all three properties. Airbnb sign-in verified 2:29 PM when Joseph H.'s review was submitted. Agoda portal reached 10:43 AM; the $142.84 item stays the older Nov 3 payment. Financial windows stay dated Nov 3 and are not shown as today. Annemiek M. Room 1 Jun 12-14 2027 logged at the stated $270, with the fee split still unknown. Checkout reviews run at 11:00 AM and noon."

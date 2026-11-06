@@ -1250,17 +1250,45 @@ function signPills(data) {
   }).join("");
 }
 
+function bookingCoverageHtml(data) {
+  const row = data.bookingCoverage;
+  if (!row) return "";
+  const when = row.checkedAt ? formatChecked(row.checkedAt) : "time pending";
+  const days = Array.isArray(row.days) ? row.days : [];
+  const dayLines = days.map((day) => {
+    const label = formatShort(String(day.date || "").slice(0, 10));
+    const payment = day.payment == null ? "payment pending" : money(day.payment);
+    const commission = day.commission == null ? "commission pending" : money(day.commission);
+    const after = day.afterCommission == null ? "pending" : money(day.afterCommission);
+    const count = Number.isFinite(Number(day.okReservations)) ? `${day.okReservations} OK · ` : "";
+    const who = day.guests ? ` ${esc(day.guests)}` : "";
+    return `<li><strong>Check-in ${esc(label)}</strong> · ${esc(count)}Booking.com only, full stay on the check-in date. ${esc(payment)} total stay payment · ${esc(commission)} commission · ${esc(after)} payment minus commission. Not a payout.${who}</li>`;
+  }).join("");
+  return `<section class="callout">
+    <h3>Verified Booking.com only</h3>
+    <p>Checked ${esc(when)}. ${esc(row.okReservations)} OK reservations across all three rooms, check-in on Nov 6 or Nov 7 only. Not an all-platform total.</p>
+    ${dayLines ? `<ul class="list">${dayLines}</ul>` : `<p class="note">Payment and commission subtotals are not on this page yet.</p>`}
+    <p class="note">The Jan 2026 through Dec 2027 download did not finish. A screen figure of 293 counts every status and is not a confirmed count. Yesterday and the older windows stay dated Nov 3.</p>
+  </section>`;
+}
+
 function kpiHtml(data, today) {
   const summary = data.revenueSummary || {};
   const periods = summary.periods || {};
   const financialWhen = financialAsOfLabel(data);
   const cards = REVENUE_PERIODS.map(([key, label]) => {
     if (!periodIsCurrent(data, today, key)) {
+      const day = key === "yesterday" ? formatShort(fmtDate(addDays(parseDate(today), -1))) : formatShort(today);
+      const why = key === "yesterday"
+        ? `Not verified for ${day}. The Nov 3 check-in figure is not this day.`
+        : key === "today"
+          ? `All-platform total not verified for ${day}. Booking.com only is listed above.`
+          : `Not verified for ${day}. Older figures remain as of ${financialWhen}.`;
       return `<article class="kpi-card">
         <div class="card-label">${esc(label)}</div>
         <div class="card-gross">${pendingOr(null)} <span>gross</span></div>
         <div class="card-net">${pendingOr(null)} <span>net</span></div>
-        <p class="note">Not verified for ${esc(formatShort(today))}</p>
+        <p class="note">${esc(why)}</p>
       </article>`;
     }
     const checkIn = (key === "today" || key === "yesterday") ? summary.checkInBasis?.[key] : null;
@@ -1302,6 +1330,7 @@ function kpiHtml(data, today) {
       ${ringGauge("MTD vs goal", goalPct, goalKnown ? `Goal ${money(goalNumber)}` : "Not verified", true)}
     </div>`;
   return `<div class="kpi-head"><p class="kpi-note">Today and yesterday count the full stay on the check-in date. Longer windows are night-stayed. Unverified windows stay pending. Financial figures as of ${esc(financialWhen)}.</p><button type="button" class="btn skip" id="platform-toggle" style="flex:none">By platform</button></div>
+    ${bookingCoverageHtml(data)}
     <div class="kpi-cards${state.showPlatforms ? " show-platforms" : ""}">${cards}</div>
     ${gauges}
     <div class="charts">
