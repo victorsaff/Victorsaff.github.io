@@ -4826,11 +4826,11 @@
   },
   {
    "name": "Checkout 5-star review + thank-you",
-   "schedule": "daily 2:00 PM",
+   "schedule": "daily 11:00 AM and 12:00 PM",
    "status": "active",
-   "lastRun": "2026-11-03T14:09:00-05:00",
-   "lastResult": "succeeded",
-   "nextRun": null
+   "lastRun": "2026-11-06T14:09:44-05:00",
+   "lastResult": null,
+   "nextRun": "2026-11-07T11:00:00-05:00"
   },
   {
    "name": "Evening host brief",
