@@ -4,7 +4,7 @@
   "timezone": "America/New_York",
   "currency": "USD",
   "lastChecked": "2026-11-03T22:00:00-05:00",
-  "opsAsOf": "2026-11-06T17:15:00-05:00",
+  "opsAsOf": "2026-11-06T17:11:00-05:00",
   "financialAsOf": "2026-11-03T22:45:00-05:00",
   "property": "20 Puritan Road, Somerville",
   "occupancyRule": "A room is occupied on a date when checkIn <= date < checkOut. If check-in or check-out is null, those nights are not marked occupied.",
@@ -4769,8 +4769,8 @@
  ],
  "changelog": [
   {
-   "at": "2026-11-06T17:15:00-05:00",
-   "note": "Delta ~5:15 PM ET Nov 6. New Booking.com Morgane B. Room 1 Dec 4-6 2026 (2 nights): gross $198.00, commission $29.70, after-commission $168.30 from Extrenet. Arrival/driving unknown; phone on file. No new Airbnb/Agoda booking/cancel/payout. Agoda MFA noise only. No open PRICE/DECISION/NOTE issues. Owner-confirmed Samuel personal-text and Stripe website-review already live. Open decisions unchanged: Brynn welcome, Ami CS reply, Booking totals not verified. Financial windows stay dated Nov 3."
+   "at": "2026-11-06T17:11:00-05:00",
+   "note": "Booking.com verified around 5:11 PM ET Nov 6. New Booking.com Morgane B. Room 1 Dec 4-6 2026 (2 nights): gross $198.00, commission $29.70, after-commission $168.30 from Extrenet. Arrival/driving unknown; phone on file. No new Airbnb/Agoda booking/cancel/payout. Agoda MFA noise only. No open PRICE/DECISION/NOTE issues. Owner-confirmed Samuel personal-text and Stripe website-review already live. Open decisions unchanged: Brynn welcome, Ami CS reply, Booking totals not verified. Financial windows stay dated Nov 3."
   },
   {
    "at": "2026-11-06T16:01:00-05:00",
