@@ -4751,6 +4751,44 @@
      "images": ["rental/threads/2026-11-04/adelia-whatsapp.png"]
     }
    ]
+  },
+  {
+   "date": "2026-11-06",
+   "guest": "Ami P.",
+   "stayId": "ami-p-booking-2026-11-06",
+   "groups": [
+    {
+     "label": "Booking.com",
+     "images": [
+      "rental/threads/2026-11-06/ami_01.png",
+      "rental/threads/2026-11-06/ami_02.png",
+      "rental/threads/2026-11-06/ami_03.png",
+      "rental/threads/2026-11-06/ami_04.png",
+      "rental/threads/2026-11-06/ami_05.png",
+      "rental/threads/2026-11-06/ami_06.png",
+      "rental/threads/2026-11-06/ami_07.png"
+     ]
+    },
+    {
+     "label": "Booking.com Customer Service",
+     "images": ["rental/threads/2026-11-06/ami_cs_01.png"]
+    }
+   ]
+  },
+  {
+   "date": "2026-11-06",
+   "guest": "Samuel B.",
+   "stayId": "samuel-b-booking-2026-11-06",
+   "groups": [
+    {
+     "label": "Booking.com",
+     "images": [
+      "rental/threads/2026-11-06/samuel_01.png",
+      "rental/threads/2026-11-06/samuel_02.png",
+      "rental/threads/2026-11-06/samuel_03.png"
+     ]
+    }
+   ]
   }
  ],
  "scheduledTasks": [
@@ -4814,8 +4852,8 @@
    "name": "Day-before guest threads to GitHub",
    "schedule": "daily ~8:00 PM",
    "status": "active",
-   "lastRun": "2026-11-05T20:15:00-05:00",
-   "lastResult": "failed",
+   "lastRun": "2026-11-05T20:43:27-05:00",
+   "lastResult": "succeeded",
    "nextRun": null
   }
  ]
