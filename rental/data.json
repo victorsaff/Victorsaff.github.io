@@ -2568,7 +2568,7 @@
  },
  "signIn": {
   "asOf": "2026-11-06T18:03:00-05:00",
-  "airbnb": {"state": "verified", "at": "2026-11-06T17:55:00-05:00", "note": "Helen stay verified in 2h sweep; hourly recheck pending or confirmed same run"},
+  "airbnb": {"state": "verified", "at": "2026-11-06T17:55:00-05:00", "note": "Airbnb and Booking.com sources verified ~5:55 PM ET by the 2h sweep. Hourly delta processed ~6:03 PM ET. Not a new platform re-read."},
   "booking": {"state": "verified", "at": "2026-11-06T17:55:00-05:00"},
   "agoda": {"state": "portal reached", "at": "2026-11-06T10:43:00-05:00"}
  },
@@ -4625,7 +4625,7 @@
    "fees": null,
    "net": 105.62,
    "status": "confirmed",
-   "notes": "Logged from Airbnb hosting ~5:55 PM ET Nov 6 (2h sweep) and rechecked in 6:03 PM hourly delta. Premium King Bed Room. Host payout shown $105.62. Thread was system-confirm only; welcome message pending owner review. Do not invent gross/fees. Do not publish reservation codes.",
+   "notes": "Logged from Airbnb hosting ~5:55 PM ET Nov 6 (2h sweep). Premium King Bed Room. Host payout shown $105.62. Thread was system-confirm only; welcome message pending owner review. Do not invent gross/fees. Do not publish reservation codes.",
    "arrivalTime": "unknown",
    "driving": "unknown",
    "contactChannel": "Airbnb",
@@ -4716,7 +4716,7 @@
   {
    "id": "helen-welcome",
    "title": "Helen Z. welcome is pending owner review",
-   "detail": "Room 2, Nov 25-26. Airbnb Premium King. Host payout $105.62. Thread was system-confirm only. Welcome draft needs owner yes before any send. Last checked ~6:03 PM ET Nov 6.",
+   "detail": "Room 2, Nov 25-26. Airbnb Premium King. Host payout $105.62. Thread was system-confirm only. Welcome draft needs owner yes before any send. Last checked ~5:55 PM ET Nov 6.",
    "status": "open"
   },
   {
@@ -4795,7 +4795,7 @@
  "changelog": [
   {
    "at": "2026-11-06T18:03:00-05:00",
-   "note": "Hourly DELTA ~6:03 PM ET Nov 6. No new Booking.com/Agoda booking, cancel, payout, or guest-message emails after Morgane (~4:24 PM). Agoda MFA PIN ~5:54 PM noise only. No open PRICE/DECISION/NOTE issues. Applied 2h-sweep Airbnb: NEW Helen Z. Room 2 (Premium King) Nov 25-26, 2 guests, host payout $105.62; welcome pending owner review (do not auto-send). Tahiya Jan 18-20 2027 remains cancelled (already off public list). Morgane already live. Open decisions: Brynn welcome, Ami CS reply, Helen welcome, Booking totals not verified. Financial windows stay dated Nov 3."
+   "note": "Hourly DELTA ~6:03 PM ET Nov 6 processed the 2h sweep. Airbnb and Booking.com sources were verified ~5:55 PM ET; this run did not re-read the Airbnb thread. No new Booking.com/Agoda booking, cancel, payout, or guest-message emails after Morgane (~4:24 PM). Agoda MFA PIN ~5:54 PM noise only. No open PRICE/DECISION/NOTE issues. Applied 2h-sweep Airbnb: NEW Helen Z. Room 2 (Premium King) Nov 25-26, 2 guests, host payout $105.62; welcome pending owner review (do not auto-send). Tahiya Jan 18-20 2027 remains cancelled (already off public list). Morgane already live. Open decisions: Brynn welcome, Ami CS reply, Helen welcome, Booking totals not verified. Financial windows stay dated Nov 3."
   },
   {
    "at": "2026-11-06T17:11:00-05:00",
