@@ -851,7 +851,16 @@ function turnoverHtml(data, events, today) {
 function summaryRevenueHtml(data, today) {
   const periods = data.revenueSummary?.periods;
   if (!periods) return "";
+  const financialWhen = financialAsOfLabel(data);
   return REVENUE_PERIODS.map(([key, label]) => {
+    if (!periodIsCurrent(data, today, key)) {
+      return `<article class="card period">
+        <h3>${esc(label)}</h3>
+        <p class="card-gross">${pendingOr(null)} <span>gross</span></p>
+        <p class="card-net">${pendingOr(null)} <span>net</span></p>
+        <p class="note">Not verified for ${esc(formatShort(today))}. Financial figures remain as of ${esc(financialWhen)}.</p>
+      </article>`;
+    }
     const period = periods[key] || {};
     const start = period.start ? formatShort(String(period.start).slice(0, 10)) : "";
     const end = period.end ? formatShort(String(period.end).slice(0, 10)) : "";
@@ -884,7 +893,7 @@ function summaryRevenueHtml(data, today) {
       <p class="card-gross">${pendingOr(period.gross)} <span>gross</span></p>
       <p class="card-net">${pendingOr(period.net)} <span>net</span></p>
       ${occText || nightLine ? `<p class="occ">${esc([occText, nightLine].filter(Boolean).join(" · "))}</p>` : ""}
-      <p class="note">ADR ${pendingOr(period.adr)} · net ADR ${pendingOr(period.netAdr)}${checkIn ? " · by check-in" : ""}</p>
+      <p class="note">ADR ${pendingOr(period.adr)} · net ADR ${pendingOr(period.netAdr)}${checkIn ? " · full stay on the check-in date" : ""}${key === "lastMonth" && revenueAsOfDay(data) !== today ? ` · as of ${esc(financialWhen)}` : ""}</p>
       ${platformLines}
       ${roomLines}
     </article>`;
@@ -892,6 +901,7 @@ function summaryRevenueHtml(data, today) {
 }
 
 function periodHtml(data, period) {
+  const withholdMoney = String(period.end || "") > revenueAsOfDay(data);
   const excluded = period.excluded.length
     ? `<p class="note">Not counted, dates incomplete: ${period.excluded.map((stay) => esc(stay.guest)).join(", ")}.</p>`
     : `<p class="note">Every confirmed stay touching this window has both dates.</p>`;
@@ -903,10 +913,10 @@ function periodHtml(data, period) {
     <td>${badge(data, row.platform.id)}</td>
     <td>${roomName(row.room)}</td>
     <td>${row.nights}</td>
-    <td>${pendingOr(row.gross)}</td>
-    <td>${pendingOr(row.fees)}</td>
-    <td>${pendingOr(row.net)}</td>
-    <td>${pendingOr(row.adr)}</td>
+    <td>${withholdMoney ? pendingOr(null) : pendingOr(row.gross)}</td>
+    <td>${withholdMoney ? pendingOr(null) : pendingOr(row.fees)}</td>
+    <td>${withholdMoney ? pendingOr(null) : pendingOr(row.net)}</td>
+    <td>${withholdMoney ? pendingOr(null) : pendingOr(row.adr)}</td>
   </tr>`).join("");
   const stated = period.stated.length
     ? `<ul class="stated">${period.stated.map(({ stay, whollyInside }) => {
@@ -917,7 +927,8 @@ function periodHtml(data, period) {
   return `<article class="card period">
     <h3>${esc(period.label)}</h3>
     <p class="range">${esc(formatShort(period.start))} – ${esc(formatShort(period.end))}</p>
-    <p class="occ"><strong>${period.confirmed} / ${period.available}</strong> confirmed room-nights · ${percent(period.confirmed, period.available)} occupancy</p>
+    <p class="occ"><strong>${period.confirmed} / ${period.available}</strong> room-nights on file · ${percent(period.confirmed, period.available)} of the calendar on file</p>
+    ${withholdMoney ? `<p class="note">Dollar totals are withheld. Amounts on file were checked ${esc(financialAsOfLabel(data))}, and this window runs past that check.</p>` : ""}
     ${meters}
     ${excluded}
     <div class="table-wrap"><table>
@@ -1049,6 +1060,38 @@ function windowFor(today, key) {
   if (key === "ytd") return { start: `${today.slice(0, 4)}-01-01`, end: today };
   if (key === "next30") return { start: nextDay(today), end: fmtDate(addDays(parseDate(today), 30)) };
   return null;
+}
+
+function revenueAsOfDay(data) {
+  return String(data.meta?.financialAsOf || data.revenueSummary?.asOf || "").slice(0, 10);
+}
+
+function financialAsOfLabel(data) {
+  const raw = data.meta?.financialAsOf || data.revenueSummary?.asOf || data.meta?.lastChecked || "";
+  return raw ? formatChecked(raw) : "the last financial check";
+}
+
+function opsAsOfLabel(data) {
+  const raw = data.meta?.opsAsOf || "";
+  return raw ? formatChecked(raw) : "";
+}
+
+function periodIsCurrent(data, today, key) {
+  const asOf = revenueAsOfDay(data);
+  const expected = windowFor(today, key);
+  if (!asOf || !expected) return false;
+  const period = data.revenueSummary?.periods?.[key] || {};
+  if (period.start && period.end) {
+    const start = String(period.start).slice(0, 10);
+    const end = String(period.end).slice(0, 10);
+    if (start !== expected.start || end !== expected.end) return false;
+    if (key === "lastMonth") return end <= asOf;
+    return asOf === today;
+  }
+  if (key !== "today" && key !== "yesterday") return false;
+  const stamped = String(data.revenueSummary?.checkInBasis?.[key]?.date || "");
+  const want = key === "today" ? today : fmtDate(addDays(parseDate(today), -1));
+  return Boolean(stamped) && stamped === want && asOf === today;
 }
 
 function ringGauge(label, percent, caption, amber) {
@@ -1185,12 +1228,24 @@ function signPills(data) {
   const signIn = data.signIn || {};
   return (data.platforms || []).map((platform) => {
     const raw = signIn[platform.id];
-    const value = String(raw ?? "").trim().toLowerCase();
-    const signedIn = raw === true || value === "signed in";
-    const signedOut = raw === false || value === "signed out";
-    const reverify = value.includes("re-verify") || value.includes("reverify");
-    const cls = signedIn ? "ok" : signedOut ? "bad" : "";
-    const text = signedIn ? "Signed in" : signedOut ? "Signed out" : reverify ? "Needs re-verify" : raw ? String(raw) : "Sign-in pending";
+    const record = raw && typeof raw === "object" ? raw : null;
+    const state = String(record ? record.state || "" : raw ?? "").trim().toLowerCase();
+    const at = record?.at || (!record ? signIn.asOf : "") || "";
+    const when = at ? formatChecked(at) : "";
+    const signedOut = raw === false || state === "signed out";
+    const reverify = state.includes("re-verify") || state.includes("reverify");
+    const verified = raw === true || state === "signed in" || state === "verified" || state === "signed_in";
+    let cls = "";
+    let text = "Verification time pending";
+    if (reverify) text = when ? `Needs re-verify · ${when}` : "Needs re-verify";
+    else if (signedOut) {
+      cls = "bad";
+      text = when ? `Signed out · ${when}` : "Signed out";
+    } else if (verified && when) {
+      cls = "ok";
+      text = `Verified ${when}`;
+    } else if (state && when) text = `${state.charAt(0).toUpperCase()}${state.slice(1)} ${when}`;
+    else if (when) text = `Last checked ${when}`;
     return `<span class="pill ${cls}"><i></i>${esc(platform.short || platform.label)} ${esc(text)}</span>`;
   }).join("");
 }
@@ -1198,7 +1253,16 @@ function signPills(data) {
 function kpiHtml(data, today) {
   const summary = data.revenueSummary || {};
   const periods = summary.periods || {};
+  const financialWhen = financialAsOfLabel(data);
   const cards = REVENUE_PERIODS.map(([key, label]) => {
+    if (!periodIsCurrent(data, today, key)) {
+      return `<article class="kpi-card">
+        <div class="card-label">${esc(label)}</div>
+        <div class="card-gross">${pendingOr(null)} <span>gross</span></div>
+        <div class="card-net">${pendingOr(null)} <span>net</span></div>
+        <p class="note">Not verified for ${esc(formatShort(today))}</p>
+      </article>`;
+    }
     const checkIn = (key === "today" || key === "yesterday") ? summary.checkInBasis?.[key] : null;
     const period = checkIn || periods[key] || {};
     const byPlatform = period.byPlatform || {};
@@ -1207,39 +1271,42 @@ function kpiHtml(data, today) {
       return `<div class="kpi-plat">${esc(platform.short || platform.label)} ${pendingOr(row.gross)} <span>gross</span> · ${pendingOr(row.net)} <span>net</span></div>`;
     }).join("");
     const checkIns = Number(period.checkIns);
+    const dated = key === "lastMonth" && revenueAsOfDay(data) !== today ? `<p class="note">As of ${esc(financialWhen)}</p>` : "";
     const checkInLine = checkIn
-      ? `<p class="kpi-extra">${Number.isFinite(checkIns) ? `${checkIns} check-in${checkIns === 1 ? "" : "s"}` : pendingOr(null)}</p><p class="note">by check-in</p>`
+      ? `<p class="kpi-extra">${Number.isFinite(checkIns) ? `${checkIns} check-in${checkIns === 1 ? "" : "s"}` : pendingOr(null)}</p><p class="note">Full stay on the check-in date</p>`
       : kpiExtra(data, today, key);
     return `<article class="kpi-card">
       <div class="card-label">${esc(label)}</div>
       <div class="card-gross">${kpiMoney(period.gross)} <span>gross</span></div>
       ${period.grossBookingOnly ? `<p class="note">Booking.com only; Airbnb gross pending</p>` : ""}
       <div class="card-net">${kpiMoney(period.net)} <span>net</span></div>
+      ${dated}
       ${checkInLine}
       ${lines}
     </article>`;
   }).join("");
+  const mtdCurrent = periodIsCurrent(data, today, "mtd");
   const mtd = periodReport(data, monthToDate(today), "mtd");
   const fromDaily = occupancyWindow(data, summary.periods?.mtd?.start, summary.periods?.mtd?.end);
   const storedMtd = fractionPercent(summary.periods?.mtd?.occupancy);
   const recounted = mtd.available ? Math.min(100, (mtd.confirmed / mtd.available) * 100) : null;
-  const occ = fromDaily?.pct ?? storedMtd ?? recounted;
+  const occ = mtdCurrent ? (fromDaily?.pct ?? storedMtd ?? recounted) : null;
   const goal = summary.mtdGoal;
   const goalNumber = Number(goal);
-  const gross = summary.periods?.mtd?.gross;
+  const gross = mtdCurrent ? summary.periods?.mtd?.gross : null;
   const grossNumber = Number(gross);
-  const goalKnown = goal !== null && goal !== undefined && goal !== "" && Number.isFinite(goalNumber) && goalNumber > 0;
+  const goalKnown = mtdCurrent && goal !== null && goal !== undefined && goal !== "" && Number.isFinite(goalNumber) && goalNumber > 0;
   const goalPct = goalKnown && gross !== null && gross !== undefined && Number.isFinite(grossNumber) ? (grossNumber / goalNumber) * 100 : null;
   const gauges = `<div class="gauges">
-      ${ringGauge("Occupancy", occ, "Month to date", false)}
-      ${ringGauge("MTD vs goal", goalPct, goalKnown ? `Goal ${money(goalNumber)}` : "Goal not set", true)}
+      ${ringGauge("Occupancy", occ, mtdCurrent ? "Month to date" : "Not verified", false)}
+      ${ringGauge("MTD vs goal", goalPct, goalKnown ? `Goal ${money(goalNumber)}` : "Not verified", true)}
     </div>`;
-  return `<div class="kpi-head"><p class="kpi-note">Night-stayed revenue. Empty money figures stay pending.</p><button type="button" class="btn skip" id="platform-toggle" style="flex:none">By platform</button></div>
+  return `<div class="kpi-head"><p class="kpi-note">Today and yesterday count the full stay on the check-in date. Longer windows are night-stayed. Unverified windows stay pending. Financial figures as of ${esc(financialWhen)}.</p><button type="button" class="btn skip" id="platform-toggle" style="flex:none">By platform</button></div>
     <div class="kpi-cards${state.showPlatforms ? " show-platforms" : ""}">${cards}</div>
     ${gauges}
     <div class="charts">
       <div class="chart-card">
-        <div class="card-label">Daily net</div>
+        <div class="card-label">Daily net through ${esc(revenueAsOfDay(data) ? formatShort(revenueAsOfDay(data)) : "the last financial check")}</div>
         <div class="chart-tools">
           <button type="button" class="btn skip range-toggle${state.chartDays === 90 ? " is-on" : ""}" data-range="90" style="flex:none;min-height:36px">Last 90</button>
           <button type="button" class="btn skip range-toggle${state.chartDays === 120 ? " is-on" : ""}" data-range="120" style="flex:none;min-height:36px">90 + next 30</button>
@@ -1366,6 +1433,7 @@ function scheduledTasksHtml(data, now) {
       <div class="chips">${statusChip(task.status)}${resultChip(task.lastResult)}</div>
       <p>Last run ${task.lastRun ? esc(formatChecked(task.lastRun)) : pendingOr(null)}</p>
       <p>Next run ${next ? `<strong>${esc(formatChecked(next))}</strong>` : pendingOr(null)}</p>
+      ${task.detail ? `<p class="note">${esc(task.detail)}</p>` : ""}
     </article>`).join("");
   return `<h3>Today</h3>
     <p class="note">Upcoming runs left today, America/New_York. Next run is calculated from the schedule when the file leaves it empty.</p>
@@ -1384,11 +1452,12 @@ function renderBoard(data, view, selected, matches) {
       <div class="stripes" aria-hidden="true"><span style="background:#6ea8fe"></span><span style="background:#e879f9"></span><span style="background:#2dd4bf"></span></div>
       <p class="eyebrow">20 Puritan Road · Somerville</p>
       <h1>Rental Command Center</h1>
-      <p class="checked">Updated <time datetime="${esc(data.meta.lastChecked)}">${esc(checked)}</time></p>
+      <p class="checked">Ops checked <time datetime="${esc(data.meta.opsAsOf || "")}">${esc(opsAsOfLabel(data) || "time pending")}</time></p>
+      <p class="checked">Financial figures as of <time datetime="${esc(data.meta.financialAsOf || data.revenueSummary?.asOf || data.meta.lastChecked)}">${esc(financialAsOfLabel(data))}</time></p>
       <div class="pills">${signPills(data)}</div>
     </header>
     <nav class="jumps" aria-label="Dashboard tabs">
-      ${[["overview", "Overview"], ["threads", "Guest Threads"], ["revenue", "Revenue"], ["calendar", "Calendar & Prices"], ["reservations", "Reservations"], ["market", "Market"], ["decisions", "Decisions"], ["operations", "Operations"], ["tasks", "Scheduled Tasks"]].map(([id, label]) => `<button type="button" data-tab="${id}" class="${[state.tab === id ? "is-on" : "", id === "threads" ? "tab-threads" : ""].filter(Boolean).join(" ")}">${esc(label)}</button>`).join("")}
+      ${[["decisions", "Decisions"], ["overview", "Overview"], ["threads", "Guest Threads"], ["revenue", "Revenue"], ["calendar", "Calendar & Prices"], ["reservations", "Reservations"], ["market", "Market"], ["operations", "Operations"], ["tasks", "Scheduled Tasks"]].map(([id, label]) => `<button type="button" data-tab="${id}" class="${[state.tab === id ? "is-on" : "", id === "threads" ? "tab-threads" : ""].filter(Boolean).join(" ")}">${esc(label)}</button>`).join("")}
     </nav>
     <div class="tab-panel${state.tab === "overview" ? " is-on" : ""}" data-panel="overview"><section id="kpis">${kpiHtml(data, view.today)}</section></div>
     <div class="tab-panel${state.tab === "threads" ? " is-on" : ""}" data-panel="threads">
@@ -1468,13 +1537,13 @@ function renderBoard(data, view, selected, matches) {
     <div class="tab-panel${state.tab === "revenue" ? " is-on" : ""}" data-panel="revenue">
     <section id="revenue" class="panel">
       <h2>Revenue</h2>
-      <p class="note">Figures below are the recomputed windows in the data file. Occupancy counts each room and date once and stays at or below 100%. YTD occupancy starts when bookings do. Stated amounts in the stay ledger are not treated as gross.</p>
+      <p class="note">Today and yesterday use the full stay on the check-in date once that day's reservations are covered. Longer windows are night-stayed. Windows that are not verified for ${esc(formatShort(view.today))} stay pending. Financial figures as of ${esc(financialAsOfLabel(data))}. Occupancy in the ledger counts each room and date once. Stated amounts are not treated as gross.</p>
       ${summaryRevenueHtml(data, view.today)}
       <h3>Stay ledger</h3>
       ${view.periods.map((period) => periodHtml(data, period)).join("")}
       ${payoutHtml(data)}
     </section></div>
-    <p class="foot">Last checked <time datetime="${esc(data.meta.lastChecked)}">${esc(checked)}</time>. This page is on a public GitHub Pages site. Names are first name and last initial. No door codes, Wi-Fi passwords, card numbers, phone numbers, emails, reservation numbers, or payout batch ids are stored.
+    <p class="foot">Ops checked <time datetime="${esc(data.meta.opsAsOf || "")}">${esc(opsAsOfLabel(data) || "time pending")}</time>. Financial figures as of <time datetime="${esc(data.meta.financialAsOf || data.meta.lastChecked)}">${esc(financialAsOfLabel(data))}</time>. This page is on a public GitHub Pages site. Names are first name and last initial. No door codes, Wi-Fi passwords, card numbers, phone numbers, emails, reservation numbers, or payout batch ids are stored.
       <a href="../">Business dashboard</a></p>`;
 }
 

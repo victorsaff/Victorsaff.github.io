@@ -4,6 +4,8 @@
   "timezone": "America/New_York",
   "currency": "USD",
   "lastChecked": "2026-11-03T22:00:00-05:00",
+  "opsAsOf": "2026-11-06T14:29:00-05:00",
+  "financialAsOf": "2026-11-03T22:45:00-05:00",
   "property": "20 Puritan Road, Somerville",
   "occupancyRule": "A room is occupied on a date when checkIn <= date < checkOut. If check-in or check-out is null, those nights are not marked occupied.",
   "amountRule": "null means pending. statedAmount is the figure given for the whole stay. Do not copy it into gross, fees, or net unless that split is known. Do not invent amounts, party sizes, or dates.",
@@ -2506,6 +2508,7 @@
   },
   "checkInBasis": {
    "today": {
+    "date": "2026-11-03",
     "gross": 108.0,
     "net": 91.8,
     "checkIns": 1,
@@ -2529,6 +2532,7 @@
     }
    },
    "yesterday": {
+    "date": "2026-11-02",
     "gross": 112.5,
     "net": 95.62,
     "checkIns": 1,
@@ -2563,10 +2567,10 @@
   }
  },
  "signIn": {
-  "asOf": "2026-11-03T21:50:00-05:00",
-  "airbnb": "signed in",
-  "agoda": "signed in",
-  "booking": "needs re-verify"
+  "asOf": "2026-11-06T14:29:00-05:00",
+  "airbnb": {"state": "verified", "at": "2026-11-06T14:29:00-05:00"},
+  "booking": {"state": "verified", "at": "2026-11-06T14:12:00-05:00"},
+  "agoda": {"state": "portal reached", "at": "2026-11-06T10:43:00-05:00"}
  },
  "market": {
   "asOf": "2026-11-03T21:50:00-05:00",
@@ -2841,7 +2845,7 @@
    "fees": null,
    "net": 97.17,
    "status": "confirmed",
-   "notes": "Parking resolved; guest Sounds great ~6:51 PM.",
+   "notes": "Parking resolved; guest Sounds great about 6:51 PM Nov 3. 5-star host review and thank-you verified 5:10 PM ET Nov 5.",
    "arrivalTime": "~2:30 PM",
    "driving": "yes",
    "contactChannel": "Airbnb thread",
@@ -2879,7 +2883,7 @@
    "fees": null,
    "net": 97.17,
    "status": "confirmed",
-   "notes": "",
+   "notes": "5-star host review and thank-you verified 2:13 PM ET Nov 6.",
    "arrivalTime": "unknown",
    "driving": "unknown",
    "contactChannel": "unknown",
@@ -2913,9 +2917,9 @@
    "fees": 42.08,
    "net": 238.42,
    "status": "confirmed",
-   "notes": "Gross and commission from Booking.com export.",
-   "arrivalTime": "unknown",
-   "driving": "unknown",
+   "notes": "Gross and commission from the Nov 3 Booking.com export. Check-in instructions were posted once (shown as 10:41 and 10:48; that clock's time zone was not confirmed). Do not send that set again. The customer-service reply is pending owner review as of 2:10 PM ET Nov 6.",
+   "arrivalTime": "11:00 PM-12:00 AM",
+   "driving": "yes",
    "contactChannel": "unknown",
    "phoneOnFile": "unknown"
   },
@@ -2932,8 +2936,8 @@
    "fees": 16.57,
    "net": 93.93,
    "status": "confirmed",
-   "notes": "Gross and commission from Booking.com export.",
-   "arrivalTime": "unknown",
+   "notes": "Gross and commission from the Nov 3 Booking.com export. Arrival-day check-in instructions and house rules were not sent as of 2:10 PM ET Nov 6. Awaiting instructions.",
+   "arrivalTime": "7:00-8:00 PM",
    "driving": "unknown",
    "contactChannel": "unknown",
    "phoneOnFile": "unknown"
@@ -4516,11 +4520,49 @@
    "fees": null,
    "net": 105.64,
    "status": "confirmed",
-   "notes": "Smell + welcome/address reply sent ~6:50 PM ET; waiting on guest for arrival/parking; 2 guests; host payout $105.64",
+   "notes": "Smell + welcome/address reply sent about 6:50 PM ET Nov 3. 5-star host review submitted 2:29 PM ET Nov 6. Thank-you was not sent.",
    "arrivalTime": "unknown",
    "driving": "unknown",
    "contactChannel": "Airbnb thread",
    "phoneOnFile": "no"
+  },
+  {
+   "id": "brynn-p-airbnb-2026-11-11",
+   "guest": "Brynn P.",
+   "roomId": "room-2",
+   "platform": "airbnb",
+   "checkIn": "2026-11-11",
+   "checkOut": "2026-11-12",
+   "adults": null,
+   "statedAmount": null,
+   "gross": null,
+   "fees": null,
+   "net": null,
+   "status": "confirmed",
+   "notes": "Welcome message is pending owner review as of 2:10 PM ET Nov 6. Amount was not rechecked.",
+   "arrivalTime": "unknown",
+   "driving": "unknown",
+   "contactChannel": "Airbnb",
+   "phoneOnFile": "unknown"
+  },
+  {
+   "id": "annemiek-m-booking-2027-06-12",
+   "guest": "Annemiek M.",
+   "roomId": "room-1",
+   "platform": "booking",
+   "checkIn": "2027-06-12",
+   "checkOut": "2027-06-14",
+   "adults": null,
+   "statedAmount": 270,
+   "gross": null,
+   "fees": null,
+   "net": null,
+   "status": "confirmed",
+   "notes": "Logged from Booking.com on Nov 6. Stated whole-stay amount $270. Gross, fees, and net were not verified.",
+   "arrivalTime": "unknown",
+   "driving": "unknown",
+   "contactChannel": "Booking.com",
+   "phoneOnFile": "unknown"
   }
  ],
  "payouts": [
@@ -4530,7 +4572,7 @@
    "amount": 623.11,
    "currency": "USD",
    "state": "due",
-   "note": "Booking.com compensation / complaint charge for Room 1 listing (Incorrectly Modified Oct 2-4 2026). Payment due 2026-11-16. Invoice number and reservation id not stored. See host Gmail / extranet Finance > Invoices."
+   "note": "Booking.com compensation for the Room 1 listing, from the Nov 3 record. Payment due 2026-11-16. Not rechecked on Nov 6. Invoice number is not stored."
   },
   {
    "id": "agoda-received",
@@ -4538,7 +4580,7 @@
    "amount": 142.84,
    "currency": "USD",
    "state": "received",
-   "note": "Victor confirmed money received ~9:02 PM Nov 3. Support cases closed. Batch id not stored."
+   "note": "Older remittance already on the Nov 3 record, confirmed received about 9:02 PM ET that day. Not a new payment on Nov 6. Do not charge or request it again."
   }
  ],
  "chats": [
@@ -4588,22 +4630,52 @@
    "id": "agoda-payout",
    "platform": "agoda",
    "level": "clear",
-   "summary": "Payout of USD 142.84 received (Victor confirmed ~9:02 PM Nov 3). No Nov–Dec bookings on Agoda. Portal signed in; Finance/Remittances may still hit MFA. Joseph Nov 5 already blocked on Agoda."
+   "summary": "Portal reached 10:43 AM ET Nov 6. The USD 142.84 remittance is the older Nov 3 payment, not a new payment. Do not charge or request it again. Reservation totals were not rechecked."
   },
   {
    "id": "airbnb-clear",
    "platform": "airbnb",
    "level": "clear",
-   "summary": "Airbnb upcoming 14 confirmed (Tat C. guest-canceled Nov 29–Dec 1 ~9:30 PM). Graham parking resolved. Joseph smell/welcome sent ~6:50 PM; waiting on arrival/parking. Booking.com 59 checkout>=today (21/22/16); +1 far-future Room 1 Oct 22 2027 pending. Joseph Nov 5 blocked on Booking.com + Agoda. Agoda payout received."
+   "summary": "Verified 2:29 PM ET Nov 6, when Joseph H.'s review was submitted. Upcoming reservation totals were not rechecked."
   },
   {
    "id": "booking-invoice-alert",
    "platform": "booking",
    "level": "attention",
-   "summary": "URGENT: Booking.com compensation invoice USD 623.11 for Room 1 (Incorrectly Modified Oct 2-4 2026), payment due Nov 16. Confirmed checkout>=today still 59 (21/22/16). Extranet may need Pulse/SMS re-verify after 2h sweep auth wall ~9:45 PM. Joseph Nov 5 closed/blocked. +1 far-future Room 1 Oct 22 2027 guest/nights pending."
+   "summary": "Sign-in verified 2:12 PM ET Nov 6 for all three properties. The USD 623.11 compensation due Nov 16 is from the Nov 3 record and was not rechecked. Reservation totals were not rechecked."
   }
  ],
  "decisions": [
+  {
+   "id": "samuel-arrival-day-checkin",
+   "title": "Samuel B. arrival-day check-in not sent",
+   "detail": "Room 2, arrives Fri Nov 6 between 7:00 and 8:00 PM ET. Check-in instructions and house rules were not sent as of 2:10 PM ET. Awaiting instructions.",
+   "status": "open"
+  },
+  {
+   "id": "brynn-welcome",
+   "title": "Brynn P. welcome is pending owner review",
+   "detail": "Room 2, Nov 11-12. The welcome message is pending owner review. Do not send it. Last checked 2:10 PM ET Nov 6.",
+   "status": "open"
+  },
+  {
+   "id": "ami-cs-reply",
+   "title": "Ami P. customer-service reply is pending owner review",
+   "detail": "Check-in instructions were posted once. Do not send that set again. The separate customer-service reply is pending owner review. Last checked 2:10 PM ET Nov 6.",
+   "status": "open"
+  },
+  {
+   "id": "stripe-website-check",
+   "title": "Stripe website check is due Nov 6",
+   "detail": "Due today, from mail only. No account number is stored. Awaiting instructions. Last checked 2:10 PM ET Nov 6.",
+   "status": "open"
+  },
+  {
+   "id": "booking-totals-not-verified",
+   "title": "Booking.com totals are not verified for today",
+   "detail": "Money windows and reservation totals on the public page are the Nov 3 figures. They are not today's totals. Awaiting a current export before those totals are published as Nov 6. Last ops check 2:29 PM ET Nov 6.",
+   "status": "open"
+  },
   {
    "id": "lauren-airbnb-offer",
    "title": "Lauren's Airbnb special offer",
@@ -4648,6 +4720,10 @@
   }
  ],
  "changelog": [
+  {
+   "at": "2026-11-06T14:29:00-05:00",
+   "note": "Ops checked through 2:29 PM ET Nov 6. Booking.com sign-in verified 2:12 PM for all three properties. Airbnb sign-in verified 2:29 PM when Joseph H.'s review was submitted. Agoda portal reached 10:43 AM; the $142.84 item stays the older Nov 3 payment. Financial windows stay dated Nov 3 and are not shown as today. Annemiek M. Room 1 Jun 12-14 2027 logged at the stated $270, with the fee split still unknown. Checkout reviews run at 11:00 AM and noon."
+  },
   {
    "at": "2026-11-03T22:00:00-05:00",
    "note": "Delta check ~10:00 PM ET. No new Booking.com/Airbnb/Agoda booking, cancel, payout, or guest-message emails since 9:05 PM (Venmo/Capital One noise only; Agoda MFA earlier). Applied 2h-sweep live cancel: Tat C. Airbnb Room 1 Nov 29–Dec 1 → cancelled (Airbnb 15→14). Booking.com counts unchanged 59 checkout>=today (21/22/16) +1 far-future Room 1 Oct 22 2027 pending. DECISION COMMENT #10: moved lauren-airbnb-offer to Resolved (no reply needed); closed #10 and #3. Joseph still waiting on guest arrival/parking. Booking.com may need Pulse/SMS re-verify (2h sweep auth wall). Invoice USD 623.11 due Nov 16 on file."
@@ -4830,7 +4906,8 @@
    "status": "active",
    "lastRun": "2026-11-06T14:09:44-05:00",
    "lastResult": null,
-   "nextRun": "2026-11-07T11:00:00-05:00"
+   "nextRun": "2026-11-07T11:00:00-05:00",
+   "detail": "First priority after checkout, at 11:00 AM, with a noon catch-up only for what is still missing. Nov 6: Fatiq N. review and thank-you verified 2:13 PM ET. Joseph H. review submitted 2:29 PM ET. Thank-you for Joseph H. was not sent."
   },
   {
    "name": "Evening host brief",
