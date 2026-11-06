@@ -4814,8 +4814,8 @@
    "name": "Day-before guest threads to GitHub",
    "schedule": "daily ~8:00 PM",
    "status": "active",
-   "lastRun": null,
-   "lastResult": null,
+   "lastRun": "2026-11-05T20:15:00-05:00",
+   "lastResult": "failed",
    "nextRun": null
   }
  ]
