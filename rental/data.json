@@ -2559,7 +2559,7 @@
   }
  },
  "prices": {
-  "updatedAt": "2026-11-06T21:02:05-05:00",
+  "updatedAt": "2026-11-06T21:15:55-05:00",
   "note": "Only stored platform leaves are verified. A dash means that platform was not read. A host-calendar rate is not a guest all-in price and does not mean the night is bookable. Airbnb nights with no number were inspected and had no displayed price. They are not stored as zero.",
   "platforms": {
    "booking": {
@@ -3046,6 +3046,108 @@
       "evidenceLimit": "A seasonal-rates sidebar obscures some cells visually; exact date-keyed accessible labels support those cells. Screenshot saved timestamps are not represented as observation timestamps."
      }
     }
+   },
+   "agoda": {
+    "rooms": {
+     "room2": {
+      "source": "Agoda YCS host calendar",
+      "product": "Deluxe Double or Twin",
+      "ratePlan": "Room Only",
+      "occupancy": 3,
+      "currency": "USD",
+      "currencyVerified": true,
+      "currencyBasis": "USD explicitly displayed in calendar and selected-date panel",
+      "literalPriceFieldLabel": "Sell exclusive rate",
+      "rateSemantics": "Literal UI field label only; base/net/gross/all-in interpretation not established",
+      "unit": "daily host-calendar amount, not reservation total",
+      "coverageStart": "2026-11-06",
+      "coverageEnd": "2027-01-04",
+      "inspectedDateCount": 60,
+      "verifiedPriceCount": 46,
+      "unknownPriceCount": 14,
+      "observedSpans": [
+       {
+        "start": "2026-11-06",
+        "end": "2026-11-10",
+        "observedAt": "2026-11-06T21:08:38-05:00"
+       },
+       {
+        "start": "2026-11-11",
+        "end": "2026-11-30",
+        "observedAt": "2026-11-06T21:15:55-05:00"
+       },
+       {
+        "start": "2026-12-01",
+        "end": "2026-12-31",
+        "observedAt": "2026-11-06T21:13:01-05:00"
+       },
+       {
+        "start": "2027-01-01",
+        "end": "2027-01-04",
+        "observedAt": "2026-11-06T21:13:46-05:00"
+       }
+      ],
+      "unknownDates": {
+       "2026-11-06": {
+        "reason": "No nightly rate displayed; calendar cell showed Booking.com / Blocked.",
+        "calendarLabelStatus": "Blocked by Booking.com"
+       },
+       "2026-11-07": {
+        "reason": "No nightly rate displayed; calendar cell showed Booking.com / Blocked.",
+        "calendarLabelStatus": "Blocked by Booking.com"
+       },
+       "2026-11-08": {
+        "reason": "No nightly rate displayed; calendar cell showed Booking.com / Blocked.",
+        "calendarLabelStatus": "Blocked by Booking.com"
+       },
+       "2026-11-11": {
+        "reason": "Calendar cell showed Airbnb / Blocked; no USD nightly price displayed.",
+        "calendarLabelStatus": "Blocked by Airbnb"
+       },
+       "2026-11-12": {
+        "reason": "Calendar cell showed Airbnb / Blocked; no USD nightly price displayed.",
+        "calendarLabelStatus": "Blocked by Airbnb"
+       },
+       "2026-11-13": {
+        "reason": "Calendar cell showed Booking.com / Blocked; no USD nightly price displayed.",
+        "calendarLabelStatus": "Blocked by Booking.com"
+       },
+       "2026-11-14": {
+        "reason": "Calendar cell showed Booking.com / Blocked; no USD nightly price displayed.",
+        "calendarLabelStatus": "Blocked by Booking.com"
+       },
+       "2026-11-17": {
+        "reason": "Calendar cell showed Booking.com / Blocked; no USD nightly price displayed.",
+        "calendarLabelStatus": "Blocked by Booking.com"
+       },
+       "2026-11-18": {
+        "reason": "Calendar cell showed Booking.com / Blocked; no USD nightly price displayed.",
+        "calendarLabelStatus": "Blocked by Booking.com"
+       },
+       "2026-11-19": {
+        "reason": "Calendar cell showed Airbnb / Blocked; no USD nightly price displayed.",
+        "calendarLabelStatus": "Blocked by Airbnb"
+       },
+       "2026-11-20": {
+        "reason": "Calendar cell showed Booking.com / Blocked; no USD nightly price displayed.",
+        "calendarLabelStatus": "Blocked by Booking.com"
+       },
+       "2026-11-21": {
+        "reason": "Calendar cell showed Airbnb / Blocked; no USD nightly price displayed.",
+        "calendarLabelStatus": "Blocked by Airbnb"
+       },
+       "2026-11-25": {
+        "reason": "Calendar cell showed Airbnb / Blocked; no USD nightly price displayed.",
+        "calendarLabelStatus": "Blocked by Airbnb"
+       },
+       "2026-12-23": {
+        "reason": "Calendar cell showed Booking.com / Blocked; no USD nightly price displayed.",
+        "calendarLabelStatus": "Blocked by Booking.com"
+       }
+      },
+      "availabilityVerified": false
+     }
+    }
    }
   },
   "rooms": {
@@ -3276,11 +3378,13 @@
     },
     "2026-11-09": {
      "booking": 125,
-     "airbnb": 122
+     "airbnb": 122,
+     "agoda": 130
     },
     "2026-11-10": {
      "booking": 125,
-     "airbnb": 122
+     "airbnb": 122,
+     "agoda": 130
     },
     "2026-11-11": {
      "booking": 125
@@ -3296,11 +3400,13 @@
     },
     "2026-11-15": {
      "booking": 135,
-     "airbnb": 127
+     "airbnb": 127,
+     "agoda": 135
     },
     "2026-11-16": {
      "booking": 125,
-     "airbnb": 118
+     "airbnb": 118,
+     "agoda": 125
     },
     "2026-11-17": {
      "booking": 125
@@ -3319,177 +3425,219 @@
     },
     "2026-11-22": {
      "booking": 135,
-     "airbnb": 135
+     "airbnb": 135,
+     "agoda": 135
     },
     "2026-11-23": {
      "booking": 125,
-     "airbnb": 125
+     "airbnb": 125,
+     "agoda": 125
     },
     "2026-11-24": {
      "booking": 125,
-     "airbnb": 125
+     "airbnb": 125,
+     "agoda": 125
     },
     "2026-11-25": {
      "booking": 125
     },
     "2026-11-26": {
      "booking": 149,
-     "airbnb": 149
+     "airbnb": 149,
+     "agoda": 149
     },
     "2026-11-27": {
      "booking": 149,
-     "airbnb": 149
+     "airbnb": 149,
+     "agoda": 149
     },
     "2026-11-28": {
      "booking": 149,
-     "airbnb": 149
+     "airbnb": 149,
+     "agoda": 149
     },
     "2026-11-29": {
      "booking": 135,
-     "airbnb": 135
+     "airbnb": 135,
+     "agoda": 135
     },
     "2026-11-30": {
      "booking": 125,
-     "airbnb": 125
+     "airbnb": 125,
+     "agoda": 125
     },
     "2026-12-01": {
      "booking": 125,
-     "airbnb": 125
+     "airbnb": 125,
+     "agoda": 130
     },
     "2026-12-02": {
      "booking": 125,
-     "airbnb": 125
+     "airbnb": 125,
+     "agoda": 130
     },
     "2026-12-03": {
      "booking": 125,
-     "airbnb": 125
+     "airbnb": 125,
+     "agoda": 130
     },
     "2026-12-04": {
      "booking": 125,
-     "airbnb": 125
+     "airbnb": 125,
+     "agoda": 130
     },
     "2026-12-05": {
      "booking": 125,
-     "airbnb": 125
+     "airbnb": 125,
+     "agoda": 130
     },
     "2026-12-06": {
      "booking": 125,
-     "airbnb": 125
+     "airbnb": 125,
+     "agoda": 130
     },
     "2026-12-07": {
      "booking": 125,
-     "airbnb": 125
+     "airbnb": 125,
+     "agoda": 130
     },
     "2026-12-08": {
      "booking": 125,
-     "airbnb": 125
+     "airbnb": 125,
+     "agoda": 130
     },
     "2026-12-09": {
      "booking": 125,
-     "airbnb": 125
+     "airbnb": 125,
+     "agoda": 130
     },
     "2026-12-10": {
      "booking": 125,
-     "airbnb": 125
+     "airbnb": 125,
+     "agoda": 130
     },
     "2026-12-11": {
      "booking": 125,
-     "airbnb": 125
+     "airbnb": 125,
+     "agoda": 130
     },
     "2026-12-12": {
      "booking": 125,
-     "airbnb": 125
+     "airbnb": 125,
+     "agoda": 130
     },
     "2026-12-13": {
      "booking": 125,
-     "airbnb": 125
+     "airbnb": 125,
+     "agoda": 130
     },
     "2026-12-14": {
      "booking": 125,
-     "airbnb": 125
+     "airbnb": 125,
+     "agoda": 130
     },
     "2026-12-15": {
      "booking": 125,
-     "airbnb": 125
+     "airbnb": 125,
+     "agoda": 130
     },
     "2026-12-16": {
      "booking": 125,
-     "airbnb": 125
+     "airbnb": 125,
+     "agoda": 130
     },
     "2026-12-17": {
      "booking": 125,
-     "airbnb": 125
+     "airbnb": 125,
+     "agoda": 130
     },
     "2026-12-18": {
      "booking": 125,
-     "airbnb": 125
+     "airbnb": 125,
+     "agoda": 130
     },
     "2026-12-19": {
      "booking": 125,
-     "airbnb": 125
+     "airbnb": 125,
+     "agoda": 130
     },
     "2026-12-20": {
      "booking": 125,
-     "airbnb": 125
+     "airbnb": 125,
+     "agoda": 130
     },
     "2026-12-21": {
      "booking": 125,
-     "airbnb": 125
+     "airbnb": 125,
+     "agoda": 130
     },
     "2026-12-22": {
      "booking": 125,
-     "airbnb": 125
+     "airbnb": 125,
+     "agoda": 130
     },
     "2026-12-23": {
      "booking": 125
     },
     "2026-12-24": {
      "booking": 125,
-     "airbnb": 125
+     "airbnb": 125,
+     "agoda": 130
     },
     "2026-12-25": {
      "booking": 125,
-     "airbnb": 125
+     "airbnb": 125,
+     "agoda": 130
     },
     "2026-12-26": {
      "booking": 125,
-     "airbnb": 125
+     "airbnb": 125,
+     "agoda": 130
     },
     "2026-12-27": {
      "booking": 125,
-     "airbnb": 125
+     "airbnb": 125,
+     "agoda": 130
     },
     "2026-12-28": {
      "booking": 125,
-     "airbnb": 125
+     "airbnb": 125,
+     "agoda": 130
     },
     "2026-12-29": {
      "booking": 125,
-     "airbnb": 125
+     "airbnb": 125,
+     "agoda": 130
     },
     "2026-12-30": {
      "booking": 125,
-     "airbnb": 125
+     "airbnb": 125,
+     "agoda": 130
     },
     "2026-12-31": {
      "booking": 125,
-     "airbnb": 125
+     "airbnb": 125,
+     "agoda": 130
     },
     "2027-01-01": {
      "booking": 145,
-     "airbnb": 164
+     "airbnb": 164,
+     "agoda": 130
     },
     "2027-01-02": {
      "booking": 145,
-     "airbnb": 164
+     "airbnb": 164,
+     "agoda": 130
     },
     "2027-01-03": {
      "booking": 145,
-     "airbnb": 150
+     "airbnb": 150,
+     "agoda": 130
     },
     "2027-01-04": {
      "booking": 145,
-     "airbnb": 150
+     "airbnb": 150,
+     "agoda": 130
     }
    },
    "room3": {
