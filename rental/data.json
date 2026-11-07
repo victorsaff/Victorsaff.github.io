@@ -4,7 +4,7 @@
     "timezone": "America/New_York",
     "currency": "USD",
     "lastChecked": "2026-11-03T22:00:00-05:00",
-    "opsAsOf": "2026-11-07T13:07:00-05:00",
+    "opsAsOf": "2026-11-07T15:00:00-05:00",
     "financialAsOf": "2026-11-03T22:45:00-05:00",
     "property": "20 Puritan Road, Somerville",
     "occupancyRule": "A room is occupied on a date when checkIn <= date < checkOut. If check-in or check-out is null, those nights are not marked occupied.",
@@ -20,8 +20,8 @@
       "start": "2026-11-01",
       "end": "2026-11-30"
     },
-    "opsCheckedAt": "2026-11-07T13:07:00-05:00",
-    "opsNote": "1:07 PM ET Nov 7 hourly DELTA: re-verified Adya S. Booking kitchen/oven question (~12:04 PM) still unanswered; open decision adya-s-kitchen-oven-reply. No newer Booking/Airbnb/Agoda booking, cancel, payout, or guest-message emails since 12:04. No open PRICE/DECISION/NOTE issues. Agoda MFA ignored. Financial windows unchanged (financialAsOf Nov 3). Prices not re-read. Prior live opsAsOf was 10:03 \u2014 this publishes the pending 12:04 kitchen decision plus this hour\u2019s no-change confirmation."
+    "opsCheckedAt": "2026-11-07T15:00:00-05:00",
+    "opsNote": "3:00 PM ET Nov 7 hourly DELTA: new Adya S. Booking.com question ~2:07 PM ('is there laundry?') added to open decision adya-s-kitchen-oven-reply (kitchen/oven ask from ~12:04 also still unanswered). No other new Booking/Airbnb/Agoda booking, cancel, payout, or guest-message emails since 2:03 PM. No open PRICE/DECISION/NOTE issues. Financial windows unchanged (financialAsOf Nov 3). Prices not re-read."
   },
   "rooms": [
     {
@@ -3918,7 +3918,7 @@
     "airbnb": {
       "state": "last verified",
       "at": "2026-11-07T07:50:00-05:00",
-      "note": "Morning brief ~7:05 and 2h sweep ~7:50 AM ET Nov 7: Airbnb signed in. No new bookings/messages/cancellations. Helen parking+bathroom still unanswered; Brynn welcome still unsent; Fatiq prior extra-night ask shows Message unsent (retracted) \u2014 do not revive."
+      "note": "Morning brief ~7:05 and 2h sweep ~7:50 AM ET Nov 7: Airbnb signed in. No new bookings/messages/cancellations. Helen parking+bathroom still unanswered; Brynn welcome still unsent; Fatiq prior extra-night ask shows Message unsent (retracted) — do not revive."
     },
     "booking": {
       "state": "last verified",
@@ -4254,7 +4254,7 @@
       "net": 95.62,
       "status": "confirmed",
       "notes": "Gross and commission from Booking.com export.",
-      "arrivalTime": "after 3\u20134 PM",
+      "arrivalTime": "after 3–4 PM",
       "driving": "no",
       "contactChannel": "WhatsApp",
       "phoneOnFile": "yes"
@@ -4363,7 +4363,7 @@
       "fees": 15.53,
       "net": 87.97,
       "status": "confirmed",
-      "notes": "Full-stay payment $103.50 and commission $15.53 rechecked 3:01 PM ET Nov 6 on Booking.com. Payment minus commission is not a payout. Evening brief ~7:21 PM ET Nov 6 (Booking live): booked adults stay 2. A third guest was approved and a king plus futon was confirmed; the third guest is not recorded as a booked adult. Expected party 3. Not driving. Bag drop ~8:30 AM ET Sat Nov 7; room available 2 PM ET. Phone on file. Preferred contact unknown. Arrival set was not sent. Morning brief ~7:05 AM ET Nov 7: empty Booking thread; 7\u20138 AM arrival request on file; bag-drop/room-available facts unchanged;  9:50 AM ET Nov 7 sweep (Booking live): guest arrived ~8:49 AM ET for bag drop; host sent check-in instructions ~8:47 AM, luggage-in-common-area guidance ~8:52 AM, and room-ready-at-2 PM (after 11 AM checkout/cleaning) ~9:09-9:10 AM ET; guest replied 'yes thank you' ~9:25 AM. Bag-drop issue resolved. Do not resend check-in instructions.\nGuest ~12:04 PM ET Nov 7 (Booking email): asked if kitchen use is allowed and if there is an oven. Unanswered as of 1:07 PM ET; owner alerted earlier; reply needs owner yes \u2014 do not send without approval.",
+      "notes": "Full-stay payment $103.50 and commission $15.53 rechecked 3:01 PM ET Nov 6 on Booking.com. Payment minus commission is not a payout. Evening brief ~7:21 PM ET Nov 6 (Booking live): booked adults stay 2. A third guest was approved and a king plus futon was confirmed; the third guest is not recorded as a booked adult. Expected party 3. Not driving. Bag drop ~8:30 AM ET Sat Nov 7; room available 2 PM ET. Phone on file. Preferred contact unknown. Arrival set was not sent. Morning brief ~7:05 AM ET Nov 7: empty Booking thread; 7–8 AM arrival request on file; bag-drop/room-available facts unchanged;  9:50 AM ET Nov 7 sweep (Booking live): guest arrived ~8:49 AM ET for bag drop; host sent check-in instructions ~8:47 AM, luggage-in-common-area guidance ~8:52 AM, and room-ready-at-2 PM (after 11 AM checkout/cleaning) ~9:09-9:10 AM ET; guest replied 'yes thank you' ~9:25 AM. Bag-drop issue resolved. Do not resend check-in instructions.\nGuest ~12:04 PM ET Nov 7 (Booking email): asked if kitchen use is allowed and if there is an oven. Unanswered as of 1:07 PM ET; owner alerted earlier; reply needs owner yes — do not send without approval. ~2:07 PM ET Nov 7: guest asked if there is laundry (unanswered; owner reply needed).",
       "arrivalTime": "~8:30 AM ET bag drop; room available 2 PM ET",
       "driving": "no",
       "contactChannel": "booking",
@@ -4443,7 +4443,7 @@
     },
     {
       "id": "nil-airbnb-2026-11-10",
-      "guest": "Nil \u00c7.",
+      "guest": "Nil Ç.",
       "roomId": "room-1",
       "platform": "airbnb",
       "checkIn": "2026-11-10",
@@ -6075,8 +6075,8 @@
   "decisions": [
     {
       "id": "adya-s-kitchen-oven-reply",
-      "title": "Adya S. kitchen + oven question needs owner reply",
-      "detail": "Room 3, Nov 7-8 (in-house). Guest messaged ~12:04 PM ET Nov 7 on Booking.com: asked whether kitchen use is allowed and whether there is an oven. Still unanswered as of 1:07 PM ET. Draft needs owner yes; do not send. Bag-drop/check-in set already handled earlier today \u2014 do not resend those.",
+      "title": "Adya S. kitchen/oven + laundry questions need owner reply",
+      "detail": "Room 3, Nov 7-8 (in-house). Guest messaged on Booking.com ~12:04 PM ET Nov 7 asking whether kitchen use is allowed and whether there is an oven, then ~2:07 PM ET asked 'is there laundry?'. Both still unanswered as of 3:00 PM ET. Draft needs owner yes; do not send. Bag-drop/check-in set already handled earlier today — do not resend those.",
       "status": "open"
     },
     {
@@ -6118,13 +6118,13 @@
     {
       "id": "brynn-welcome",
       "title": "Brynn P. welcome is pending owner review",
-      "detail": "Room 2, Nov 11-12. Welcome still pending owner review; prior draft was not approved \u2014 do not re-ask or send. Last Airbnb live check in morning brief / 7:50 AM sweep Nov 7: no new Brynn message.",
+      "detail": "Room 2, Nov 11-12. Welcome still pending owner review; prior draft was not approved — do not re-ask or send. Last Airbnb live check in morning brief / 7:50 AM sweep Nov 7: no new Brynn message.",
       "status": "open"
     },
     {
       "id": "ami-cs-reply",
       "title": "Ami P. customer-service reply is pending owner review",
-      "detail": "Ami P. in-house Room 1 through Nov 9. Check-in instructions already posted once \u2014 do not resend. Separate CS reply still pending owner review. No new Ami message in morning brief ~7:05 AM ET Nov 7.",
+      "detail": "Ami P. in-house Room 1 through Nov 9. Check-in instructions already posted once — do not resend. Separate CS reply still pending owner review. No new Ami message in morning brief ~7:05 AM ET Nov 7.",
       "status": "open"
     },
     {
@@ -6147,14 +6147,14 @@
     },
     {
       "id": "nidia-c-late-arrival-reply",
-      "title": "Reply to Nidia C. (Booking.com, Dec 10\u201311, Room 1)",
-      "detail": "Late arrival after a concert; prefers WhatsApp. Draft shown to Victor 8:45 PM Nov 3 \u2014 waiting for his yes. Closed ~9:02 PM Nov 3 per Victor; decision issues closed.",
+      "title": "Reply to Nidia C. (Booking.com, Dec 10–11, Room 1)",
+      "detail": "Late arrival after a concert; prefers WhatsApp. Draft shown to Victor 8:45 PM Nov 3 — waiting for his yes. Closed ~9:02 PM Nov 3 per Victor; decision issues closed.",
       "status": "done"
     },
     {
       "id": "tat-c-parking-reply",
       "title": "Reply to Tat C. (Airbnb) about minivan parking",
-      "detail": "Draft shown to Victor 8:45 PM Nov 3 \u2014 waiting for his yes. Closed ~9:02 PM Nov 3 per Victor; decision issues closed.",
+      "detail": "Draft shown to Victor 8:45 PM Nov 3 — waiting for his yes. Closed ~9:02 PM Nov 3 per Victor; decision issues closed.",
       "status": "done"
     },
     {
@@ -6171,7 +6171,7 @@
     },
     {
       "id": "joseph-h-welcome-reply",
-      "title": "Joseph H. welcome + scent answer (Room 2, Nov 5\u20136)",
+      "title": "Joseph H. welcome + scent answer (Room 2, Nov 5–6)",
       "detail": "Sent 6:50 PM Nov 3. Nov 5 night blocked on Booking.com and Agoda.",
       "status": "done"
     },
@@ -6184,6 +6184,10 @@
   ],
   "changelog": [
     {
+      "at": "2026-11-07T15:00:00-05:00",
+      "note": "Hourly DELTA ~3:00 PM ET Nov 7: Adya S. (Room 3, in-house) asked ~2:07 PM on Booking.com whether there is laundry; merged into open decision with the unanswered kitchen/oven ask. No reply sent. No new booking/cancel/payout/review mail; no open PRICE/DECISION/NOTE issues. Financial and price data unchanged."
+    },
+    {
       "at": "2026-11-07T10:03:00-05:00",
       "note": "Hourly DELTA ~10:03 AM ET Nov 7: Adya S. bag drop resolved (instructions sent 8:47-9:10 AM, guest confirmed 9:25 AM). New open decision: Iana K. (Room 1, Nov 18-21) private-bathroom + ambiguous '12 am' arrival question, not driving, WhatsApp preferred, no reply sent. No new booking/cancel/payout/review mail; no open PRICE/DECISION/NOTE issues. Financial and price data unchanged."
     },
@@ -6193,7 +6197,7 @@
     },
     {
       "at": "2026-11-06T19:04:00-05:00",
-      "note": "Hourly DELTA ~7:04 PM ET Nov 6. Gmail: Morgane B. Booking Room 1 guest message ~6:29 PM (driving yes, evening arrival, asked private parking, prefers WhatsApp) \u2014 no host reply sent. Helen Z. welcome already sent once ~6:14 PM (resolve helen-welcome). Flavinha Room 3 checkout Template A sent once on WhatsApp ~6:17 PM. Agoda MFA ~5:54 PM noise only. No open PRICE/DECISION/NOTE issues. No new booking/cancel/payout. Open decisions: Morgane parking reply, Brynn welcome, Ami CS reply, Booking totals not verified. Financial windows stay dated Nov 3. Prior PR15 Helen append still unpublished; this run rebases/rebuilds on current main."
+      "note": "Hourly DELTA ~7:04 PM ET Nov 6. Gmail: Morgane B. Booking Room 1 guest message ~6:29 PM (driving yes, evening arrival, asked private parking, prefers WhatsApp) — no host reply sent. Helen Z. welcome already sent once ~6:14 PM (resolve helen-welcome). Flavinha Room 3 checkout Template A sent once on WhatsApp ~6:17 PM. Agoda MFA ~5:54 PM noise only. No open PRICE/DECISION/NOTE issues. No new booking/cancel/payout. Open decisions: Morgane parking reply, Brynn welcome, Ami CS reply, Booking totals not verified. Financial windows stay dated Nov 3. Prior PR15 Helen append still unpublished; this run rebases/rebuilds on current main."
     },
     {
       "at": "2026-11-06T17:11:00-05:00",
@@ -6213,7 +6217,7 @@
     },
     {
       "at": "2026-11-03T22:00:00-05:00",
-      "note": "Delta check ~10:00 PM ET. No new Booking.com/Airbnb/Agoda booking, cancel, payout, or guest-message emails since 9:05 PM (Venmo/Capital One noise only; Agoda MFA earlier). Applied 2h-sweep live cancel: Tat C. Airbnb Room 1 Nov 29\u2013Dec 1 \u2192 cancelled (Airbnb 15\u219214). Booking.com counts unchanged 59 checkout>=today (21/22/16) +1 far-future Room 1 Oct 22 2027 pending. DECISION COMMENT #10: moved lauren-airbnb-offer to Resolved (no reply needed); closed #10 and #3. Joseph still waiting on guest arrival/parking. Booking.com may need Pulse/SMS re-verify (2h sweep auth wall). Invoice USD 623.11 due Nov 16 on file."
+      "note": "Delta check ~10:00 PM ET. No new Booking.com/Airbnb/Agoda booking, cancel, payout, or guest-message emails since 9:05 PM (Venmo/Capital One noise only; Agoda MFA earlier). Applied 2h-sweep live cancel: Tat C. Airbnb Room 1 Nov 29–Dec 1 → cancelled (Airbnb 15→14). Booking.com counts unchanged 59 checkout>=today (21/22/16) +1 far-future Room 1 Oct 22 2027 pending. DECISION COMMENT #10: moved lauren-airbnb-offer to Resolved (no reply needed); closed #10 and #3. Joseph still waiting on guest arrival/parking. Booking.com may need Pulse/SMS re-verify (2h sweep auth wall). Invoice USD 623.11 due Nov 16 on file."
     },
     {
       "at": "2026-11-03T21:05:00-05:00",
@@ -6265,7 +6269,7 @@
     },
     {
       "at": "2026-11-03T08:05:00-05:00",
-      "note": "Full hourly sweep ~8:05 AM ET. Airbnb live pull 14 confirmed (matches baseline). Booking.com from overnight Excel exports 58 confirmed with checkout on/after today (20/22/16 by room, matches baseline including Thomas H. checkout today). Agoda still no Nov\u2013Dec bookings; remittance stuck. No new booking/cancel emails overnight except already-known Aythami cancel Nov 2 and Cristian G. new Dec 31. Guest chats: Antoine C. messaged overnight (arrive by car ~5:30 PM, contact given \u2014 check-in no longer held for missing phone); Graham P. Airbnb still waiting on parking reply. Lauren Airbnb special-offer decision still open (APPROVE draft to Victor first; stay open until she books)."
+      "note": "Full hourly sweep ~8:05 AM ET. Airbnb live pull 14 confirmed (matches baseline). Booking.com from overnight Excel exports 58 confirmed with checkout on/after today (20/22/16 by room, matches baseline including Thomas H. checkout today). Agoda still no Nov–Dec bookings; remittance stuck. No new booking/cancel emails overnight except already-known Aythami cancel Nov 2 and Cristian G. new Dec 31. Guest chats: Antoine C. messaged overnight (arrive by car ~5:30 PM, contact given — check-in no longer held for missing phone); Graham P. Airbnb still waiting on parking reply. Lauren Airbnb special-offer decision still open (APPROVE draft to Victor first; stay open until she books)."
     },
     {
       "at": "2026-11-03T09:00:00-05:00",
@@ -6273,7 +6277,7 @@
     },
     {
       "at": "2026-11-03T10:06:00-05:00",
-      "note": "Delta check ~10:06 AM ET. New Booking.com Room 1 check-in Fri Oct 22 2027 (confirmation email only; guest/nights/amount pending extranet). Nidia C. already on file. Airbnb still 14 confirmed. Booking confirmed checkout>=today still 59 until Oct 2027 stay has a check-out date. Booking.com signed out \u2014 need password in chat for details + calendar block. Lauren special-offer decision still open (draft-first). No new Airbnb/Agoda booking emails. No Stripe alerts."
+      "note": "Delta check ~10:06 AM ET. New Booking.com Room 1 check-in Fri Oct 22 2027 (confirmation email only; guest/nights/amount pending extranet). Nidia C. already on file. Airbnb still 14 confirmed. Booking confirmed checkout>=today still 59 until Oct 2027 stay has a check-out date. Booking.com signed out — need password in chat for details + calendar block. Lauren special-offer decision still open (draft-first). No new Airbnb/Agoda booking emails. No Stripe alerts."
     },
     {
       "at": "2026-11-03T11:07:00-05:00",
@@ -6285,7 +6289,7 @@
     },
     {
       "at": "2026-11-07T08:05:00-05:00",
-      "note": "8 AM ET Nov 7 FULL ops: date rollover Today/Yesterday check-in basis to Nov 7 ($233.50/$198.47 Booking Arthur+Adya) and Nov 6 ($391.00/$332.35 Booking Ami+Samuel). Morning-verified: Samuel+Flavinha Booking checkout msgs sent ~7:09\u20137:10; Ami in-house Room1 to Nov 9; open decisions Helen/Morgane/Brynn/Ami CS unchanged (no re-ask). No new rental booking/cancel/payout mail since ~9:53 PM Nov 6 (Agoda MFA only). Agoda OTP blocked. Financial last7/mtd/last30/ytd baselines still asOf Nov 3. Prices not refreshed yet this run. Gmail+issue scan clean of PRICE/DECISION/NOTE."
+      "note": "8 AM ET Nov 7 FULL ops: date rollover Today/Yesterday check-in basis to Nov 7 ($233.50/$198.47 Booking Arthur+Adya) and Nov 6 ($391.00/$332.35 Booking Ami+Samuel). Morning-verified: Samuel+Flavinha Booking checkout msgs sent ~7:09–7:10; Ami in-house Room1 to Nov 9; open decisions Helen/Morgane/Brynn/Ami CS unchanged (no re-ask). No new rental booking/cancel/payout mail since ~9:53 PM Nov 6 (Agoda MFA only). Agoda OTP blocked. Financial last7/mtd/last30/ytd baselines still asOf Nov 3. Prices not refreshed yet this run. Gmail+issue scan clean of PRICE/DECISION/NOTE."
     },
     {
       "at": "2026-11-07T12:04:00-05:00",
@@ -6293,7 +6297,7 @@
     },
     {
       "at": "2026-11-07T13:07:00-05:00",
-      "note": "Delta ~1:07 PM ET: Gmail re-check \u2014 no newer rental booking/cancel/payout/guest-message emails after Adya\u2019s 12:04 kitchen/oven ask. Decision adya-s-kitchen-oven-reply still open. No PRICE/DECISION/NOTE issues. Financial baseline still Nov 3; prices unchanged. Publishing pending ops since 10:03."
+      "note": "Delta ~1:07 PM ET: Gmail re-check — no newer rental booking/cancel/payout/guest-message emails after Adya’s 12:04 kitchen/oven ask. Decision adya-s-kitchen-oven-reply still open. No PRICE/DECISION/NOTE issues. Financial baseline still Nov 3; prices unchanged. Publishing pending ops since 10:03."
     }
   ],
   "guestThreads": [
@@ -6431,7 +6435,7 @@
     },
     {
       "name": "Hourly Command Center check",
-      "schedule": "hourly 8 AM\u201310 PM",
+      "schedule": "hourly 8 AM–10 PM",
       "status": "active",
       "lastRun": "2026-11-07T08:05:00-05:00",
       "lastResult": "running",
