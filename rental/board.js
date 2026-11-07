@@ -427,6 +427,39 @@ export function priceText(value) {
   return formatted === null ? "—" : formatted;
 }
 
+const MONTH_ABBR = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+export function dayHeadParts(iso, previousIso) {
+  const [year, month, day] = String(iso || "").split("-");
+  const monthName = MONTH_ABBR[Number(month) - 1] || "";
+  const previousYear = previousIso ? String(previousIso).slice(0, 4) : "";
+  const showYear = !previousIso || year !== previousYear || month === "01";
+  return {
+    iso,
+    month: monthName,
+    day: String(Number(day)),
+    year: showYear ? year : "",
+    label: `${monthName}${showYear ? ` ${year}` : ""} ${Number(day)}`.trim(),
+  };
+}
+
+function pricePlatformInfo(data, platformId, roomKey) {
+  return data.prices?.platforms?.[platformId]?.rooms?.[roomKey] || null;
+}
+
+function coverageLabel(info) {
+  if (!info?.coverageStart || !info?.coverageEnd) return "";
+  const start = `${formatShort(info.coverageStart)}, ${info.coverageStart.slice(0, 4)}`;
+  const end = `${formatShort(info.coverageEnd)}, ${info.coverageEnd.slice(0, 4)}`;
+  return `${start}–${end}`;
+}
+
+function checkedLabel(info) {
+  const stamps = (info?.observedSpans || []).map((span) => span.observedAt).filter(Boolean).sort();
+  if (!stamps.length) return "";
+  return formatChecked(stamps[stamps.length - 1]);
+}
+
 export function priceIssueUrl({ roomNumber, start, end, price, platforms }) {
   const platformList = platforms.join(",");
   const title = `PRICE: room${roomNumber} ${start}..${end} ${price} ${platformList}`;
@@ -774,17 +807,29 @@ function calendarHtml(data, view, selected) {
   return months;
 }
 
+function rateBasisLine(data, room) {
+  const info = pricePlatformInfo(data, "booking", priceRoomKey(room));
+  if (!info) return `<p class="note">Booking.com not read for this room.</p>`;
+  const guests = Number(info.occupancy);
+  const guestLabel = Number.isFinite(guests) ? `${guests} guest${guests === 1 ? "" : "s"}` : "guest count not stored";
+  const when = checkedLabel(info);
+  const product = info.product ? `${info.product}, ` : "";
+  return `<p class="note">Booking.com ${esc(product)}${esc(info.ratePlan || "Standard Rate")} · ${esc(guestLabel)} · ${esc(info.currency || "USD")} · ${esc(coverageLabel(info))}${when ? ` · checked ${esc(when)}` : ""}. Host-calendar rate, not a guest all-in price.</p>`;
+}
+
 function nightlyPricesHtml(data, iso) {
+  const parts = dayHeadParts(iso, "");
   const cards = (data.rooms || []).map((room) => {
     const prices = nightPrices(data, room, iso);
     return `<article class="price-room" style="border-top:4px solid ${safeColor(room.color)}">
       <strong>${esc(room.name)}</strong>
+      ${rateBasisLine(data, room)}
       <p>Airbnb ${esc(priceText(prices.airbnb))}</p>
       <p>Booking.com ${esc(priceText(prices.booking))}</p>
       <p>Agoda ${esc(priceText(prices.agoda))}</p>
     </article>`;
   }).join("");
-  return `<h3>Nightly prices</h3><p class="note">${esc(formatPretty(iso))}. A dash means no price is stored for that platform.</p><div class="price-board">${cards}</div>`;
+  return `<h3>Nightly prices</h3><p class="note" data-price-date="${esc(iso)}">${esc(parts.label)}. A dash means that platform was not read. A stored Booking.com rate can show on a closed night. It is not proof the night is bookable.</p><div class="price-board">${cards}</div>`;
 }
 
 function priceFormHtml(data, selected) {
@@ -1353,7 +1398,10 @@ function kpiHtml(data, today) {
 
 function horizonGrid(data, view, selected) {
   const days = eachDate(view.today, fmtDate(addDays(parseDate(view.today), 59)));
-  const head = [`<div class="ghead corner"></div>`, ...days.map((iso) => `<div class="ghead">${iso.slice(8)}</div>`)].join("");
+  const head = [`<div class="ghead corner"></div>`, ...days.map((iso, index) => {
+    const parts = dayHeadParts(iso, index ? days[index - 1] : "");
+    return `<div class="ghead" data-iso="${esc(iso)}"><span class="gmonth">${esc(parts.month)}${parts.year ? ` ${esc(parts.year)}` : ""}</span><span class="gday">${esc(parts.day)}</span></div>`;
+  })].join("");
   const rows = (data.rooms || []).map((room) => {
     const cells = days.map((iso) => {
       const stay = data.stays.find((item) => item.roomId === room.id && isOccupied(item, iso));
@@ -1370,7 +1418,7 @@ function horizonGrid(data, view, selected) {
     return `<div class="groom">${roomName(room)}</div>${cells}`;
   }).join("");
   return `<div class="gscroll" id="gscroll"><div class="ggrid" style="grid-template-columns: 92px repeat(${days.length}, 54px)">${head}${rows}</div></div>
-    <p class="note">Next 60 days. The bar is the booked platform. Each cell lists Airbnb, Booking.com, then Agoda. A dash means no nightly price is stored.</p>`;
+    <p class="note">Next 60 days, ${esc(dayHeadParts(days[0], "").label)} through ${esc(dayHeadParts(days[days.length - 1], days[days.length - 2]).label)}. The bar is the booked platform. Each cell lists Airbnb, Booking.com, then Agoda. A dash means that platform was not read, not a $0 rate.</p>`;
 }
 
 function reservationList(data) {
@@ -2042,7 +2090,10 @@ async function boot() {
       try {
         const next = await loadData();
         const today = newYorkToday();
-        if (next.meta.lastChecked !== state.data.meta.lastChecked || today !== state.today) {
+        const changedPrices = (next.prices?.updatedAt || "") !== (state.data.prices?.updatedAt || "");
+        const changedOps = (next.meta.opsAsOf || "") !== (state.data.meta.opsAsOf || "");
+        const changedFinancial = (next.meta.financialAsOf || "") !== (state.data.meta.financialAsOf || "");
+        if (next.meta.lastChecked !== state.data.meta.lastChecked || changedPrices || changedOps || changedFinancial || today !== state.today) {
           state.data = next;
           state.today = today;
           state.issues = await loadIssues();
