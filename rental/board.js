@@ -807,14 +807,31 @@ function calendarHtml(data, view, selected) {
   return months;
 }
 
+function guestCountLabel(info) {
+  if (!info || info.occupancy === null || info.occupancy === undefined || info.occupancy === "") return "guest count not shown";
+  const guests = Number(info.occupancy);
+  if (!Number.isFinite(guests) || guests <= 0) return "guest count not shown";
+  return `${guests} guest${guests === 1 ? "" : "s"}`;
+}
+
 function rateBasisLine(data, room) {
   const info = pricePlatformInfo(data, "booking", priceRoomKey(room));
   if (!info) return `<p class="note">Booking.com not read for this room.</p>`;
-  const guests = Number(info.occupancy);
-  const guestLabel = Number.isFinite(guests) ? `${guests} guest${guests === 1 ? "" : "s"}` : "guest count not stored";
   const when = checkedLabel(info);
   const product = info.product ? `${info.product}, ` : "";
-  return `<p class="note">Booking.com ${esc(product)}${esc(info.ratePlan || "Standard Rate")} · ${esc(guestLabel)} · ${esc(info.currency || "USD")} · ${esc(coverageLabel(info))}${when ? ` · checked ${esc(when)}` : ""}. Host-calendar rate, not a guest all-in price.</p>`;
+  const plan = info.ratePlan || "rate plan not stored";
+  return `<p class="note">Booking.com ${esc(product)}${esc(plan)} · ${esc(guestCountLabel(info))} · ${esc(info.currency || "USD")} · ${esc(coverageLabel(info))}${when ? ` · checked ${esc(when)}` : ""}. Host-calendar rate, not a guest all-in price.</p>`;
+}
+
+function airbnbBasisLine(data, room, iso) {
+  const info = pricePlatformInfo(data, "airbnb", priceRoomKey(room));
+  if (!info) return `<p class="note">Airbnb not read for this room.</p>`;
+  const when = checkedLabel(info);
+  const money = info.currencyVerified ? esc(info.currency || "USD") : "$ shown; USD inferred, not verified";
+  const unknown = info.unknownDates?.[iso];
+  const price = nightPrices(data, room, iso).airbnb;
+  const thisNight = price != null ? "" : unknown?.reason ? ` This night: ${unknown.reason}` : " This night has no stored Airbnb price.";
+  return `<p class="note">Airbnb calendar cell · ${esc(guestCountLabel(info))} · pricing model not identified · ${money} · ${esc(coverageLabel(info))}${when ? ` · checked ${esc(when)}` : ""}. Not a guest all-in quote.${esc(thisNight)}</p>`;
 }
 
 function nightlyPricesHtml(data, iso) {
@@ -823,13 +840,14 @@ function nightlyPricesHtml(data, iso) {
     const prices = nightPrices(data, room, iso);
     return `<article class="price-room" style="border-top:4px solid ${safeColor(room.color)}">
       <strong>${esc(room.name)}</strong>
+      ${airbnbBasisLine(data, room, iso)}
       ${rateBasisLine(data, room)}
       <p>Airbnb ${esc(priceText(prices.airbnb))}</p>
       <p>Booking.com ${esc(priceText(prices.booking))}</p>
       <p>Agoda ${esc(priceText(prices.agoda))}</p>
     </article>`;
   }).join("");
-  return `<h3>Nightly prices</h3><p class="note" data-price-date="${esc(iso)}">${esc(parts.label)}. A dash means that platform was not read. A stored Booking.com rate can show on a closed night. It is not proof the night is bookable.</p><div class="price-board">${cards}</div>`;
+  return `<h3>Nightly prices</h3><p class="note" data-price-date="${esc(iso)}">${esc(parts.label)}. A dash means no verified price for that platform. It is not $0. A stored rate can show on a closed night and is not a guest all-in quote.</p><div class="price-board">${cards}</div>`;
 }
 
 function priceFormHtml(data, selected) {
