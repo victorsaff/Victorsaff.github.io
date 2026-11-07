@@ -2559,8 +2559,8 @@
   }
  },
  "prices": {
-  "updatedAt": "2026-11-06T20:42:08-05:00",
-  "note": "Only stored platform leaves are verified. A dash means that platform was not read. A host-calendar rate is not a guest all-in price and does not mean the night is bookable.",
+  "updatedAt": "2026-11-06T21:02:05-05:00",
+  "note": "Only stored platform leaves are verified. A dash means that platform was not read. A host-calendar rate is not a guest all-in price and does not mean the night is bookable. Airbnb nights with no number were inspected and had no displayed price. They are not stored as zero.",
   "platforms": {
    "booking": {
     "currency": "USD",
@@ -2674,6 +2674,378 @@
       "product": "Comfort Triple Room"
      }
     }
+   },
+   "airbnb": {
+    "rooms": {
+     "room1": {
+      "source": "Airbnb host multi-calendar date-keyed accessible cells, corroborated by full-viewport calendar screenshots",
+      "unit": "per-night calendar-cell amount, not guest all-in quote",
+      "ratePlan": null,
+      "pricingModel": "Not identified: base, Smart Pricing or discounts unknown",
+      "occupancy": null,
+      "occupancyBasis": "Not shown",
+      "currency": "USD",
+      "currencyVerified": false,
+      "currencySymbol": "$",
+      "currencyBasis": "Dollar symbol visible; USD inferred from Boston-area listing, ISO currency not displayed",
+      "coverageStart": "2026-11-06",
+      "coverageEnd": "2027-01-04",
+      "inspectedDateCount": 60,
+      "verifiedPriceCount": 33,
+      "unknownPriceCount": 27,
+      "observedSpans": [
+       {
+        "start": "2026-11-02",
+        "end": "2026-11-20",
+        "observedAt": "2026-11-06T21:02:05-05:00"
+       },
+       {
+        "start": "2026-11-21",
+        "end": "2026-12-09",
+        "observedAt": "2026-11-06T20:58:06-05:00"
+       },
+       {
+        "start": "2026-12-09",
+        "end": "2026-12-27",
+        "observedAt": "2026-11-06T20:56:59-05:00"
+       },
+       {
+        "start": "2026-12-11",
+        "end": "2026-12-29",
+        "observedAt": "2026-11-06T20:56:45-05:00"
+       },
+       {
+        "start": "2026-12-28",
+        "end": "2027-01-15",
+        "observedAt": "2026-11-06T21:00:48-05:00"
+       }
+      ],
+      "unknownDates": {
+       "2026-11-06": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-11-07": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-11-08": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-11-09": {
+        "reason": "No price displayed in the calendar cell; it was not labeled Unavailable.",
+        "calendarLabelStatus": "not shown"
+       },
+       "2026-11-10": {
+        "reason": "No price displayed in the calendar cell; it was not labeled Unavailable.",
+        "calendarLabelStatus": "not shown"
+       },
+       "2026-11-11": {
+        "reason": "No price displayed in the calendar cell; it was not labeled Unavailable.",
+        "calendarLabelStatus": "not shown"
+       },
+       "2026-11-12": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-11-13": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-11-14": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-11-15": {
+        "reason": "No price displayed in the calendar cell; it was not labeled Unavailable.",
+        "calendarLabelStatus": "not shown"
+       },
+       "2026-11-18": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-11-19": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-11-20": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-11-25": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-11-26": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-11-27": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-12-04": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-12-05": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-12-10": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-12-22": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-12-24": {
+        "reason": "No price displayed in the calendar cell; it was not labeled Unavailable.",
+        "calendarLabelStatus": "not shown"
+       },
+       "2026-12-25": {
+        "reason": "No price displayed in the calendar cell; it was not labeled Unavailable.",
+        "calendarLabelStatus": "not shown"
+       },
+       "2026-12-26": {
+        "reason": "No price displayed in the calendar cell; it was not labeled Unavailable.",
+        "calendarLabelStatus": "not shown"
+       },
+       "2026-12-27": {
+        "reason": "No price displayed in the calendar cell; it was not labeled Unavailable.",
+        "calendarLabelStatus": "not shown"
+       },
+       "2026-12-31": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2027-01-01": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2027-01-02": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       }
+      },
+      "availabilityVerified": false,
+      "evidenceLimit": "A seasonal-rates sidebar obscures some cells visually; exact date-keyed accessible labels support those cells. Screenshot saved timestamps are not represented as observation timestamps."
+     },
+     "room2": {
+      "source": "Airbnb host multi-calendar date-keyed accessible cells, corroborated by full-viewport calendar screenshots",
+      "unit": "per-night calendar-cell amount, not guest all-in quote",
+      "ratePlan": null,
+      "pricingModel": "Not identified: base, Smart Pricing or discounts unknown",
+      "occupancy": null,
+      "occupancyBasis": "Not shown",
+      "currency": "USD",
+      "currencyVerified": false,
+      "currencySymbol": "$",
+      "currencyBasis": "Dollar symbol visible; USD inferred from Boston-area listing, ISO currency not displayed",
+      "coverageStart": "2026-11-06",
+      "coverageEnd": "2027-01-04",
+      "inspectedDateCount": 60,
+      "verifiedPriceCount": 46,
+      "unknownPriceCount": 14,
+      "observedSpans": [
+       {
+        "start": "2026-11-02",
+        "end": "2026-11-20",
+        "observedAt": "2026-11-06T21:02:05-05:00"
+       },
+       {
+        "start": "2026-11-21",
+        "end": "2026-12-09",
+        "observedAt": "2026-11-06T20:58:06-05:00"
+       },
+       {
+        "start": "2026-12-09",
+        "end": "2026-12-27",
+        "observedAt": "2026-11-06T20:56:59-05:00"
+       },
+       {
+        "start": "2026-12-11",
+        "end": "2026-12-29",
+        "observedAt": "2026-11-06T20:56:45-05:00"
+       },
+       {
+        "start": "2026-12-28",
+        "end": "2027-01-15",
+        "observedAt": "2026-11-06T21:00:48-05:00"
+       }
+      ],
+      "unknownDates": {
+       "2026-11-06": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-11-07": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-11-08": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-11-11": {
+        "reason": "No price displayed in the calendar cell; it was not labeled Unavailable.",
+        "calendarLabelStatus": "not shown"
+       },
+       "2026-11-12": {
+        "reason": "No price displayed in the calendar cell; it was not labeled Unavailable.",
+        "calendarLabelStatus": "not shown"
+       },
+       "2026-11-13": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-11-14": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-11-17": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-11-18": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-11-19": {
+        "reason": "No price displayed in the calendar cell; it was not labeled Unavailable.",
+        "calendarLabelStatus": "not shown"
+       },
+       "2026-11-20": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-11-21": {
+        "reason": "No price displayed in the calendar cell; it was not labeled Unavailable.",
+        "calendarLabelStatus": "not shown"
+       },
+       "2026-11-25": {
+        "reason": "No price displayed in the calendar cell; it was not labeled Unavailable.",
+        "calendarLabelStatus": "not shown"
+       },
+       "2026-12-23": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       }
+      },
+      "availabilityVerified": false,
+      "evidenceLimit": "A seasonal-rates sidebar obscures some cells visually; exact date-keyed accessible labels support those cells. Screenshot saved timestamps are not represented as observation timestamps."
+     },
+     "room3": {
+      "source": "Airbnb host multi-calendar date-keyed accessible cells, corroborated by full-viewport calendar screenshots",
+      "unit": "per-night calendar-cell amount, not guest all-in quote",
+      "ratePlan": null,
+      "pricingModel": "Not identified: base, Smart Pricing or discounts unknown",
+      "occupancy": null,
+      "occupancyBasis": "Not shown",
+      "currency": "USD",
+      "currencyVerified": false,
+      "currencySymbol": "$",
+      "currencyBasis": "Dollar symbol visible; USD inferred from Boston-area listing, ISO currency not displayed",
+      "coverageStart": "2026-11-06",
+      "coverageEnd": "2027-01-04",
+      "inspectedDateCount": 60,
+      "verifiedPriceCount": 45,
+      "unknownPriceCount": 15,
+      "observedSpans": [
+       {
+        "start": "2026-11-02",
+        "end": "2026-11-20",
+        "observedAt": "2026-11-06T21:02:05-05:00"
+       },
+       {
+        "start": "2026-11-21",
+        "end": "2026-12-09",
+        "observedAt": "2026-11-06T20:58:06-05:00"
+       },
+       {
+        "start": "2026-12-09",
+        "end": "2026-12-27",
+        "observedAt": "2026-11-06T20:56:59-05:00"
+       },
+       {
+        "start": "2026-12-11",
+        "end": "2026-12-29",
+        "observedAt": "2026-11-06T20:56:45-05:00"
+       },
+       {
+        "start": "2026-12-28",
+        "end": "2027-01-15",
+        "observedAt": "2026-11-06T21:00:48-05:00"
+       }
+      ],
+      "unknownDates": {
+       "2026-11-06": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-11-07": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-11-08": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-11-09": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-11-10": {
+        "reason": "No price displayed in the calendar cell; it was not labeled Unavailable.",
+        "calendarLabelStatus": "not shown"
+       },
+       "2026-11-11": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-11-12": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-11-13": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-11-17": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-11-18": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-11-19": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-11-20": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-11-21": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-11-22": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       },
+       "2026-12-12": {
+        "reason": "Calendar cell explicitly labeled Unavailable; no price displayed.",
+        "calendarLabelStatus": "Unavailable"
+       }
+      },
+      "availabilityVerified": false,
+      "evidenceLimit": "A seasonal-rates sidebar obscures some cells visually; exact date-keyed accessible labels support those cells. Screenshot saved timestamps are not represented as observation timestamps."
+     }
+    }
    }
   },
   "rooms": {
@@ -2709,10 +3081,12 @@
      "booking": 125
     },
     "2026-11-16": {
-     "booking": 115
+     "booking": 115,
+     "airbnb": 106
     },
     "2026-11-17": {
-     "booking": 115
+     "booking": 115,
+     "airbnb": 106
     },
     "2026-11-18": {
      "booking": 110
@@ -2724,16 +3098,20 @@
      "booking": 110
     },
     "2026-11-21": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 125
     },
     "2026-11-22": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 125
     },
     "2026-11-23": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 125
     },
     "2026-11-24": {
-     "booking": 115
+     "booking": 115,
+     "airbnb": 115
     },
     "2026-11-25": {
      "booking": 110
@@ -2745,22 +3123,28 @@
      "booking": 110
     },
     "2026-11-28": {
-     "booking": 135
+     "booking": 135,
+     "airbnb": 135
     },
     "2026-11-29": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 125
     },
     "2026-11-30": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 125
     },
     "2026-12-01": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 120
     },
     "2026-12-02": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 120
     },
     "2026-12-03": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 120
     },
     "2026-12-04": {
      "booking": 110
@@ -2769,58 +3153,74 @@
      "booking": 110
     },
     "2026-12-06": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 120
     },
     "2026-12-07": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 120
     },
     "2026-12-08": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 120
     },
     "2026-12-09": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 120
     },
     "2026-12-10": {
      "booking": 110
     },
     "2026-12-11": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 120
     },
     "2026-12-12": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 120
     },
     "2026-12-13": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 120
     },
     "2026-12-14": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 120
     },
     "2026-12-15": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 120
     },
     "2026-12-16": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 120
     },
     "2026-12-17": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 120
     },
     "2026-12-18": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 120
     },
     "2026-12-19": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 120
     },
     "2026-12-20": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 120
     },
     "2026-12-21": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 120
     },
     "2026-12-22": {
      "booking": 110
     },
     "2026-12-23": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 120
     },
     "2026-12-24": {
      "booking": 110
@@ -2835,13 +3235,16 @@
      "booking": 110
     },
     "2026-12-28": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 120
     },
     "2026-12-29": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 120
     },
     "2026-12-30": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 120
     },
     "2026-12-31": {
      "booking": 110
@@ -2853,10 +3256,12 @@
      "booking": 115
     },
     "2027-01-03": {
-     "booking": 115
+     "booking": 115,
+     "airbnb": 130
     },
     "2027-01-04": {
-     "booking": 115
+     "booking": 115,
+     "airbnb": 130
     }
    },
    "room2": {
@@ -2870,10 +3275,12 @@
      "booking": 125
     },
     "2026-11-09": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 122
     },
     "2026-11-10": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 122
     },
     "2026-11-11": {
      "booking": 125
@@ -2888,10 +3295,12 @@
      "booking": 125
     },
     "2026-11-15": {
-     "booking": 135
+     "booking": 135,
+     "airbnb": 127
     },
     "2026-11-16": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 118
     },
     "2026-11-17": {
      "booking": 125
@@ -2909,136 +3318,178 @@
      "booking": 125
     },
     "2026-11-22": {
-     "booking": 135
+     "booking": 135,
+     "airbnb": 135
     },
     "2026-11-23": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-11-24": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-11-25": {
      "booking": 125
     },
     "2026-11-26": {
-     "booking": 149
+     "booking": 149,
+     "airbnb": 149
     },
     "2026-11-27": {
-     "booking": 149
+     "booking": 149,
+     "airbnb": 149
     },
     "2026-11-28": {
-     "booking": 149
+     "booking": 149,
+     "airbnb": 149
     },
     "2026-11-29": {
-     "booking": 135
+     "booking": 135,
+     "airbnb": 135
     },
     "2026-11-30": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-12-01": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-12-02": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-12-03": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-12-04": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-12-05": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-12-06": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-12-07": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-12-08": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-12-09": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-12-10": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-12-11": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-12-12": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-12-13": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-12-14": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-12-15": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-12-16": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-12-17": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-12-18": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-12-19": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-12-20": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-12-21": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-12-22": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-12-23": {
      "booking": 125
     },
     "2026-12-24": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-12-25": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-12-26": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-12-27": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-12-28": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-12-29": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-12-30": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-12-31": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2027-01-01": {
-     "booking": 145
+     "booking": 145,
+     "airbnb": 164
     },
     "2027-01-02": {
-     "booking": 145
+     "booking": 145,
+     "airbnb": 164
     },
     "2027-01-03": {
-     "booking": 145
+     "booking": 145,
+     "airbnb": 150
     },
     "2027-01-04": {
-     "booking": 145
+     "booking": 145,
+     "airbnb": 150
     }
    },
    "room3": {
@@ -3067,13 +3518,16 @@
      "booking": 115
     },
     "2026-11-14": {
-     "booking": 135
+     "booking": 135,
+     "airbnb": 128
     },
     "2026-11-15": {
-     "booking": 135
+     "booking": 135,
+     "airbnb": 128
     },
     "2026-11-16": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 119
     },
     "2026-11-17": {
      "booking": 125
@@ -3094,133 +3548,175 @@
      "booking": 115
     },
     "2026-11-23": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-11-24": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-11-25": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-11-26": {
-     "booking": 149
+     "booking": 149,
+     "airbnb": 149
     },
     "2026-11-27": {
-     "booking": 149
+     "booking": 149,
+     "airbnb": 149
     },
     "2026-11-28": {
-     "booking": 149
+     "booking": 149,
+     "airbnb": 149
     },
     "2026-11-29": {
-     "booking": 135
+     "booking": 135,
+     "airbnb": 135
     },
     "2026-11-30": {
-     "booking": 125
+     "booking": 125,
+     "airbnb": 125
     },
     "2026-12-01": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 130
     },
     "2026-12-02": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 130
     },
     "2026-12-03": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 130
     },
     "2026-12-04": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 130
     },
     "2026-12-05": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 130
     },
     "2026-12-06": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 130
     },
     "2026-12-07": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 130
     },
     "2026-12-08": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 130
     },
     "2026-12-09": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 130
     },
     "2026-12-10": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 130
     },
     "2026-12-11": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 130
     },
     "2026-12-12": {
      "booking": 110
     },
     "2026-12-13": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 130
     },
     "2026-12-14": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 130
     },
     "2026-12-15": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 130
     },
     "2026-12-16": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 130
     },
     "2026-12-17": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 130
     },
     "2026-12-18": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 130
     },
     "2026-12-19": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 130
     },
     "2026-12-20": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 130
     },
     "2026-12-21": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 130
     },
     "2026-12-22": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 130
     },
     "2026-12-23": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 130
     },
     "2026-12-24": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 130
     },
     "2026-12-25": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 130
     },
     "2026-12-26": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 130
     },
     "2026-12-27": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 130
     },
     "2026-12-28": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 130
     },
     "2026-12-29": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 130
     },
     "2026-12-30": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 130
     },
     "2026-12-31": {
-     "booking": 110
+     "booking": 110,
+     "airbnb": 130
     },
     "2027-01-01": {
-     "booking": 115
+     "booking": 115,
+     "airbnb": 150
     },
     "2027-01-02": {
-     "booking": 115
+     "booking": 115,
+     "airbnb": 150
     },
     "2027-01-03": {
-     "booking": 115
+     "booking": 115,
+     "airbnb": 150
     },
     "2027-01-04": {
-     "booking": 115
+     "booking": 115,
+     "airbnb": 150
     }
    }
   }
