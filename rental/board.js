@@ -834,6 +834,20 @@ function airbnbBasisLine(data, room, iso) {
   return `<p class="note">Airbnb calendar cell · ${esc(guestCountLabel(info))} · pricing model not identified · ${money} · ${esc(coverageLabel(info))}${when ? ` · checked ${esc(when)}` : ""}. Not a guest all-in quote.${esc(thisNight)}</p>`;
 }
 
+function agodaBasisLine(data, room, iso) {
+  const info = pricePlatformInfo(data, "agoda", priceRoomKey(room));
+  if (!info) return `<p class="note">Agoda not read for this room.</p>`;
+  const when = checkedLabel(info);
+  const unknown = info.unknownDates?.[iso];
+  const price = nightPrices(data, room, iso).agoda;
+  const field = info.literalPriceFieldLabel ? ` The calendar field is “${info.literalPriceFieldLabel}”; base, net, gross, or all-in is not established.` : "";
+  const thisNight = price != null ? "" : unknown?.reason ? ` This night: ${unknown.reason}` : " This night has no stored Agoda price.";
+  const product = info.product ? `${info.product}, ` : "";
+  const plan = info.ratePlan || "rate plan not stored";
+  const money = info.currencyVerified ? (info.currency || "USD") : "currency not verified";
+  return `<p class="note">Agoda ${esc(product)}${esc(plan)} · ${esc(guestCountLabel(info))} · ${esc(money)} · ${esc(coverageLabel(info))}${when ? ` · checked ${esc(when)}` : ""}.${esc(field)}${esc(thisNight)} Not a reservation total.</p>`;
+}
+
 function nightlyPricesHtml(data, iso) {
   const parts = dayHeadParts(iso, "");
   const cards = (data.rooms || []).map((room) => {
@@ -842,6 +856,7 @@ function nightlyPricesHtml(data, iso) {
       <strong>${esc(room.name)}</strong>
       ${airbnbBasisLine(data, room, iso)}
       ${rateBasisLine(data, room)}
+      ${agodaBasisLine(data, room, iso)}
       <p>Airbnb ${esc(priceText(prices.airbnb))}</p>
       <p>Booking.com ${esc(priceText(prices.booking))}</p>
       <p>Agoda ${esc(priceText(prices.agoda))}</p>
