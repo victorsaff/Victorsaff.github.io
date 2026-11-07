@@ -4,7 +4,7 @@
   "timezone": "America/New_York",
   "currency": "USD",
   "lastChecked": "2026-11-03T22:00:00-05:00",
-  "opsAsOf": "2026-11-06T19:04:00-05:00",
+  "opsAsOf": "2026-11-06T20:02:00-05:00",
   "financialAsOf": "2026-11-03T22:45:00-05:00",
   "property": "20 Puritan Road, Somerville",
   "occupancyRule": "A room is occupied on a date when checkIn <= date < checkOut. If check-in or check-out is null, those nights are not marked occupied.",
@@ -2567,10 +2567,10 @@
   }
  },
  "signIn": {
-  "asOf": "2026-11-06T19:04:00-05:00",
-  "airbnb": {"state": "last verified", "at": "2026-11-06T17:55:00-05:00", "note": "Helen welcome send verified in chat ~6:14 PM; this hourly did not re-open Airbnb (evening brief holds browser)"},
-  "booking": {"state": "email-verified guest message", "at": "2026-11-06T18:29:00-05:00", "note": "Morgane guest message from Booking notification email; Extrenet not reopened this hour"},
-  "agoda": {"state": "portal reached", "at": "2026-11-06T10:43:00-05:00"}
+  "asOf": "2026-11-06T19:21:00-05:00",
+  "airbnb": {"state": "last verified", "at": "2026-11-06T19:20:00-05:00", "note": "Evening brief ~7:20 PM ET Nov 6 verified Airbnb live. Helen welcome was already sent once ~6:14 PM. Guest reply then: arrival TBD, needs parking, shared bathroom. The 8:02 PM hourly read Gmail only and did not reopen Airbnb."},
+  "booking": {"state": "last verified", "at": "2026-11-06T19:21:00-05:00", "note": "Evening brief ~7:21 PM ET Nov 6 had Booking signed in (Arthur and Adya arrival facts). Morgane guest message remains the ~6:29 PM email. The 8:02 PM hourly did not reopen Extrenet."},
+  "agoda": {"state": "portal reached", "at": "2026-11-06T10:43:00-05:00", "note": "Not reopened at 8:02 PM ET. Gmail showed MFA PIN noise only."}
  },
  "bookingCoverage": {
   "checkedAt": "2026-11-06T15:01:00-05:00",
@@ -2978,17 +2978,17 @@
    "platform": "booking",
    "checkIn": "2026-11-07",
    "checkOut": "2026-11-08",
-   "adults": null,
+   "adults": 2,
    "statedAmount": 130.0,
    "gross": 130.0,
    "fees": 19.5,
    "net": 110.5,
    "status": "confirmed",
-   "notes": "Full-stay payment $130.00 and commission $19.50 rechecked 3:01 PM ET Nov 6 on Booking.com. Payment minus commission is not a payout.",
+   "notes": "Full-stay payment $130.00 and commission $19.50 rechecked 3:01 PM ET Nov 6 on Booking.com. Payment minus commission is not a payout. Evening brief ~7:21 PM ET Nov 6 (Booking live): 2 adults. Arrival time, driving, and preferred contact unknown. Phone on file. Arrival set was not sent.",
    "arrivalTime": "unknown",
    "driving": "unknown",
    "contactChannel": "unknown",
-   "phoneOnFile": "unknown"
+   "phoneOnFile": "yes"
   },
   {
    "id": "adya-s-booking-2026-11-07",
@@ -2997,17 +2997,17 @@
    "platform": "booking",
    "checkIn": "2026-11-07",
    "checkOut": "2026-11-08",
-   "adults": null,
+   "adults": 2,
    "statedAmount": 103.5,
    "gross": 103.5,
    "fees": 15.53,
    "net": 87.97,
    "status": "confirmed",
-   "notes": "Full-stay payment $103.50 and commission $15.53 rechecked 3:01 PM ET Nov 6 on Booking.com. Payment minus commission is not a payout.",
-   "arrivalTime": "unknown",
-   "driving": "unknown",
+   "notes": "Full-stay payment $103.50 and commission $15.53 rechecked 3:01 PM ET Nov 6 on Booking.com. Payment minus commission is not a payout. Evening brief ~7:21 PM ET Nov 6 (Booking live): booked adults stay 2. A third guest was approved and a king plus futon was confirmed; the third guest is not recorded as a booked adult. Expected party 3. Not driving. Bag drop ~8:30 AM ET Sat Nov 7; room available 2 PM ET. Phone on file. Preferred contact unknown. Arrival set was not sent.",
+   "arrivalTime": "~8:30 AM ET bag drop; room available 2 PM ET",
+   "driving": "no",
    "contactChannel": "unknown",
-   "phoneOnFile": "unknown"
+   "phoneOnFile": "yes"
   },
   {
    "id": "catherine-s-booking-2026-11-08",
@@ -4625,9 +4625,9 @@
    "fees": null,
    "net": 105.62,
    "status": "confirmed",
-   "notes": "Logged from Airbnb hosting ~5:55 PM ET Nov 6. Premium King Bed Room. Host payout shown $105.62. Welcome sent once in Airbnb thread ~6:14 PM ET Nov 6 after owner approval; verified persisted, no duplicate. Do not invent gross/fees. Do not publish reservation codes.",
-   "arrivalTime": "unknown",
-   "driving": "unknown",
+   "notes": "Logged from Airbnb hosting ~5:55 PM ET Nov 6. Premium King Bed Room. Host payout shown $105.62. Welcome sent once in Airbnb thread ~6:14 PM ET Nov 6 after owner approval; verified persisted, no duplicate. Evening brief ~7:20 PM ET Nov 6 (Airbnb live): arrival time TBD; needs parking; asked about shared bathroom details. Reply needs owner yes before any send. The 8:02 PM hourly did not reopen Airbnb. Do not invent gross/fees. Do not publish reservation codes.",
+   "arrivalTime": "TBD",
+   "driving": "yes",
    "contactChannel": "Airbnb",
    "phoneOnFile": "unknown"
   }
@@ -4714,6 +4714,12 @@
  ],
  "decisions": [
   {
+   "id": "helen-bathroom-parking-reply",
+   "title": "Helen Z. bathroom + parking reply needs owner yes",
+   "detail": "Room 2, Nov 25-26. Welcome stays done (sent once ~6:14 PM ET). Evening brief ~7:20 PM ET Nov 6: arrival TBD, needs parking, asked shared-bathroom details. Draft needs owner yes before any send. The 8:02 PM hourly did not reopen Airbnb.",
+   "status": "open"
+  },
+  {
    "id": "morgane-parking-reply",
    "title": "Morgane B. parking question needs owner reply",
    "detail": "Room 1, Dec 4-6. Guest message ~6:29 PM ET Nov 6: coming by car, arriving in the evening, asked if there is private parking, prefers WhatsApp. Draft a parking reply for owner yes before any send. WhatsApp contact save pending as Morgane Room 1 Dec 4. Last checked ~7:04 PM ET Nov 6.",
@@ -4799,6 +4805,10 @@
   }
  ],
  "changelog": [
+  {
+   "at": "2026-11-06T20:02:00-05:00",
+   "note": "Hourly DELTA ~8:02 PM ET Nov 6 read Gmail, email, and open issues only. No portal reopen (day-before guest threads holds the browser). No new Booking/Airbnb/Agoda booking, cancel, payout, or guest-message email since 7:04 PM (Morgane ~6:29 PM already logged; Agoda MFA noise only). Applied evening brief ~7:20-7:21 PM ET: Arthur W. Room 2, 2 adults, phone on file, arrival/driving/contact unknown, arrival set not sent; Adya S. Room 3 booked adults stay 2, third guest approved (expected party 3, not a booked adult), not driving, bag drop ~8:30 AM ET, room from 2 PM ET, phone on file, arrival set not sent; Helen Z. arrival TBD, needs parking, shared-bathroom ask, new open decision helen-bathroom-parking-reply, no send. Helen welcome remains done. Flavinha checkout already sent on WhatsApp ~6:17 PM, no repeat. Open: Morgane parking, Helen bathroom+parking, Brynn welcome, Ami CS, Booking totals. Samuel and Stripe stay resolved. Financial windows stay dated Nov 3."
+  },
   {
    "at": "2026-11-06T19:04:00-05:00",
    "note": "Hourly DELTA ~7:04 PM ET Nov 6. Gmail: Morgane B. Booking Room 1 guest message ~6:29 PM (driving yes, evening arrival, asked private parking, prefers WhatsApp) — no host reply sent. Helen Z. welcome already sent once ~6:14 PM (resolve helen-welcome). Flavinha Room 3 checkout Template A sent once on WhatsApp ~6:17 PM. Agoda MFA ~5:54 PM noise only. No open PRICE/DECISION/NOTE issues. No new booking/cancel/payout. Open decisions: Morgane parking reply, Brynn welcome, Ami CS reply, Booking totals not verified. Financial windows stay dated Nov 3. Prior PR15 Helen append still unpublished; this run rebases/rebuilds on current main."
@@ -4983,10 +4993,10 @@
    "name": "Hourly Command Center check",
    "schedule": "hourly 8 AM–10 PM",
    "status": "active",
-   "lastRun": "2026-11-03T22:00:00-05:00",
+   "lastRun": "2026-11-06T20:02:00-05:00",
    "lastResult": "succeeded",
-   "nextRun": "2026-11-06T15:11:00-05:00",
-   "detail": "Same hours, 8:00 AM through 10:00 PM ET, within 15 minutes of the hour. Verified operations, decisions, reviews, arrivals, accounts, and schedules can be published when money windows are still incomplete. The 3:00 PM ET Nov 6 run finished privately and did not publish to this site. The saved next run is 3:11 PM ET Nov 6. Owner confirmed Nov 6, 4:01 PM ET that the Stripe website review is done and that Samuel B. was handled by a personal text."
+   "nextRun": null,
+   "detail": "Same hours, 8:00 AM through 10:00 PM ET. This 8:02 PM ET Nov 6 run read Gmail, email, and issues only and did not reopen Airbnb, Booking.com, or Agoda. Next run is left empty so the page computes it. The 3:00 PM ET Nov 6 run finished privately and did not publish. Owner confirmed Nov 6, 4:01 PM ET that the Stripe website review is done and that Samuel B. was handled by a personal text."
   },
   {
    "name": "Arrival-day check-in instructions",
@@ -5010,9 +5020,10 @@
    "name": "Evening host brief",
    "schedule": "daily 7:00 PM",
    "status": "active",
-   "lastRun": "2026-11-03T19:10:00-05:00",
+   "lastRun": "2026-11-06T19:21:00-05:00",
    "lastResult": "succeeded",
-   "nextRun": null
+   "nextRun": null,
+   "detail": "Evening brief around 7:21 PM ET Nov 6. The 8:02 PM hourly did not reopen the portals."
   },
   {
    "name": "2-hour sweep, all platforms",
@@ -5026,9 +5037,10 @@
    "name": "Day-before guest threads to GitHub",
    "schedule": "daily ~8:00 PM",
    "status": "active",
-   "lastRun": "2026-11-05T20:43:27-05:00",
-   "lastResult": "succeeded",
-   "nextRun": null
+   "lastRun": "2026-11-06T20:02:00-05:00",
+   "lastResult": "running",
+   "nextRun": null,
+   "detail": "At the 8:02 PM ET hourly read the routine still held the browser. Not marked succeeded."
   }
  ]
 }
