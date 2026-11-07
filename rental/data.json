@@ -4960,6 +4960,45 @@
      ]
     }
    ]
+  },
+  {
+   "date": "2026-11-07",
+   "guest": "Arthur W.",
+   "stayId": "arthur-w-booking-2026-11-07",
+   "groups": [
+    {
+     "label": "Booking.com",
+     "images": [
+      "rental/threads/2026-11-07/arthur_booking_01.png",
+      "rental/threads/2026-11-07/arthur_booking_02.png",
+      "rental/threads/2026-11-07/arthur_booking_03.png"
+     ]
+    }
+   ]
+  },
+  {
+   "date": "2026-11-07",
+   "guest": "Adya S.",
+   "stayId": "adya-s-booking-2026-11-07",
+   "groups": [
+    {
+     "label": "Booking.com",
+     "images": [
+      "rental/threads/2026-11-07/adya_booking_01.png",
+      "rental/threads/2026-11-07/adya_booking_02.png",
+      "rental/threads/2026-11-07/adya_booking_03.png",
+      "rental/threads/2026-11-07/adya_booking_04.png",
+      "rental/threads/2026-11-07/adya_booking_05.png",
+      "rental/threads/2026-11-07/adya_booking_06.png",
+      "rental/threads/2026-11-07/adya_booking_07.png",
+      "rental/threads/2026-11-07/adya_booking_08.png",
+      "rental/threads/2026-11-07/adya_booking_09.png",
+      "rental/threads/2026-11-07/adya_booking_10.png",
+      "rental/threads/2026-11-07/adya_booking_11.png",
+      "rental/threads/2026-11-07/adya_booking_12.png"
+     ]
+    }
+   ]
   }
  ],
  "scheduledTasks": [
@@ -5026,7 +5065,7 @@
    "name": "Day-before guest threads to GitHub",
    "schedule": "daily ~8:00 PM",
    "status": "active",
-   "lastRun": "2026-11-05T20:43:27-05:00",
+   "lastRun": "2026-11-06T20:20:00-05:00",
    "lastResult": "succeeded",
    "nextRun": null
   }
