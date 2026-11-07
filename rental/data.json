@@ -4,7 +4,7 @@
   "timezone": "America/New_York",
   "currency": "USD",
   "lastChecked": "2026-11-03T22:00:00-05:00",
-  "opsAsOf": "2026-11-06T17:11:00-05:00",
+  "opsAsOf": "2026-11-06T19:04:00-05:00",
   "financialAsOf": "2026-11-03T22:45:00-05:00",
   "property": "20 Puritan Road, Somerville",
   "occupancyRule": "A room is occupied on a date when checkIn <= date < checkOut. If check-in or check-out is null, those nights are not marked occupied.",
@@ -2567,9 +2567,9 @@
   }
  },
  "signIn": {
-  "asOf": "2026-11-06T14:29:00-05:00",
-  "airbnb": {"state": "verified", "at": "2026-11-06T14:29:00-05:00"},
-  "booking": {"state": "verified", "at": "2026-11-06T14:12:00-05:00"},
+  "asOf": "2026-11-06T19:04:00-05:00",
+  "airbnb": {"state": "last verified", "at": "2026-11-06T17:55:00-05:00", "note": "Helen welcome send verified in chat ~6:14 PM; this hourly did not re-open Airbnb (evening brief holds browser)"},
+  "booking": {"state": "email-verified guest message", "at": "2026-11-06T18:29:00-05:00", "note": "Morgane guest message from Booking notification email; Extrenet not reopened this hour"},
   "agoda": {"state": "portal reached", "at": "2026-11-06T10:43:00-05:00"}
  },
  "bookingCoverage": {
@@ -2829,7 +2829,7 @@
    "fees": 87.97,
    "net": 498.53,
    "status": "confirmed",
-   "notes": "Gross and commission from Booking.com export."
+   "notes": "Gross and commission from Booking.com export. Full checkout Template A (parking-permit reminder first) sent once on WhatsApp ~6:17 PM ET Nov 6 after owner approval; verified single Sent tick; checkout Sat Nov 7 ~11 AM."
   },
   {
    "id": "thomas-h-booking-2026-11-02",
@@ -4606,11 +4606,30 @@
    "fees": 29.70,
    "net": 168.30,
    "status": "confirmed",
-   "notes": "Logged from Booking.com Extrenet ~5:11 PM ET Nov 6. Genius guest. Total payment $198.00, commission $29.70. Payment minus commission is not a payout. Bank transfer payout not sent yet (Booking notes around Dec 7). Arrival time and driving unknown; phone on file yes. Do not invent.",
+   "notes": "Logged from Booking.com Extrenet ~5:11 PM ET Nov 6. Genius guest. Total payment $198.00, commission $29.70. Payment minus commission is not a payout. Guest message ~6:29 PM ET Nov 6: arriving by car in the evening; asked about private parking; prefers WhatsApp. Parking reply draft needs owner yes before any send. WhatsApp contact save pending as Morgane Room 1 Dec 4. Do not publish phone or reservation numbers.",
+   "arrivalTime": "evening",
+   "driving": "yes",
+   "contactChannel": "WhatsApp",
+   "phoneOnFile": "yes"
+  },
+  {
+   "id": "helen-z-airbnb-2026-11-25",
+   "guest": "Helen Z.",
+   "roomId": "room-2",
+   "platform": "airbnb",
+   "checkIn": "2026-11-25",
+   "checkOut": "2026-11-26",
+   "adults": 2,
+   "statedAmount": null,
+   "gross": null,
+   "fees": null,
+   "net": 105.62,
+   "status": "confirmed",
+   "notes": "Logged from Airbnb hosting ~5:55 PM ET Nov 6. Premium King Bed Room. Host payout shown $105.62. Welcome sent once in Airbnb thread ~6:14 PM ET Nov 6 after owner approval; verified persisted, no duplicate. Do not invent gross/fees. Do not publish reservation codes.",
    "arrivalTime": "unknown",
    "driving": "unknown",
-   "contactChannel": "Booking.com",
-   "phoneOnFile": "yes"
+   "contactChannel": "Airbnb",
+   "phoneOnFile": "unknown"
   }
  ],
  "payouts": [
@@ -4695,6 +4714,18 @@
  ],
  "decisions": [
   {
+   "id": "morgane-parking-reply",
+   "title": "Morgane B. parking question needs owner reply",
+   "detail": "Room 1, Dec 4-6. Guest message ~6:29 PM ET Nov 6: coming by car, arriving in the evening, asked if there is private parking, prefers WhatsApp. Draft a parking reply for owner yes before any send. WhatsApp contact save pending as Morgane Room 1 Dec 4. Last checked ~7:04 PM ET Nov 6.",
+   "status": "open"
+  },
+  {
+   "id": "helen-welcome",
+   "title": "Helen Z. welcome sent",
+   "detail": "Room 2, Nov 25-26. Airbnb welcome sent once ~6:14 PM ET Nov 6 after owner approval; verified persisted, no duplicate. Do not resend.",
+   "status": "done"
+  },
+  {
    "id": "samuel-arrival-day-checkin",
    "title": "Samuel B. arrival instructions",
    "detail": "Owner confirmed Nov 6, 4:01 PM ET. Already handled by a personal text. Not sent on Booking.com. No phone number or message text is stored.",
@@ -4768,6 +4799,10 @@
   }
  ],
  "changelog": [
+  {
+   "at": "2026-11-06T19:04:00-05:00",
+   "note": "Hourly DELTA ~7:04 PM ET Nov 6. Gmail: Morgane B. Booking Room 1 guest message ~6:29 PM (driving yes, evening arrival, asked private parking, prefers WhatsApp) — no host reply sent. Helen Z. welcome already sent once ~6:14 PM (resolve helen-welcome). Flavinha Room 3 checkout Template A sent once on WhatsApp ~6:17 PM. Agoda MFA ~5:54 PM noise only. No open PRICE/DECISION/NOTE issues. No new booking/cancel/payout. Open decisions: Morgane parking reply, Brynn welcome, Ami CS reply, Booking totals not verified. Financial windows stay dated Nov 3. Prior PR15 Helen append still unpublished; this run rebases/rebuilds on current main."
+  },
   {
    "at": "2026-11-06T17:11:00-05:00",
    "note": "Booking.com verified around 5:11 PM ET Nov 6. New Booking.com Morgane B. Room 1 Dec 4-6 2026 (2 nights): gross $198.00, commission $29.70, after-commission $168.30 from Extrenet. Arrival/driving unknown; phone on file. No new Airbnb/Agoda booking/cancel/payout. Agoda MFA noise only. No open PRICE/DECISION/NOTE issues. Owner-confirmed Samuel personal-text and Stripe website-review already live. Open decisions unchanged: Brynn welcome, Ami CS reply, Booking totals not verified. Financial windows stay dated Nov 3."
