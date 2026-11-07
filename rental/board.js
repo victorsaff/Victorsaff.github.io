@@ -1436,7 +1436,7 @@ function horizonGrid(data, view, selected) {
     return `<div class="groom">${roomName(room)}</div>${cells}`;
   }).join("");
   return `<div class="gscroll" id="gscroll"><div class="ggrid" style="grid-template-columns: 92px repeat(${days.length}, 54px)">${head}${rows}</div></div>
-    <p class="note">Next 60 days, ${esc(dayHeadParts(days[0], "").label)} through ${esc(dayHeadParts(days[days.length - 1], days[days.length - 2]).label)}. The bar is the booked platform. Each cell lists Airbnb, Booking.com, then Agoda. A dash means that platform was not read, not a $0 rate.</p>`;
+    <p class="note">Next 60 days, ${esc(dayHeadParts(days[0], "").label)} through ${esc(dayHeadParts(days[days.length - 1], days[days.length - 2]).label)}. The bar is the booked platform. Each cell lists Airbnb, Booking.com, then Agoda. A dash means no verified nightly price was displayed, whether that platform was not read or the cell showed no rate. It is not a $0 rate.</p>`;
 }
 
 function reservationList(data) {
