@@ -309,7 +309,8 @@ const DATED = {
     {block:"midday", id:"oliverout-sync", tx:"Checkout: Oliver Sterling out Room 2 (Booking.com Nov 10–11 stay ends)", badge:"clean", note:"Booking.com res 6725466525. Room 2 turns to Brynn in the check-in task above. ⟲ sync"},
     {block:"eve", id:"ebaynov11-sync", tx:"Ship eBay Nov 10 order: 20-15391-41157 ($34.99)", badge:"lynn", note:"Grok-fed delta Nov 10 03:10 ET in ebay_grok_feed.json; not cancelled, not verified shipped. ⟲ sync"},
     {block:"eve", id:"ebaynov11b-sync", tx:"Ship eBay Nov 10 order (additional): 09-15412-70857 ($34.99)", badge:"lynn", note:"Grok-fed delta Nov 10 07:27 ET in ebay_grok_feed.json; not cancelled, not verified shipped. ⟲ sync"},
-    {block:"eve", id:"wmnov11-sync", tx:"Ship Walmart Nov 10 orders: PO 129131522058877 ($37.99) + 129131522614980 ($26.99) + 129131523005583 ($37.99) — still New/unshipped", badge:"lynn", note:"All 3 Nov 10 POs show New in walmart_site_rows.json (12:01 PM dashboard run installed fresh exports incl. today's 3 orders, $102.97 gross). 0.2 lb, USPS Ground Advantage. ⟲ sync"}
+    {block:"eve", id:"wmnov11b-sync", tx:"Ship Walmart Nov 10 orders (additional): PO 129131624139229 ($26.99, order 200015663050281) + PO 129131626279810 ($26.99, order 200015488773281) — New/unshipped", badge:"lynn", note:"The only 2 New POs in the latest walmart_site_rows.json (Nov 11 00:01 dashboard pull); the 3 POs in the earlier wmnov11 task now show Shipped, so that task was removed. 0.2 lb, USPS Ground Advantage. ⟲ sync"},
+    {block:"eve", id:"ebaynov11c-sync", tx:"Ship eBay Nov 10 orders (additional): 09-15414-15858 ($24.00) + 18-15398-79081 ($34.99) + 04-15425-29677 ($24.00)", badge:"lynn", note:"Later Nov 10 sales in ebay_grok_feed.json; none cancelled, none verified shipped. ⟲ sync"}
   ],
   "2026-11-12":[
     {block:"midday", id:"lewes-sync", tx:"Room 2 check-in: Lewes in (Airbnb Nov 12–13, $99.29) — ready by 2 PM", badge:"clean", top:1, note:"Airbnb HM9TKETBFZ. ⟲ sync"},
@@ -323,7 +324,6 @@ const DATED = {
     {block:"midday", id:"nolab118-sync", tx:"NO CHEM 118 lab today — CHEM 118 has no labs in Veterans Day week (Nov 9–13)", badge:"class", top:1, note:"Syllabus verified Nov 6. The template Friday lab slot does not meet. ⟲ sync"}
   ],
   "2026-11-14":[
-    {block:"morning", id:"storagebook", tx:"Book the storage unit", badge:"move", top:1, note:"16 days to Lynn move-out. Booked = one less thing screaming."},
     {block:"midday", id:"sergei-sync", tx:"Turnovers: Rebecca out Room 3; Tracy out → Elia Colomer Clavel in Room 2; Jenn out → Sergei Kechkin in Room 1 — ready by 2 PM", badge:"clean", top:1, note:"Booking.com 6504528543 / 5096370613. ⟲ sync"},
     {block:"midday", id:"thomas-sync", tx:"Turnover — Rebecca Fajardo out → Thomas Fowler in Room 3 (Booking.com Nov 14–15, $112.50) — ready by 2 PM", badge:"clean", top:1, note:"Booking.com res 6862875691, new booking verified in the Nov 9 2:13 AM guest check. ⟲ sync"},
     {block:"aft", id:"pack1", tx:"Move: pack ONE room / corner in Lynn", badge:"move", note:"Boxes labeled. Future-you says thanks."}
@@ -332,10 +332,12 @@ const DATED = {
     {block:"midday", id:"luke", tx:"Luke check-in (Airbnb, Nov 15–16, $105.62) — room ready by 2 PM", badge:"clean", note:"From the verified reservations list."},
     {block:"midday", id:"sergeiout-sync", tx:"Checkouts: Sergei out Room 1, Elia out Room 2", badge:"clean", note:"Their Nov 14–15 stays end today. ⟲ sync"},
     {block:"midday", id:"thomasout-sync", tx:"Checkout — Thomas Fowler out Room 3 (Booking.com Nov 14–15 stay ends)", badge:"clean", note:"Booking.com res 6862875691. ⟲ sync"},
-    {block:"midday", id:"claudius-sync", tx:"Room 2 turnover: Elia out → Claudius Jehle in (Booking.com Nov 15–17, $216) — ready by 2 PM", badge:"clean", top:1, note:"Booking.com res 6757854368. Late ~11 PM check-in, driving, invoice by email at checkout. ⟲ sync"}
+    {block:"midday", id:"claudius-sync", tx:"Room 2 turnover: Elia out → Claudius Jehle in (Booking.com Nov 15–17, $216) — ready by 2 PM", badge:"clean", top:1, note:"Booking.com res 6757854368. Late ~11 PM check-in, driving, invoice by email at checkout. ⟲ sync"},
+    {block:"midday", id:"sheena-sync", tx:"Room 3 turnover: Thomas Fowler out → Sheena in (Airbnb, Nov 15–16, $108.37) — ready by 2 PM", badge:"clean", top:1, note:"Airbnb HMPYDTJZ5S, Private Guest Room = Room 3. New booking from the Nov 10 rental check. ⟲ sync"}
   ],
   "2026-11-16":[
     {block:"midday", id:"lukeout-sync", tx:"Luke checks out Room 1 — turnover if rebooked", badge:"clean", note:"His Nov 15–16 Airbnb stay ends today. ⟲ sync"},
+    {block:"midday", id:"sheenaout-sync", tx:"Checkout — Sheena out Room 3 (Airbnb Nov 15–16 stay ends)", badge:"clean", note:"Airbnb HMPYDTJZ5S. ⟲ sync"},
     {block:"eve", id:"dadbofaeve-sync", tx:"Tomorrow: PAY Dad's BofA + T-Mobile Internet — both due Nov 17", badge:"money", top:1, note:"Amounts to be confirmed — from Victor's task app. ⟲ sync"}
   ],
   "2026-11-17":[
@@ -351,7 +353,8 @@ const DATED = {
   "2026-11-19":[
     {block:"eve", id:"eqfinal", tx:"CHEM 118 Equilibrium FINAL draft DUE 11:59 PM (50 pts)", badge:"class", top:1, note:"Thursday, no classes. Submit before dinner."},
     {block:"midday", id:"antoine19-sync", tx:"Room 1 check-in: Antoine in (Airbnb, Nov 19–20, $119.14) — ready by 2 PM", badge:"clean", top:1, note:"Airbnb HMN9QYBY6W, Premium Private Guest Room = Room 1. ⟲ sync"},
-    {block:"midday", id:"aisawaki-sync", tx:"Room 3 check-in: Ai Sawaki in (Booking.com, Nov 19–23, $332.35) — ready by 2 PM", badge:"clean", top:1, note:"Booking.com res 6369750148. ⟲ sync"}
+    {block:"midday", id:"aisawaki-sync", tx:"Room 3 check-in: Ai Sawaki in (Booking.com, Nov 19–23, $332.35) — ready by 2 PM", badge:"clean", top:1, note:"Booking.com res 6369750148. ⟲ sync"},
+    {block:"eve", id:"buffersprelab-sync", tx:"CHEM 118 pre-lab prep — Buffers lab is tomorrow (Fri 1:00–5:00 PM): read the lab, prep the notebook tonight", badge:"study", top:1, note:"Thursday-before-Friday-lab rule. Buffers short report (75 pts) due Thanksgiving week. ⟲ sync"}
   ],
   "2026-11-20":[
     {block:"midday", id:"renata-sync", tx:"Room 2 check-in: Renata Večerková in (Booking.com, Nov 20–21, $95.62 net) — ready by 2 PM", badge:"clean", top:1, note:"Booking.com res 6888954686. She requested a 5–6 PM check-in. ⟲ sync"},
@@ -360,7 +363,19 @@ const DATED = {
     {block:"night", id:"exam3prep-sync", tx:"CHEM 116 Exam 3 prep — do it today (Exam 3 is Mon Nov 23, moved from Nov 18)", badge:"study", top:1, note:"Victor confirmed the new exam date Nov 9. ⟲ sync"}
   ],
   "2026-11-23":[
-    {block:"aft", id:"exam3", tx:"⭐ CHEM 116 EXAM 3 — TODAY", badge:"class", top:1, note:"Moved from Wed Nov 18 — Victor confirmed Nov 9. You've been repping this for weeks. Walk in calm, walk out done. ⟲ sync"}
+    {block:"aft", id:"exam3", tx:"⭐ CHEM 116 EXAM 3 — TODAY", badge:"class", top:1, note:"Moved from Wed Nov 18 — Victor confirmed Nov 9. You've been repping this for weeks. Walk in calm, walk out done. ⟲ sync"},
+    {block:"eve", id:"nov24eve-sync", tx:"Tomorrow: PAY Credit One Bank + BofA card ending 3770 ($73 minimum) — both due Nov 24; Discover 6402 also due Nov 24 ($0 owed, nothing to pay)", badge:"money", top:1, note:"From Victor's card due-date list + the payments sweep. ⟲ sync"}
+  ],
+  "2026-11-24":[
+    {block:"early", id:"nov24pay-sync", tx:"PAY Credit One Bank + BofA card ending 3770 ($73 minimum) — both due TODAY (Nov 24); Discover 6402 due today too ($0 owed)", badge:"money", top:1, note:"From Victor's card due-date list + the payments sweep. ⟲ sync"},
+    {block:"eve", id:"hw10-sync", tx:"CHEM 116 Homework 10 DUE 11:59 PM", badge:"class", top:1, note:"Blackboard. On the Library board's seed list; added here so both boards match. ⟲ sync"},
+    {block:"eve", id:"nov25eve-sync", tx:"Tomorrow: PAY PayPal Line of Credit ($15 min) + Chase GN Biz ($880 min) — both due Nov 25", badge:"money", top:1, note:"Statements recorded Nov 4. ⟲ sync"}
+  ],
+  "2026-11-25":[
+    {block:"early", id:"nov25pay-sync", tx:"PAY PayPal Line of Credit ($15 min, $147.77 balance) + Chase GN Biz ($880 min) — both due TODAY (Nov 25)", badge:"money", top:1, note:"Statements recorded Nov 4. ⟲ sync"},
+    {block:"midday", id:"lilliana-sync", tx:"Room 1 turnover: Emmanuel Onwubuya out → Lilliana Vindas in (Booking.com, Nov 25–28, $297) — ready by 2 PM", badge:"clean", top:1, note:"Booking.com res 6054779513. ⟲ sync"},
+    {block:"midday", id:"helen-sync", tx:"Room 2 check-in: Helen in (Airbnb, Nov 25–26, $105.62) — ready by 2 PM", badge:"clean", top:1, note:"Airbnb HMHXQJXXCY, Premium King Bed Room = Room 2. ⟲ sync"},
+    {block:"eve", id:"nov26eve-sync", tx:"Tomorrow: PAY Chase Biz — due Nov 26", badge:"money", note:"From Victor's card due-date list. ⟲ sync"}
   ],
   "2026-11-21":[
     {block:"morning", id:"robinhood-sync", tx:"PAY Robinhood Gold — $25 minimum due TODAY (Nov 21) + Capital One Quicksilver due TODAY", badge:"money", top:1, note:"From Victor's task app + the payments list. ⟲ sync"},
