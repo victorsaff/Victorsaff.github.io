@@ -36,7 +36,7 @@
 </head>
 <body>
 <h1>Business Dashboard - Live Sales</h1>
-<div class="updated">Updated 13 Nov 2026, 14:20 New York. Revenue counts at sale time; the page refreshes itself.</div>
+<div class="updated">Updated 13 Nov 2026, 16:25 New York. Revenue counts at sale time; the page refreshes itself.</div>
 <div class="cards"><div class="card"><div class="card-label">Today</div><div class="card-gross">$1,036.17 <span>gross</span></div><div class="card-net">$816.07 <span>net</span></div></div><div class="card"><div class="card-label">Yesterday</div><div class="card-gross">$893.86 <span>gross</span></div><div class="card-net">$640.64 <span>net</span></div></div><div class="card"><div class="card-label">Last 7 days</div><div class="card-gross">$7,009.13 <span>gross</span></div><div class="card-net">$4,991.35 <span>net</span></div></div><div class="card"><div class="card-label">Last 30 days</div><div class="card-gross">$31,703.07 <span>gross</span></div><div class="card-net">$22,959.57 <span>net</span></div></div><div class="card"><div class="card-label">Month to date</div><div class="card-gross">$12,822.62 <span>gross</span></div><div class="card-net">$9,181.96 <span>net</span></div></div><div class="card"><div class="card-label">Last month</div><div class="card-gross">$37,283.56 <span>gross</span></div><div class="card-net">$27,112.76 <span>net</span></div></div></div>
 <h2>Refunds</h2><div class="cards"><div class="card"><div class="card-label">Today</div><div class="card-refunds">$0.00 <span>refunds</span></div></div><div class="card"><div class="card-label">Yesterday</div><div class="card-refunds">$0.00 <span>refunds</span></div></div><div class="card"><div class="card-label">Last 7 days</div><div class="card-refunds">$688.83 <span>refunds</span></div></div><div class="card"><div class="card-label">Last 30 days</div><div class="card-refunds">$2,749.27 <span>refunds</span></div></div><div class="card"><div class="card-label">Month to date</div><div class="card-refunds">$988.51 <span>refunds</span></div></div><div class="card"><div class="card-label">Last month</div><div class="card-refunds">$2,750.89 <span>refunds</span></div></div></div>
 <h2>All businesses</h2>
@@ -47,7 +47,7 @@ Refunds are NOT deducted from gross or net: they are shown only in their own Ref
 Fanvue net is the actual per-sale net from Fanvue. Amazon net = price charged - 15% commission - shipping cost.
 Revenue is not bank income: payouts land later. Business expenses beyond platform cuts are tracked separately.</p>
 <script>
-const BAKED = "1794597640";
+const BAKED = "1794605135";
 setInterval(async () => {
   try {
     const r = await fetch("version.json", { cache: "no-store" });
