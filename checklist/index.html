@@ -376,7 +376,7 @@ const DATED = {
     {block:"midday", id:"claudiusout-sync", tx:"Checkout — Claudius Jehle out Room 2 (Booking.com Nov 15–17 stay ends)", badge:"clean", note:"Booking.com res 6757854368. Room 2 turns to Michaela in the check-ins task above. ⟲ sync"},
     {block:"midday", id:"catherine-sync", tx:"Room 1 check-in: Petrozzino Catherine in (Booking.com, Nov 17–18, $103.50) — ready by 2 PM", badge:"clean", top:1, note:"Booking.com res 6158075407. ⟲ sync"},
     {block:"midday", id:"oliviaulrichout-sync", tx:"Checkout — Olivia Cerritos + Ulrich Musche out Room 1 (Nov 16–17 stays end)", badge:"clean", note:"Airbnb HMHBNT3TYZ + Booking.com res 6034713492. Room 1 turns to Catherine in the check-in task above. ⟲ sync"},
-    {block:"early", id:"dadbofa-sync", tx:"PAY Dad's BofA + T-Mobile Internet — both due TODAY (17th)", badge:"money", top:1, note:"Amounts to be confirmed — from Victor's task app. ⟲ sync"},
+    {block:"early", id:"dadbofa-sync", tx:"PAY Dad's BofA — due TODAY (17th); T-Mobile Internet already paid", badge:"money", top:1, note:"T-Mobile Internet marked paid by Victor Nov 17 (dashboard mark; $72.60 received 11/16). Dad's BofA still due. ⟲ sync"},
     {block:"morning", id:"lab8-sync", tx:"PHYSIC 171 Lab 8 — Fluid Dynamics, 8:00–10:30 AM", badge:"class", top:1, note:"Syllabus verified Nov 6. Pre-lab due at lab start (Monday night's task). ⟲ sync"},
     {block:"eve", id:"wmnov17-sync", tx:"Ship Walmart POs still New (9): 129131840374372, 129131845517269, 129131845796614, 129131846346295, 129132057397804, 129132058447312, 129132058516046, 129132058548883, 129132058556787", badge:"lynn", note:"Carried from Nov 16 — still status New in walmart_site_rows.json, not verified shipped. PO 129131953500855 (Nov 14) stays excluded per the Nov 15 live-list cross-checks. 0.2 lb, USPS Ground Advantage. ⟲ sync"},
     {block:"eve", id:"wmnov17b-sync", tx:"Ship Walmart POs still New (6 more): 129132060220976, 129132060565568, 129132060945991, 129132061144646, 129132163187115, 129132163305377", badge:"lynn", note:"Still status New in walmart_site_rows.json (Nov 17 06:18 file). POs 129132163473496 + 129132163565176 now show Shipped — removed Nov 17 06:44 sync. 0.2 lb, USPS Ground Advantage. ⟲ sync"},
@@ -384,12 +384,15 @@ const DATED = {
     {block:"eve", id:"ebaynov17-sync", tx:"Ship eBay orders not verified shipped (8, Nov 12-13): 27-15390-34396, 10-15422-27794, 18-15407-66837, 13-15417-53303, 15-15414-85167, 09-15428-44540, 11-15424-62073, 15-15418-23234", badge:"lynn", note:"From ebay_grok_feed.json; none in ebay_cancelled.json (13-15245-00369 / 25-15295-28342 / 03-15387-70691), none verified shipped. ⟲ sync"},
     {block:"eve", id:"ebaynov17b-sync", tx:"Ship eBay orders not verified shipped (8, Nov 14-16): 05-15438-86374, 13-15424-91064, 05-15440-87015, 01-15450-79284, 24-15420-99059, 15-15422-89560, 21-15416-05094, 19-15420-16379", badge:"lynn", note:"From ebay_grok_feed.json; none cancelled, none verified shipped. ⟲ sync"},
     {block:"eve", id:"ebaynov17c-sync", tx:"Ship eBay orders (7, Nov 16-17, incl. new 17-15427-10535, 06-15448-79308, 14-15433-47288): 26-15407-26663, 17-15424-21827, 16-15427-06699, 04-15451-28338, 17-15427-10535, 06-15448-79308, 14-15433-47288", badge:"lynn", note:"Nov 16-17 sales in ebay_grok_feed.json (feed at 81+ orders); none cancelled, none verified shipped. ⟲ sync"},
-    {block:"eve", id:"ebaynov17d-sync", tx:"Ship eBay order (new, Nov 17): 22-15418-74462 ($71.37)", badge:"lynn", note:"New Nov 17 sale in ebay_grok_feed.json (feed updated Nov 17 06:43); not in ebay_cancelled.json, not verified shipped. ⟲ sync"}
+    {block:"eve", id:"ebaynov17d-sync", tx:"Ship eBay order (new, Nov 17): 22-15418-74462 ($71.37)", badge:"lynn", note:"New Nov 17 sale in ebay_grok_feed.json (feed updated Nov 17 06:43); not in ebay_cancelled.json, not verified shipped. ⟲ sync"},
+    {block:"eve", id:"ebaynov17e-sync", tx:"Ship eBay orders (3 more, Nov 17): 21-15421-01768 ($19.99) + 07-15448-16912 ($54.99) + 23-15418-16083 ($32.99) — not cancelled, not verified shipped", badge:"lynn", note:"Nov 17 sales in ebay_grok_feed.json; none in ebay_cancelled.json, no shipped verification. First tasked at the Nov 17 12:44 sync. ⟲ sync"},
+    {block:"night", id:"quizprep17-sync", tx:"CHEM 116 Ch. 14 Quiz prep — quiz is TOMORROW (Wed Nov 18) in class; the Ch. 14 Rate Laws Worksheet doubles as prep", badge:"study", note:"From the Nov 17 Canvas sweep. ⟲ sync"}
   ],
   "2026-11-18":[
     {block:"midday", id:"iana-sync", tx:"Room 1 check-in: Iana Katz in (Booking.com, Nov 18–21, $297) — ready by 2 PM", badge:"clean", top:1, note:"Booking.com res 5526532668. ⟲ sync"},
     {block:"midday", id:"catherineout-sync", tx:"Checkout — Petrozzino Catherine out Room 1 (Booking.com Nov 17–18 stay ends)", badge:"clean", note:"Booking.com res 6158075407. Room 1 turns to Iana Katz in the check-in task above. ⟲ sync"},
-    {block:"eve", id:"eqdraft", tx:"Open the Equilibrium draft — due TOMORROW", badge:"study", note:"Just open it and outline. 20 min tonight saves Thursday."}
+    {block:"eve", id:"eqdraft", tx:"Open the Equilibrium draft — due TOMORROW", badge:"study", note:"Just open it and outline. 20 min tonight saves Thursday."},
+    {block:"aft", id:"quiz18-sync", tx:"CHEM 116 Quiz — Chapter 14, in class today (during the 4:00–5:15 PM lecture)", badge:"class", top:1, note:"From the Nov 17 Canvas sweep. ⟲ sync"}
   ],
   "2026-11-19":[
     {block:"eve", id:"eqfinal", tx:"CHEM 118 Equilibrium FINAL draft DUE 11:59 PM (50 pts)", badge:"class", top:1, note:"Thursday, no classes. Submit before dinner."},
@@ -399,37 +402,43 @@ const DATED = {
   ],
   "2026-11-20":[
     {block:"midday", id:"renata-sync", tx:"Room 2 check-in: Renata Večerková in (Booking.com, Nov 20–21, $95.62 net) — ready by 2 PM", badge:"clean", top:1, note:"Booking.com res 6888954686. She requested a 5–6 PM check-in. ⟲ sync"},
-    {block:"eve", id:"nov21eve-sync", tx:"Tomorrow: PAY Robinhood Gold ($25 minimum) + Capital One Quicksilver — both due Nov 21; Amazon Nugenix FBA removal deadline is also Nov 21", badge:"money", top:1, note:"From Victor's task app + the payments list. ⟲ sync"},
+    {block:"eve", id:"nov21eve-sync", tx:"Tomorrow: PAY Robinhood Gold ($25 minimum) — due Nov 21; Amazon Nugenix FBA removal deadline is also Nov 21", badge:"money", top:1, note:"Capital One Quicksilver marked paid by Victor Nov 17 (dashboard mark) — removed at the Nov 17 12:44 sync. ⟲ sync"},
     {block:"midday", id:"buffers-sync", tx:"CHEM 118 Buffers lab today, 1:00–5:00 PM", badge:"class", top:1, note:"Schedule verified Nov 6; short report (75 pts) due Thanksgiving week. ⟲ sync"},
     {block:"night", id:"exam3prep-sync", tx:"CHEM 116 Exam 3 prep — do it today (Exam 3 is Mon Nov 23, moved from Nov 18)", badge:"study", top:1, note:"Victor confirmed the new exam date Nov 9. ⟲ sync"}
   ],
   "2026-11-23":[
     {block:"aft", id:"exam3", tx:"⭐ CHEM 116 EXAM 3 — TODAY", badge:"class", top:1, note:"Moved from Wed Nov 18 — Victor confirmed Nov 9. You've been repping this for weeks. Walk in calm, walk out done. ⟲ sync"},
-    {block:"eve", id:"nov24eve-sync", tx:"Tomorrow: PAY Credit One Bank + BofA card ending 3770 ($73 minimum) — both due Nov 24; Discover 6402 also due Nov 24 ($0 owed, nothing to pay)", badge:"money", top:1, note:"From Victor's card due-date list + the payments sweep. ⟲ sync"}
+    {block:"eve", id:"hw6-sync", tx:"CHEM 116 HW6 (Ch. 15) DUE TODAY 11:59 PM (10 pts) — same day as Exam 3", badge:"class", top:1, note:"From the Nov 17 Canvas sweep. The Nov 24 payment reminder that was here was removed — Credit One, BofA 3770 and Discover 6402 all marked paid by Victor Nov 17. ⟲ sync"}
   ],
   "2026-11-24":[
-    {block:"early", id:"nov24pay-sync", tx:"PAY Credit One Bank + BofA card ending 3770 ($73 minimum) — both due TODAY (Nov 24); Discover 6402 due today too ($0 owed)", badge:"money", top:1, note:"From Victor's card due-date list + the payments sweep. ⟲ sync"},
     {block:"eve", id:"hw10-sync", tx:"CHEM 116 Homework 10 DUE 11:59 PM", badge:"class", top:1, note:"Blackboard. On the Library board's seed list; added here so both boards match. ⟲ sync"},
-    {block:"eve", id:"nov25eve-sync", tx:"Tomorrow: PAY PayPal Line of Credit ($15 min) + Chase GN Biz ($880 min) — both due Nov 25", badge:"money", top:1, note:"Statements recorded Nov 4. ⟲ sync"}
+    {block:"eve", id:"nov25eve-sync", tx:"Tomorrow: PAY Chase GN Biz — $880 minimum due Nov 25", badge:"money", top:1, note:"PayPal Line of Credit marked paid by Victor Nov 17 (dashboard mark) — removed at the Nov 17 12:44 sync. Statements recorded Nov 4. ⟲ sync"},
+    {block:"eve", id:"buffersprep-sync", tx:"CHEM 118 Buffers lab report prep — do it today (due Thu Nov 26, 11:59 PM, 75 pts)", badge:"study", note:"From the Nov 17 Canvas sweep. ⟲ sync"}
   ],
   "2026-11-25":[
-    {block:"early", id:"nov25pay-sync", tx:"PAY PayPal Line of Credit ($15 min, $147.77 balance) + Chase GN Biz ($880 min) — both due TODAY (Nov 25)", badge:"money", top:1, note:"Statements recorded Nov 4. ⟲ sync"},
+    {block:"early", id:"nov25pay-sync", tx:"PAY Chase GN Biz — $880 minimum due TODAY (Nov 25)", badge:"money", top:1, note:"PayPal Line of Credit marked paid by Victor Nov 17 (dashboard mark) — removed at the Nov 17 12:44 sync. Statements recorded Nov 4. ⟲ sync"},
     {block:"midday", id:"lilliana-sync", tx:"Room 1 turnover: Emmanuel Onwubuya out → Lilliana Vindas in (Booking.com, Nov 25–28, $297) — ready by 2 PM", badge:"clean", top:1, note:"Booking.com res 6054779513. ⟲ sync"},
     {block:"eve", id:"nov26eve-sync", tx:"Tomorrow: PAY Chase Biz — due Nov 26", badge:"money", note:"From Victor's card due-date list. ⟲ sync"}
   ],
   "2026-11-26":[
-    {block:"early", id:"nov26pay-sync", tx:"PAY Chase Biz — due TODAY (Nov 26)", badge:"money", top:1, note:"From Victor's card due-date list. ⟲ sync"}
+    {block:"early", id:"nov26pay-sync", tx:"PAY Chase Biz — due TODAY (Nov 26)", badge:"money", top:1, note:"From Victor's card due-date list. ⟲ sync"},
+    {block:"midday", id:"radhika-sync", tx:"Room 2 check-in: Radhika in (Airbnb, Nov 26–29, $297.86 payout) — ready by 2:00 PM", badge:"clean", top:1, note:"Airbnb HMEXQZ2KCP, Premium King Bed Room = Room 2. New booking from the Nov 17 morning rentals check. ⟲ sync"},
+    {block:"eve", id:"buffersreport-sync", tx:"CHEM 118 Buffers lab report DUE TODAY 11:59 PM (75 pts)", badge:"class", top:1, note:"From the Nov 17 Canvas sweep. ⟲ sync"}
   ],
   "2026-11-21":[
-    {block:"morning", id:"robinhood-sync", tx:"PAY Robinhood Gold — $25 minimum due TODAY (Nov 21) + Capital One Quicksilver due TODAY", badge:"money", top:1, note:"From Victor's task app + the payments list. ⟲ sync"},
+    {block:"morning", id:"robinhood-sync", tx:"PAY Robinhood Gold — $25 minimum due TODAY (Nov 21)", badge:"money", top:1, note:"Capital One Quicksilver marked paid by Victor Nov 17 (dashboard mark) — removed at the Nov 17 12:44 sync. ⟲ sync"},
     {block:"midday", id:"philip-sync", tx:"Room 2 turnover: Renata out → Philip in (Airbnb, Nov 21–22, $109.85) — ready by 2 PM", badge:"clean", top:1, note:"Airbnb HMMWSBKJC4. ⟲ sync"},
     {block:"midday", id:"emmanuel-sync", tx:"Room 1 turnover: Iana Katz out → Emmanuel Onwubuya in (Booking.com, Nov 21–25, $400.50) — ready by 2 PM", badge:"clean", top:1, note:"Booking.com res 6373472712, verified in the Nov 8 guest check. ⟲ sync"},
     {block:"morning", id:"nugenix", tx:"Amazon deadline: Nugenix FBA inventory removal (~today)", badge:"money", top:1, note:"30 days from the Oct 22 notice — remove it or Amazon may dispose of it."},
-    {block:"aft", id:"pack2", tx:"Move: big pack day — 9 days to Lynn move-out", badge:"move", note:"Storage runs count. Get the heavy stuff moved."}
+    {block:"aft", id:"pack2", tx:"Move: big pack day — 9 days to Lynn move-out", badge:"move", note:"Storage runs count. Get the heavy stuff moved."},
+    {block:"eve", id:"hw6prep-sync", tx:"CHEM 116 HW6 (Ch. 15) prep — do it today (due Mon Nov 23, 11:59 PM, 10 pts — same day as Exam 3)", badge:"study", note:"From the Nov 17 Canvas sweep. ⟲ sync"}
   ],
   "2026-11-28":[
     {block:"morning", id:"adspower", tx:"AdsPower plan expires today — renew decision", badge:"money", note:"3 profiles run your businesses. Don't let it lapse by accident."},
     {block:"aft", id:"pack3", tx:"Move: Lynn almost empty — final sweep weekend", badge:"move", note:"Out by Monday Nov 30."}
+  ],
+  "2026-11-29":[
+    {block:"midday", id:"radhikaout-sync", tx:"Checkout — Radhika out Room 2 (Airbnb Nov 26–29 stay ends)", badge:"clean", note:"Airbnb HMEXQZ2KCP. ⟲ sync"}
   ],
   "2026-11-30":[
     {block:"early", id:"moveout", tx:"⭐ LYNN MOVE-OUT — done by today", badge:"move", top:1, note:"Keys, final walk-through, last load to storage / 18 Puritan."},
@@ -469,6 +478,9 @@ const DUE = [
   {d:"2026-11-06", tx:"CHEM 118 pH Pre-Lab Quiz — 1:00 PM", tag:"School"},
   {d:"2026-11-12", tx:"CHEM 118 pH Lab Report — 11:59 PM (75 pts)", tag:"School"},
   {d:"2026-11-23", tx:"CHEM 116 EXAM 3", tag:"School"},
+  {d:"2026-11-18", tx:"CHEM 116 Quiz — Chapter 14 (in class)", tag:"School"},
+  {d:"2026-11-23", tx:"CHEM 116 HW6 (Ch. 15) — 11:59 PM (10 pts)", tag:"School"},
+  {d:"2026-11-26", tx:"CHEM 118 Buffers lab report — 11:59 PM (75 pts)", tag:"School"},
   {d:"2026-11-19", tx:"CHEM 118 Equilibrium final draft — 11:59 PM (50 pts)", tag:"School"},
   {d:"2026-11-21", tx:"Amazon Nugenix FBA removal deadline (~)", tag:"Business"},
   {d:"2026-11-28", tx:"AdsPower plan expires — renew decision", tag:"Business"},
