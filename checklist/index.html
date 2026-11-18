@@ -392,7 +392,13 @@ const DATED = {
     {block:"midday", id:"iana-sync", tx:"Room 1 check-in: Iana Katz in (Booking.com, Nov 18–21, $297) — ready by 2 PM", badge:"clean", top:1, note:"Booking.com res 5526532668. ⟲ sync"},
     {block:"midday", id:"catherineout-sync", tx:"Checkout — Petrozzino Catherine out Room 1 (Booking.com Nov 17–18 stay ends)", badge:"clean", note:"Booking.com res 6158075407. Room 1 turns to Iana Katz in the check-in task above. ⟲ sync"},
     {block:"eve", id:"eqdraft", tx:"Open the Equilibrium draft — due TOMORROW", badge:"study", note:"Just open it and outline. 20 min tonight saves Thursday."},
-    {block:"aft", id:"quiz18-sync", tx:"CHEM 116 Quiz — Chapter 14, in class today (during the 4:00–5:15 PM lecture)", badge:"class", top:1, note:"From the Nov 17 Canvas sweep. ⟲ sync"}
+    {block:"aft", id:"quiz18-sync", tx:"CHEM 116 Quiz — Chapter 14, in class today (during the 4:00–5:15 PM lecture)", badge:"class", top:1, note:"From the Nov 17 Canvas sweep. ⟲ sync"},
+    {block:"eve", id:"wmnov18-sync", tx:"Ship Walmart POs still New (9): 129131840374372, 129131845517269, 129131845796614, 129131846346295, 129132057397804, 129132058447312, 129132058516046, 129132058548883, 129132058556787", badge:"lynn", note:"Carried from Nov 17 — still status New in walmart_site_rows.json, not verified shipped. PO 129131953500855 (Nov 14) stays excluded per the Nov 15 live-list cross-checks. 0.2 lb, USPS Ground Advantage. ⟲ sync"},
+    {block:"eve", id:"wmnov18b-sync", tx:"Ship Walmart POs still New (9 more): 129132060220976, 129132060565568, 129132060945991, 129132061144646, 129132163187115, 129132163305377, 129132165993965, 129132167902846, 129132269271060", badge:"lynn", note:"Still status New in walmart_site_rows.json. 0.2 lb, USPS Ground Advantage. ⟲ sync"},
+    {block:"eve", id:"ebaynov18-sync", tx:"Ship eBay orders not verified shipped (11, Nov 12-14): 27-15390-34396, 10-15422-27794, 18-15407-66837, 13-15417-53303, 15-15414-85167, 09-15428-44540, 11-15424-62073, 15-15418-23234, 05-15438-86374, 13-15424-91064, 05-15440-87015", badge:"lynn", note:"From ebay_grok_feed.json; none in ebay_cancelled.json (13-15245-00369 / 25-15295-28342 / 03-15387-70691), none verified shipped. ⟲ sync"},
+    {block:"eve", id:"ebaynov18b-sync", tx:"Ship eBay orders not verified shipped (11, Nov 15-16): 01-15450-79284, 24-15420-99059, 15-15422-89560, 21-15416-05094, 19-15420-16379, 26-15407-26663, 17-15424-21827, 16-15427-06699, 04-15451-28338, 17-15427-10535, 06-15448-79308", badge:"lynn", note:"From ebay_grok_feed.json; none cancelled, none verified shipped. ⟲ sync"},
+    {block:"eve", id:"ebaynov18c-sync", tx:"Ship eBay orders not verified shipped (10, Nov 17, incl. 5 new): 14-15433-47288, 22-15418-74462, 21-15421-01768, 07-15448-16912, 23-15418-16083, 16-15432-81397, 08-15447-90167, 16-15433-03473, 18-15429-32786, 24-15433-14998", badge:"lynn", note:"Nov 17 sales in ebay_grok_feed.json; none cancelled, none verified shipped. The last five are first tasked here. ⟲ sync"},
+    {block:"eve", id:"amznov18-sync", tx:"Ship Amazon order (Unshipped, Nov 17): 114-8789818-8385848 ($234.99 + $25 ship)", badge:"lynn", note:"New Unshipped order in amazon_site_rows.json from the Nov 18 00:01 dashboard run. ⟲ sync"}
   ],
   "2026-11-19":[
     {block:"eve", id:"eqfinal", tx:"CHEM 118 Equilibrium FINAL draft DUE 11:59 PM (50 pts)", badge:"class", top:1, note:"Thursday, no classes. Submit before dinner."},
@@ -422,7 +428,6 @@ const DATED = {
   ],
   "2026-11-26":[
     {block:"early", id:"nov26pay-sync", tx:"PAY Chase Biz — due TODAY (Nov 26)", badge:"money", top:1, note:"From Victor's card due-date list. ⟲ sync"},
-    {block:"midday", id:"radhika-sync", tx:"Room 2 check-in: Radhika in (Airbnb, Nov 26–29, $297.86 payout) — ready by 2:00 PM", badge:"clean", top:1, note:"Airbnb HMEXQZ2KCP, Premium King Bed Room = Room 2. New booking from the Nov 17 morning rentals check. ⟲ sync"},
     {block:"eve", id:"buffersreport-sync", tx:"CHEM 118 Buffers lab report DUE TODAY 11:59 PM (75 pts)", badge:"class", top:1, note:"From the Nov 17 Canvas sweep. ⟲ sync"}
   ],
   "2026-11-21":[
@@ -438,14 +443,17 @@ const DATED = {
     {block:"aft", id:"pack3", tx:"Move: Lynn almost empty — final sweep weekend", badge:"move", note:"Out by Monday Nov 30."}
   ],
   "2026-11-29":[
-    {block:"midday", id:"radhikaout-sync", tx:"Checkout — Radhika out Room 2 (Airbnb Nov 26–29 stay ends)", badge:"clean", note:"Airbnb HMEXQZ2KCP. ⟲ sync"}
   ],
   "2026-11-30":[
     {block:"early", id:"moveout", tx:"⭐ LYNN MOVE-OUT — done by today", badge:"move", top:1, note:"Keys, final walk-through, last load to storage / 18 Puritan."},
     {block:"eve", id:"storageeve-sync", tx:"Tomorrow: PAY Public Storage — $245.33 due Dec 1 (Space 3038, 50 Middlesex Ave)", badge:"money", note:"Rent $225.33 + insurance $20. Moved in Nov 6. ⟲ sync"}
   ],
   "2026-12-01":[
-    {block:"morning", id:"storage-sync", tx:"PAY Public Storage — $245.33 due TODAY (Space 3038, 50 Middlesex Ave)", badge:"money", top:1, note:"Rent $225.33 + insurance $20. ⟲ sync"}
+    {block:"morning", id:"storage-sync", tx:"PAY Public Storage — $245.33 due TODAY (Space 3038, 50 Middlesex Ave)", badge:"money", top:1, note:"Rent $225.33 + insurance $20. ⟲ sync"},
+    {block:"eve", id:"dec2eve2-sync", tx:"Tomorrow: PAY Citi Bank + Personal Capital One + Capital One Venture Personal — due Dec 2", badge:"money", note:"From Victor's card due-date list; amounts to be confirmed. ⟲ sync"}
+  ],
+  "2026-12-02":[
+    {block:"early", id:"dec2pay-sync", tx:"PAY Citi Bank + Personal Capital One + Capital One Venture Personal — due TODAY (Dec 2)", badge:"money", top:1, note:"From Victor's card due-date list; amounts to be confirmed. ⟲ sync"}
   ],
   "2026-12-09":[
     {block:"aft", id:"exam4", tx:"⭐ CHEM 116 EXAM 4 — TODAY", badge:"class", top:1, note:"Lowest of the 4 exams gets dropped. Finish strong anyway."}
@@ -486,6 +494,7 @@ const DUE = [
   {d:"2026-11-28", tx:"AdsPower plan expires — renew decision", tag:"Business"},
   {d:"2026-11-30", tx:"LYNN MOVE-OUT deadline", tag:"Move"},
   {d:"2026-12-01", tx:"PAY Public Storage — $245.33 (Space 3038)", tag:"Bank"},
+  {d:"2026-12-02", tx:"PAY Citi Bank + Personal Capital One + Capital One Venture Personal (due 2nd)", tag:"Bank"},
   {d:"2026-12-09", tx:"CHEM 116 EXAM 4", tag:"School"},
   {d:"2026-12-21", tx:"CAS 014 EWRAP Portfolio — 11:59 PM", tag:"School"}
 ];
