@@ -456,15 +456,17 @@ const DATED = {
     {block:"eve", id:"ebaynov24c-sync", tx:"Ship eBay orders not verified shipped (8, Nov 17): 21-15421-01768, 07-15448-16912, 23-15418-16083, 16-15432-81397, 08-15447-90167, 16-15433-03473, 18-15429-32786, 24-15433-14998", badge:"lynn", note:"In ebay_grok_feed.json; none cancelled, none verified shipped. ⟲ sync"},
     {block:"eve", id:"ebaynov24d-sync", tx:"Ship eBay orders OVERDUE — ship-by was Nov 23 (11): 17-15447-66522, 12-15457-24218, 18-15444-19063, 22-15436-06386, 27-15426-67758, 21-15438-84327, 09-15461-85438, 08-15465-05880, 05-15471-81905, 16-15450-59571, 13-15457-07231", badge:"lynn", note:"In ebay_grok_feed.json; none cancelled, none verified shipped. ⟲ sync"},
     {block:"eve", id:"ebaynov24e-sync", tx:"Ship eBay Nov 22 sales (5): 13-15459-37570, 15-15455-48494, 17-15451-59313, 04-15476-37738, 17-15452-63782", badge:"lynn", note:"In ebay_grok_feed.json (Nov 22); none cancelled, none verified shipped. ⟲ sync"},
-    {block:"eve", id:"amazonnov24-sync", tx:"Ship Amazon orders Unshipped (2): 111-7606269-3108214 ($234.99, ship-by Nov 23 — OVERDUE) + NEW 113-8743139-6258667 ($219.99, Unshipped Nov 23)", badge:"lynn", note:"Unshipped in amazon_site_rows.json; 113-8743139-6258667 moved Pending → Unshipped in the Nov 23 18:01 dashboard run. ⟲ sync"},
-    {block:"aft", id:"lynnwrapnov24-sync", tx:"Move: Lynn wrap-up week — hard deadline Dec 1 (Victor confirmed Nov 23); pack / clear Lynn in this week's runs", badge:"move", note:"Victor Nov 23 ~5:24 PM: Lynn must be wrapped up by Dec 1, moving to 18 Puritan Road, Somerville. ⟲ sync"}
+    {block:"aft", id:"lynnwrapnov24-sync", tx:"Move: Lynn wrap-up week — hard deadline Dec 1 (Victor confirmed Nov 23); pack / clear Lynn in this week's runs", badge:"move", note:"Victor Nov 23 ~5:24 PM: Lynn must be wrapped up by Dec 1, moving to 18 Puritan Road, Somerville. ⟲ sync"},
+    {block:"eve", id:"ebaynov24f-sync", tx:"Ship eBay NEW Nov 23 sale: 26-15440-55120 ($34.99, Sonicare RC Radiant & Clean 8-Pack) — not cancelled, not verified shipped", badge:"lynn", note:"In ebay_grok_feed.json (Nov 23); not in ebay_cancelled.json. ⟲ sync"},
+    {block:"morning", id:"physcancelnov24-sync", tx:"NO PHYSIC 171 lab today — lab CANCELLED for Thanksgiving week (Canvas double-checked Nov 23; Nov 23–27 recess)", badge:"class", top:1, note:"Thanksgiving week clear per Canvas Nov 23 check. ⟲ sync"}
   ],
   "2026-11-25":[
     {block:"early", id:"nov25pay-sync", tx:"PAY Chase GN Biz — $880 minimum due TODAY (Nov 25)", badge:"money", top:1, note:"PayPal Line of Credit marked paid by Victor Nov 17 (dashboard mark) — removed at the Nov 17 12:44 sync. Statements recorded Nov 4. ⟲ sync"},
     {block:"midday", id:"emmanuelout-sync", tx:"Room 1 checkout: Emmanuel Onwubuya out (Booking.com, Nov 21–25 stay ends today) — clean after checkout", badge:"clean", note:"Lilliana Vindas Nov 25–28 stay (res 6054779513) shows Cancelled in the latest Booking.com rows — her turnover task was removed at the Nov 20 sync. ⟲ sync"},
     {block:"midday", id:"vidhi-sync", tx:"Room 1 turnover: Emmanuel Onwubuya out → Vidhi in (Airbnb, Nov 25–27, $155.48) — ready by 2 PM", badge:"clean", top:1, note:"Airbnb HM5TH9C38Q, Premium Private Guest Room (Room 1); new booking in the Nov 21 08:23 rentals check. ⟲ sync"},
     {block:"eve", id:"nov26eve-sync", tx:"Tomorrow: PAY Chase Biz — due Nov 26", badge:"money", note:"From Victor's card due-date list. ⟲ sync"},
-    {block:"midday", id:"junhao-sync", tx:"Room 3 check-in: Junhao Liu in (Booking.com, Nov 25–28, $229.50 net) — ready by 2 PM", badge:"clean", top:1, note:"Booking.com res 5737303632. ⟲ sync"}
+    {block:"midday", id:"junhao-sync", tx:"Room 3 check-in: Junhao Liu in (Booking.com, Nov 25–28, $229.50 net) — ready by 2 PM", badge:"clean", top:1, note:"Booking.com res 5737303632. ⟲ sync"},
+    {block:"aft", id:"chemcancelnov25-sync", tx:"NO CHEM 116 lecture today — cancelled for Thanksgiving week (professor + Nov 23–27 recess, Canvas double-checked Nov 23)", badge:"class", top:1, note:"Thanksgiving week clear per Canvas Nov 23 check. ⟲ sync"}
   ],
   "2026-11-26":[
     {block:"early", id:"nov26pay-sync", tx:"PAY Chase Biz — due TODAY (Nov 26)", badge:"money", top:1, note:"From Victor's card due-date list. ⟲ sync"},
@@ -505,7 +507,8 @@ const DATED = {
     {block:"eve", id:"ebaynov22g-sync", tx:"Ship eBay orders not verified shipped (4, Nov 22 sales): 13-15459-37570, 15-15455-48494, 17-15451-59313, 04-15476-37738", badge:"lynn", note:"In ebay_grok_feed.json (Nov 22); none cancelled, none verified shipped; first tasked here. ⟲ sync"}
   ],
   "2026-11-27":[
-    {block:"midday", id:"vidhiout-sync", tx:"Room 1 checkout: Vidhi out (Airbnb, Nov 25–27 stay ends today) — clean after checkout", badge:"clean", note:"Airbnb HM5TH9C38Q. ⟲ sync"}
+    {block:"midday", id:"vidhiout-sync", tx:"Room 1 checkout: Vidhi out (Airbnb, Nov 25–27 stay ends today) — clean after checkout", badge:"clean", note:"Airbnb HM5TH9C38Q. ⟲ sync"},
+    {block:"midday", id:"chem118cancelnov27-sync", tx:"NO CHEM 118 lab today — lab CANCELLED for Thanksgiving week (Canvas double-checked Nov 23; Nov 23–27 recess)", badge:"class", top:1, note:"Thanksgiving week clear per Canvas Nov 23 check. ⟲ sync"}
   ],
   "2026-11-28":[
     {block:"morning", id:"adspower", tx:"AdsPower plan expires today — renew decision", badge:"money", note:"3 profiles run your businesses. Don't let it lapse by accident."},
