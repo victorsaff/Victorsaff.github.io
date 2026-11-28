@@ -54,7 +54,7 @@
 </head>
 <body>
 <h1>Business Dashboard - Live Sales</h1>
-<div class="updated">Updated 27 Nov 2026, 20:22 New York. Revenue counts at sale time; the page refreshes itself.</div>
+<div class="updated">Updated 27 Nov 2026, 20:45 New York. Revenue counts at sale time; the page refreshes itself.</div>
 <div class="cards"><button type="button" class="card period-card" data-period="today" onclick="selectPeriod('today')"><div class="card-label">Today</div><div class="card-gross">$426.48 <span>gross</span></div><div class="card-net">$337.73 <span>net</span></div></button><button type="button" class="card period-card" data-period="yesterday" onclick="selectPeriod('yesterday')"><div class="card-label">Yesterday</div><div class="card-gross">$471.88 <span>gross</span></div><div class="card-net">$295.61 <span>net</span></div></button><button type="button" class="card period-card" data-period="last7" onclick="selectPeriod('last7')"><div class="card-label">Last 7 days</div><div class="card-gross">$4,135.55 <span>gross</span></div><div class="card-net">$3,062.73 <span>net</span></div></button><button type="button" class="card period-card" data-period="last30" onclick="selectPeriod('last30')"><div class="card-label">Last 30 days</div><div class="card-gross">$26,940.14 <span>gross</span></div><div class="card-net">$19,567.14 <span>net</span></div></button><button type="button" class="card period-card" data-period="mtd" onclick="selectPeriod('mtd')"><div class="card-label">Month to date</div><div class="card-gross">$24,411.89 <span>gross</span></div><div class="card-net">$17,772.62 <span>net</span></div></button><button type="button" class="card period-card" data-period="last_month" onclick="selectPeriod('last_month')"><div class="card-label">Last month</div><div class="card-gross">$37,283.56 <span>gross</span></div><div class="card-net">$27,112.76 <span>net</span></div></button></div>
 <p class="hint">Tap a period above to see its breakdown: every business, day by day, and the individual sales. Tap a day to see just that day's sales.</p>
 <div id="breakdown">
@@ -468,7 +468,7 @@ async function loadData() {
     ({ platform: a[0], label: a[1], gross: a[2], net: a[3] }));
   return d;
 }
-const BAKED = "1795828973";
+const BAKED = "1795830351";
 setInterval(async () => {
   try {
     const r = await fetch("version.json", { cache: "no-store" });
